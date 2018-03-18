@@ -4,12 +4,12 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Loginassociado extends CI_Controller {
+class Loginassociadocliente extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(array('Login_model', 'Basico_model'));
+        $this->load->model(array('Login_model', 'Loginassociadocliente_model', 'Basico_model'));
         $this->load->helper(array('form', 'url'));
         $this->load->library(array('basico', 'form_validation', 'user_agent'));
         $this->load->driver('session');
@@ -144,17 +144,17 @@ class Loginassociado extends CI_Controller {
 
         $data['query'] = $this->input->post(array(
             'Email',
-            'Usuario',
+            #'Usuario',
 			'NomeEmpresa',
             'Nome',
-            'Senha',
-            'Confirma',
+            #'Senha',
+            #'Confirma',
             'DataNascimento',
             'Celular',
             'Sexo',
 			'Funcao',
 			'DataCriacao',
-			'NumUsuarios',
+			#'NumUsuarios',
 			
                 ), TRUE);
         
@@ -162,11 +162,11 @@ class Loginassociado extends CI_Controller {
 		
 		$this->form_validation->set_error_delimiters('<h5 style="color: red;">', '</h5>');
 
-        $this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[Sis_Usuario.Email]');
-        $this->form_validation->set_rules('Usuario', 'Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
+        #$this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[Sis_Usuario.Email]');
+        #$this->form_validation->set_rules('Usuario', 'Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
         $this->form_validation->set_rules('Nome', 'Nome e Sobrenome', 'required|trim');
-        $this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
-        $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
+        #$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
+        #$this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
 
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
@@ -174,34 +174,35 @@ class Loginassociado extends CI_Controller {
         #run form validation
         if ($this->form_validation->run() === FALSE) {
             #load loginassociado view
-            $this->load->view('loginassociado/form_registrar', $data);
+            $this->load->view('loginassociadocliente/form_registrarcliente', $data);
         } else {
 
 			$data['query']['Funcao'] = 1;
-			$data['query']['Permissao'] = 3;
+			$data['query']['Permissao'] = 2;
 			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
-			$data['query']['UsuarioEmpresa'] = 0;
+			#$data['query']['UsuarioEmpresa'] = 0;
 			$data['query']['idSis_EmpresaFilial'] = $_SESSION['log']['idSis_EmpresaFilial'];
 			$data['query']['Associado'] = $_SESSION['log']['id'];
 			$data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-            $data['query']['Senha'] = md5($data['query']['Senha']);
+            #$data['query']['Senha'] = md5($data['query']['Senha']);
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             $data['query']['DataCriacao'] = $this->basico->mascara_data($data['query']['DataCriacao'], 'mysql');
-			$data['query']['Codigo'] = md5(uniqid(time() . rand()));
+			#$data['query']['Codigo'] = md5(uniqid(time() . rand()));
             #$data['query']['Inativo'] = 1;
             //ACESSO LIBERADO PRA QUEM REALIZAR O CADASTRO
             $data['query']['Inativo'] = 0;
-            unset($data['query']['Confirma']);
+            #unset($data['query']['Confirma']);
 
             $data['anterior'] = array();
             $data['campos'] = array_keys($data['query']);
 
-            $data['idSis_Usuario'] = $this->Login_model->set_usuario($data['query']);
+            $data['idSis_Usuario'] = $this->Loginassociadocliente_model->set_usuario($data['query']);
             $_SESSION['log']['id'] = 1;
 
             if ($data['idSis_Usuario'] === FALSE) {
                 $data['msg'] = '?m=2';
-                $this->load->view('loginassociado/form_loginassociado', $data);
+                $this->load->view('login/form_login', $data);
+
             } else {
 
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idSis_Usuario']);
@@ -215,11 +216,12 @@ class Loginassociado extends CI_Controller {
                  */
                 $data['agenda'] = array(
                     'NomeAgenda' => 'Padrão',
+					'Empresa' => '2',
                     'idSis_Usuario' => $data['idSis_Usuario']
                 );
                 $data['campos'] = array_keys($data['agenda']);
 
-                $data['idApp_Agenda'] = $this->Login_model->set_agenda($data['agenda']);
+                $data['idApp_Agenda'] = $this->Loginassociadocliente_model->set_agenda($data['agenda']);
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idSis_Usuario']);
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idSis_Usuario']);
 
@@ -264,7 +266,7 @@ class Loginassociado extends CI_Controller {
                   </div> '
                         . '';
 
-                $this->load->view('loginassociado/tela_msg', $data);
+				$this->load->view('login/tela_msg', $data);
                 #redirect(base_url() . 'loginassociado' . $data['msg']);
                 #exit();
             }
