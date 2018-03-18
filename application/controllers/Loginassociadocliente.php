@@ -73,7 +73,7 @@ class Loginassociadocliente extends CI_Controller {
         #run form validation
         if ($this->form_validation->run() === FALSE) {
             #load loginassociado view
-            $this->load->view('loginassociado/form_loginassociado', $data);
+            $this->load->view('loginassociadocliente/form_loginassociadocliente', $data);
         } else {
 
             session_regenerate_id(true);
@@ -87,9 +87,12 @@ class Loginassociadocliente extends CI_Controller {
               echo "</pre>";
               exit();
              */
-            $query = $this->Login_model->check_dados_usuario($senha, $usuario, TRUE);
-            $_SESSION['log']['Agenda'] = $this->Login_model->get_agenda_padrao($query['idSis_Usuario']);
-
+            #$query = $this->Login_model->check_dados_usuario($senha, $usuario, TRUE);
+            #$_SESSION['log']['Agenda'] = $this->Login_model->get_agenda_padrao($query['idSis_Usuario']);
+            $query = $this->Loginassociadocliente_model->check_dados_usuario($senha, $usuario, TRUE);
+            $_SESSION['log']['Agenda'] = $this->Loginassociadocliente_model->get_agenda_padrao($query['idSis_Usuario']);
+			
+			
             #echo "<pre>".print_r($query)."</pre>";
             #exit();
 
@@ -97,7 +100,7 @@ class Loginassociadocliente extends CI_Controller {
                 #$msg = "<strong>Senha</strong> incorreta ou <strong>usuário</strong> inexistente.";
                 #$this->basico->erro($msg);
                 $data['msg'] = $this->basico->msg('<strong>Senha</strong> incorreta.', 'erro', FALSE, FALSE, FALSE);
-                $this->load->view('form_loginassociado', $data);
+                $this->load->view('form_loginassociadocliente', $data);
 
             } else {
                 #initialize session
@@ -105,22 +108,32 @@ class Loginassociadocliente extends CI_Controller {
 
                 #$_SESSION['log']['Usuario'] = $query['Usuario'];
                 //se for necessário reduzir o tamanho do nome de usuário, que pode ser um email
-                $_SESSION['log']['Usuario'] = (strlen($query['Usuario']) > 10) ? substr($query['Usuario'], 0, 10) : $query['Usuario'];
-                $_SESSION['log']['id'] = $query['idSis_Usuario'];
-
+				$_SESSION['log']['Usuario'] = (strlen($query['Usuario']) > 15) ? substr($query['Usuario'], 0, 15) : $query['Usuario'];
+                #$_SESSION['log']['Nome'] = (strlen($query['Nome']) > 10) ? substr($query['Nome'], 0, 10) : $query['Nome'];
+				$_SESSION['log']['Nome'] = $query['Nome'];
+				$_SESSION['log']['id'] = $query['idSis_Usuario'];
+				$_SESSION['log']['idSis_EmpresaFilial'] = $query['idSis_EmpresaFilial'];
+				$_SESSION['log']['Empresa'] = $query['Empresa'];
+				$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
+				$_SESSION['log']['Funcao'] = $query['Funcao'];
+				$_SESSION['log']['Permissao'] = $query['Permissao'];
+				
+				
                 $this->load->database();
                 $_SESSION['db']['hostname'] = $this->db->hostname;
                 $_SESSION['db']['username'] = $this->db->username;
                 $_SESSION['db']['password'] = $this->db->password;
                 $_SESSION['db']['database'] = $this->db->database;
 
-                if ($this->Login_model->set_acesso($_SESSION['log']['id'], 'LOGIN') === FALSE) {
+                if ($this->Loginassociadocliente_model->set_acesso($_SESSION['log']['id'], 'LOGIN') === FALSE) {
                     $msg = "<strong>Erro no Banco de dados. Entre em contato com o Administrador.</strong>";
 
                     $this->basico->erro($msg);
-                    $this->load->view('form_loginassociado');
+                    $this->load->view('form_loginassociadocliente');
                 } else {
-                    redirect('cliente');
+                    #redirect('cliente');
+					#redirect('acesso');
+					redirect('acessocliente');
                 }
             }
         }
@@ -145,14 +158,14 @@ class Loginassociadocliente extends CI_Controller {
         $data['query'] = $this->input->post(array(
             'Email',
             #'Usuario',
-			'NomeEmpresa',
+
             'Nome',
             #'Senha',
             #'Confirma',
             'DataNascimento',
             'Celular',
             'Sexo',
-			'Funcao',
+
 			'DataCriacao',
 			#'NumUsuarios',
 			
@@ -180,6 +193,7 @@ class Loginassociadocliente extends CI_Controller {
 			$data['query']['Funcao'] = 1;
 			$data['query']['Permissao'] = 2;
 			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
+			$data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
 			#$data['query']['UsuarioEmpresa'] = 0;
 			$data['query']['idSis_EmpresaFilial'] = $_SESSION['log']['idSis_EmpresaFilial'];
 			$data['query']['Associado'] = $_SESSION['log']['id'];
@@ -188,9 +202,10 @@ class Loginassociadocliente extends CI_Controller {
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             $data['query']['DataCriacao'] = $this->basico->mascara_data($data['query']['DataCriacao'], 'mysql');
 			#$data['query']['Codigo'] = md5(uniqid(time() . rand()));
-            #$data['query']['Inativo'] = 1;
+            //ACESSO LIBERADO APENAS PARA ENTRAR COMO CLIENTE
+			$data['query']['Inativo'] = 1;
             //ACESSO LIBERADO PRA QUEM REALIZAR O CADASTRO
-            $data['query']['Inativo'] = 0;
+            #$data['query']['Inativo'] = 0;
             #unset($data['query']['Confirma']);
 
             $data['anterior'] = array();
@@ -292,9 +307,9 @@ class Loginassociadocliente extends CI_Controller {
         );
 
         $data['campos'] = array_keys($data['confirmar']);
-        $id = $this->Login_model->get_data_by_codigo($codigo);
+        $id = $this->Loginassociadocliente_model->get_data_by_codigo($codigo);
 
-        if ($this->Login_model->ativa_usuario($codigo, $data['confirmar']) === TRUE) {
+        if ($this->Loginassociadocliente_model->ativa_usuario($codigo, $data['confirmar']) === TRUE) {
 
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['confirmar'], $data['campos'], $id['idSis_Usuario'], TRUE);
             $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'UPDATE', $data['auditoriaitem'], $id['idSis_Usuario']);
@@ -338,9 +353,9 @@ class Loginassociadocliente extends CI_Controller {
 
             $data['query']['Codigo'] = md5(uniqid(time() . rand()));
 
-            $id = $this->Login_model->get_data_by_usuario($data['query']['Usuario']);
+            $id = $this->Loginassociadocliente_model->get_data_by_usuario($data['query']['Usuario']);
 
-            if ($this->Login_model->troca_senha($id['idSis_Usuario'], array('Codigo' => $data['query']['Codigo'])) === FALSE) {
+            if ($this->Loginassociadocliente_model->troca_senha($id['idSis_Usuario'], array('Codigo' => $data['query']['Codigo'])) === FALSE) {
 
                 $data['anterior'] = array(
                     'Codigo' => 'NULL'
@@ -407,7 +422,7 @@ class Loginassociadocliente extends CI_Controller {
                 ), TRUE);
 
         if ($codigo) {
-            $data['query'] = $this->Login_model->get_data_by_codigo($codigo);
+            $data['query'] = $this->Loginassociadocliente_model->get_data_by_codigo($codigo);
             $data['query']['Codigo'] = $codigo;
         } else {
             $data['query']['Codigo'] = $this->input->post('Codigo', TRUE);
@@ -437,7 +452,7 @@ class Loginassociadocliente extends CI_Controller {
             $data['anterior'] = array();
             $data['campos'] = array_keys($data['query']);
 
-            if ($this->Login_model->troca_senha($data['query']['idSis_Usuario'], $data['query']) === TRUE) {
+            if ($this->Loginassociadocliente_model->troca_senha($data['query']['idSis_Usuario'], $data['query']) === TRUE) {
                 $data['msg'] = '?m=2';
                 $this->load->view('loginassociado/form_troca_senha', $data);
             } else {
@@ -467,12 +482,12 @@ class Loginassociadocliente extends CI_Controller {
 
         #set logout in database
         if ($_SESSION['log'] && $m === TRUE) {
-            $this->Login_model->set_acesso($_SESSION['log']['id'], 'LOGOUT');
+            $this->Loginassociadocliente_model->set_acesso($_SESSION['log']['id'], 'LOGOUT');
         } else {
             if (!isset($_SESSION['log']['id'])) {
                 $_SESSION['log']['id'] = 1;
             }
-            $this->Login_model->set_acesso($_SESSION['log']['id'], 'TIMEOUT');
+            $this->Loginassociadocliente_model->set_acesso($_SESSION['log']['id'], 'TIMEOUT');
             $data['msg'] = '?m=2';
         }
 
@@ -499,10 +514,10 @@ class Loginassociadocliente extends CI_Controller {
 
     function valid_usuario($data) {
 
-        if ($this->Login_model->check_usuario($data) == 1) {
+        if ($this->Loginassociadocliente_model->check_usuario($data) == 1) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> não existe.');
             return FALSE;
-        } else if ($this->Login_model->check_usuario($data) == 2) {
+        } else if ($this->Loginassociadocliente_model->check_usuario($data) == 2) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo.');
             return FALSE;
         } else {
@@ -512,7 +527,7 @@ class Loginassociadocliente extends CI_Controller {
 
     function valid_senha($senha, $usuario) {
 
-        if ($this->Login_model->check_dados_usuario($senha, $usuario) == FALSE) {
+        if ($this->Loginassociadocliente_model->check_dados_usuario($senha, $usuario) == FALSE) {
             $this->form_validation->set_message('valid_senha', '<strong>%s</strong> incorreta, ou este não é o seu Sistema.');
             return FALSE;
         } else {

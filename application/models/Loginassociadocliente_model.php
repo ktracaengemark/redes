@@ -55,7 +55,7 @@ class Loginassociadocliente_model extends CI_Model {
         else {
             $query = $query->result_array();
 
-            if ($query[0]['Inativo'] == 1)
+            if ($query[0]['Inativo'] == '')
                 return 2;
             else
                 return FALSE;
