@@ -105,7 +105,7 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url(); ?>loginassociadocliente/registrar"><span class="glyphicon glyphicon-pencil"></span> Cad. Contato/Usuario</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url(); ?>relatorio/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Rel. Contato/Usuario</a></li>
+									<li><a href="<?php echo base_url(); ?>relatoriocliente/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Rel. Contato/Usuario</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/clientes"><span class="glyphicon glyphicon-list"></span> Clientes & Contatos</a></li>
 									<li role="separator" class="divider"></li>
