@@ -113,10 +113,13 @@ class Login extends CI_Controller {
 				$_SESSION['log']['Nome'] = $query['Nome'];
 				$_SESSION['log']['id'] = $query['idSis_Usuario'];
 				$_SESSION['log']['idSis_EmpresaFilial'] = $query['idSis_EmpresaFilial'];
+				$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
 				$_SESSION['log']['Empresa'] = $query['Empresa'];
 				$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
-				$_SESSION['log']['Funcao'] = $query['Funcao'];
+				$_SESSION['log']['Nivel'] = $query['Nivel'];
 				$_SESSION['log']['Permissao'] = $query['Permissao'];
+				$_SESSION['log']['Funcao'] = $query['Funcao'];
+				$_SESSION['log']['Associado'] = $query['Associado'];
 
                 $this->load->database();
                 $_SESSION['db']['hostname'] = $this->db->hostname;
@@ -561,7 +564,10 @@ class Login extends CI_Controller {
         } else if ($this->Login_model->check_usuario($data) == 2) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo! Fale com o Administrador da sua Empresa!');
             return FALSE;
-        } else {
+        } else if ($this->Login_model->check_usuario($data) == 3) {
+            $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> Acesso Errado! Entre pelo Acesso Correto!');
+            return FALSE;		
+		} else {
             return TRUE;
         }
     }

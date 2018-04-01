@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login_model extends CI_Model {
+class Logincliente_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -13,48 +13,15 @@ class Login_model extends CI_Model {
 
     }
 
-    public function check_dados_usuario1($senha, $usuario, $retorna = FALSE) {
-
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE '
-                . '(Usuario = "' . $usuario . '" AND '
-                . 'Senha = "' . $senha . '") OR '
-                . '(Email = "' . $usuario . '" AND '
-                . 'Senha = "' . $senha . '")'
-        );
-        #$query = $this->db->get_where('Sis_Usuario', $data);
-        /*
-          echo $this->db->last_query();
-          echo "<pre>";
-          print_r($query);
-          echo "</pre>";
-          exit();
-         */
-        if ($query->num_rows() === 0) {
-            return FALSE;
-        }
-        else {
-            if ($retorna === FALSE) {
-                return TRUE;
-            }
-            else {
-                $query = $query->result_array();
-                return $query[0];
-            }
-        }
-
-    }
-
-	public function check_dados_usuario($senha, $usuario, $retorna = FALSE) {
+    public function check_dados_usuario($senha, $usuario, $retorna = FALSE) {
 
         $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE '
                 . '(Usuario = "' . $usuario . '" AND '
                 . 'Senha = "' . $senha . '" AND '
-
 				. 'idTab_Modulo = "' . $_SESSION['log']['idTab_Modulo'] . '") OR '
                 . '(Email = "' . $usuario . '" AND '
                 . 'Senha = "' . $senha . '" AND '
-
-				. 'idTab_Modulo = "' . $_SESSION['log']['idTab_Modulo'] . '") '
+				. 'idTab_Modulo = "' . $_SESSION['log']['idTab_Modulo'] . '") '								
         );
         #$query = $this->db->get_where('Sis_Usuario', $data);
         /*
@@ -88,38 +55,7 @@ class Login_model extends CI_Model {
         else {
             $query = $query->result_array();
 
-            if ($query[0]['Inativo'] == 1) {
-                return 2;
-            }
-			else  
-                if ($query[0]['Nivel'] != 3) {
-                return 3;
-				}
-				else
-				return FALSE;
-        }
-
-        #$query = $this->db->get_where('Sis_Usuario', $data);
-        /*
-          echo $this->db->last_query();
-          echo "<pre>";
-          print_r($query);
-          echo "</pre>";
-          exit();
-         */
-
-    }
-
-	public function check_nomeempresa($data) {
-
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE NomeEmpresa = "' . $data . '"');
-        if ($query->num_rows() === 0) {
-            return 1;
-        }
-        else {
-            $query = $query->result_array();
-
-            if ($query[0]['Inativo'] == 1)
+            if ($query[0]['Inativo'] == '')
                 return 2;
             else
                 return FALSE;
@@ -212,12 +148,6 @@ class Login_model extends CI_Model {
         }
         else {
             $query = $this->db->update('Sis_Usuario', $data, array('Codigo' => $id));
-			
-			echo $this->db->last_query();
-          echo "<pre>";
-          print_r($query);
-          echo "</pre>";
-          exit();
 
             if ($this->db->affected_rows() === 0)
                 return FALSE;
@@ -236,28 +166,12 @@ class Login_model extends CI_Model {
 
     }
 
-    /*
     public function get_data_by_codigo($data) {
 
         $query = $this->db->query('SELECT idSis_Usuario, Usuario, Email FROM Sis_Usuario WHERE Codigo = "' . $data . '"');
         $query = $query->result_array();
         #return $query[0]['idSis_Usuario'];
         return $query[0];
-
-    }
-    */
-
-    public function get_data_by_codigo($data) {
-
-        $query = $this->db->query('SELECT idSis_Usuario, Usuario, Email FROM Sis_Usuario WHERE Codigo = "' . $data . '"');
-        if ($query->num_rows() === 0) {
-            return FALSE;
-        }
-        else {
-
-            $query = $query->result_array();
-            return $query[0];
-        }
 
     }
 

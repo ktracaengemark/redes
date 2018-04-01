@@ -4,10 +4,10 @@
 
     <?php if (isset($msg)) echo $msg; ?>
 
-    <?php echo form_open('loginfuncionario', 'role="form"'); ?>
+    <?php echo form_open('loginconsultor', 'role="form"'); ?>
 
     <p class="text-center">
-        <a href="<?php echo base_url(); ?>loginfuncionario">
+        <a href="<?php echo base_url(); ?>loginconsultor">
             <img src="<?php echo base_url() . 'arquivos/imagens/' . $modulo . '.png'; ?>" />
         </a>
     </p>
@@ -22,11 +22,11 @@
     <br>
     <input type="hidden" name="modulo" value="<?php echo $modulo; ?>">
     <button class="btn btn-lg btn-primary btn-block" type="submit">ENTRAR</button>
-    <p><a href="<?php echo base_url(); ?>loginfuncionario/recuperar/?usuario=<?php echo set_value('Usuario'); ?>">Esqueci usuário/senha!</a></p>
+    <p><a href="<?php echo base_url(); ?>loginconsultor/recuperar/?usuario=<?php echo set_value('Usuario'); ?>">Esqueci usuário/senha!</a></p>
     <br>
 	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>loginassociadocliente/index" role="button">Acesso dos Clientes</a>
 	<br>
-    <a class="btn btn btn-primary btn-warning" href="<?php echo base_url(); ?>loginfuncionario/registrar" role="button">Cadastrar Novo Funcionário</a>
+    <a class="btn btn btn-primary btn-warning" href="<?php echo base_url(); ?>loginconsultor/registrar" role="button">Cadastrar Novo Funcionário</a>
 </form>
 
 </div>

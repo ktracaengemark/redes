@@ -88,10 +88,15 @@ class Loginfuncionario_model extends CI_Model {
         else {
             $query = $query->result_array();
 
-            if ($query[0]['Inativo'] == 1)
+            if ($query[0]['Inativo'] == 1) {
                 return 2;
-            else
-                return FALSE;
+            }
+			else  
+                if ($query[0]['Nivel'] != 4) {
+                return 3;
+				}
+				else
+				return FALSE;
         }
 
         #$query = $this->db->get_where('Sis_Usuario', $data);

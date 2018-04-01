@@ -4,18 +4,18 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Loginfuncionario extends CI_Controller {
+class Loginconsultor extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(array('Login_model', 'Loginfuncionario_model', 'Funcao_model', 'Basico_model'));
+        $this->load->model(array('Login_model', 'Loginconsultor_model', 'Funcao_model', 'Basico_model'));
         $this->load->helper(array('form', 'url'));
         $this->load->library(array('basico', 'form_validation', 'user_agent'));
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/headerloginfuncionario');
+        $this->load->view('basico/headerloginconsultor');
 
         if ($this->agent->is_browser()) {
 
@@ -64,9 +64,9 @@ class Loginfuncionario extends CI_Controller {
         elseif ($this->input->get('m') == 2)
             $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
         elseif ($this->input->get('m') == 3)
-            $data['msg'] = $this->basico->msg('<strong>Sua sessão expirou. Faça o loginfuncionario novamente.</strong>', 'erro', TRUE, TRUE, TRUE);
+            $data['msg'] = $this->basico->msg('<strong>Sua sessão expirou. Faça o loginconsultor novamente.</strong>', 'erro', TRUE, TRUE, TRUE);
         elseif ($this->input->get('m') == 4)
-            $data['msg'] = $this->basico->msg('<strong>Usuário ativado com sucesso! Faça o loginfuncionario para acessar o sistema.</strong>', 'sucesso', TRUE, TRUE, TRUE);
+            $data['msg'] = $this->basico->msg('<strong>Usuário ativado com sucesso! Faça o loginconsultor para acessar o sistema.</strong>', 'sucesso', TRUE, TRUE, TRUE);
         elseif ($this->input->get('m') == 5)
             $data['msg'] = $this->basico->msg('<strong>Link expirado.</strong>', 'erro', TRUE, TRUE, TRUE);
         else
@@ -74,8 +74,8 @@ class Loginfuncionario extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            #load loginfuncionario view
-            $this->load->view('loginfuncionario/form_loginfuncionario', $data);
+            #load loginconsultor view
+            $this->load->view('loginconsultor/form_loginconsultor', $data);
         } else {
 
             session_regenerate_id(true);
@@ -89,8 +89,8 @@ class Loginfuncionario extends CI_Controller {
               echo "</pre>";
               exit();
              */
-            $query = $this->Loginfuncionario_model->check_dados_usuario($senha, $usuario, TRUE);
-            $_SESSION['log']['Agenda'] = $this->Loginfuncionario_model->get_agenda_padrao($query['idSis_Usuario']);
+            $query = $this->Loginconsultor_model->check_dados_usuario($senha, $usuario, TRUE);
+            $_SESSION['log']['Agenda'] = $this->Loginconsultor_model->get_agenda_padrao($query['idSis_Usuario']);
 
             #echo "<pre>".print_r($query)."</pre>";
             #exit();
@@ -100,7 +100,7 @@ class Loginfuncionario extends CI_Controller {
                 #$this->basico->erro($msg);
                 $data['msg'] = $this->basico->msg('<strong>Senha</strong> incorreta.', 'erro', FALSE, FALSE, FALSE);
 				#$data['msg'] = $this->basico->msg('<strong>NomeEmpresa</strong> incorreta.', 'erro', FALSE, FALSE, FALSE);
-                $this->load->view('form_loginfuncionario', $data);
+                $this->load->view('form_loginconsultor', $data);
 
             } else {
                 #initialize session
@@ -127,11 +127,11 @@ class Loginfuncionario extends CI_Controller {
                 $_SESSION['db']['password'] = $this->db->password;
                 $_SESSION['db']['database'] = $this->db->database;
 
-                if ($this->Loginfuncionario_model->set_acesso($_SESSION['log']['id'], 'LOGIN') === FALSE) {
+                if ($this->Loginconsultor_model->set_acesso($_SESSION['log']['id'], 'LOGIN') === FALSE) {
                     $msg = "<strong>Erro no Banco de dados. Entre em contato com o Administrador.</strong>";
 
                     $this->basico->erro($msg);
-                    $this->load->view('form_loginfuncionario');
+                    $this->load->view('form_loginconsultor');
                 } else {
                     redirect('cliente');
                 }
@@ -139,7 +139,7 @@ class Loginfuncionario extends CI_Controller {
         }
 
         #load footer view
-        $this->load->view('basico/footerloginfuncionario');
+        $this->load->view('basico/footerloginconsultor');
         $this->load->view('basico/footer');
     }
 
@@ -215,12 +215,13 @@ class Loginfuncionario extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            #load loginfuncionario view
-            $this->load->view('loginfuncionario/form_registrar', $data);
+            #load loginconsultor view
+            $this->load->view('loginconsultor/form_registrar', $data);
         } else {
 			
 			$data['query']['idSis_EmpresaFilial'] = 2;
 			$data['query']['Funcao'] = 1;
+			$data['query']['Nivel'] = 3;
 			$data['query']['Permissao'] = 3;
 			$data['query']['Empresa'] = 2;
 			$data['query']['NomeEmpresa'] = 'Rede Calisi de Vendas';
@@ -238,12 +239,12 @@ class Loginfuncionario extends CI_Controller {
             $data['anterior'] = array();
             $data['campos'] = array_keys($data['query']);
 
-            $data['idSis_Usuario'] = $this->Loginfuncionario_model->set_usuario($data['query']);
+            $data['idSis_Usuario'] = $this->Loginconsultor_model->set_usuario($data['query']);
             $_SESSION['log']['id'] = 1;
 
             if ($data['idSis_Usuario'] === FALSE) {
                 $data['msg'] = '?m=2';
-                $this->load->view('loginfuncionario/form_loginfuncionario', $data);
+                $this->load->view('loginconsultor/form_loginconsultor', $data);
             } else {
 
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idSis_Usuario']);
@@ -262,7 +263,7 @@ class Loginfuncionario extends CI_Controller {
                 );
                 $data['campos'] = array_keys($data['agenda']);
 
-                $data['idApp_Agenda'] = $this->Loginfuncionario_model->set_agenda($data['agenda']);
+                $data['idApp_Agenda'] = $this->Loginconsultor_model->set_agenda($data['agenda']);
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idSis_Usuario']);
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idSis_Usuario']);
 
@@ -274,7 +275,7 @@ class Loginfuncionario extends CI_Controller {
                 $this->email->subject('[KTRACA] Confirmação de registro - Usuário: ' . $data['query']['Usuario']);
                 /*
                   $this->email->message('Por favor, clique no link a seguir para confirmar seu registro: '
-                  . 'http://www.romati.com.br/app/loginfuncionario/confirmar/' . $data['query']['Codigo']);
+                  . 'http://www.romati.com.br/app/loginconsultor/confirmar/' . $data['query']['Codigo']);
 
                   $this->email->send();
 
@@ -307,13 +308,13 @@ class Loginfuncionario extends CI_Controller {
                   </div> '
                         . '';
 
-                $this->load->view('loginfuncionario/tela_msg', $data);
-                #redirect(base_url() . 'loginfuncionario' . $data['msg']);
+                $this->load->view('loginconsultor/tela_msg', $data);
+                #redirect(base_url() . 'loginconsultor' . $data['msg']);
                 #exit();
             }
         }
 
-        $this->load->view('basico/footerloginfuncionario');
+        $this->load->view('basico/footerloginconsultor');
         $this->load->view('basico/footer');
     }
 
@@ -334,18 +335,18 @@ class Loginfuncionario extends CI_Controller {
         );
 
         $data['campos'] = array_keys($data['confirmar']);
-        $id = $this->Loginfuncionario_model->get_data_by_codigo($codigo);
+        $id = $this->Loginconsultor_model->get_data_by_codigo($codigo);
 
-        if ($this->Loginfuncionario_model->ativa_usuario($codigo, $data['confirmar']) === TRUE) {
+        if ($this->Loginconsultor_model->ativa_usuario($codigo, $data['confirmar']) === TRUE) {
 
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['confirmar'], $data['campos'], $id['idSis_Usuario'], TRUE);
             $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'UPDATE', $data['auditoriaitem'], $id['idSis_Usuario']);
 
             $data['msg'] = '?m=4';
-            redirect(base_url() . 'loginfuncionario/' . $data['msg']);
+            redirect(base_url() . 'loginconsultor/' . $data['msg']);
         } else {
             $data['msg'] = '?m=5';
-            redirect(base_url() . 'loginfuncionario/' . $data['msg']);
+            redirect(base_url() . 'loginconsultor/' . $data['msg']);
         }
     }
 
@@ -374,15 +375,15 @@ class Loginfuncionario extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            #load loginfuncionario view
-            $this->load->view('loginfuncionario/form_recuperar', $data);
+            #load loginconsultor view
+            $this->load->view('loginconsultor/form_recuperar', $data);
         } else {
 
             $data['query']['Codigo'] = md5(uniqid(time() . rand()));
 
-            $id = $this->Loginfuncionario_model->get_data_by_usuario($data['query']['Usuario']);
+            $id = $this->Loginconsultor_model->get_data_by_usuario($data['query']['Usuario']);
 
-            if ($this->Loginfuncionario_model->troca_senha($id['idSis_Usuario'], array('Codigo' => $data['query']['Codigo'])) === FALSE) {
+            if ($this->Loginconsultor_model->troca_senha($id['idSis_Usuario'], array('Codigo' => $data['query']['Codigo'])) === FALSE) {
 
                 $data['anterior'] = array(
                     'Codigo' => 'NULL'
@@ -404,8 +405,8 @@ class Loginfuncionario extends CI_Controller {
 
                 $this->email->subject('[KTRACA] Alteração de Senha - Usuário: ' . $data['query']['Usuario']);
                 $this->email->message('Por favor, clique no link a seguir para alterar sua senha: '
-                        //. 'http://www.romati.com.br/app/loginfuncionario/trocar_senha/' . $data['query']['Codigo']);
-                        . base_url() . 'loginfuncionario/trocar_senha/' . $data['query']['Codigo']);
+                        //. 'http://www.romati.com.br/app/loginconsultor/trocar_senha/' . $data['query']['Codigo']);
+                        . base_url() . 'loginconsultor/trocar_senha/' . $data['query']['Codigo']);
 
                 $this->email->send();
 
@@ -421,10 +422,10 @@ class Loginfuncionario extends CI_Controller {
                         . '';
 
                 #$data['msg'] = '?m=4';
-                $this->load->view('loginfuncionario/tela_msg', $data);
+                $this->load->view('loginconsultor/tela_msg', $data);
             } else {
                 $data['msg'] = '?m=5';
-                redirect(base_url() . 'loginfuncionario/' . $data['msg']);
+                redirect(base_url() . 'loginconsultor/' . $data['msg']);
             }
         }
     }
@@ -449,7 +450,7 @@ class Loginfuncionario extends CI_Controller {
                 ), TRUE);
 
         if ($codigo) {
-            $data['query'] = $this->Loginfuncionario_model->get_data_by_codigo($codigo);
+            $data['query'] = $this->Loginconsultor_model->get_data_by_codigo($codigo);
             $data['query']['Codigo'] = $codigo;
         } else {
             $data['query']['Codigo'] = $this->input->post('Codigo', TRUE);
@@ -465,8 +466,8 @@ class Loginfuncionario extends CI_Controller {
         #$this->form_validation->set_rules('Codigo', 'Código', 'required|trim');
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            #load loginfuncionario view
-            $this->load->view('loginfuncionario/form_troca_senha', $data);
+            #load loginconsultor view
+            $this->load->view('loginconsultor/form_troca_senha', $data);
         } else {
 
             ###não está registrando a auditoria do trocar senha. tenho que ver isso
@@ -479,9 +480,9 @@ class Loginfuncionario extends CI_Controller {
             $data['anterior'] = array();
             $data['campos'] = array_keys($data['query']);
 
-            if ($this->Loginfuncionario_model->troca_senha($data['query']['idSis_Usuario'], $data['query']) === TRUE) {
+            if ($this->Loginconsultor_model->troca_senha($data['query']['idSis_Usuario'], $data['query']) === TRUE) {
                 $data['msg'] = '?m=2';
-                $this->load->view('loginfuncionario/form_troca_senha', $data);
+                $this->load->view('loginconsultor/form_troca_senha', $data);
             } else {
 
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idSis_Usuario'], TRUE);
@@ -494,12 +495,12 @@ class Loginfuncionario extends CI_Controller {
                   exit();
                  */
                 $data['msg'] = '?m=1';
-                redirect(base_url() . 'loginfuncionario' . $data['msg']);
+                redirect(base_url() . 'loginconsultor' . $data['msg']);
                 exit();
             }
         }
 
-        $this->load->view('basico/footerloginfuncionario');
+        $this->load->view('basico/footerloginconsultor');
         $this->load->view('basico/footer');
     }
 
@@ -509,12 +510,12 @@ class Loginfuncionario extends CI_Controller {
 
         #set logout in database
         if ($_SESSION['log'] && $m === TRUE) {
-            $this->Loginfuncionario_model->set_acesso($_SESSION['log']['id'], 'LOGOUT');
+            $this->Loginconsultor_model->set_acesso($_SESSION['log']['id'], 'LOGOUT');
         } else {
             if (!isset($_SESSION['log']['id'])) {
                 $_SESSION['log']['id'] = 1;
             }
-            $this->Loginfuncionario_model->set_acesso($_SESSION['log']['id'], 'TIMEOUT');
+            $this->Loginconsultor_model->set_acesso($_SESSION['log']['id'], 'TIMEOUT');
             $data['msg'] = '?m=2';
         }
 
@@ -525,26 +526,26 @@ class Loginfuncionario extends CI_Controller {
 
         /*
           #load header view
-          $this->load->view('basico/headerloginfuncionario');
+          $this->load->view('basico/headerloginconsultor');
 
           $msg = "<strong>Você saiu do sistema.</strong>";
 
           $this->basico->alerta($msg);
-          $this->load->view('loginfuncionario');
+          $this->load->view('loginconsultor');
           $this->load->view('basico/footer');
          *
          */
 
-        redirect(base_url() . 'loginfuncionario/' . $data['msg']);
-        #redirect('loginfuncionario');
+        redirect(base_url() . 'loginconsultor/' . $data['msg']);
+        #redirect('loginconsultor');
     }
 
     function valid_usuario($data) {
 
-        if ($this->Loginfuncionario_model->check_usuario($data) == 1) {
+        if ($this->Loginconsultor_model->check_usuario($data) == 1) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> não existe.');
             return FALSE;
-        } else if ($this->Loginfuncionario_model->check_usuario($data) == 2) {
+        } else if ($this->Loginconsultor_model->check_usuario($data) == 2) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo! Fale com o Administrador da sua Empresa!');
             return FALSE;
         } else {
@@ -556,7 +557,7 @@ class Loginfuncionario extends CI_Controller {
 
     function valid_senha($senha, $usuario) {
 
-        if ($this->Loginfuncionario_model->check_dados_usuario($senha, $usuario) == FALSE) {
+        if ($this->Loginconsultor_model->check_dados_usuario($senha, $usuario) == FALSE) {
             $this->form_validation->set_message('valid_senha', '<strong>%s</strong> incorreta! Ou este não é o Módulo do seu Sistema.');
             return FALSE;
         } else {

@@ -3271,16 +3271,22 @@ exit();*/
 				C.Inativo,
                 C.DataNascimento,
                 C.Sexo,
-                C.Email
-
+                C.Email,
+				C.Nivel
             FROM
 				Sis_Usuario AS C
 					LEFT JOIN Tab_StatusSN AS SN ON SN.Inativo = C.Inativo
             WHERE
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				C.Associado = ' . $_SESSION['log']['id'] . ' 
-				' . $data['Nome'] . ' 
+                
+				(4 = ' . $_SESSION['log']['Nivel'] . ' AND
+				C.Nivel = 3) OR 
+				(3 = ' . $_SESSION['log']['Nivel'] . ' AND
+				C.Nivel = 2 AND
+				C.Associado = ' . $_SESSION['log']['id'] . ') 
+				
+
+
+
 
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
@@ -4772,8 +4778,7 @@ exit();*/
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.Associado = ' . $_SESSION['log']['id'] . ' 
+                P.Empresa = ' . $_SESSION['log']['Empresa'] . '
 			ORDER BY P.Nome ASC
         ');
 
