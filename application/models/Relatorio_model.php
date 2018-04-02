@@ -3326,6 +3326,71 @@ exit();*/
         }
 
     }
+
+	public function list_consultores($data, $completo) {
+
+        $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['Campo'] = (!$data['Campo']) ? 'C.Nome' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
+		$filtro1 = ($data['Inativo'] != '#') ? 'C.Inativo = "' . $data['Inativo'] . '" AND ' : FALSE;
+        $query = $this->db->query('
+            SELECT
+				C.idSis_Usuario,
+                C.Nome,
+				C.Inativo,
+                C.DataNascimento,
+                C.Sexo,
+                C.Email,
+				C.Nivel
+            FROM
+				Sis_Usuario AS C
+					LEFT JOIN Tab_StatusSN AS SN ON SN.Inativo = C.Inativo
+            WHERE
+                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
+                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				6 = ' . $_SESSION['log']['Nivel'] . ' AND
+				(C.Nivel = 3 OR 
+				C.Nivel = 4) 
+				' . $data['Nome'] . '
+				
+            ORDER BY
+                ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
+        ');
+        /*
+
+        #AND
+        #C.idApp_Cliente = OT.idApp_Cliente
+
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+        */
+
+        if ($completo === FALSE) {
+            return TRUE;
+        } else {
+
+            foreach ($query->result() as $row) {
+				$row->DataNascimento = $this->basico->mascara_data($row->DataNascimento, 'barras');
+				$row->Inativo = $this->basico->mascara_palavra_completa($row->Inativo, 'NS');
+                #$row->Sexo = $this->basico->get_sexo($row->Sexo);
+                #$row->Sexo = ($row->Sexo == 2) ? 'F' : 'M';
+
+                #$row->Telefone1 = ($row->Telefone1) ? $row->Telefone1 : FALSE;
+				#$row->Telefone2 = ($row->Telefone2) ? $row->Telefone2 : FALSE;
+				#$row->Telefone3 = ($row->Telefone3) ? $row->Telefone3 : FALSE;
+
+                #$row->Telefone .= ($row->Telefone2) ? ' / ' . $row->Telefone2 : FALSE;
+                #$row->Telefone .= ($row->Telefone3) ? ' / ' . $row->Telefone3 : FALSE;
+
+            }
+
+            return $query;
+        }
+
+    }
 	
 	public function list_associado($data, $completo) {
 
@@ -4790,5 +4855,30 @@ exit();*/
 
         return $array;
     }
-	
+
+	public function select_consultores() {
+
+        $query = $this->db->query('
+            SELECT
+				P.idSis_Usuario,
+				CONCAT(IFNULL(P.Nome,"")) AS Nome
+            FROM
+                Sis_Usuario AS P
+					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+            WHERE
+                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
+                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				P.Nivel = 3
+			ORDER BY P.Nome ASC
+        ');
+
+        $array = array();
+        $array[0] = ':: Todos ::';
+        foreach ($query->result() as $row) {
+            $array[$row->idSis_Usuario] = $row->Nome;
+        }
+
+        return $array;
+    }
+		
 }

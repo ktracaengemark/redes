@@ -19,16 +19,16 @@
 	<label class="sr-only">Senha</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="Senha" value="">
     <input type="hidden" name="modulo" value="<?php echo $modulo; ?>">
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Acesso dos Consultores</button>	
-    <p><a href="<?php echo base_url(); ?>login/recuperar/?usuario=<?php echo set_value('Usuario'); ?>">Esqueci Usuário/senha!</a></p> 
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Acesso dos Funcionários</button>	
+    <p><a href="<?php echo base_url(); ?>loginfuncionario/recuperar/?usuario=<?php echo set_value('Usuario'); ?>">Esqueci Usuário/senha!</a></p> 
 	<br>
-	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>loginassociadocliente/index" role="button">Acesso dos Clientes</a>
+	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>logincliente/index" role="button">Acesso dos Clientes</a>
 	<br>
-	<a class="btn btn-lg btn-success btn-block" href="<?php echo base_url(); ?>loginfuncionario/index" role="button">Acesso dos Funcionários</a>
+	<a class="btn btn-lg btn-success btn-block" href="<?php echo base_url(); ?>loginconsultor/index" role="button">Acesso dos Consultores</a>
 	<br>
-	<a class="btn btn-lg btn-danger btn-block" href="<?php echo base_url(); ?>loginempresafilial/index" role="button">Acesso do Administrador</a>
+	<a class="btn btn-lg btn-danger btn-block" href="<?php echo base_url(); ?>loginempresamatriz/index" role="button">Acesso do Administrador</a>
 	<br>
-	<a class="btn btn-lg btn-warning btn-block" href="<?php echo base_url(); ?>loginfuncionario/registrar" role="button">Cadastrar Novo Consultor</a>
+	<a class="btn btn-lg btn-warning btn-block" href="<?php echo base_url(); ?>loginconsultor/registrar" role="button">Cadastrar Novo Consultor</a>
 	<!--<a class="btn btn btn-primary btn-danger btn-block" href="<?php echo base_url(); ?>loginempresafilial/registrar" role="button">Cadastrar Nova Empresa</a>	
 	<a class="btn btn btn-primary btn-danger" href="<?php echo base_url(); ?>login/registrar" role="button">Cadastrar Empresa</a>-->	
 	

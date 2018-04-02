@@ -18,8 +18,8 @@ class Consultor extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/headerempresa');
-        $this->load->view('basico/nav_principalempresa');
+        $this->load->view('basico/header');
+        $this->load->view('basico/nav_principal');
 
         #$this->load->view('consultor/nav_secundario');
     }
@@ -92,7 +92,7 @@ class Consultor extends CI_Controller {
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
 
-        $data['titulo'] = 'Cadastrar Usuário';
+        $data['titulo'] = 'Cadastrar Consultor';
         $data['form_open_path'] = 'consultor/cadastrar';
         $data['readonly'] = '';
         $data['disabled'] = '';
