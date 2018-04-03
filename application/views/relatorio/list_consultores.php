@@ -14,10 +14,11 @@
                     <tr>
                         <th class="active">id</th>
                         <th class="active">Cliente</th>
+						<th class="active">Usuario</th>
                         <th class="active">Sexo</th>
-						
-                        <!--<th class="active">Telefone</th>
-						<th class="active">Telefone2</th>
+						<th class="active">Nivel</th>
+                        <th class="active">Telefone</th>
+						<!--<th class="active">Telefone2</th>
 						<th class="active">Telefone3</th>-->
 						<th class="active">Nascimento</th>
                         <!--<th class="active">Endereço</th>
@@ -44,9 +45,10 @@
                             echo '<td>' . $row['idSis_Usuario'] . '</td>';
 
                             echo '<td>' . $row['Nome'] . '</td>';
+							echo '<td>' . $row['Usuario'] . '</td>';
                             echo '<td>' . $row['Sexo'] . '</td>';
-							
-                            #echo '<td>' . $row['Telefone1'] . '</td>';
+							echo '<td>' . $row['Nivel'] . '</td>';
+                            echo '<td>' . $row['Celular'] . '</td>';
 							#echo '<td>' . $row['Telefone2'] . '</td>';
 							#echo '<td>' . $row['Telefone3'] . '</td>';
 							echo '<td>' . $row['DataNascimento'] . '</td>';							

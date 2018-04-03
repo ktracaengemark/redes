@@ -13,7 +13,7 @@
 				<div class="collapse navbar-collapse">
 
 					<ul class="nav navbar-nav navbar-center">
-						
+						<!--
 						<li>
 							<?php echo form_open(base_url() . 'consultor/pesquisar', 'class="navbar-form navbar-left"'); ?>
 							<div class="input-group">
@@ -26,7 +26,7 @@
 							</div>
 							</form>
 						</li>
-						<!--
+						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 
 							<div class="btn-group">

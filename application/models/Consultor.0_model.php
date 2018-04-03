@@ -102,7 +102,41 @@ class Consultor_model extends CI_Model {
         }
     }
 
-    public function lista_consultor($data, $x) {
+    public function lista_consultor1($data, $x) {
+
+        $query = $this->db->query('SELECT * '
+                . 'FROM Sis_Usuario WHERE '
+                #. 'Consultor = ' . $_SESSION['log']['id'] . ' AND '
+				. 'idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND '
+                . '(Nome like "%' . $data . '%" OR '
+                #. 'DataNascimento = "' . $this->basico->mascara_data($data, 'mysql') . '" OR '
+                #. 'Nome like "%' . $data . '%" OR '
+                . 'DataNascimento = "' . $this->basico->mascara_data($data, 'mysql') . '" OR '
+                . 'Celular like "%' . $data . '%") '
+                . 'ORDER BY Nome ASC ');
+        /*
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+        */
+        if ($query->num_rows() === 0) {
+            return FALSE;
+        } else {
+            if ($x === FALSE) {
+                return TRUE;
+            } else {
+                foreach ($query->result() as $row) {
+                    $row->DataNascimento = $this->basico->mascara_data($row->DataNascimento, 'barras');
+                }
+
+                return $query;
+            }
+        }
+    }
+	
+	public function lista_consultor($data, $x) {
 
         $query = $this->db->query('SELECT * '
                 . 'FROM Sis_Usuario WHERE '
@@ -170,69 +204,4 @@ class Consultor_model extends CI_Model {
         }
     }
 
-	public function select_consultor2() {
-
-        $query = $this->db->query('
-            SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
-            FROM
-                Sis_Usuario AS P
-					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
-            WHERE
-                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.Nivel = "2"  
-			ORDER BY P.Nome ASC
-        ');
-
-        $array = array();
-        $array[0] = ':: Todos ::';
-        foreach ($query->result() as $row) {
-            $array[$row->idSis_Usuario] = $row->Nome;
-        }
-
-        return $array;
-    }
-
-	public function select_consultor($data = FALSE) {
-
-        if ($data === TRUE) {
-            $array = $this->db->query(					
-				'SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
-            FROM
-                Sis_Usuario AS P
-					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
-            WHERE
-                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.Nivel = "3"  
-			ORDER BY P.Nome ASC'
-    );
-					
-        } else {
-            $query = $this->db->query(
-                'SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
-            FROM
-                Sis_Usuario AS P
-					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
-            WHERE
-                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.Nivel = "3"  
-			ORDER BY P.Nome ASC'
-    );
-            
-            $array = array();
-            foreach ($query->result() as $row) {
-                $array[$row->idSis_Usuario] = $row->Nome;
-            }
-        }
-
-        return $array;
-    }	
 }

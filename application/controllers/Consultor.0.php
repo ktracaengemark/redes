@@ -50,31 +50,41 @@ class Consultor extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
 			'idSis_Usuario',
-			#'Usuario',
+			'Usuario',
             'Nome',
-			#'Senha',
-			#'Confirma',
+			'Senha',
+			'Confirma',
             'DataNascimento',
             'Celular',
 			'Email',
             'Sexo',
-			#'Permissao',
-			#'Funcao',
+			'Permissao',
+			'Funcao',
 			'Inativo',
+			'CpfUsuario',
+			'RgUsuario',
+			'OrgaoExpUsuario',
+			'EstadoEmUsuario',
+			'DataEmUsuario',
+			'EnderecoUsuario',
+			'BairroUsuario',
+			'MunicipioUsuario',
+			'EstadoUsuario',
+			'CepUsuario',
 
         ), TRUE));
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-		$this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email|is_unique[Sis_Usuario.Email]');
-        #$this->form_validation->set_rules('Usuario', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
+		$this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[Sis_Usuario.Email]');
+        $this->form_validation->set_rules('Usuario', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
 		$this->form_validation->set_rules('Nome', 'Nome do Usuário', 'required|trim');
-		#$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
-        #$this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
+		$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
+        $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
         $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
-		#$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
-		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
+		$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
+		$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
 
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		#$data['select']['Consultor'] = $this->Basico_model->select_status_sn();
@@ -100,19 +110,13 @@ class Consultor extends CI_Controller {
         } else {
 
 
-			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
-            $data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
-			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['idSis_EmpresaMatriz'];
-			$data['query']['Associado'] = $_SESSION['log']['id'];
-			#$data['query']['Senha'] = md5($data['query']['Senha']);
+			$data['query']['Empresa'] = $_SESSION['log']['id'];
+            $data['query']['Senha'] = md5($data['query']['Senha']);
 			$data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
-            #$data['query']['Codigo'] = md5(uniqid(time() . rand()));
+            $data['query']['Codigo'] = md5(uniqid(time() . rand()));
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-			$data['query']['Inativo'] = $data['query']['Inativo'];
-			$data['query']['Nivel'] = 2;
-			$data['query']['Permissao'] = 3;
-			$data['query']['Funcao'] = 0;
-            #unset($data['query']['Confirma']);
+			$data['query']['Inativo'] = 0;
+            unset($data['query']['Confirma']);
 
 
             $data['campos'] = array_keys($data['query']);
@@ -158,9 +162,19 @@ class Consultor extends CI_Controller {
             'Celular',
             'Email',
 			'Sexo',
-			#'Permissao',
-			#'Funcao',
+			'Permissao',
+			'Funcao',
 			'Inativo',
+			'CpfUsuario',
+			'RgUsuario',
+			'OrgaoExpUsuario',
+			'EstadoEmUsuario',
+			'DataEmUsuario',
+			'EnderecoUsuario',
+			'BairroUsuario',
+			'MunicipioUsuario',
+			'EstadoUsuario',
+			'CepUsuario',
 
         ), TRUE);
 
@@ -176,8 +190,8 @@ class Consultor extends CI_Controller {
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
         $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
         $this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email');
-		#$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
-		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
+		$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
+		$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
 
         $data['select']['Municipio'] = $this->Basico_model->select_municipio();
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
@@ -346,6 +360,7 @@ class Consultor extends CI_Controller {
 		#$data['query']['Consultor'] = $data['query']['Consultor'];
 
         $data['query']['Telefone'] = $data['query']['Celular'];
+		$data['query']['CpfUsuario'] = $data['query']['CpfUsuario'];
 
         $data['contatoconsultor'] = $this->Consultor_model->lista_contatoconsultor($id, TRUE);
         /*
