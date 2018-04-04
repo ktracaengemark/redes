@@ -94,7 +94,7 @@
 									<li><a href="<?php echo base_url() ?>relatorio/empresaassociado"><span class="glyphicon glyphicon-pencil"></span> Cad - Associados</a></li>
 									<li role="separator" class="divider"></li>
 									-->
-									<li><a href="<?php echo base_url(); ?>login/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+									<li><a href="<?php echo base_url(); ?>loginfuncionario/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 								</ul>
 							</div>
 							<div class="btn-group">

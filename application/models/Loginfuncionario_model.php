@@ -92,7 +92,7 @@ class Loginfuncionario_model extends CI_Model {
                 return 2;
             }
 			else  
-                if ($query[0]['Nivel'] != 4) {
+                if ($query[0]['Nivel'] != 6) {
                 return 3;
 				}
 				else

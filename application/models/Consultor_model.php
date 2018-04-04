@@ -29,7 +29,29 @@ class Consultor_model extends CI_Model {
         }
     }
 
-    public function get_consultor($data) {
+    public function set_agenda($data) {
+        #unset($data['idSisgef_Fila']);
+        /*
+          echo $this->db->last_query();
+          echo '<br>';
+          echo "<pre>";
+          print_r($data);
+          echo "</pre>";
+          exit();
+         */
+        $query = $this->db->insert('App_Agenda', $data);
+
+        if ($this->db->affected_rows() === 0) {
+            return FALSE;
+        }
+        else {
+            #return TRUE;
+            return $this->db->insert_id();
+        }
+
+    }
+	
+	public function get_consultor($data) {
         $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE idSis_Usuario = ' . $data);
 
         $query = $query->result_array();
@@ -234,5 +256,46 @@ class Consultor_model extends CI_Model {
         }
 
         return $array;
-    }	
+    }
+
+	public function select_consultorgestor($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query(					
+				'SELECT
+				P.idSis_Usuario,
+				CONCAT(IFNULL(P.Nome,"")) AS Nome
+            FROM
+                Sis_Usuario AS P
+					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+            WHERE
+                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				P.Nivel = "4"  
+			ORDER BY P.Nome ASC'
+    );
+					
+        } else {
+            $query = $this->db->query(
+                'SELECT
+				P.idSis_Usuario,
+				CONCAT(IFNULL(P.Nome,"")) AS Nome
+            FROM
+                Sis_Usuario AS P
+					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+            WHERE
+                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				P.Nivel = "4"  
+			ORDER BY P.Nome ASC'
+    );
+            
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idSis_Usuario] = $row->Nome;
+            }
+        }
+
+        return $array;
+    }
 }

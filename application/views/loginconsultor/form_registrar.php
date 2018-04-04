@@ -28,6 +28,22 @@
 	<br>
 	-->
 
+	<label for="Associado">Gestor da Rede:*</label>
+	<select data-placeholder="Selecione uma opção..." class="form-control" id="Associado" name="Associado">			
+		<option value="">-- Selecione um Gestor --</option>
+		<?php
+		foreach ($select['Associado'] as $key => $row) {
+			if ($query['Associado'] == $key) {
+				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+			} else {
+				echo '<option value="' . $key . '">' . $row . '</option>';
+			}
+		}
+		?>   
+	</select> 
+	<?php echo form_error('Associado'); ?>
+	<br>	
+	
 	<label for="Nome">Nome do Consultor:</label>
 	<input type="text" class="form-control" id="Nome" maxlength="255"
 		   autofocus name="Nome" value="<?php echo $query['Nome']; ?>">
@@ -218,7 +234,7 @@
 
     <button class="btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-log-in"></span> Salvar Novo Consultor</button>
 	<br>
-	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>login/index" role="button"> Acesso dos Consultores <span class="glyphicon glyphicon-log-out"></span></a>
+	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>loginconsultor/index" role="button"> Acesso dos Consultores <span class="glyphicon glyphicon-log-out"></span></a>
 	<!--<a class="btn btn btn-primary btn-warning btn-block" href="<?php echo base_url(); ?>loginempresafilial/index" role="button">Acesso do Admin. da Empresa</a>-->		
 </form>
 

@@ -20,11 +20,15 @@
     <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="Senha" value="">
     <input type="hidden" name="modulo" value="<?php echo $modulo; ?>">
     <button class="btn btn-lg btn-danger btn-block" type="submit">Acesso do Administrador</button>
-    <p><a href="<?php echo base_url(); ?>loginempresamatriz/recuperar/?usuario=<?php echo set_value('UsuarioEmpresaMatriz'); ?>">Esqueci Admin./senha!</a></p>
-    <br>
-	<a class="btn btn-lg  btn-primary btn-block" href="<?php echo base_url(); ?>login/index" role="button">Acesso do Usuário</a>
-    <br>	
-	<a class="btn btn-lg  btn-warning btn-block" href="<?php echo base_url(); ?>loginempresamatriz/registrar" role="button">Cadastrar Nova Empresa</a>
+    <p><a href="<?php echo base_url(); ?>loginempresamatriz/recuperar/?usuario=<?php echo set_value('UsuarioEmpresaMatriz'); ?>">Esqueci Usuário/senha!</a></p>
+	<br>
+	<a class="btn btn-lg btn-primary btn-block" href="<?php echo base_url(); ?>loginfuncionario/index" role="button">Acesso dos Funcionários</a>
+	<br>	
+	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>logincliente/index" role="button">Acesso dos Clientes</a>
+	<br>
+	<a class="btn btn-lg btn-success btn-block" href="<?php echo base_url(); ?>loginconsultor/index" role="button">Acesso dos Consultores</a>
+	<br>
+	<a class="btn btn-lg btn-warning btn-block" href="<?php echo base_url(); ?>loginconsultor/registrar" role="button">Cadastrar Novo Consultor</a>
 
 </form>
 

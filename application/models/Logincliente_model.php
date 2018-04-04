@@ -55,10 +55,15 @@ class Logincliente_model extends CI_Model {
         else {
             $query = $query->result_array();
 
-            if ($query[0]['Inativo'] == '')
+            if ($query[0]['Inativo'] == 1) {
                 return 2;
-            else
-                return FALSE;
+            }
+			else  
+                if ($query[0]['Nivel'] != 2) {
+                return 3;
+				}
+				else
+				return FALSE;
         }
 
         #$query = $this->db->get_where('Sis_Usuario', $data);

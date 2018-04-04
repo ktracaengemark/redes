@@ -17,7 +17,7 @@
 							<div class="col-md-2 "></div>
 							<div class="col-md-8 col-lg-8">
 								<div class="col-md-3 text-left">
-									<label for="">Consultor & Contatos:</label>
+									<label for="">Consultor:</label>
 									<div class="form-group">
 										<div class="row">
 											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
@@ -182,7 +182,7 @@
 													</div>
 												</div>
 											</div>
-											
+											<!--
 											<div class="col-md-3">
 												<label for="Usuario">Usuário:</label>
 												<input type="text" class="form-control" id="Usuario" maxlength="45" 
@@ -201,7 +201,7 @@
 													   name="Confirma" value="<?php echo $query['Confirma']; ?>">
 												<?php echo form_error('Confirma'); ?>
 											</div>
-											
+											-->
 										</div>
 									</div>
 									<!--

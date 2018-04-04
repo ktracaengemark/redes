@@ -13,7 +13,7 @@
 				<div class="collapse navbar-collapse">
 
 					<ul class="nav navbar-nav navbar-center">
-						
+						<!--
 						<li>
 							<?php echo form_open(base_url() . 'cliente/pesquisar', 'class="navbar-form navbar-left"'); ?>
 							<div class="input-group">
@@ -26,7 +26,7 @@
 							</div>
 							</form>
 						</li>
-						<!--
+						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 
 							<div class="btn-group">
@@ -94,7 +94,7 @@
 									<li><a href="<?php echo base_url() ?>relatorio/empresaassociado"><span class="glyphicon glyphicon-pencil"></span> Cad - Associados</a></li>
 									<li role="separator" class="divider"></li>
 									-->
-									<li><a href="<?php echo base_url(); ?>login/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+									<li><a href="<?php echo base_url(); ?>loginconsultor/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 								</ul>
 							</div>
 							<div class="btn-group">
@@ -102,7 +102,7 @@
 									<span class="glyphicon glyphicon-user"></span> Clientes <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url(); ?>loginassociadocliente/registrar"><span class="glyphicon glyphicon-pencil"></span> Cad. Clientes/Usuario</a></li>
+									<li><a href="<?php echo base_url(); ?>clienteusuario/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad. Clientes/Usuario</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url(); ?>relatorio/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Rel. Clientes/Usuario</a></li>
 									<!--<li role="separator" class="divider"></li>

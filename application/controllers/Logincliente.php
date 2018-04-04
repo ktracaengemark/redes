@@ -115,6 +115,7 @@ class Logincliente extends CI_Controller {
 				$_SESSION['log']['idSis_EmpresaFilial'] = $query['idSis_EmpresaFilial'];
 				$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
 				$_SESSION['log']['Empresa'] = $query['Empresa'];
+				$_SESSION['log']['Nivel'] = $query['Nivel'];				
 				$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
 				$_SESSION['log']['Funcao'] = $query['Funcao'];
 				$_SESSION['log']['Permissao'] = $query['Permissao'];
@@ -521,9 +522,12 @@ class Logincliente extends CI_Controller {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> não existe.');
             return FALSE;
         } else if ($this->Logincliente_model->check_usuario($data) == 2) {
-            $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo.');
-            return FALSE;
-        } else {
+			$this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo! Fale com o Administrador da sua Empresa!'); 
+			return FALSE;
+        } else if ($this->Logincliente_model->check_usuario($data) == 3) {
+            $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> Acesso Errado! Entre pelo Acesso Correto!');
+            return FALSE;		
+		} else {
             return TRUE;
         }
     }

@@ -109,7 +109,8 @@ class Loginfuncionario extends CI_Controller {
                 #$_SESSION['log']['Usuario'] = $query['Usuario'];
                 //se for necessário reduzir o tamanho do nome de usuário, que pode ser um email
                 $_SESSION['log']['Usuario'] = (strlen($query['Usuario']) > 15) ? substr($query['Usuario'], 0, 15) : $query['Usuario'];
-                $_SESSION['log']['Nome'] = $query['Nome'];
+                #$_SESSION['log']['Nome'] = (strlen($query['Nome']) > 10) ? substr($query['Nome'], 0, 10) : $query['Nome'];
+				$_SESSION['log']['Nome'] = $query['Nome'];
 				$_SESSION['log']['id'] = $query['idSis_Usuario'];
 				$_SESSION['log']['idSis_EmpresaFilial'] = $query['idSis_EmpresaFilial'];
 				$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
@@ -133,7 +134,8 @@ class Loginfuncionario extends CI_Controller {
                     $this->basico->erro($msg);
                     $this->load->view('form_loginfuncionario');
                 } else {
-                    redirect('cliente');
+                    #redirect('cliente');
+					redirect('acessofuncionario');
                 }
             }
         }
@@ -547,7 +549,10 @@ class Loginfuncionario extends CI_Controller {
         } else if ($this->Loginfuncionario_model->check_usuario($data) == 2) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo! Fale com o Administrador da sua Empresa!');
             return FALSE;
-        } else {
+        } else if ($this->Loginfuncionario_model->check_usuario($data) == 3) {
+            $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> Acesso Errado! Entre pelo Acesso Correto!');
+            return FALSE;		
+		} else {
             return TRUE;
         }
     }

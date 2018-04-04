@@ -9,7 +9,7 @@ class Loginconsultor extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(array('Login_model', 'Loginconsultor_model', 'Funcao_model', 'Basico_model'));
+        $this->load->model(array('Login_model', 'Loginconsultor_model', 'Funcao_model', 'Basico_model', 'Consultor_model'));
         $this->load->helper(array('form', 'url'));
         $this->load->library(array('basico', 'form_validation', 'user_agent'));
         $this->load->driver('session');
@@ -133,7 +133,9 @@ class Loginconsultor extends CI_Controller {
                     $this->basico->erro($msg);
                     $this->load->view('form_loginconsultor');
                 } else {
-                    redirect('cliente');
+                    
+					#redirect('cliente');
+					redirect('acessoconsultor');
                 }
             }
         }
@@ -158,7 +160,6 @@ class Loginconsultor extends CI_Controller {
         $data['query'] = $this->input->post(array(
             'Email',
             'Usuario',
-
             'Nome',
             'Senha',
             'Confirma',
@@ -166,6 +167,8 @@ class Loginconsultor extends CI_Controller {
             'Celular',
             'Sexo',
 			'Permissao',
+			'Nivel',
+			'QuemCad',
 			'Funcao',
 			'TipoProfissional',
 			'DataCriacao',
@@ -179,7 +182,7 @@ class Loginconsultor extends CI_Controller {
 			'MunicipioUsuario',
 			'EstadoUsuario',
 			'CepUsuario',
-			
+			'Associado',
 			
                 ), TRUE);
 
@@ -208,6 +211,7 @@ class Loginconsultor extends CI_Controller {
 		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
 		
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
+		$data['select']['Associado'] = $this->Consultor_model->select_consultorgestor();
 		$data['select']['TipoProfissional'] = $this->Basico_model->select_tipoprofissional();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
         $data['select']['MunicipioUsuario'] = $this->Basico_model->select_municipio();
@@ -219,13 +223,15 @@ class Loginconsultor extends CI_Controller {
             $this->load->view('loginconsultor/form_registrar', $data);
         } else {
 			
-			$data['query']['idSis_EmpresaFilial'] = 2;
+			$data['query']['idSis_EmpresaFilial'] = $_SESSION['log']['idSis_EmpresaFilial'];
+			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
+			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
+			$data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
+			$data['query']['idTab_Modulo'] = 1;
+			$data['query']['QuemCad'] = $_SESSION['log']['id'];
 			$data['query']['Funcao'] = 1;
 			$data['query']['Nivel'] = 3;
-			$data['query']['Permissao'] = 3;
-			$data['query']['Empresa'] = 2;
-			$data['query']['NomeEmpresa'] = 'Rede Calisi de Vendas';
-			$data['query']['idTab_Modulo'] = 1;
+			$data['query']['Permissao'] = 3;						
             $data['query']['Senha'] = md5($data['query']['Senha']);
 			$data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
 			$data['query']['DataEmUsuario'] = $this->basico->mascara_data($data['query']['DataEmUsuario'], 'mysql');
@@ -548,7 +554,10 @@ class Loginconsultor extends CI_Controller {
         } else if ($this->Loginconsultor_model->check_usuario($data) == 2) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> inativo! Fale com o Administrador da sua Empresa!');
             return FALSE;
-        } else {
+        } else if ($this->Loginconsultor_model->check_usuario($data) == 3) {
+            $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> Acesso Errado! Entre pelo Acesso Correto!');
+            return FALSE;		
+		} else {
             return TRUE;
         }
     }

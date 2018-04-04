@@ -86,17 +86,19 @@ class Loginconsultor_model extends CI_Model {
             return 1;
         }
         else {
-            $query = $query->result_array();
+			$query = $query->result_array();
 
-            if ($query[0]['Inativo'] == 1) {
-                return 2;
-            }
-			else  
-                if ($query[0]['Nivel'] != 3) {
-                return 3;
-				}
-				else
-				return FALSE;
+			if ($query[0]['Inativo'] == 1) {
+				return 2;
+			}
+			else   
+				if ($query[0]['Nivel'] != 3) {
+					if ($query[0]['Nivel'] != 4) {
+					return 3;
+					}
+				}											
+				else 
+				return FALSE;			
         }
 
         #$query = $this->db->get_where('Sis_Usuario', $data);
