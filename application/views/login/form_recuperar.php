@@ -29,6 +29,8 @@
     <br>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Link</button>
+	<br>
+	<a class="btn btn-lg btn-primary btn-block" href="<?php echo base_url(); ?>loginfuncionario/index" role="button">Acesso dos Funcionários</a>
 </form>
 
 </div>

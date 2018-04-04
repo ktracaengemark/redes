@@ -211,7 +211,7 @@ class Loginconsultor extends CI_Controller {
 		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
 		
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
-		$data['select']['Associado'] = $this->Consultor_model->select_consultorgestor();
+		#$data['select']['Associado'] = $this->Consultor_model->select_consultorgestor();
 		$data['select']['TipoProfissional'] = $this->Basico_model->select_tipoprofissional();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
         $data['select']['MunicipioUsuario'] = $this->Basico_model->select_municipio();

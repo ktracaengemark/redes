@@ -31,7 +31,7 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'funcionario/prontuario/' . $row['idSis_Usuario'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'consultor/prontuario/' . $row['idSis_Usuario'] . '">';
                             echo '<td>' . $row['idSis_Usuario'] . '</td>';
                             echo '<td>' . $row['Nome'] . '</td>';
 							echo '<td>' . $row['Sexo'] . '</td>';

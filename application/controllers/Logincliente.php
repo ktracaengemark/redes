@@ -352,7 +352,7 @@ class Logincliente extends CI_Controller {
         #run form validation
         if ($this->form_validation->run() === FALSE) {
             #load loginassociado view
-            $this->load->view('loginassociado/form_recuperar', $data);
+            $this->load->view('logincliente/form_recuperarcliente', $data);
         } else {
 
             $data['query']['Codigo'] = md5(uniqid(time() . rand()));
@@ -382,7 +382,7 @@ class Logincliente extends CI_Controller {
                 $this->email->subject('[KTRACA] Alteração de Senha - Usuário: ' . $data['query']['Usuario']);
                 $this->email->message('Por favor, clique no link a seguir para alterar sua senha: '
                         //. 'http://www.romati.com.br/app/loginassociado/trocar_senha/' . $data['query']['Codigo']);
-                        . base_url() . 'loginassociado/trocar_senha/' . $data['query']['Codigo']);
+                        . base_url() . 'logincliente/trocar_senha/' . $data['query']['Codigo']);
 
                 $this->email->send();
 
@@ -398,10 +398,10 @@ class Logincliente extends CI_Controller {
                         . '';
 
                 #$data['msg'] = '?m=4';
-                $this->load->view('loginassociado/tela_msg', $data);
+                $this->load->view('logincliente/tela_msg', $data);
             } else {
                 $data['msg'] = '?m=5';
-                redirect(base_url() . 'loginassociado/' . $data['msg']);
+                redirect(base_url() . 'logincliente/' . $data['msg']);
             }
         }
     }

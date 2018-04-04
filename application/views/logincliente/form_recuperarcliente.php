@@ -21,9 +21,10 @@
     <input type="text" class="form-control" id="Usuario" maxlength="100" autofocus="" placeholder="Usuário ou E-mail de cadastro"
            name="Usuario" value="<?php echo $query['Usuario']; ?>">
     <?php echo form_error('Usuario'); ?>
-    <br>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Link</button>
+    <button class="btn btn-lg btn-info btn-block" type="submit">Enviar Link</button>
+	<br>
+	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>logincliente/index" role="button">Acesso dos Clientes</a>
 </form>
 
 </div>

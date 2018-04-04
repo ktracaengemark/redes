@@ -4,7 +4,7 @@
 
     <?php if (isset($msg)) echo $msg; ?>
 
-    <?php echo form_open('loginfuncionario/registrar', 'role="form"'); ?>
+    <?php echo form_open('loginconsultor/registrar', 'role="form"'); ?>
 
     <!--
     <p class="text-center">
@@ -26,7 +26,7 @@
 		   name="NomeEmpresa" value="<?php echo $query['NomeEmpresa']; ?>">
 	<?php echo form_error('NomeEmpresa'); ?>
 	<br>
-	-->
+	
 
 	<label for="Associado">Gestor da Rede:*</label>
 	<select data-placeholder="Selecione uma opção..." class="form-control" id="Associado" name="Associado">			
@@ -43,7 +43,7 @@
 	</select> 
 	<?php echo form_error('Associado'); ?>
 	<br>	
-	
+	-->
 	<label for="Nome">Nome do Consultor:</label>
 	<input type="text" class="form-control" id="Nome" maxlength="255"
 		   autofocus name="Nome" value="<?php echo $query['Nome']; ?>">

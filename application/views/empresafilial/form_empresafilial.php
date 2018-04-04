@@ -60,6 +60,25 @@
 																		
 									<h3 class="text-left">Dados da Empresa  </h3>									
 									<div class="form-group">
+										<div class="row">
+											<div class="col-md-3">
+												<label for="Nome">Nome da Unidade/Filial:</label>
+												<input type="text" class="form-control" id="Nome" maxlength="45" 
+														name="Nome" autofocus value="<?php echo $query['Nome']; ?>">
+											</div>																		
+											<div class="col-md-3">
+												<label for="Celular">Tel. </label>
+												<input type="text" class="form-control Celular CelularVariavel" id="Celular" maxlength="11" <?php echo $readonly; ?>
+													   name="Celular" placeholder="(XX)999999999" value="<?php echo $query['Celular']; ?>">
+											</div>
+											<div class="col-md-3">
+												<label for="Email">E-mail:</label>
+												<input type="text" class="form-control" id="Bairro" maxlength="100" <?php echo $readonly; ?>
+													   name="Email" value="<?php echo $query['Email']; ?>">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
 										<div class="row">										
 											<div class="col-md-3">
 												<label for="CnpjFilial">Cnpj:</label>
@@ -106,29 +125,7 @@
 													   name="CepFilial" value="<?php echo $query['CepFilial']; ?>">
 											</div>
 										</div>
-									</div>
-									<br>
-									<h3 class="text-left">Dados do Administrador  </h3>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-md-3">
-												<label for="Nome">Nome do Administrador:</label>
-												<input type="text" class="form-control" id="Nome" maxlength="45" 
-														name="Nome" autofocus value="<?php echo $query['Nome']; ?>">
-											</div>																		
-											<div class="col-md-3">
-												<label for="Celular">Tel. Administrador</label>
-												<input type="text" class="form-control Celular CelularVariavel" id="Celular" maxlength="11" <?php echo $readonly; ?>
-													   name="Celular" placeholder="(XX)999999999" value="<?php echo $query['Celular']; ?>">
-											</div>
-											<div class="col-md-3">
-												<label for="Email">E-mail Administrador:</label>
-												<input type="text" class="form-control" id="Bairro" maxlength="100" <?php echo $readonly; ?>
-													   name="Email" value="<?php echo $query['Email']; ?>">
-											</div>
-										</div>
-									</div>									
-									
+									</div>																		
 									<br>
 
 									<div class="form-group">

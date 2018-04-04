@@ -81,7 +81,7 @@
 										</button>
 									</div>
 									<div class="col-md-6 text-right">											
-										<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>loginfuncionario/registrar" role="button"> 
+										<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>funcionario/cadastrar" role="button"> 
 											<span class="glyphicon glyphicon-plus"></span> Novo Usuário
 										</a>
 									</div>

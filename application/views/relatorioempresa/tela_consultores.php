@@ -8,12 +8,12 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 					<div class="panel-body">
-						<?php echo form_open('relatorioempresa/empresafilial', 'role="form"'); ?>
+						<?php echo form_open('relatorioempresa/consultores', 'role="form"'); ?>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-1"></div>
 								<div class="col-md-4">
-									<label for="Ordenamento">Unid./Filial:</label>
+									<label for="Ordenamento">Nome do usuário:</label>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-12">
@@ -80,13 +80,11 @@
 											<span class="glyphicon glyphicon-search"></span> Pesquisar
 										</button>
 									</div>
-									
 									<div class="col-md-6 text-right">											
-										<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>empresafilial/cadastrar" role="button"> 
-											<span class="glyphicon glyphicon-plus"></span> Nova Unid/Filial
+										<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>consultor/cadastrar" role="button"> 
+											<span class="glyphicon glyphicon-plus"></span> Novo Consultor
 										</a>
 									</div>
-									
 								</div>
 							</div>
 						</div>

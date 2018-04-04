@@ -4,7 +4,7 @@
 
     <?php if (isset($msg)) echo $msg; ?>
 
-    <?php echo form_open('login/recuperar', 'role="form"'); ?>
+    <?php echo form_open('loginfuncionario/recuperar', 'role="form"'); ?>
 
     <!--
     <p class="text-center">
@@ -26,9 +26,10 @@
     <input type="text" class="form-control" id="Usuario" maxlength="100" autofocus="" placeholder="Usuário ou E-mail de cadastro"
            name="Usuario" value="<?php echo $query['Usuario']; ?>">
     <?php echo form_error('Usuario'); ?>
-    <br>
-
+	
     <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Link</button>
+	<br>
+	<a class="btn btn-lg btn-primary btn-block" href="<?php echo base_url(); ?>loginfuncionario/index" role="button">Acesso dos Funcionários</a>
 </form>
 
 </div>

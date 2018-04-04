@@ -3434,18 +3434,19 @@ exit();*/
 				F.DataCriacao,
 				F.Sexo,
 				F.CpfUsuario,
-				F.RgUsuario,				
+				F.RgUsuario,
+				F.Nivel,
 				FU.Funcao,
-				PE.Nivel,
 				PE.Permissao
             FROM
                 Sis_Usuario AS F
 					LEFT JOIN Tab_Funcao AS FU ON FU.idTab_Funcao = F.Funcao
 					LEFT JOIN Sis_Permissao AS PE ON PE.idSis_Permissao = F.Permissao
             WHERE
-				F.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				F.Empresa = ' . $_SESSION['log']['id'] . ' AND
 				F.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
-                ' . $data['Nome'] . '
+                ' . $data['Nome'] . ' AND
+				F.Nivel = "6"
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
@@ -3475,6 +3476,62 @@ exit();*/
 
     }
 
+	public function list_consultores($data, $completo) {
+
+        $data['Nome'] = ($data['Nome']) ? ' AND F.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['Campo'] = (!$data['Campo']) ? 'F.idSis_Usuario' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
+
+        $query = $this->db->query('
+            SELECT
+                F.idSis_Usuario,
+                F.Nome,
+				F.DataCriacao,
+				F.Sexo,
+				F.CpfUsuario,
+				F.RgUsuario,
+				F.Nivel,
+				FU.Funcao,
+				PE.Permissao
+            FROM
+                Sis_Usuario AS F
+					LEFT JOIN Tab_Funcao AS FU ON FU.idTab_Funcao = F.Funcao
+					LEFT JOIN Sis_Permissao AS PE ON PE.idSis_Permissao = F.Permissao
+            WHERE
+				F.Empresa = ' . $_SESSION['log']['id'] . ' AND
+				F.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+                ' . $data['Nome'] . ' AND
+				(F.Nivel = "3" OR 
+				F.Nivel = "4")
+            ORDER BY
+                ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
+        ');
+
+        /*
+        #AND
+        #P.idApp_Profissional = OT.idApp_Cliente
+
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+        */
+
+        if ($completo === FALSE) {
+            return TRUE;
+        } else {
+
+            foreach ($query->result() as $row) {
+
+			$row->DataCriacao = $this->basico->mascara_data($row->DataCriacao, 'barras');
+            }
+
+            return $query;
+        }
+
+    }	
+	
 	public function list_empresafilial($data, $completo) {
 
         $data['Nome'] = ($data['Nome']) ? ' AND F.idSis_Usuario = ' . $data['Nome'] : FALSE;
@@ -3489,7 +3546,7 @@ exit();*/
                 Sis_EmpresaFilial AS F
 
             WHERE
-				F.idSis_EmpresaMatriz = ' . $_SESSION['log']['idSis_EmpresaMatriz'] . ' 
+				F.idSis_EmpresaMatriz = ' . $_SESSION['log']['id'] . ' 
                 ' . $data['Nome'] . '
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
@@ -4257,12 +4314,14 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 F.idSis_Usuario,
-                F.Nome
+                F.Nome,
+				F.Nivel
             FROM
                 Sis_Usuario AS F
             WHERE
-                F.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				F.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+                F.Empresa = ' . $_SESSION['log']['id'] . ' AND
+				F.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				F.Nivel ="6"
             ORDER BY
                 F.Nome ASC
         ');
@@ -4275,6 +4334,33 @@ exit();*/
 
         return $array;
     }
+	
+    public function select_consultores() {
+
+        $query = $this->db->query('
+            SELECT
+                F.idSis_Usuario,
+                F.Nome,
+				F.Nivel
+            FROM
+                Sis_Usuario AS F
+            WHERE
+                F.Empresa = ' . $_SESSION['log']['id'] . ' AND
+				F.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				(F.Nivel ="3" OR 
+				F.Nivel ="4")
+            ORDER BY
+                F.Nome ASC
+        ');
+
+        $array = array();
+        $array[0] = ':: Todos ::';
+        foreach ($query->result() as $row) {
+            $array[$row->idSis_Usuario] = $row->Nome;
+        }
+
+        return $array;
+    }	
 
     public function select_empresafilial() {
 
@@ -4285,7 +4371,7 @@ exit();*/
             FROM
                 Sis_EmpresaFilial AS F
             WHERE
-                F.idSis_EmpresaFilial = ' . $_SESSION['log']['id'] . '
+                F.idSis_EmpresaMatriz = ' . $_SESSION['log']['id'] . '
             ORDER BY
                 F.Nome ASC
         ');

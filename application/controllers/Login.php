@@ -573,8 +573,6 @@ class Login extends CI_Controller {
         }
     }
 
-
-
     function valid_senha($senha, $usuario) {
 
         if ($this->Login_model->check_dados_usuario($senha, $usuario) == FALSE) {

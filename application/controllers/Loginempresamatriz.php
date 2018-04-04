@@ -320,7 +320,7 @@ class Loginempresamatriz extends CI_Controller {
         #run form validation
         if ($this->form_validation->run() === FALSE) {
 
-            $this->load->view('loginempresamatriz/form_recuperar', $data);
+            $this->load->view('loginempresamatriz/form_recuperarempresamatriz', $data);
         } else {
 
             $data['query']['Codigo'] = md5(uniqid(time() . rand()));
@@ -350,7 +350,7 @@ class Loginempresamatriz extends CI_Controller {
                 $this->email->subject('[KTRACA] Alteração de Senha - Usuário: ' . $data['query']['UsuarioEmpresaMatriz']);
                 $this->email->message('Por favor, clique no link a seguir para alterar sua senha: '
                         //. 'http://www.romati.com.br/app/loginempresafilial/trocar_senha/' . $data['query']['Codigo']);
-                        . base_url() . 'loginempresamatriz/trocar_senha/' . $data['query']['Codigo']);
+                        . base_url() . 'loginempresamatriz/trocar_senhaempresamatriz/' . $data['query']['Codigo']);
 
                 $this->email->send();
 
@@ -497,8 +497,6 @@ class Loginempresamatriz extends CI_Controller {
         }
     }
 	
-
-
     function valid_senha($senha, $usuario) {
 
         if ($this->Loginempresamatriz_model->check_dados_usuario($senha, $usuario) == FALSE) {
@@ -509,5 +507,4 @@ class Loginempresamatriz extends CI_Controller {
         }
     }
 	
-
 }

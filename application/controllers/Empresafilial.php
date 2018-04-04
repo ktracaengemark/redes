@@ -18,8 +18,8 @@ class Empresafilial extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/headerempresa');
-        $this->load->view('basico/nav_principalempresa');
+        $this->load->view('basico/headerempresamatriz');
+        $this->load->view('basico/nav_principalempresamatriz');
 
         #$this->load->view('empresafilial/nav_secundario');
     }
@@ -49,37 +49,50 @@ class Empresafilial extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
+			'idSis_EmpresaMatriz',
 			'idSis_EmpresaFilial',
-			'UsuarioEmpresaFilial',
+			#'UsuarioEmpresaFilial',
             'Nome',
+			'NomeEmpresa',
 			#'Senha',
 			#'Confirma',
             #'DataNascimento',
+			'DataCriacao',
             'Celular',
 			'Email',
+			'CnpjFilial',
+			'InscEstadualFilial',
+			'EnderecoFilial',
+			'BairroFilial',
+			'MunicipioFilial',
+			'EstadoFilial',
+			'CepFilial',
+			'TelefoneFilial',
             #'Sexo',
 			'Inativo',
 
         ), TRUE));
 
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        (!$data['query']['DataCriacao']) ? $data['query']['DataCriacao'] = date('d/m/Y', time()) : FALSE;
+		
+		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
 		$this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[Sis_EmpresaFilial.Email]');
-        $this->form_validation->set_rules('UsuarioEmpresaFilial', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_EmpresaFilial.UsuarioEmpresaFilial]');
+        #$this->form_validation->set_rules('UsuarioEmpresaFilial', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_EmpresaFilial.UsuarioEmpresaFilial]');
 		$this->form_validation->set_rules('Nome', 'Nome do Usuário', 'required|trim');
-		$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
-        $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
+		#$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
+        #$this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         #$this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
         $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
 
-		$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
+		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
 
         #$data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		#$data['select']['Empresafilial'] = $this->Basico_model->select_status_sn();
 		$data['select']['Inativo'] = $this->Basico_model->select_inativo();
 
 
-        $data['titulo'] = 'Cadastrar Usuário';
+        $data['titulo'] = 'Cadastrar Unidade/Filial';
         $data['form_open_path'] = 'empresafilial/cadastrar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -98,9 +111,12 @@ class Empresafilial extends CI_Controller {
 
 
 			$data['query']['Empresa'] = $_SESSION['log']['id'];
-            $data['query']['Senha'] = md5($data['query']['Senha']);
+			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['id'];
+            $data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
+			$data['query']['DataCriacao'] = $this->basico->mascara_data($data['query']['DataCriacao'], 'mysql');
+			#$data['query']['Senha'] = md5($data['query']['Senha']);
 			#$data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
-            $data['query']['Codigo'] = md5(uniqid(time() . rand()));
+            #$data['query']['Codigo'] = md5(uniqid(time() . rand()));
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
 			$data['query']['Inativo'] = 0;
             unset($data['query']['Confirma']);
@@ -158,7 +174,7 @@ class Empresafilial extends CI_Controller {
 			'TelefoneFilial',
 			
 			#'Sexo',
-			#'Inativo',
+			'Inativo',
 
         ), TRUE);
 
@@ -178,10 +194,10 @@ class Empresafilial extends CI_Controller {
         $data['select']['Municipio'] = $this->Basico_model->select_municipio();
         #$data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		#$data['select']['Empresafilial'] = $this->Basico_model->select_status_sn();
-		#$data['select']['Inativo'] = $this->Basico_model->select_inativo();
+		$data['select']['Inativo'] = $this->Basico_model->select_inativo();
 
 
-        $data['titulo'] = 'Editar Usuário';
+        $data['titulo'] = 'Editar Unidade/Filial';
         $data['form_open_path'] = 'empresafilial/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';
