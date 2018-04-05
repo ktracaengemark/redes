@@ -82,9 +82,10 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url() ?>acessofuncionario/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?></a></li>
 									<li role="separator" class="divider"></li>
-									
-									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>
+									<!--
+									<li><a href="<?php echo base_url(); ?>agendafuncionario"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>
 									<li role="separator" class="divider"></li>
+									-->
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
 									<li role="separator" class="divider"></li>
 									

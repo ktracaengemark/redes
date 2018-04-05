@@ -80,12 +80,13 @@
 									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url() ?>acesso/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?></a></li>
+									<li><a href="<?php echo base_url() ?>acessoconsultor/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?></a></li>
 									<li role="separator" class="divider"></li>
-									
+									<!--
 									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
+									-->
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
 									<li role="separator" class="divider"></li>
 									
 									<!--
@@ -177,11 +178,11 @@
 									<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url() ?>relatorio/orcamento"><span class="glyphicon glyphicon-list"></span> Orçamentos</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamento"><span class="glyphicon glyphicon-list"></span> Orçamentos</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/receitas"><span class="glyphicon glyphicon-list"></span> Orç. X Cl. X Pag.</a></li>							
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/receitas"><span class="glyphicon glyphicon-list"></span> Orç. X Cl. X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/produtosvend"><span class="glyphicon glyphicon-list"></span> Orç. X Cl. X Prd.</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosvend"><span class="glyphicon glyphicon-list"></span> Orç. X Cl. X Prd.</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/despesas"><span class="glyphicon glyphicon-list"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>

@@ -33,6 +33,7 @@
 										</div>
 									</div>									
 								</div>
+								<!--
 								<div class="col-md-3 text-left">
 									<label for="">Agendamentos:</label>
 									<div class="form-group">
@@ -50,6 +51,7 @@
 										</div>	
 									</div>	
 								</div>
+								-->
 								<div class="col-md-3 text-left">
 									<label for="">Orçamentos:</label>
 									<div class="form-group ">

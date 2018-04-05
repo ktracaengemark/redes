@@ -21,8 +21,8 @@
     <button class="btn btn-lg btn-success btn-block" type="submit">Acesso dos Consultores</button>
     <p><a href="<?php echo base_url(); ?>loginconsultor/recuperar/?usuario=<?php echo set_value('Usuario'); ?>">Esqueci usuário/senha!</a></p>
 	<br>
-	<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>logincliente/index" role="button">Acesso dos Clientes</a>
-	<br>
+	<!--<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>logincliente/index" role="button">Acesso dos Clientes</a>
+	<br>-->
 	<a class="btn btn-lg btn-primary btn-block" href="<?php echo base_url(); ?>loginfuncionario/index" role="button">Acesso dos Funcionários</a>
 	<br>
 	<a class="btn btn-lg btn-warning btn-block" href="<?php echo base_url(); ?>loginempresamatriz/index" role="button">Acesso do Administrador</a>

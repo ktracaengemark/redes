@@ -1,5 +1,5 @@
 <?php if (isset($msg)) echo $msg; ?>
-<?php if ( !isset($evento) && isset($_SESSION['Consultor'])) { ?>
+<?php if ( !isset($evento) && isset($_SESSION['Cliente'])) { ?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -9,7 +9,7 @@
 		
 			<div class="panel panel-primary">
 				
-				<div class="panel-heading"><strong><?php echo '<strong>' . $_SESSION['Consultor']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Consultor']['idSis_Usuario'] . '</small>' ?></strong></div>
+				<div class="panel-heading"><strong><?php echo '<strong>' . $_SESSION['Cliente']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idSis_Usuario'] . '</small>' ?></strong></div>
 				<div class="panel-body">
 			
 					<div class="form-group">
@@ -17,16 +17,16 @@
 							<div class="col-md-2 "></div>
 							<div class="col-md-8 col-lg-8">
 								<div class="col-md-3 text-left">
-									<label for="">Consultor:</label>
+									<label for="">Cliente:</label>
 									<div class="form-group">
 										<div class="row">
 											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'clienteusuario/prontuario/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
 												</a>
 											</a>
-											<a <?php if (preg_match("/consultor\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+											<a <?php if (preg_match("/clienteusuario\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
+												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'clienteusuario/alterar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-edit"></span> Edit.
 												</a>
 											</a>
@@ -39,12 +39,12 @@
 									<div class="form-group">
 										<div class="row">
 											<a <?php if (preg_match("/consulta\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-calendar"></span> List.
 												</a>
 											</a>
 											<a <?php if (preg_match("/consulta\/(cadastrar|alterar)\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'consulta/cadastrar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'consulta/cadastrar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-plus"></span> Cad.
 												</a>
 											</a>
@@ -57,12 +57,12 @@
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatrata\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-usd"></span> List.
 												</a>
 											</a>
 											<a <?php if (preg_match("/orcatrata\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-plus"></span> Cad.
 												</a>
 											</a>
@@ -74,12 +74,12 @@
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatrata4\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata4/listar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata4/listar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-usd"></span> List.
 												</a>
 											</a>
 											<a <?php if (preg_match("/orcatrata4\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata4/cadastrar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata4/cadastrar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-plus"></span> Cad.
 												</a>
 											</a>
@@ -94,7 +94,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Consultor']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Consultor']['idSis_Usuario'] . '</small>' ?></h3>
+								<h3><?php echo '<strong>' . $_SESSION['Cliente']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idSis_Usuario'] . '</small>' ?></h3>
 							</div>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 
 							<div class="panel panel-<?php echo $panel; ?>">
 
-								<div class="panel-heading"><strong>Consultor</strong></div>
+								<div class="panel-heading"><strong>Cliente</strong></div>
 								<div class="panel-body">
 
 									<?php echo form_open_multipart($form_open_path); ?>
@@ -116,7 +116,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-3">
-												<label for="Nome">Nome do Consultor:</label>
+												<label for="Nome">Nome do Cliente:</label>
 												<input type="text" class="form-control" id="Nome" maxlength="45" 
 														name="Nome" autofocus value="<?php echo $query['Nome']; ?>">
 											</div>																		
@@ -183,11 +183,8 @@
 														?>
 													</div>
 												</div>
-											</div>																					
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="row">																					
+											</div>
+											<!--
 											<div class="col-md-3">
 												<label for="Usuario">Usuário:</label>
 												<input type="text" class="form-control" id="Usuario" maxlength="45" 
@@ -205,7 +202,8 @@
 												<input type="password" class="form-control" id="Confirma" maxlength="45"
 													   name="Confirma" value="<?php echo $query['Confirma']; ?>">
 												<?php echo form_error('Confirma'); ?>
-											</div>										
+											</div>
+											-->
 										</div>
 									</div>
 									<!--
@@ -287,7 +285,7 @@
 																	</button>
 																</div>
 																<div class="col-md-6 text-right">
-																	<a class="btn btn-danger" href="<?php echo base_url() . 'consultor/excluir/' . $query['idSis_Usuario'] ?>" role="button">
+																	<a class="btn btn-danger" href="<?php echo base_url() . 'clienteusuario/excluir/' . $query['idSis_Usuario'] ?>" role="button">
 																		<span class="glyphicon glyphicon-trash"></span> Confirmar Exclusão
 																	</a>
 																</div>

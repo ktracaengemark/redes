@@ -204,7 +204,7 @@ class Consultor extends CI_Controller {
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
 
-        $data['titulo'] = 'Editar Usuário';
+        $data['titulo'] = 'Editar Consultor';
         $data['form_open_path'] = 'consultor/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';

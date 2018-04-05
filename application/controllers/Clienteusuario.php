@@ -18,8 +18,8 @@ class Clienteusuario extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/header');
-        $this->load->view('basico/nav_principal');
+        $this->load->view('basico/headerconsultor');
+        $this->load->view('basico/nav_principalconsultor');
 
         #$this->load->view('clienteusuario/nav_secundario');
     }
@@ -50,10 +50,10 @@ class Clienteusuario extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
 			'idSis_Usuario',
-			#'Usuario',
+			'Usuario',
             'Nome',
-			#'Senha',
-			#'Confirma',
+			'Senha',
+			'Confirma',
             'DataNascimento',
             'Celular',
 			'Email',
@@ -61,16 +61,21 @@ class Clienteusuario extends CI_Controller {
 			#'Permissao',
 			#'Funcao',
 			'Inativo',
+			'DataCriacao',
+			'QuemCad',
+			'Associado',
 
         ), TRUE));
+		
+		(!$data['query']['DataCriacao']) ? $data['query']['DataCriacao'] = date('d/m/Y', time()) : FALSE;
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
 		$this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email|is_unique[Sis_Usuario.Email]');
-        #$this->form_validation->set_rules('Usuario', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
+        $this->form_validation->set_rules('Usuario', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
 		$this->form_validation->set_rules('Nome', 'Nome do Usuário', 'required|trim');
-		#$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
-        #$this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
+		$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
+        $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
         $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
 		#$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
@@ -102,17 +107,19 @@ class Clienteusuario extends CI_Controller {
 
 			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
             $data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
-			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['idSis_EmpresaMatriz'];
+			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
 			$data['query']['Associado'] = $_SESSION['log']['id'];
-			#$data['query']['Senha'] = md5($data['query']['Senha']);
+			$data['query']['QuemCad'] = $_SESSION['log']['id'];
+			$data['query']['Senha'] = md5($data['query']['Senha']);
 			$data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
-            #$data['query']['Codigo'] = md5(uniqid(time() . rand()));
+            $data['query']['DataCriacao'] = $this->basico->mascara_data($data['query']['DataCriacao'], 'mysql');
+			$data['query']['Codigo'] = md5(uniqid(time() . rand()));
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-			$data['query']['Inativo'] = $data['query']['Inativo'];
+			$data['query']['Inativo'] = 0;
 			$data['query']['Nivel'] = 2;
 			$data['query']['Permissao'] = 3;
-			$data['query']['Funcao'] = 0;
-            #unset($data['query']['Confirma']);
+			$data['query']['Funcao'] = 1;
+            unset($data['query']['Confirma']);
 
 
             $data['campos'] = array_keys($data['query']);
@@ -131,6 +138,17 @@ class Clienteusuario extends CI_Controller {
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
+
+				$data['agenda'] = array(
+                    'NomeAgenda' => 'Padrão',
+					'Empresa' => $_SESSION['log']['Empresa'],
+                    'idSis_Usuario' => $data['idSis_Usuario']
+                );
+                $data['campos'] = array_keys($data['agenda']);
+
+                $data['idApp_Agenda'] = $this->Clienteusuario_model->set_agenda($data['agenda']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idSis_Usuario']);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idSis_Usuario']);				
                 redirect(base_url() . 'clienteusuario/prontuario/' . $data['idSis_Usuario'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/clienteusuario/' .  $data['msg']);
                 exit();
@@ -186,7 +204,7 @@ class Clienteusuario extends CI_Controller {
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
 
-        $data['titulo'] = 'Editar Usuário';
+        $data['titulo'] = 'Editar Cliente';
         $data['form_open_path'] = 'clienteusuario/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -202,7 +220,7 @@ class Clienteusuario extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('clienteusuario/form_clienteusuario', $data);
+            $this->load->view('clienteusuario/form_clienteusuarioalterar', $data);
         } else {
 
             $data['query']['Nome'] = trim(mb_strtoupper($data['query']['Nome'], 'ISO-8859-1'));
@@ -217,7 +235,7 @@ class Clienteusuario extends CI_Controller {
 
             if ($data['auditoriaitem'] && $this->Clienteusuario_model->update_clienteusuario($data['query'], $data['query']['idSis_Usuario']) === FALSE) {
                 $data['msg'] = '?m=2';
-                redirect(base_url() . 'clienteusuario/form_clienteusuario/' . $data['query']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'clienteusuario/form_clienteusuarioalterar/' . $data['query']['idSis_Usuario'] . $data['msg']);
                 exit();
             } else {
 
