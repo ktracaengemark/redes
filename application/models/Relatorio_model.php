@@ -3351,7 +3351,7 @@ exit();*/
             WHERE
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				6 = ' . $_SESSION['log']['NivelFuncionario'] . ' AND
+				6 = ' . $_SESSION['log']['Nivel'] . ' AND
 				(C.Nivel = 3 OR 
 				C.Nivel = 4) 
 				' . $data['Nome'] . '
@@ -4871,7 +4871,7 @@ exit();*/
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				6 = ' . $_SESSION['log']['NivelFuncionario'] . ' AND
+				6 = ' . $_SESSION['log']['Nivel'] . ' AND
 				(P.Nivel = 3 OR 
 				P.Nivel = 4)
 			ORDER BY P.Nome ASC

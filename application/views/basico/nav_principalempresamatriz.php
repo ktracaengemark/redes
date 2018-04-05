@@ -54,16 +54,12 @@
 						</div>
 						<div class="btn-group">
 							<button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown">
-								<span class="glyphicon glyphicon-user"></span> Pessoas <span class="caret"></span>
+								<span class="glyphicon glyphicon-user"></span> Funcionários <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="<?php echo base_url() ?>relatorioempresa/funcionario"><span class="glyphicon glyphicon-user"></span> Funcionários </a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="<?php echo base_url() ?>relatorioempresa/consultores"><span class="glyphicon glyphicon-user"></span> Consultores </a></li>
-								<li role="separator" class="divider"></li>						
-								<li><a href="<?php echo base_url() ?>relatorioempresa/cliente"><span class="glyphicon glyphicon-user"></span> Clientes </a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="<?php echo base_url() ?>loginconsultor/index"><span class="glyphicon glyphicon-log-in"></span> Acesso dos Consultores</a></li>							
+								<li><a href="<?php echo base_url() ?>loginfuncionario/index"><span class="glyphicon glyphicon-log-in"></span> Acesso dos Funcionários</a></li>							
 							</ul>
 						</div>
 						<div class="btn-group" role="group" aria-label="..."> </div>

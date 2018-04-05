@@ -18,8 +18,8 @@ class Consultor extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/headerempresamatriz');
-        $this->load->view('basico/nav_principalempresamatriz');
+        $this->load->view('basico/headerfuncionario');
+        $this->load->view('basico/nav_principalfuncionario');
 
         #$this->load->view('consultor/nav_secundario');
     }
