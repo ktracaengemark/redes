@@ -3852,6 +3852,83 @@ exit();*/
 
     }
 
+	public function list_produtosempresa($data, $completo) {
+
+		$data['Produtos'] = ($data['Produtos']) ? ' AND TP.idTab_Produtos = ' . $data['Produtos'] : FALSE;
+		$data['Prodaux1'] = ($data['Prodaux1']) ? ' AND TP1.idTab_Prodaux1 = ' . $data['Prodaux1'] : FALSE;
+		$data['Prodaux2'] = ($data['Prodaux2']) ? ' AND TP2.idTab_Prodaux2 = ' . $data['Prodaux2'] : FALSE;
+        $data['Prodaux3'] = ($data['Prodaux3']) ? ' AND TP3.idTab_Prodaux3 = ' . $data['Prodaux3'] : FALSE;
+		$data['Campo'] = (!$data['Campo']) ? 'TP.Produtos' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
+
+        $query = $this->db->query('
+            SELECT
+                TP.idTab_Produtos,
+				TP.TipoProduto,
+				TP.CodProd,
+				TP.ProdutoProprio,
+				TP.Produtos,
+				TP1.Prodaux1,
+				TP2.Prodaux2,
+				TP3.Prodaux3,
+				TP1.Abrev1,
+				TP2.Abrev2,
+				TP3.Abrev3,
+				TP.UnidadeProduto,
+				TP.ValorCompraProduto,
+				TP.Fornecedor,
+				TF.NomeFornecedor,
+				TCA.Categoria,
+				TCA.Abrev,
+				TV.Convdesc,
+				TV.ValorVendaProduto,
+				TC.Convenio
+            FROM
+                Tab_Produtos AS TP
+					LEFT JOIN Tab_Valor AS TV ON TV.idTab_Produtos = TP.idTab_Produtos
+					LEFT JOIN Tab_Convenio AS TC ON TC.idTab_Convenio = TV.Convenio
+					LEFT JOIN App_Fornecedor AS TF ON TF.idApp_Fornecedor = TP.Fornecedor
+					LEFT JOIN Tab_Categoria AS TCA ON TCA.Abrev = TP.Categoria
+					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = TP.Prodaux1
+					LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = TP.Prodaux2
+					LEFT JOIN Tab_Prodaux3 AS TP3 ON TP3.idTab_Prodaux3 = TP.Prodaux3
+            WHERE
+                TP.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				TP.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+				' . $data['Produtos'] . '
+				' . $data['Prodaux1'] . '
+				' . $data['Prodaux2'] . '
+				' . $data['Prodaux3'] . ' AND
+				TP.ProdutoProprio = "0"
+				
+			ORDER BY
+                ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
+        ');
+
+        /*
+        #AND
+        #P.idApp_Profissional = OT.idApp_Cliente
+
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+        */
+
+        if ($completo === FALSE) {
+            return TRUE;
+        } else {
+
+            foreach ($query->result() as $row) {
+
+            }
+
+            return $query;
+        }
+
+    }
+	
 	public function list_servicos($data, $completo) {
 
 		$data['Servicos'] = ($data['Servicos']) ? ' AND TP.idApp_Servicos = ' . $data['Servicos'] : FALSE;
@@ -4637,7 +4714,8 @@ exit();*/
 				TP3.Prodaux3,
 				TP1.Abrev1,
 				TP2.Abrev2,
-                OB.CodProd
+                OB.ProdutoProprio,
+				OB.CodProd
             FROM
                 Tab_Produtos AS OB
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = OB.Prodaux1
@@ -4646,8 +4724,7 @@ exit();*/
             WHERE
                 OB.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				OB.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				OB.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
-				OB.OrigemOrca = "U/C"
+				OB.ProdutoProprio = "0"
             ORDER BY
                 OB.CodProd,
 				TP3.Prodaux3,

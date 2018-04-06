@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class OrcatrataPrint extends CI_Controller {
+class OrcatrataPrint8 extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -13,7 +13,7 @@ class OrcatrataPrint extends CI_Controller {
         $this->load->helper(array('form', 'url', 'date', 'string'));
         #$this->load->library(array('basico', 'Basico_model', 'form_validation'));
         $this->load->library(array('basico', 'form_validation'));
-        $this->load->model(array('Basico_model', 'Orcatrata_model', 'OrcatrataPrint_model', 'Profissional_model', 'Relatorio_model', 'Formapag_model', 'Clienteusuario_model'));
+        $this->load->model(array('Basico_model', 'Orcatrata_model', 'OrcatrataPrint8_model', 'Profissional_model', 'Relatorio_model', 'Formapag_model', 'Consultor_model'));
         $this->load->driver('session');
 
         #load header view
@@ -49,7 +49,7 @@ class OrcatrataPrint extends CI_Controller {
 
         if ($id) {
             #### App_OrcaTrata ####
-            $data['orcatrata'] = $this->OrcatrataPrint_model->get_orcatrata($id);
+            $data['orcatrata'] = $this->OrcatrataPrint8_model->get_orcatrata($id);
             $data['orcatrata']['DataOrca'] = $this->basico->mascara_data($data['orcatrata']['DataOrca'], 'barras');
             $data['orcatrata']['DataPrazo'] = $this->basico->mascara_data($data['orcatrata']['DataPrazo'], 'barras');
 			$data['orcatrata']['DataConclusao'] = $this->basico->mascara_data($data['orcatrata']['DataConclusao'], 'barras');
@@ -59,14 +59,14 @@ class OrcatrataPrint extends CI_Controller {
             $data['orcatrata']['DataVencimentoOrca'] = $this->basico->mascara_data($data['orcatrata']['DataVencimentoOrca'], 'barras');
 
             #### Carrega os dados do cliente nas variáves de sessão ####
-            $this->load->model('Clienteusuario_model');
-            $_SESSION['Cliente'] = $this->Clienteusuario_model->get_clienteusuario($data['orcatrata']['idApp_Cliente'], TRUE);
-			$_SESSION['Orcatrata'] = $this->OrcatrataPrint_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata'], TRUE);
-            #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Cliente']['idApp_Cliente'];
+            $this->load->model('Consultor_model');
+            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($data['orcatrata']['idApp_Cliente'], TRUE);
+			$_SESSION['Orcatrata'] = $this->OrcatrataPrint8_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata'], TRUE);
+            #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Consultor']['idApp_Cliente'];
 
             /*
             #### App_ServicoVenda ####
-            $data['servico'] = $this->OrcatrataPrint_model->get_servico($id);
+            $data['servico'] = $this->OrcatrataPrint8_model->get_servico($id);
             if (count($data['servico']) > 0) {
                 $data['servico'] = array_combine(range(1, count($data['servico'])), array_values($data['servico']));
                 $data['count']['SCount'] = count($data['servico']);
@@ -80,7 +80,7 @@ class OrcatrataPrint extends CI_Controller {
             */
 
             #### App_ProdutoVenda ####
-            $data['produto'] = $this->OrcatrataPrint_model->get_produto($id);
+            $data['produto'] = $this->OrcatrataPrint8_model->get_produto($id);
             if (count($data['produto']) > 0) {
                 $data['produto'] = array_combine(range(1, count($data['produto'])), array_values($data['produto']));
                 $data['count']['PCount'] = count($data['produto']);
@@ -96,7 +96,7 @@ class OrcatrataPrint extends CI_Controller {
             }
 
             #### App_ParcelasRecebiveis ####
-            $data['parcelasrec'] = $this->OrcatrataPrint_model->get_parcelasrec($id);
+            $data['parcelasrec'] = $this->OrcatrataPrint8_model->get_parcelasrec($id);
             if (count($data['parcelasrec']) > 0) {
                 $data['parcelasrec'] = array_combine(range(1, count($data['parcelasrec'])), array_values($data['parcelasrec']));
 
@@ -111,7 +111,7 @@ class OrcatrataPrint extends CI_Controller {
             }
 
             #### App_Procedimento ####
-            $data['procedimento'] = $this->OrcatrataPrint_model->get_procedimento($id);
+            $data['procedimento'] = $this->OrcatrataPrint8_model->get_procedimento($id);
             if (count($data['procedimento']) > 0) {
                 $data['procedimento'] = array_combine(range(1, count($data['procedimento'])), array_values($data['procedimento']));
                 $data['count']['PMCount'] = count($data['procedimento']);
@@ -135,7 +135,7 @@ class OrcatrataPrint extends CI_Controller {
           #exit ();
          */
 
-        $this->load->view('orcatrata/print_orcatrata', $data);
+        $this->load->view('orcatrata8/print_orcatrata8', $data);
 
         $this->load->view('basico/footer');
 
