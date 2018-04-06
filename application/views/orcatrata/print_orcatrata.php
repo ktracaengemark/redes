@@ -7,13 +7,13 @@
 		<div class="col-md-12">
 
 			<div class="panel-heading text-center">
-				<h2><?php echo '<strong>' . $_SESSION['Orcatrata']['NomeEmpresa'] . '</strong> - <strong>ORÇAMENTO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h2>
+				<h3><?php echo '<strong>' . $_SESSION['Cliente']['NomeEmpresa'] . '</strong> - <strong>ORÇAMENTO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h3>
 			</div>
 
 			<div class="panel-body">
 
 				<hr />
-				<?php echo '<h3>' . $_SESSION['Cliente']['NomeCliente'] . ' - Id: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</h3>' ?>
+				<?php echo '<h3>' . $_SESSION['Cliente']['Nome'] . ' - Id: ' . $_SESSION['Cliente']['idSis_Usuario'] . '</h3>' ?>
 				<hr />
 
 				<h3 class="text-center">Produtos & Serviços  </h3>

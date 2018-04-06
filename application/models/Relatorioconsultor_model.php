@@ -3283,10 +3283,7 @@ exit();*/
 				3 = ' . $_SESSION['log']['Nivel'] . ' ) AND
 				C.Nivel = 2 AND
 				C.Associado = ' . $_SESSION['log']['id'] . ' 
-				
-
-
-
+				' . $data['Nome'] . '
 
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '

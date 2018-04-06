@@ -85,10 +85,10 @@
 									<!--
 									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>
 									<li role="separator" class="divider"></li>
-									-->
+									
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
 									<li role="separator" class="divider"></li>
-									
+									-->
 									<!--
 									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>
 									<li role="separator" class="divider"></li>

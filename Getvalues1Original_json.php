@@ -48,7 +48,8 @@ elseif ($_GET['q'] == 2) {
                 V.idTab_Valor,
                 CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,""), " -- ", IFNULL(TCO.Convenio,""), " -- ", IFNULL(V.Convdesc,""), " --- ", V.ValorVendaProduto, " -- ", IFNULL(P.UnidadeProduto,""), " -- ", IFNULL(TFO.NomeFornecedor,"")) AS NomeProduto,
                 V.ValorVendaProduto,
-				P.Categoria
+				P.Categoria,
+				P.OrigemOrca
             FROM
                 
                 Tab_Valor AS V
@@ -59,9 +60,14 @@ elseif ($_GET['q'] == 2) {
 					LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = P.Prodaux2
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
-				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-                P.idTab_Produtos = V.idTab_Produtos
+				((P.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
+                P.idTab_Produtos = V.idTab_Produtos AND
+				TCO.idTab_Convenio = "53" ) OR 
+				(P.OrigemOrca = "E/U" AND
+                P.idTab_Produtos = V.idTab_Produtos AND
+				TCO.idTab_Convenio = "53")) 
+
+			
 			ORDER BY
 				P.CodProd ASC,
 				P.Categoria ASC,
@@ -84,7 +90,54 @@ elseif ($_GET['q'] == 2) {
     }
 
 }
-elseif ($_GET['q'] == 6) {
+
+elseif ($_GET['q'] == 5) {
+
+    $result = mysql_query(
+            'SELECT
+                V.idTab_Valor,
+                CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,""), " -- ", IFNULL(TCO.Convenio,""), " -- ", IFNULL(V.Convdesc,""), " --- ", V.ValorVendaProduto, " -- ", IFNULL(P.UnidadeProduto,""), " -- ", IFNULL(TFO.NomeFornecedor,"")) AS NomeProduto,
+                V.ValorVendaProduto,
+				P.Categoria,
+				P.OrigemOrca
+            FROM
+                
+                Tab_Valor AS V
+					LEFT JOIN Tab_Convenio AS TCO ON idTab_Convenio = V.Convenio
+					LEFT JOIN Tab_Produtos AS P ON P.idTab_Produtos = V.idTab_Produtos
+					LEFT JOIN App_Fornecedor AS TFO ON TFO.idApp_Fornecedor = P.Fornecedor
+					LEFT JOIN Tab_Prodaux3 AS TP3 ON TP3.idTab_Prodaux3 = P.Prodaux3
+					LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = P.Prodaux2
+					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
+            WHERE
+				P.OrigemOrca = "E/U" AND
+                P.idTab_Produtos = V.idTab_Produtos AND
+				TCO.idTab_Convenio = "54" 
+			
+			ORDER BY
+				P.CodProd ASC,
+				P.Categoria ASC,
+				TP3.Prodaux3,				
+				P.Produtos ASC,
+				TP1.Prodaux1,
+				TP2.Prodaux2,
+				TFO.NomeFornecedor ASC'
+        );
+
+    while ($row = mysql_fetch_assoc($result)) {
+
+        $event_array[] = array(
+            'id' => $row['idTab_Valor'],
+            #'name' => utf8_encode($row['NomeProduto']),
+            #'name' => $row['NomeProduto'],
+            'name' => mb_convert_encoding($row['NomeProduto'], "UTF-8", "ISO-8859-1"),
+            'value' => $row['ValorVendaProduto'],
+        );
+    }
+
+}
+
+elseif ($_GET['q'] == 3) {
 
     $result = mysql_query(
             'SELECT
@@ -129,32 +182,6 @@ elseif ($_GET['q'] == 4) {
         $event_array[] = array(
             'id' => $row['idTab_Convenio'],
             'name' => utf8_encode($row['Convenio']),
-        );
-    }
-
-}
-
-elseif ($_GET['q'] == 3) {
-
-    $result = mysql_query(
-            'SELECT
-				P.idSis_Usuario,
-				CONCAT(P.Nome) AS Nome
-            FROM
-                Sis_Usuario AS P
-					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
-            WHERE
-                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.idSis_Usuario = ' . $_SESSION['log']['id'] . ' 
-                ORDER BY P.Nome ASC'
-    );
-
-    while ($row = mysql_fetch_assoc($result)) {
-
-        $event_array[] = array(
-            'id' => $row['idSis_Usuario'],
-            'name' => utf8_encode($row['Nome']),
         );
     }
 

@@ -277,7 +277,7 @@
 												</div>
 											</div>
 										</div>
-
+										
 										<?php
 										}
 										?>
@@ -352,11 +352,7 @@
 											<div class="panel panel-info">
 												<div class="panel-heading">
 													<div class="row">
-														<div class="col-md-3">
-															<label for="QtdParcelasOrca">Qtd. Parc.:</label><br>
-															<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"
-																   name="QtdParcelasOrca" value="<?php echo $orcatrata['QtdParcelasOrca'] ?>">
-														</div>
+														
 														<div class="col-md-3">
 															<label for="FormaPagamento">Forma de Pagam.:</label>
 															<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -372,6 +368,11 @@
 																}
 																?>
 															</select>
+														</div>
+														<div class="col-md-3">
+															<label for="QtdParcelasOrca">Qtd. Parc.:</label><br>
+															<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"
+																   name="QtdParcelasOrca" value="<?php echo $orcatrata['QtdParcelasOrca'] ?>">
 														</div>
 														<div class="col-md-3">
 															<label for="DataVencimentoOrca">1º Venc.</label>
@@ -572,7 +573,7 @@
 															<textarea class="form-control" id="Procedimento<?php echo $i ?>" <?php echo $readonly; ?>
 																	  name="Procedimento<?php echo $i ?>"><?php echo $procedimento[$i]['Procedimento']; ?></textarea>
 														</div>
-														<div class="col-md-2">
+														<div class="col-md-3">
 															<label for="DataProcedimento<?php echo $i ?>">Data do Proced.:</label>
 															<div class="input-group <?php echo $datepicker; ?>">
 																<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
@@ -582,7 +583,7 @@
 																</span>
 															</div>
 														</div>
-														<div class="col-md-2">
+														<div class="col-md-3">
 															<label for="ConcluidoProcedimento">Proc. Concl.? </label><br>
 															<div class="form-group">
 																<div class="btn-group" data-toggle="buttons">
@@ -610,29 +611,11 @@
 																</div>
 															</div>
 														</div>
-														<div class="col-md-1">
+														<div class="col-md-2">
 															<label><br></label><br>
 															<button type="button" id="<?php echo $i ?>" class="remove_field3 btn btn-danger">
 																<span class="glyphicon glyphicon-trash"></span>
 															</button>
-														</div>
-														<div class="col-md-3">
-															<label for="idSis_Usuario<?php echo $i ?>">Profissional:</label>
-															<?php if ($i == 1) { ?>
-															<?php } ?>
-															<select data-placeholder="Selecione uma opção..." class="form-control"
-																	 id="listadinamicac<?php echo $i ?>" name="idSis_Usuario<?php echo $i ?> readonly="" "> 
-																<option value="">-- Selecione uma opção --</option>
-																<?php
-																foreach ($select['idSis_Usuario'] as $key => $row) {
-																	if ($procedimento[$i]['idSis_Usuario'] == $key) {
-																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																	} else {
-																		echo '<option value="' . $key . '">' . $row . '</option>';
-																	}
-																}
-																?>
-															</select>
 														</div>
 													</div>
 												</div>

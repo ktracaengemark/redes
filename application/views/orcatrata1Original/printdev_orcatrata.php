@@ -6,12 +6,12 @@
 		<div class="col-md-12">
 		
 			<div class="panel-heading text-center">
-				<h3 class="text-center"><?php echo '<strong>' . $_SESSION['Cliente']['NomeEmpresa'] . '</strong> - <strong>DEVOLUÇÃO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h3>
+				<h3 class="text-center"><?php echo '<strong>' . $_SESSION['Orcatrata']['NomeEmpresa'] . '</strong> - <strong>DEVOLUÇÃO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h3>
 			</div>
 
 			<div class="panel-body">
 				<hr />
-				<?php echo '<h4>Cliente: ' . $_SESSION['Cliente']['Nome'] . ' - Id: ' . $_SESSION['Cliente']['idSis_Usuario'] . ' - Orçam. Nº: ' . $_SESSION['Orcatrata']['Orcamento'] . '</h4>' ?>
+				<?php echo '<h4>Cliente: ' . $_SESSION['Cliente']['NomeCliente'] . ' - Id: ' . $_SESSION['Cliente']['idApp_Cliente'] . ' - Orçam. Nº: ' . $_SESSION['Orcatrata']['Orcamento'] . '</h4>' ?>
 				<hr />
 
 				<h3 class="text-center">Produtos </h3>
