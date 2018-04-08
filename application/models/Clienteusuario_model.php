@@ -230,7 +230,8 @@ class Clienteusuario_model extends CI_Model {
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.Nivel = "2"  
+				P.Nivel = "2" AND
+				P.Associado = ' . $_SESSION['log']['id'] . ' 
 			ORDER BY P.Nome ASC'
     );
 					
@@ -245,7 +246,8 @@ class Clienteusuario_model extends CI_Model {
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				P.Nivel = "2"  
+				P.Nivel = "2" AND
+				P.Associado = ' . $_SESSION['log']['id'] . '  
 			ORDER BY P.Nome ASC'
     );
             

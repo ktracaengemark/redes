@@ -16,14 +16,6 @@
 						<div class="row">
 							<div class="col-md-2 "></div>
 							<div class="col-md-8 col-lg-8">
-								<!--
-								<div class="col-md-3 text-left">
-									<label for=""></label><br />
-									<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint/imprimir/' . $orcatrata['idApp_OrcaTrata']; ?>">
-										<span class="glyphicon glyphicon-print"></span> Versão para Impressão
-									</a>
-								</div>
-								-->
 								<div class="col-md-3 text-left">
 									<label for="">Cliente:</label>
 									<div class="form-group">
@@ -77,7 +69,7 @@
 										</div>
 									</div>
 								</div>
-								<!--
+								
 								<div class="col-md-3 text-left">
 									<label for="">Troca/Devol:</label>
 									<div class="form-group ">
@@ -95,7 +87,7 @@
 										</div>
 									</div>
 								</div>
-								-->
+								
 							</div>
 							<div class="col-md-2"></div>
 						</div>

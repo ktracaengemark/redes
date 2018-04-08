@@ -69,7 +69,6 @@
 										</div>		
 									</div>	
 								</div>
-								
 								<div class="col-md-3 text-left">
 									<label for="">Troca/Devol:</label>
 									<div class="form-group ">
@@ -87,7 +86,6 @@
 										</div>		
 									</div>	
 								</div>
-								
 							</div>
 							<div class="col-md-2"></div>
 						</div>	
@@ -96,7 +94,7 @@
 					<div class="form-group">		
 						<div class="row">
 							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Consultor']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Consultor']['idSis_Usuario'] . '</small>' ?></h3>
+								<h3><?php echo '<strong>' . $_SESSION['Consultor']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Consultor']['idApp_Cliente'] . '</small>' ?></h3>
 							</div>
 						</div>
 					</div>
@@ -105,7 +103,7 @@
 					<div class="row">
 						<div class="col-md-12 col-lg-12">
 							<div class="panel panel-primary">
-								<div class="panel-heading"><strong>Orçamentos</strong></div>
+								<div class="panel-heading"><strong>Troca/Devol.</strong></div>
 								<div class="panel-body">
 
 									<div>
@@ -130,12 +128,12 @@
 
 												<div class="bs-callout bs-callout-success" id=callout-overview-not-both>
 
-													<a class="btn btn-success" href="<?php echo base_url() . 'orcatrata8/alterar/' . $row['idApp_OrcaTrata'] ?>" role="button">
+													<a class="btn btn-success" href="<?php echo base_url() . 'orcatratadevcons/alterar/' . $row['idApp_OrcaTrata'] ?>" role="button">
 														<span class="glyphicon glyphicon-edit"></span> Editar Dados
 													</a>
 													
 														
-													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint8/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
+													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrintDev/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
 														<span class="glyphicon glyphicon-print"></span> Versão para Impressão
 													</a>
 													
@@ -193,11 +191,11 @@
 
 												<div class="bs-callout bs-callout-danger" id=callout-overview-not-both>
 
-													<a class="btn btn-danger" href="<?php echo base_url() . 'orcatrata8/alterar/' . $row['idApp_OrcaTrata'] ?>" role="button">
+													<a class="btn btn-danger" href="<?php echo base_url() . 'orcatratadevcons/alterar/' . $row['idApp_OrcaTrata'] ?>" role="button">
 														<span class="glyphicon glyphicon-edit"></span> Editar Dados
 													</a>
 													
-													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint8/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
+													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrintDev/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
 														<span class="glyphicon glyphicon-print"></span> Versão para Impressão
 													</a>
 
