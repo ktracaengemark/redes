@@ -169,14 +169,14 @@
 									<!--<li><a href="<?php echo base_url() ?>relatorio/clientes"><span class="glyphicon glyphicon-usd"></span> Clientes</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>agenda"><span class="glyphicon glyphicon-usd"></span> Consultas</a></li>
-									<li role="separator" class="divider"></li>-->
+									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>orcatrata2/cadastrar"><span class="glyphicon glyphicon-usd"></span> Orçamentos</a></li>
-									<li role="separator" class="divider"></li>--							
+									<li role="separator" class="divider"></li>-->							
 									<li><a href="<?php echo base_url() ?>despesas/cadastrar"><span class="glyphicon glyphicon-usd"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>orcatrata3/cadastrar"><span class="glyphicon glyphicon-usd"></span> Devoluções</a></li>
+									<!--<li><a href="<?php echo base_url() ?>orcatrata3/cadastrar"><span class="glyphicon glyphicon-usd"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>
-									<!--<li><a href="<?php echo base_url() ?>devolucao/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Devol(Desp)</a></li>
+									<li><a href="<?php echo base_url() ?>devolucao/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Devol(Desp)</a></li>
 									<li role="separator" class="divider"></li>-->
 									<li><a href="<?php echo base_url() ?>consumo/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
 									<li role="separator" class="divider"></li>

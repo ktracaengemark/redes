@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Orcatrata8 extends CI_Controller {
+class Orcatratacons extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -13,7 +13,7 @@ class Orcatrata8 extends CI_Controller {
         $this->load->helper(array('form', 'url', 'date', 'string'));
         #$this->load->library(array('basico', 'Basico_model', 'form_validation'));
         $this->load->library(array('basico', 'form_validation'));
-        $this->load->model(array('Basico_model', 'Orcatrata8_model', 'Profissional_model', 'Relatorio_model', 'Formapag_model', 'Consultor_model'));
+        $this->load->model(array('Basico_model', 'Orcatratacons_model', 'Profissional_model', 'Relatorio_model', 'Formapag_model', 'Consultor_model'));
         $this->load->driver('session');
 
         #load header view
@@ -188,7 +188,7 @@ class Orcatrata8 extends CI_Controller {
         $data['select']['Produto'] = $this->Basico_model->select_produtos();
 
         $data['titulo'] = 'Cadastar Orçamento do Consultor';
-        $data['form_open_path'] = 'orcatrata8/cadastrar';
+        $data['form_open_path'] = 'orcatratacons/cadastrar';
         $data['readonly'] = '';
         $data['disabled'] = '';
         $data['panel'] = 'primary';
@@ -241,7 +241,7 @@ class Orcatrata8 extends CI_Controller {
         #run form validation
         if ($this->form_validation->run() === FALSE) {
             //if (1 == 1) {
-            $this->load->view('orcatrata8/form_orcatrata8', $data);
+            $this->load->view('orcatratacons/form_orcatratacons', $data);
         } else {
 
             ////////////////////////////////Preparar Dados para Inserção Ex. Datas "mysql" //////////////////////////////////////////////
@@ -260,7 +260,7 @@ class Orcatrata8 extends CI_Controller {
 			$data['orcatrata']['Empresa'] = $_SESSION['log']['Empresa'];
             $data['orcatrata']['idSis_Usuario'] = $_SESSION['log']['id'];
             $data['orcatrata']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-            $data['orcatrata']['idApp_OrcaTrata'] = $this->Orcatrata8_model->set_orcatrata($data['orcatrata']);
+            $data['orcatrata']['idApp_OrcaTrata'] = $this->Orcatratacons_model->set_orcatrata($data['orcatrata']);
 
             /*
             echo count($data['servico']);
@@ -282,7 +282,7 @@ class Orcatrata8 extends CI_Controller {
                     $data['servico'][$j]['ValorVendaServico'] = str_replace(',', '.', str_replace('.', '', $data['servico'][$j]['ValorVendaServico']));
                     unset($data['servico'][$j]['SubtotalServico']);
                 }
-                $data['servico']['idApp_ServicoVenda'] = $this->Orcatrata8_model->set_servico_venda($data['servico']);
+                $data['servico']['idApp_ServicoVenda'] = $this->Orcatratacons_model->set_servico_venda($data['servico']);
             }
 
             #### App_ProdutoVenda ####
@@ -296,7 +296,7 @@ class Orcatrata8 extends CI_Controller {
                     $data['produto'][$j]['ValorVendaProduto'] = str_replace(',', '.', str_replace('.', '', $data['produto'][$j]['ValorVendaProduto']));
                     unset($data['produto'][$j]['SubtotalProduto']);
                 }
-                $data['produto']['idApp_ProdutoVenda'] = $this->Orcatrata8_model->set_produto_venda($data['produto']);
+                $data['produto']['idApp_ProdutoVenda'] = $this->Orcatratacons_model->set_produto_venda($data['produto']);
             }
 
             #### App_ParcelasRec ####
@@ -313,7 +313,7 @@ class Orcatrata8 extends CI_Controller {
                     $data['parcelasrec'][$j]['DataPagoRecebiveis'] = $this->basico->mascara_data($data['parcelasrec'][$j]['DataPagoRecebiveis'], 'mysql');
 
                 }
-                $data['parcelasrec']['idApp_ParcelasRecebiveis'] = $this->Orcatrata8_model->set_parcelasrec($data['parcelasrec']);
+                $data['parcelasrec']['idApp_ParcelasRecebiveis'] = $this->Orcatratacons_model->set_parcelasrec($data['parcelasrec']);
             }
 
             #### App_Procedimento ####
@@ -328,7 +328,7 @@ class Orcatrata8 extends CI_Controller {
 
 
                 }
-                $data['procedimento']['idApp_Procedimento'] = $this->Orcatrata8_model->set_procedimento($data['procedimento']);
+                $data['procedimento']['idApp_Procedimento'] = $this->Orcatratacons_model->set_procedimento($data['procedimento']);
             }
 
 /*
@@ -344,14 +344,14 @@ class Orcatrata8 extends CI_Controller {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
 
                 $this->basico->erro($msg);
-                $this->load->view('orcatrata8/form_orcatrata8', $data);
+                $this->load->view('orcatratacons/form_orcatratacons', $data);
             } else {
 
                 //$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_OrcaTrata'], FALSE);
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata8/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'orcatratacons/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
 
 				exit();
             }
@@ -476,7 +476,7 @@ class Orcatrata8 extends CI_Controller {
 
         if ($id) {
             #### App_OrcaTrata ####
-            $data['orcatrata'] = $this->Orcatrata8_model->get_orcatrata($id);
+            $data['orcatrata'] = $this->Orcatratacons_model->get_orcatrata($id);
             $data['orcatrata']['DataOrca'] = $this->basico->mascara_data($data['orcatrata']['DataOrca'], 'barras');
             $data['orcatrata']['DataPrazo'] = $this->basico->mascara_data($data['orcatrata']['DataPrazo'], 'barras');
 			$data['orcatrata']['DataConclusao'] = $this->basico->mascara_data($data['orcatrata']['DataConclusao'], 'barras');
@@ -491,7 +491,7 @@ class Orcatrata8 extends CI_Controller {
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Consultor']['idApp_Cliente'];
 
             #### App_ServicoVenda ####
-            $data['servico'] = $this->Orcatrata8_model->get_servico($id);
+            $data['servico'] = $this->Orcatratacons_model->get_servico($id);
             if (count($data['servico']) > 0) {
                 $data['servico'] = array_combine(range(1, count($data['servico'])), array_values($data['servico']));
                 $data['count']['SCount'] = count($data['servico']);
@@ -504,7 +504,7 @@ class Orcatrata8 extends CI_Controller {
             }
 
             #### App_ProdutoVenda ####
-            $data['produto'] = $this->Orcatrata8_model->get_produto($id);
+            $data['produto'] = $this->Orcatratacons_model->get_produto($id);
 
             if (count($data['produto']) > 0) {
                 $data['produto'] = array_combine(range(1, count($data['produto'])), array_values($data['produto']));
@@ -521,7 +521,7 @@ class Orcatrata8 extends CI_Controller {
             }
 
             #### App_ParcelasRecebiveis ####
-            $data['parcelasrec'] = $this->Orcatrata8_model->get_parcelasrec($id);
+            $data['parcelasrec'] = $this->Orcatratacons_model->get_parcelasrec($id);
             if (count($data['parcelasrec']) > 0) {
                 $data['parcelasrec'] = array_combine(range(1, count($data['parcelasrec'])), array_values($data['parcelasrec']));
 
@@ -536,7 +536,7 @@ class Orcatrata8 extends CI_Controller {
             }
 
             #### App_Procedimento ####
-            $data['procedimento'] = $this->Orcatrata8_model->get_procedimento($id);
+            $data['procedimento'] = $this->Orcatratacons_model->get_procedimento($id);
             if (count($data['procedimento']) > 0) {
                 $data['procedimento'] = array_combine(range(1, count($data['procedimento'])), array_values($data['procedimento']));
                 $data['count']['PMCount'] = count($data['procedimento']);
@@ -578,7 +578,7 @@ class Orcatrata8 extends CI_Controller {
         $data['select']['Produto'] = $this->Basico_model->select_produtos();
 
         $data['titulo'] = 'Editar Orçamento do Consultor';
-        $data['form_open_path'] = 'orcatrata8/alterar';
+        $data['form_open_path'] = 'orcatratacons/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';
         $data['panel'] = 'primary';
@@ -631,7 +631,7 @@ class Orcatrata8 extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('orcatrata8/form_orcatrata8', $data);
+            $this->load->view('orcatratacons/form_orcatratacons', $data);
         } else {
 
             ////////////////////////////////Preparar Dados para Inserção Ex. Datas "mysql" //////////////////////////////////////////////
@@ -651,17 +651,17 @@ class Orcatrata8 extends CI_Controller {
             #$data['orcatrata']['idSis_Usuario'] = $_SESSION['log']['id'];
             #$data['orcatrata']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
 
-            $data['update']['orcatrata']['anterior'] = $this->Orcatrata8_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata']);
+            $data['update']['orcatrata']['anterior'] = $this->Orcatratacons_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata']);
             $data['update']['orcatrata']['campos'] = array_keys($data['orcatrata']);
             $data['update']['orcatrata']['auditoriaitem'] = $this->basico->set_log(
                 $data['update']['orcatrata']['anterior'],
                 $data['orcatrata'],
                 $data['update']['orcatrata']['campos'],
                 $data['orcatrata']['idApp_OrcaTrata'], TRUE);
-            $data['update']['orcatrata']['bd'] = $this->Orcatrata8_model->update_orcatrata($data['orcatrata'], $data['orcatrata']['idApp_OrcaTrata']);
+            $data['update']['orcatrata']['bd'] = $this->Orcatratacons_model->update_orcatrata($data['orcatrata'], $data['orcatrata']['idApp_OrcaTrata']);
 
             #### App_ServicoVenda ####
-            $data['update']['servico']['anterior'] = $this->Orcatrata8_model->get_servico($data['orcatrata']['idApp_OrcaTrata']);
+            $data['update']['servico']['anterior'] = $this->Orcatratacons_model->get_servico($data['orcatrata']['idApp_OrcaTrata']);
             if (isset($data['servico']) || (!isset($data['servico']) && isset($data['update']['servico']['anterior']) ) ) {
 
                 if (isset($data['servico']))
@@ -690,17 +690,17 @@ class Orcatrata8 extends CI_Controller {
                 }
 
                 if (count($data['update']['servico']['inserir']))
-                    $data['update']['servico']['bd']['inserir'] = $this->Orcatrata8_model->set_servico_venda($data['update']['servico']['inserir']);
+                    $data['update']['servico']['bd']['inserir'] = $this->Orcatratacons_model->set_servico_venda($data['update']['servico']['inserir']);
 
                 if (count($data['update']['servico']['alterar']))
-                    $data['update']['servico']['bd']['alterar'] = $this->Orcatrata8_model->update_servico_venda($data['update']['servico']['alterar']);
+                    $data['update']['servico']['bd']['alterar'] = $this->Orcatratacons_model->update_servico_venda($data['update']['servico']['alterar']);
 
                 if (count($data['update']['servico']['excluir']))
-                    $data['update']['servico']['bd']['excluir'] = $this->Orcatrata8_model->delete_servico_venda($data['update']['servico']['excluir']);
+                    $data['update']['servico']['bd']['excluir'] = $this->Orcatratacons_model->delete_servico_venda($data['update']['servico']['excluir']);
             }
 
             #### App_ProdutoVenda ####
-            $data['update']['produto']['anterior'] = $this->Orcatrata8_model->get_produto($data['orcatrata']['idApp_OrcaTrata']);
+            $data['update']['produto']['anterior'] = $this->Orcatratacons_model->get_produto($data['orcatrata']['idApp_OrcaTrata']);
             if (isset($data['produto']) || (!isset($data['produto']) && isset($data['update']['produto']['anterior']) ) ) {
 
                 if (isset($data['produto']))
@@ -729,18 +729,18 @@ class Orcatrata8 extends CI_Controller {
                 }
 
                 if (count($data['update']['produto']['inserir']))
-                    $data['update']['produto']['bd']['inserir'] = $this->Orcatrata8_model->set_produto_venda($data['update']['produto']['inserir']);
+                    $data['update']['produto']['bd']['inserir'] = $this->Orcatratacons_model->set_produto_venda($data['update']['produto']['inserir']);
 
                 if (count($data['update']['produto']['alterar']))
-                    $data['update']['produto']['bd']['alterar'] =  $this->Orcatrata8_model->update_produto_venda($data['update']['produto']['alterar']);
+                    $data['update']['produto']['bd']['alterar'] =  $this->Orcatratacons_model->update_produto_venda($data['update']['produto']['alterar']);
 
                 if (count($data['update']['produto']['excluir']))
-                    $data['update']['produto']['bd']['excluir'] = $this->Orcatrata8_model->delete_produto_venda($data['update']['produto']['excluir']);
+                    $data['update']['produto']['bd']['excluir'] = $this->Orcatratacons_model->delete_produto_venda($data['update']['produto']['excluir']);
 
             }
 
             #### App_ParcelasRec ####
-            $data['update']['parcelasrec']['anterior'] = $this->Orcatrata8_model->get_parcelasrec($data['orcatrata']['idApp_OrcaTrata']);
+            $data['update']['parcelasrec']['anterior'] = $this->Orcatratacons_model->get_parcelasrec($data['orcatrata']['idApp_OrcaTrata']);
             if (isset($data['parcelasrec']) || (!isset($data['parcelasrec']) && isset($data['update']['parcelasrec']['anterior']) ) ) {
 
                 if (isset($data['servico']))
@@ -773,18 +773,18 @@ class Orcatrata8 extends CI_Controller {
                 }
 
                 if (count($data['update']['parcelasrec']['inserir']))
-                    $data['update']['parcelasrec']['bd']['inserir'] = $this->Orcatrata8_model->set_parcelasrec($data['update']['parcelasrec']['inserir']);
+                    $data['update']['parcelasrec']['bd']['inserir'] = $this->Orcatratacons_model->set_parcelasrec($data['update']['parcelasrec']['inserir']);
 
                 if (count($data['update']['parcelasrec']['alterar']))
-                    $data['update']['parcelasrec']['bd']['alterar'] =  $this->Orcatrata8_model->update_parcelasrec($data['update']['parcelasrec']['alterar']);
+                    $data['update']['parcelasrec']['bd']['alterar'] =  $this->Orcatratacons_model->update_parcelasrec($data['update']['parcelasrec']['alterar']);
 
                 if (count($data['update']['parcelasrec']['excluir']))
-                    $data['update']['parcelasrec']['bd']['excluir'] = $this->Orcatrata8_model->delete_parcelasrec($data['update']['parcelasrec']['excluir']);
+                    $data['update']['parcelasrec']['bd']['excluir'] = $this->Orcatratacons_model->delete_parcelasrec($data['update']['parcelasrec']['excluir']);
 
             }
 
             #### App_Procedimento ####
-            $data['update']['procedimento']['anterior'] = $this->Orcatrata8_model->get_procedimento($data['orcatrata']['idApp_OrcaTrata']);
+            $data['update']['procedimento']['anterior'] = $this->Orcatratacons_model->get_procedimento($data['orcatrata']['idApp_OrcaTrata']);
             if (isset($data['procedimento']) || (!isset($data['procedimento']) && isset($data['update']['procedimento']['anterior']) ) ) {
 
                 if (isset($data['servico']))
@@ -812,13 +812,13 @@ class Orcatrata8 extends CI_Controller {
                 }
 
                 if (count($data['update']['procedimento']['inserir']))
-                    $data['update']['procedimento']['bd']['inserir'] = $this->Orcatrata8_model->set_procedimento($data['update']['procedimento']['inserir']);
+                    $data['update']['procedimento']['bd']['inserir'] = $this->Orcatratacons_model->set_procedimento($data['update']['procedimento']['inserir']);
 
                 if (count($data['update']['procedimento']['alterar']))
-                    $data['update']['procedimento']['bd']['alterar'] =  $this->Orcatrata8_model->update_procedimento($data['update']['procedimento']['alterar']);
+                    $data['update']['procedimento']['bd']['alterar'] =  $this->Orcatratacons_model->update_procedimento($data['update']['procedimento']['alterar']);
 
                 if (count($data['update']['procedimento']['excluir']))
-                    $data['update']['procedimento']['bd']['excluir'] = $this->Orcatrata8_model->delete_procedimento($data['update']['procedimento']['excluir']);
+                    $data['update']['procedimento']['bd']['excluir'] = $this->Orcatratacons_model->delete_procedimento($data['update']['procedimento']['excluir']);
 
             }
 
@@ -838,14 +838,14 @@ class Orcatrata8 extends CI_Controller {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
 
                 $this->basico->erro($msg);
-                $this->load->view('orcatrata8/form_orcatrata8', $data);
+                $this->load->view('orcatratacons/form_orcatratacons', $data);
             } else {
 
                 //$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_OrcaTrata'], FALSE);
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata8/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'orcatratacons/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
 
 				exit();
             }
@@ -876,18 +876,18 @@ class Orcatrata8 extends CI_Controller {
             } else {
 
                 /*
-                $data['anterior'] = $this->Orcatrata8_model->get_orcatrata($data['query']['idApp_OrcaTrata']);
+                $data['anterior'] = $this->Orcatratacons_model->get_orcatrata($data['query']['idApp_OrcaTrata']);
                 $data['campos'] = array_keys($data['anterior']);
 
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], NULL, $data['campos'], $data['query']['idApp_OrcaTrata'], FALSE, TRUE);
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'DELETE', $data['auditoriaitem']);
                 */
 
-                $this->Orcatrata8_model->delete_orcatrata($id);
+                $this->Orcatratacons_model->delete_orcatrata($id);
 
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata8/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'orcatratacons/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
 				#redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Cliente'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/orcamento/' . $data['msg']);
                 exit();
@@ -907,10 +907,10 @@ class Orcatrata8 extends CI_Controller {
             $data['msg'] = '';
 
 
-        //$_SESSION['OrcaTrata'] = $this->Orcatrata8_model->get_cliente($id, TRUE);
+        //$_SESSION['OrcaTrata'] = $this->Orcatratacons_model->get_cliente($id, TRUE);
         //$_SESSION['OrcaTrata']['idApp_Cliente'] = $id;
-        $data['aprovado'] = $this->Orcatrata8_model->list_orcamento($id, 'S', TRUE);
-        $data['naoaprovado'] = $this->Orcatrata8_model->list_orcamento($id, 'N', TRUE);
+        $data['aprovado'] = $this->Orcatratacons_model->list_orcamento($id, 'S', TRUE);
+        $data['naoaprovado'] = $this->Orcatratacons_model->list_orcamento($id, 'N', TRUE);
 
         //$data['aprovado'] = array();
         //$data['naoaprovado'] = array();
@@ -921,10 +921,10 @@ class Orcatrata8 extends CI_Controller {
           exit();
          */
 
-        $data['list'] = $this->load->view('orcatrata8/list_orcatrata8', $data, TRUE);
+        $data['list'] = $this->load->view('orcatratacons/list_orcatratacons', $data, TRUE);
         $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
 
-        $this->load->view('orcatrata8/list_orcatrata8', $data);
+        $this->load->view('orcatratacons/list_orcatratacons', $data);
 
         $this->load->view('basico/footer');
     }
@@ -939,9 +939,9 @@ class Orcatrata8 extends CI_Controller {
             $data['msg'] = '';
 
 
-        //$_SESSION['OrcaTrata'] = $this->Orcatrata8_model->get_cliente($id, TRUE);
+        //$_SESSION['OrcaTrata'] = $this->Orcatratacons_model->get_cliente($id, TRUE);
         $_SESSION['OrcaTrata']['idApp_Cliente'] = $id;
-        $data['query'] = $this->Orcatrata8_model->list_orcatrata(TRUE, TRUE);
+        $data['query'] = $this->Orcatratacons_model->list_orcatrata(TRUE, TRUE);
         /*
           echo "<pre>";
           print_r($data['query']);

@@ -56,13 +56,13 @@
 									<label for="">Orçamentos:</label>
 									<div class="form-group ">
 										<div class="row">
-											<a <?php if (preg_match("/orcatrata8\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata8/listar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+											<a <?php if (preg_match("/orcatratacons\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
+												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-usd"></span> List.
 												</a>
 											</a>
-											<a <?php if (preg_match("/orcatrata8\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata8/cadastrar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
+											<a <?php if (preg_match("/orcatratacons\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
+												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatratacons/cadastrar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-plus"></span> Cad.
 												</a>
 											</a>

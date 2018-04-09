@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Orcatrata4_model extends CI_Model {
+class Orcatratadevcli_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
