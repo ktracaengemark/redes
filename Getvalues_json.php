@@ -168,8 +168,15 @@ elseif ($_GET['q'] == 4) {
                 Tab_Convenio
             WHERE
                 idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                Empresa = ' . $_SESSION['log']['Empresa'] . '
-                ORDER BY Convenio ASC'
+                Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				((3 = ' . $_SESSION['log']['Nivel'] . ' OR 
+				4 = ' . $_SESSION['log']['Nivel'] . ' ) AND
+				idTab_Convenio = "53") OR 
+				(6 = ' . $_SESSION['log']['Nivel'] . ' AND
+				(idTab_Convenio = "53" OR 
+				idTab_Convenio = "54"))
+				
+			ORDER BY Convenio ASC'
     );
 
     while ($row = mysql_fetch_assoc($result)) {

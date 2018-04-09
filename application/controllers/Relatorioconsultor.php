@@ -3027,13 +3027,9 @@ class Relatorioconsultor extends CI_Controller {
 
 
         $data['select']['Campo'] = array(
-			'TP.CodProd' => 'Código',
+
 			'TP.idTab_Produtos' => 'Id',
 			'TP.Produtos' => 'Descrição',
-			'TP.Categoria' => 'Prod/Serv',
-			'TP.Prodaux1' => 'Aux1',
-			'TP.Prodaux2' => 'Aux2',
-			'TP.Prodaux3' => 'Categoria',
 
         );
 

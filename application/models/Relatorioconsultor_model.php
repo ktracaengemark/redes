@@ -3892,10 +3892,7 @@ exit();*/
             WHERE
                 TP.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				TP.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
-				' . $data['Produtos'] . '
-				' . $data['Prodaux1'] . '
-				' . $data['Prodaux2'] . '
-				' . $data['Prodaux3'] . ' AND
+				' . $data['Produtos'] . ' AND
 				TP.ProdutoProprio = ' . $_SESSION['log']['id'] . '
 			ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
@@ -4704,7 +4701,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 OB.idTab_Produtos,
-				CONCAT(IFNULL(OB.CodProd,""), " - ", IFNULL(TP3.Prodaux3,""), " - ", IFNULL(OB.Produtos,""), " - ", IFNULL(TP1.Prodaux1,""), " - ", IFNULL(TP2.Prodaux2,"")) AS Produtos,
+				CONCAT(IFNULL(OB.Produtos,"")) AS Produtos,
 				TP1.Prodaux1,
 				TP2.Prodaux2,
 				TP3.Prodaux3,

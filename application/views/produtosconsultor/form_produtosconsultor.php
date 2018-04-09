@@ -16,6 +16,7 @@
 					<div class="form-group">
 						<div class="panel panel-info">
 							<div class="panel-heading">	
+								<!--
 								<div class="row">
 									<div class="col-md-2">
 										<label for="TipoProduto">Venda/Cons:</label>
@@ -80,11 +81,11 @@
 											}
 											?>
 										</select>
-									</div>
-									
+									</div>								
 								</div>
+								-->
 								<div class="row">									
-																		
+									<!--									
 									<div class="col-md-2">
 										<label for="CodProd">Código:</label><br>
 										<input type="text" class="form-control" maxlength="25"
@@ -106,11 +107,13 @@
 											?>
 										</select>
 									</div>
+									-->
 									<div class="col-md-4">
 										<label for="Produtos">Desc. Produto/Serviço:*</label><br>
 										<input type="text" class="form-control" maxlength="200"
 												name="Produtos" value="<?php echo $produtos['Produtos'] ?>">
 									</div>
+									<!--
 									<div class="col-md-2">
 										<label for="Prodaux1">Aux1:</label>
 										<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -143,7 +146,7 @@
 											?>
 										</select>
 									</div>
-									<!--
+									
 									<div class="col-md-3">
 										<label for="ValorCompraProduto">Custo:</label><br>
 										<div class="input-group">
@@ -166,7 +169,7 @@
 								<h4 class="panel-title">
 									<a class="accordion-toggle">
 										<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-										Tabelas & Planos - Valor de Venda
+										Valor de Venda
 									</a>
 								</h4>
 							</div>
@@ -192,7 +195,7 @@
 												<div class="row">																					
 
 													<div class="col-md-4">
-														<label for="Convenio<?php echo $i ?>">Tabelas & Planos:</label>
+														<label for="Convenio<?php echo $i ?>">Plano:</label>
 														<?php if ($i == 1) { ?>
 														<?php } ?>
 														<select data-placeholder="Selecione uma opção..." class="form-control"
@@ -250,8 +253,8 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-4">
-												<a class="add_field_button3 btn btn-xs btn-danger" onclick="adicionaValor()">
-													<span class="glyphicon glyphicon-plus"></span> Adicionar Tabelas & Planos
+												<a class="add_field_button3 btn btn-md btn-warning" onclick="adicionaValor()">
+													<span class="glyphicon glyphicon-plus"></span> Adicionar Valor
 												</a>
 											</div>
 										</div>

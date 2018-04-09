@@ -105,7 +105,7 @@
 								<ul class="dropdown-menu" role="menu">
 									<!--<li><a href="<?php echo base_url(); ?>clienteusuario/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad. Clientes/Usuario</a></li>
 									<li role="separator" class="divider"></li>-->
-									<li><a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Rel. Clientes</a></li>
+									<li><a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Clientes</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/clientes"><span class="glyphicon glyphicon-list"></span> Clientes & Contatos</a></li>
 									<li role="separator" class="divider"></li>
@@ -153,24 +153,26 @@
 									<span class="glyphicon glyphicon-pencil"></span> Cadastros <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">							
+									<li><a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Vendas</a></li>
+									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url() ?>relatorio/clientes"><span class="glyphicon glyphicon-usd"></span> Clientes</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>agenda"><span class="glyphicon glyphicon-usd"></span> Consultas</a></li>
-									<li role="separator" class="divider"></li>-->
+									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>orcatrata2/cadastrar"><span class="glyphicon glyphicon-usd"></span> Orçamentos</a></li>
-									<li role="separator" class="divider"></li>--							
-									<li><a href="<?php echo base_url() ?>despesas/cadastrar"><span class="glyphicon glyphicon-usd"></span> Despesas</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>orcatrata3/cadastrar"><span class="glyphicon glyphicon-usd"></span> Devoluções</a></li>
-									<li role="separator" class="divider"></li>
-									<!--<li><a href="<?php echo base_url() ?>devolucao/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Devol(Desp)</a></li>
+									<li role="separator" class="divider"></li>							
+									<li><a href="<?php echo base_url() ?>despesasconsultor/cadastrar"><span class="glyphicon glyphicon-usd"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>-->
-									<li><a href="<?php echo base_url() ?>consumo/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
+									<!--<li><a href="<?php echo base_url() ?>orcatrata3/cadastrar"><span class="glyphicon glyphicon-usd"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>devolucao/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Devol(Desp)</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>consumoconsultor/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
+									<li role="separator" class="divider"></li>-->
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosconsultor"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
-									<li role="separator" class="divider"></li>
+									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/admin"><span class="glyphicon glyphicon-pencil"></span> Outros</a></li>
-									<!--<li role="separator" class="divider"></li>-->
+									<li role="separator" class="divider"></li>-->
 								</ul>
 							</div>
 							<div class="btn-group">
@@ -184,27 +186,27 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosvend"><span class="glyphicon glyphicon-list"></span> Orç. X Cl. X Prd.</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/despesas"><span class="glyphicon glyphicon-list"></span> Despesas</a></li>
+									<!--<li><a href="<?php echo base_url() ?>relatorioconsultor/despesas"><span class="glyphicon glyphicon-list"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>							
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/produtoscomp"><span class="glyphicon glyphicon-list"></span> Despesas X Prd.</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtoscomp"><span class="glyphicon glyphicon-list"></span> Despesas X Prd.</a></li>
+									<li role="separator" class="divider"></li>-->
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url() ?>relatorio/devolucao"><span class="glyphicon glyphicon-list"></span> Devol(Desp)</a></li>
 									<li role="separator" class="divider"></li>-->							
-									<li><a href="<?php echo base_url() ?>relatorio/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Cl. X Prd.</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Cl. X Prd.</a></li>
 									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url() ?>relatorio/produtosdevol"><span class="glyphicon glyphicon-list"></span> Devol. X Cl. X Prd.(Desp)</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/consumo"><span class="glyphicon glyphicon-list"></span> Consumos</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/estoque"><span class="glyphicon glyphicon-list"></span> Estoque</a></li>
 									<li role="separator" class="divider"></li>-->
-									<li><a href="<?php echo base_url() ?>relatorio/consumo"><span class="glyphicon glyphicon-list"></span> Consumos</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/estoque"><span class="glyphicon glyphicon-list"></span> Estoque</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/rankingvendas"><span class="glyphicon glyphicon-list"></span> RankigVendas</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/rankingvendas"><span class="glyphicon glyphicon-list"></span> RankigVendas</a></li>
 									<li role="separator" class="divider"></li>
 								</ul>
 							</div>

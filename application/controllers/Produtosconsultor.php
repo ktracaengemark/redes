@@ -98,13 +98,13 @@ class Produtosconsultor extends CI_Controller {
         #### Tab_Produtos ####
 
 		$this->form_validation->set_rules('Produtos', 'Produto ou Serviço', 'required|trim');        
-		$this->form_validation->set_rules('TipoProduto', 'TipoProduto', 'required|trim');
-		$this->form_validation->set_rules('CodProd', 'Código', 'is_unique[Tab_Produtos.CodProd]');
+		#$this->form_validation->set_rules('TipoProduto', 'TipoProduto', 'required|trim');
+		#$this->form_validation->set_rules('CodProd', 'Código', 'is_unique[Tab_Produtos.CodProd]');
 
 		$data['select']['Fornecedor'] = $this->Fornecedor_model->select_fornecedor();
 		$data['select']['TipoProduto'] = $this->Basico_model->select_tipoproduto();
 		$data['select']['Categoria'] = $this->Basico_model->select_categoria();		
-        $data['select']['Convenio'] = $this->Convenio_model->select_convenio();
+        $data['select']['Convenio'] = $this->Convenio_model->select_convenio2();
 		$data['select']['UnidadeProduto'] = $this->Basico_model->select_unidadeproduto();
 		$data['select']['Prodaux1'] = $this->Prodaux1_model->select_prodaux1();
 		$data['select']['Prodaux2'] = $this->Prodaux2_model->select_prodaux2();
@@ -155,7 +155,8 @@ class Produtosconsultor extends CI_Controller {
             #$data['produtos']['idSis_EmpresaFilial'] = $_SESSION['log']['idSis_EmpresaFilial'];
 			$data['produtos']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
 			#$data['produtos']['ValorCompraProduto'] = str_replace(',', '.', str_replace('.', '', $data['produtos']['ValorCompraProduto']));
-            $data['produtos']['ProdutoProprio'] = $_SESSION['log']['id'];
+            $data['produtos']['TipoProduto'] = $data['produtos']['TipoProduto'];
+			$data['produtos']['ProdutoProprio'] = $_SESSION['log']['id'];
 			$data['produtos']['idTab_Produtos'] = $this->Produtosconsultor_model->set_produtos($data['produtos']);
             /*
             echo count($data['servico']);
@@ -239,7 +240,9 @@ class Produtosconsultor extends CI_Controller {
 
         //Dá pra melhorar/encurtar esse trecho (que vai daqui até onde estiver
         //comentado fim) mas por enquanto, se está funcionando, vou deixar assim.
-
+		(!$data['produtos']['TipoProduto']) ? $data['produtos']['TipoProduto'] = 'V' : FALSE;
+		(!$data['produtos']['Categoria']) ? $data['produtos']['Categoria'] = 'P' : FALSE;
+		(!$data['produtos']['UnidadeProduto']) ? $data['produtos']['UnidadeProduto'] = 'UNID' : FALSE;
         
         (!$this->input->post('PTCount')) ? $data['count']['PTCount'] = 0 : $data['count']['PTCount'] = $this->input->post('PTCount');
 
@@ -290,13 +293,13 @@ class Produtosconsultor extends CI_Controller {
         #### Tab_Produtos ####
 
 		$this->form_validation->set_rules('Produtos', 'Produto ou Serviço', 'required|trim'); 		
-        $this->form_validation->set_rules('TipoProduto', 'TipoProduto', 'required|trim');
+        #$this->form_validation->set_rules('TipoProduto', 'TipoProduto', 'required|trim');
 		#$this->form_validation->set_rules('CodProd', 'Código', 'is_unique[Tab_Produtos.CodProd]');
      
 		$data['select']['Fornecedor'] = $this->Fornecedor_model->select_fornecedor();		
 		$data['select']['TipoProduto'] = $this->Basico_model->select_tipoproduto();
 		$data['select']['Categoria'] = $this->Basico_model->select_categoria();
-		$data['select']['Convenio'] = $this->Convenio_model->select_convenio();
+		$data['select']['Convenio'] = $this->Convenio_model->select_convenio2();
         $data['select']['UnidadeProduto'] = $this->Basico_model->select_unidadeproduto();
 		$data['select']['Prodaux1'] = $this->Prodaux1_model->select_prodaux1();
 		$data['select']['Prodaux2'] = $this->Prodaux2_model->select_prodaux2();
