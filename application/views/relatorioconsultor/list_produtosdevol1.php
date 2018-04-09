@@ -36,8 +36,8 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata3/alterar/' . $row['idApp_OrcaTrata'] . '">';
-							echo '<td>' . $row['NomeCliente'] . '</td>';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratadevcli/alterar/' . $row['idApp_OrcaTrata'] . '">';
+							echo '<td>' . $row['Nome'] . '</td>';
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
 							echo '<td>' . $row['Orcamento'] . '</td>';
                             echo '<td>' . $row['DataOrca'] . '</td>';

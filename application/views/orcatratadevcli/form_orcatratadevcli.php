@@ -14,24 +14,32 @@
 
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-2 "></div>
-							<div class="col-md-8 col-lg-8">
+							<div class="col-md-3"></div>
+							<div class="col-md-6 col-lg-6">
+								<!--
+								<div class="col-md-3 text-left">
+									<label for=""></label><br />
+									<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint/imprimir/' . $orcatrata['idApp_OrcaTrata']; ?>">
+										<span class="glyphicon glyphicon-print"></span> Versão para Impressão
+									</a>
+								</div>
+								-->
 								<div class="col-md-3 text-left">
 									<label for="">Cliente:</label>
 									<div class="form-group">
-										<div class="row">
+										<div class="row">	
 											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
 												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'clienteusuario/prontuario/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
 												</a>
-											</a>
+											</a>				
 											<a <?php if (preg_match("/clienteusuario\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
 												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'clienteusuario/alterar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-edit"></span> Edit.
 												</a>
 											</a>
 										</div>
-									</div>									
+									</div>	
 								</div>
 								<!--
 								<div class="col-md-3 text-left">
@@ -70,7 +78,7 @@
 									</div>	
 								</div>
 								<div class="col-md-3 text-left">
-									<label for="">Troca/Devol:</label>
+									<label for="">Devoluções:</label>
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatratadevcli\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
@@ -87,14 +95,14 @@
 									</div>	
 								</div>
 							</div>
-							<div class="col-md-2"></div>
-						</div>	
+							<div class="col-md-3"></div>
+						</div>
 					</div>
 					<!--
 					<div class="form-group">
 						<div class="row">
 							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Cliente']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></h3>
+								<h3><?php echo '<strong>' . $_SESSION['Cliente']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></h3>
 							</div>
 						</div>
 					</div>
@@ -354,7 +362,6 @@
 														<div class="input_fields_wrap2">
 
 														<?php
-														$QtdSoma = $ProdutoSoma = 0;
 														for ($i=1; $i <= $count['PCount']; $i++) {
 														?>
 
@@ -362,16 +369,14 @@
 														<input type="hidden" name="idApp_ProdutoVenda<?php echo $i ?>" value="<?php echo $produto[$i]['idApp_ProdutoVenda']; ?>"/>
 														<?php } ?>
 
-														<input type="hidden" name="ProdutoHidden" id="ProdutoHidden<?php echo $i ?>" value="<?php echo $i ?>">
-
 														<div class="form-group" id="2div<?php echo $i ?>">
-															<div class="panel panel-info">
+															<div class="panel panel-danger">
 																<div class="panel-heading">
 																	<div class="row">
 																		<div class="col-md-1">
 																			<label for="QtdVendaProduto">Qtd<?php echo $i ?>:</label>
 																			<input type="text" class="form-control Numero" maxlength="3" id="QtdVendaProduto<?php echo $i ?>" placeholder="0"
-																					onkeyup="calculaSubtotal(this.value,this.name,'<?php echo $i ?>','QTD','Produto'),calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',0,'ProdutoHidden')"
+																					onkeyup="calculaSubtotal(this.value,this.name,'<?php echo $i ?>','QTD','Produto')"
 																					autofocus name="QtdVendaProduto<?php echo $i ?>" value="<?php echo $produto[$i]['QtdVendaProduto'] ?>">
 																		</div>
 																		<div class="col-md-7">
@@ -424,17 +429,17 @@
 																		<div class="col-md-2">
 																			<label for="DataValidadeProduto<?php echo $i ?>">Val. do Produto:</label>
 																			<div class="input-group <?php echo $datepicker; ?>">
-																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataValidadeProduto<?php echo $i ?>" value="<?php echo $produto[$i]['DataValidadeProduto']; ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
+																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataValidadeProduto<?php echo $i ?>" value="<?php echo $produto[$i]['DataValidadeProduto']; ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-1">
 																			<label><br></label><br>
-																			<button type="button" id="<?php echo $i ?>" class="remove_field2 btn btn-danger"
-																					onclick="calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',1,<?php echo $i ?>,'CountMax',0,'ProdutoHidden')">
+																			<button type="button" id="<?php echo $i ?>" class="remove_field2 btn btn-danger">
 																				<span class="glyphicon glyphicon-trash"></span>
 																			</button>
 																		</div>
@@ -444,38 +449,21 @@
 														</div>
 
 														<?php
-														$QtdSoma+=$produto[$i]['QtdVendaProduto'];
-														$ProdutoSoma++;
 														}
 														?>
 
 														</div>
 
-														<div class="panel panel-danger">
-															<div class="panel-heading text-left">
-																<div class="form-group">
-																	<div class="row">
-																		<br>
-																		<div class="col-md-3">
-																			<a class="add_field_button2 btn btn-warning"
-																					onclick="calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',1,0)">
-																				<span class="glyphicon glyphicon-plus"></span> Adic. Produtos ou Serviços
-																			</a>
-																		</div>
-																		<div class="col-md-2">
-																			<b>Total de Produtos: <span id="ProdutoSoma"><?php echo $ProdutoSoma ?></span></b><br />
-																		</div>
-																		<div class="col-md-2">
-																			<b>Total de Peças: <span id="QtdSoma"><?php echo $QtdSoma ?></span></b>
-																		</div>
-																	</div>
+														<div class="form-group">
+															<div class="row">
+																<div class="col-md-3">
+																	<a class="add_field_button2 btn btn-warning">
+																		<span class="glyphicon glyphicon-plus"></span> Adic. Produtos ou Serviços
+																	</a>
 																</div>
 															</div>
 														</div>
-
-														<input type="hidden" name="CountMax" id="CountMax" value="<?php echo $ProdutoSoma ?>">
-
-													</div>
+													</div>													
 												</div>
 											</div>
 										</div>

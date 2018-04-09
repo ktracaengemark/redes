@@ -19,19 +19,19 @@
 								<div class="col-md-3 text-left">
 									<label for="">Cliente:</label>
 									<div class="form-group">
-										<div class="row">
+										<div class="row">	
 											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
 												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'clienteusuario/prontuario/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
 												</a>
-											</a>
+											</a>				
 											<a <?php if (preg_match("/clienteusuario\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
 												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'clienteusuario/alterar/' . $_SESSION['Cliente']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-edit"></span> Edit.
 												</a>
 											</a>
 										</div>
-									</div>									
+									</div>	
 								</div>
 								<!--
 								<div class="col-md-3 text-left">
@@ -70,7 +70,7 @@
 									</div>	
 								</div>
 								<div class="col-md-3 text-left">
-									<label for="">Troca/Devol:</label>
+									<label for="">Devoluções:</label>
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatratadevcli\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
@@ -87,14 +87,14 @@
 									</div>	
 								</div>
 							</div>
-							<div class="col-md-2"></div>
+							<div class="col-md-2 "></div>
 						</div>	
 					</div>
 					<!--
 					<div class="form-group">		
 						<div class="row">
 							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Cliente']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></h3>
+								<h3><?php echo '<strong>' . $_SESSION['Cliente']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></h3>
 							</div>
 						</div>
 					</div>

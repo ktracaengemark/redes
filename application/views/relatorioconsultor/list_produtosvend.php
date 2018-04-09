@@ -36,7 +36,7 @@
 
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
-							echo '<td>' . $row['NomeCliente'] . '</td>';
+							echo '<td>' . $row['Nome'] . '</td>';
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
                             echo '<td>' . $row['DataOrca'] . '</td>';
 							echo '<td>' . $row['AprovadoOrca'] . '</td>';

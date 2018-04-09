@@ -14,8 +14,8 @@
 
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-2 "></div>
-							<div class="col-md-8 col-lg-8">
+							<div class="col-md-3"></div>
+							<div class="col-md-6 col-lg-6">
 								<div class="col-md-3 text-left">
 									<label for="">Cliente:</label>
 									<div class="form-group">
@@ -71,7 +71,7 @@
 								</div>
 								
 								<div class="col-md-3 text-left">
-									<label for="">Troca/Devol:</label>
+									<label for="">Devoluções:</label>
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatratadevcli\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
@@ -89,7 +89,7 @@
 								</div>
 								
 							</div>
-							<div class="col-md-2"></div>
+							<div class="col-md-3"></div>
 						</div>
 					</div>
 					<!--

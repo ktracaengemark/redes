@@ -70,7 +70,7 @@
 									</div>	
 								</div>
 								<div class="col-md-3 text-left">
-									<label for="">Troca/Devol:</label>
+									<label for="">Devoluções:</label>
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatratadevcli\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
