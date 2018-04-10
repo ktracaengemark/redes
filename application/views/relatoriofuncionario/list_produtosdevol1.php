@@ -11,11 +11,11 @@
 					</tr>
 				</thead>
 				<thead>
-                    <tr>
-						<th class="active">Consultor</th>
+                    <tr>						
 						<th class="active">Nº Dev.</th>
 						<th class="active">Nº Orç.</th>
-                        <th class="active">Dt.Dev.</th>
+                        <th class="active">Consultor</th>
+						<th class="active">Dt.Dev.</th>
 						<th class="active">Tipo Dev.</th>
 						<!--<th class="active">Fornec</th>-->
 						<th class="active">Código</th>
@@ -36,11 +36,11 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratadevcons/alterar/' . $row['idApp_OrcaTrata'] . '">';
-							echo '<td>' . $row['Nome'] . '</td>';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratadevcons/alterar/' . $row['idApp_OrcaTrata'] . '">';							
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
 							echo '<td>' . $row['Orcamento'] . '</td>';
-                            echo '<td>' . $row['DataOrca'] . '</td>';
+                            echo '<td>' . $row['Nome'] . '</td>';
+							echo '<td>' . $row['DataOrca'] . '</td>';
 							echo '<td>' . $row['TipoDevolucao'] . '</td>';
 							#echo '<td>' . $row['NomeFornecedor'] . '</td>';
 							echo '<td>' . $row['CodProd'] . '</td>';

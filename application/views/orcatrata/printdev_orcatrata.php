@@ -3,6 +3,7 @@
 <div class="container-fluid">
 
 	<div class="row">
+		
 		<div class="col-md-12">
 		
 			<div class="panel-heading text-center">
@@ -10,6 +11,7 @@
 			</div>
 
 			<div class="panel-body">
+				
 				<hr />
 				<?php echo '<h4>Cliente: ' . $_SESSION['Cliente']['Nome'] . ' - Id: ' . $_SESSION['Cliente']['idSis_Usuario'] . ' - Orçam. Nº: ' . $_SESSION['Orcatrata']['Orcamento'] . '</h4>' ?>
 				<hr />

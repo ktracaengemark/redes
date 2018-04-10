@@ -13,7 +13,7 @@
 			<div class="panel-body">
 
 				<hr />
-				<?php echo '<h3>' . $_SESSION['Consultor']['Nome'] . ' - Id: ' . $_SESSION['Consultor']['idSis_Usuario'] . '</h3>' ?>
+				<?php echo '<h4>Consultor(a): ' . $_SESSION['Consultor']['Nome'] . ' - Id: ' . $_SESSION['Consultor']['idSis_Usuario'] . '</h4>' ?>
 				<hr />
 
 				<h3 class="text-center">Produtos & Serviços  </h3>

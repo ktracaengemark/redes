@@ -3,7 +3,7 @@
 
 		<div class="col-md-1"></div>
         <div class="col-md-3">
-            <label for="DataFim">Total das Devoluções:</label>
+            <label for="DataFim">Total dos Orçamentos:</label>
             <div class="input-group">
                 <span class="input-group-addon">R$</span>
                 <input type="text" class="form-control" disabled aria-label="Total Orcamentos" value="<?php echo $report->soma->somaorcamento ?>">
@@ -17,7 +17,7 @@
             </div>
         </div>
 		<div class="col-md-3">
-            <label for="DataFim">Total A Pagar:</label>
+            <label for="DataFim">Total A Receber:</label>
             <div class="input-group">
                 <span class="input-group-addon">R$</span>
                 <input type="text" class="form-control" disabled aria-label="Total Restante" value="<?php echo $report->soma->somarestante ?>">
@@ -41,25 +41,21 @@
                 <thead>
                     <tr>
 
-						
-						<th class="active">Devol.</th>
-						<th class="active">Orçam.</th>
-                        <th class="active">Consultor</th>
-						<th class="active">Tipo Devol.</th>
+						<th class="active">Orç.</th>
+						<th class="active">Consultor</th>						                        
 						<!--<th class="active">Valid. do Orçam.</th>
 						<th class="active">Prazo de Entrega</th>-->
-                        <th class="active">Valor da Devol.</th>
+                        <th class="active">Dt. Retor.</th>
+						<th class="active">Valor do Orç.</th>
 						<th class="active">Valor do Desc.</th>
-						<th class="active">Valor A Pagar</th>
-						<th class="active">Forma de Pag.</th>
+						<th class="active">Valor A Receber</th>					
 						<th class="active">Apv.?</th>
 						<th class="active">Concl.?</th>
-						<th class="active">Quit.?</th>                       
-						<th class="active">Dt. Devol.</th>
-                        <th class="active">Dt. Concl.</th>
-                        <th class="active">Dt. Quit.</th>
-						<th class="active">Dt. Ret.</th>
-                        <th class="active">Prof.</th>
+						<th class="active">Quit.?</th>
+						<th class="active">Forma de Pag.</th>
+                        <th class="active">Dt. Orç.</th>
+						<th class="active">Dt. Concl.</th>
+                        <th class="active">Dt. Quit.</th>					
                         <th class="active"></th>
                     </tr>
                 </thead>
@@ -67,31 +63,27 @@
                     <?php
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratadevcons/alterar/' . $row['idApp_OrcaTrata'] . '">';
+                        #echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
 
-                            #echo '<div class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
-							
+						#echo '<div class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
-							echo '<td>' . $row['Orcamento'] . '</td>';
-                            echo '<td>' . $row['Nome'] . '</td>';
-							echo '<td>' . $row['TipoDevolucao'] . '</td>';
+							echo '<td>' . $row['Nome'] . '</td>';							
+                            echo '<td>' . $row['DataRetorno'] . '</td>';
 							#echo '<td>' . $row['DataEntradaOrca'] . '</td>';
 							#echo '<td>' . $row['DataPrazo'] . '</td>';
                             echo '<td class="text-left">R$ ' . $row['ValorOrca'] . '</td>';
 							echo '<td class="text-left">R$ ' . $row['ValorEntradaOrca'] . '</td>';
-							echo '<td class="text-left">R$ ' . $row['ValorRestanteOrca'] . '</td>';
-							echo '<td>' . $row['FormaPag'] . '</td>';
+							echo '<td class="text-left">R$ ' . $row['ValorRestanteOrca'] . '</td>';							
 							echo '<td>' . $row['AprovadoOrca'] . '</td>';
 							echo '<td>' . $row['ServicoConcluido'] . '</td>';
-							echo '<td>' . $row['QuitadoOrca'] . '</td>';                           
+							echo '<td>' . $row['QuitadoOrca'] . '</td>';
+                            echo '<td>' . $row['FormaPag'] . '</td>';
                             echo '<td>' . $row['DataOrca'] . '</td>';
 							echo '<td>' . $row['DataConclusao'] . '</td>';
-                            echo '<td>' . $row['DataQuitado'] . '</td>';
-							echo '<td>' . $row['DataRetorno'] . '</td>';
-							echo '<td>' . $row['Nome'] . '</td>';
+                            echo '<td>' . $row['DataQuitado'] . '</td>';							
                             #echo '</div>';
                             echo '<td class="notclickable">
-                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintDevcons/imprimir/' . $row['idApp_OrcaTrata'] . '">
+                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrata'] . '">
                                         <span class="glyphicon glyphicon-print notclickable"></span>
                                     </a>
                                 </td>';
