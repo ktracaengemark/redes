@@ -11,7 +11,7 @@
 				</thead>
 				<thead>
                     <tr>
-						<th class="active">Cliente</th>
+						<th class="active">Consultores</th>
 						<th class="active">Id do Orçam.</th>
                         <th class="active">Data do Orçam.</th>
 						<th class="active">Orç. Apv.?</th>
@@ -35,8 +35,8 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
-							echo '<td>' . $row['NomeCliente'] . '</td>';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratacons/alterar/' . $row['idApp_OrcaTrata'] . '">';
+							echo '<td>' . $row['Nome'] . '</td>';
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
                             echo '<td>' . $row['DataOrca'] . '</td>';
 							echo '<td>' . $row['AprovadoOrca'] . '</td>';
