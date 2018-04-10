@@ -32,7 +32,7 @@ class Orcatratadevcons extends CI_Controller {
         else
             $data['msg'] = '';
 
-        $this->load->view('orcatratadevcons/tela_index', $data);
+        $this->load->view('orcatrata/tela_index', $data);
 
         #load footer view
         $this->load->view('basico/footer');
@@ -495,7 +495,7 @@ class Orcatratadevcons extends CI_Controller {
 			$data['orcatrata']['TipoDevolucao'] = $data['orcatrata']['TipoDevolucao'];
 			
             #### Carrega os dados do cliente nas variáves de sessão ####
-            $this->load->model('Consultor_model');
+            $this->load->model('Cliente_model');
             $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($data['orcatrata']['idApp_Cliente'], TRUE);
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Consultor']['idApp_Cliente'];
 
@@ -845,7 +845,7 @@ class Orcatratadevcons extends CI_Controller {
 */
 
             //if ($data['idApp_OrcaTrata'] === FALSE) {
-            //if ($data['auditoriaitem'] && $this->Consultor_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
+            //if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
             if ($data['auditoriaitem'] && !$data['update']['orcatrata']['bd']) {
                 $data['msg'] = '?m=2';
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
@@ -858,7 +858,7 @@ class Orcatratadevcons extends CI_Controller {
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatratadevcons/listar/' . $_SESSION['Consultor']['idApp_Cliente'] . $data['msg']);
+                redirect(base_url() . 'orcatratadevcons/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
                 #redirect(base_url() . 'relatorio/orcamento/' . $data['msg']);
 				exit();
             }
@@ -900,7 +900,7 @@ class Orcatratadevcons extends CI_Controller {
 
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatratadevcons/listar/' . $_SESSION['Consultor']['idApp_Cliente'] . $data['msg']);
+                redirect(base_url() . 'orcatratadevcons/listar/' . $_SESSION['Consultor']['idSis_Usuario'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/orcamento/' . $data['msg']);
                 exit();
             //}

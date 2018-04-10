@@ -14,24 +14,32 @@
 
 					<div class="form-group">
 						<div class="row">
-							<div class="col-md-2 "></div>
-							<div class="col-md-8 col-lg-8">
+							<div class="col-md-3"></div>
+							<div class="col-md-6 col-lg-6">
+								<!--
+								<div class="col-md-3 text-left">
+									<label for=""></label><br />
+									<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint/imprimir/' . $orcatrata['idApp_OrcaTrata']; ?>">
+										<span class="glyphicon glyphicon-print"></span> Versão para Impressão
+									</a>
+								</div>
+								-->
 								<div class="col-md-3 text-left">
 									<label for="">Consultor:</label>
 									<div class="form-group">
-										<div class="row">
+										<div class="row">	
 											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
 												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
 												</a>
-											</a>
+											</a>				
 											<a <?php if (preg_match("/consultor\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
 												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idSis_Usuario']; ?>">
 													<span class="glyphicon glyphicon-edit"></span> Edit.
 												</a>
 											</a>
 										</div>
-									</div>									
+									</div>	
 								</div>
 								<!--
 								<div class="col-md-3 text-left">
@@ -70,7 +78,7 @@
 									</div>	
 								</div>
 								<div class="col-md-3 text-left">
-									<label for="">Troca/Devol:</label>
+									<label for="">Devoluções:</label>
 									<div class="form-group ">
 										<div class="row">
 											<a <?php if (preg_match("/orcatratadevcons\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
@@ -87,14 +95,14 @@
 									</div>	
 								</div>
 							</div>
-							<div class="col-md-2"></div>
-						</div>	
+							<div class="col-md-3"></div>
+						</div>
 					</div>
 					<!--
 					<div class="form-group">
 						<div class="row">
 							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Consultor']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Consultor']['idApp_Cliente'] . '</small>' ?></h3>
+								<h3><?php echo '<strong>' . $_SESSION['Consultor']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Consultor']['idApp_Cliente'] . '</small>' ?></h3>
 							</div>
 						</div>
 					</div>
