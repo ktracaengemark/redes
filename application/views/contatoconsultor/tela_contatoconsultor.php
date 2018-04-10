@@ -114,7 +114,7 @@
 									<?php
 									if (!$list) {
 									?>
-										<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>contatousuario/cadastrar" role="button"> 
+										<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>contatoconsultor/cadastrar" role="button"> 
 											<span class="glyphicon glyphicon-plus"></span> Cad.
 										</a>
 										<br><br>

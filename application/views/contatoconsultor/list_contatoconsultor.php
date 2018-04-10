@@ -1,14 +1,14 @@
-<?php (isset($contatousuario)) ? $query = $contatousuario : FALSE; ?>
+<?php (isset($contatoconsultor)) ? $query = $contatoconsultor : FALSE; ?>
 <div class="container-fluid">
 	<div class="row">
 		<div class="btn-group" role="group">
 			<a class="btn btn-lg btn-primary active"> 
-				<span class="glyphicon glyphicon-sort-by-attributes"></span> <?php echo '<b>Total de Contatos:</b> ' . $query->num_rows() ?>
+				<span class="glyphicon glyphicon-sort-by-attributes"></span> <?php echo '<b>Total:</b> ' . $query->num_rows() ?>
 			</a>        
 		</div>
 
 		<div class="btn-group" role="group">
-			<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>contatousuario/cadastrar" role="button"> 
+			<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>contatoconsultor/cadastrar" role="button"> 
 				<span class="glyphicon glyphicon-plus"></span> Novo Contato
 			</a>
 		</div>
@@ -46,7 +46,7 @@ foreach ($query->result_array() as $row) {
 
         <div class="bs-callout bs-callout-<?php echo $row['class']; ?>" id=callout-overview-not-both> 
 
-            <a class="btn btn-<?php echo $row['class']; ?>" href="<?php echo base_url() . 'contatousuario/alterar/' . $row['idApp_ContatoUsuario'] ?>" role="button"> 
+            <a class="btn btn-<?php echo $row['class']; ?>" href="<?php echo base_url() . 'contatoconsultor/alterar/' . $row['idApp_ContatoUsuario'] ?>" role="button"> 
                 <span class="glyphicon glyphicon-edit"></span> Editar Dados
             </a>          
             

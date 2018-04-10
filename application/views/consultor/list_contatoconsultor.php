@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="btn-group" role="group">
-			<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>Contatousuario/cadastrar" role="button">
+			<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>Contatoconsultor/cadastrar" role="button">
 				<span class="glyphicon glyphicon-plus"></span> Cad.
 			</a>
 		</div>
@@ -46,7 +46,7 @@ foreach ($query->result_array() as $row) {
 
         <div class="bs-callout bs-callout-<?php echo $row['class']; ?>" id=callout-overview-not-both>
 
-            <a class="btn btn-<?php echo $row['class']; ?>" href="<?php echo base_url() . 'Contatousuario/alterar/' . $row['idApp_ContatoUsuario'] ?>" role="button">
+            <a class="btn btn-<?php echo $row['class']; ?>" href="<?php echo base_url() . 'Contatoconsultor/alterar/' . $row['idApp_ContatoUsuario'] ?>" role="button">
                 <span class="glyphicon glyphicon-edit"></span> Editar Dados
             </a>
 

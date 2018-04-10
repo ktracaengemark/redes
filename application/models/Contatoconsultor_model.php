@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Contatousuario_model extends CI_Model {
+class Contatoconsultor_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -13,7 +13,7 @@ class Contatousuario_model extends CI_Model {
         $this->load->model(array('Basico_model'));
     }
     
-    public function set_contatousuario($data) {
+    public function set_contatoconsultor($data) {
 
         $query = $this->db->insert('App_ContatoUsuario', $data);
 
@@ -25,7 +25,7 @@ class Contatousuario_model extends CI_Model {
         }
     }
 
-    public function get_contatousuario($data) {
+    public function get_contatoconsultor($data) {
         $query = $this->db->query('SELECT * FROM App_ContatoUsuario WHERE idApp_ContatoUsuario = ' . $data);
         
         $query = $query->result_array();
@@ -33,7 +33,7 @@ class Contatousuario_model extends CI_Model {
         return $query[0];
     }
 
-    public function update_contatousuario($data, $id) {
+    public function update_contatoconsultor($data, $id) {
 
         unset($data['Id']);
         $query = $this->db->update('App_ContatoUsuario', $data, array('idApp_ContatoUsuario' => $id));
@@ -52,7 +52,7 @@ class Contatousuario_model extends CI_Model {
         }
     }
 
-    public function delete_contatousuario($data) {
+    public function delete_contatoconsultor($data) {
         $query = $this->db->delete('App_ContatoUsuario', array('idApp_ContatoUsuario' => $data));
 
         if ($this->db->affected_rows() === 0) {
@@ -62,7 +62,7 @@ class Contatousuario_model extends CI_Model {
         }
     }
 
-    public function lista_contatousuario($x) {
+    public function lista_contatoconsultor($x) {
 
         $query = $this->db->query('SELECT * '
                 . 'FROM App_ContatoUsuario WHERE '

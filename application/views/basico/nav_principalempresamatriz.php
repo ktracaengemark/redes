@@ -35,10 +35,6 @@
 								<li role="separator" class="divider"></li>
 								<!--<li><a href="<?php echo base_url() ?>funcao/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad Funçoes </a></li>
 								<li role="separator" class="divider"></li>-->
-								<li><a href="<?php echo base_url() ?>relatorioempresa/empresafilial"><span class="glyphicon glyphicon-user"></span> Colaboradores </a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="<?php echo base_url() ?>relatorioempresa/empresafilial"><span class="glyphicon glyphicon-list"></span> Dados da Empresa </a></li>
-								<li role="separator" class="divider"></li>
 								<li><a href="<?php echo base_url() ?>loginempresamatriz/sair"><span class="glyphicon glyphicon-log-out"></span> Sair do Sistema </a></li>
 							</ul>
 						</div>
@@ -48,8 +44,9 @@
 							</button>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="<?php echo base_url() ?>relatorioempresa/empresafilial"><span class="glyphicon glyphicon-user"></span> Rel. Unidades/Filiais </a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="<?php echo base_url() ?>empresafilial/cadastrar"><span class="glyphicon glyphicon-log-in"></span> Cad. Unidaes</a></li>							
+								<!--<li role="separator" class="divider"></li>
+								<li><a href="<?php echo base_url() ?>empresafilial/cadastrar"><span class="glyphicon glyphicon-log-in"></span> Cad. Unidaes</a></li>
+								-->							
 							</ul>
 						</div>
 						<div class="btn-group">
@@ -70,10 +67,10 @@
 								<span class="glyphicon glyphicon-user"></span> Cadastros <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="<?php echo base_url() ?>orcatrata2empresa/cadastrar"><span class="glyphicon glyphicon-usd"></span> Cad.Orçam.</a></li>								
+								<!--<li><a href="<?php echo base_url() ?>orcatrata2empresa/cadastrar"><span class="glyphicon glyphicon-usd"></span> Cad.Orçam.</a></li>								
 								<li role="separator" class="divider"></li>
 								<li><a href="<?php echo base_url() ?>relatorioempresa/produtosempresa"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
-									
+								-->	
 							</ul>
 						</div>
 						<div class="btn-group">
@@ -81,7 +78,7 @@
 								<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="<?php echo base_url() ?>relatorioempresa/orcamentoempresa"><span class="glyphicon glyphicon-list"></span> Rel.Orçam.</a></li>
+								<!--<li><a href="<?php echo base_url() ?>relatorioempresa/orcamentoempresa"><span class="glyphicon glyphicon-list"></span> Rel.Orçam.</a></li>-->
 								
 							</ul>
 						</div>
