@@ -2188,7 +2188,7 @@ class Relatorioconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeCliente',
+            'Nome',
 			'TipoRD',
 			'TipoDevolucao',
             'DataInicio',
@@ -2242,8 +2242,7 @@ class Relatorioconsultor extends CI_Controller {
         );
 
         $data['select']['Campo'] = array(
-            'C.NomeCliente' => 'Nome do Cliente',
-
+            'C.Nome' => 'Nome do Cliente',
             'OT.idApp_OrcaTrata' => 'Nº Devol.',
             'OT.AprovadoOrca' => 'Apr./Fech.',
             'OT.DataOrca' => 'Dt. Devol.',
@@ -2267,7 +2266,7 @@ class Relatorioconsultor extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_cliente();
+        $data['select']['Nome'] = $this->Relatorioconsultor_model->select_clienteusuario();
 
         $data['titulo'] = 'Clientes & Devoluções';
 
@@ -2275,7 +2274,7 @@ class Relatorioconsultor extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
+            $data['bd']['Nome'] = $data['query']['Nome'];
 			$data['bd']['TipoRD'] = $data['query']['TipoDevolucao'];
 			$data['bd']['TipoDevolucao'] = $data['query']['TipoRD'];
             $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');

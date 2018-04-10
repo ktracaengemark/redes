@@ -214,9 +214,9 @@
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/estoque"><span class="glyphicon glyphicon-list"></span> Estoque</a></li>
-									<li role="separator" class="divider"></li>-->
+									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/rankingvendas"><span class="glyphicon glyphicon-list"></span> RankigVendas</a></li>
-
+									-->
 								</ul>
 							</div>
 							<!--

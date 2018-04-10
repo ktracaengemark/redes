@@ -2922,16 +2922,15 @@ exit();*/
                 '(OT.DataQuitado >= "' . $data['DataInicio4'] . '")';
         }
 
-		$data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
-
+		$data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
         $filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
-		$data['Campo'] = (!$data['Campo']) ? 'C.NomeCliente' : $data['Campo'];
+		$data['Campo'] = (!$data['Campo']) ? 'C.Nome' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
         $query = $this->db->query('
             SELECT
-                C.NomeCliente,
+                C.Nome,
                 OT.idApp_OrcaTrata,
 				OT.Orcamento,
                 OT.AprovadoOrca,
@@ -2949,18 +2948,16 @@ exit();*/
 				OT.FormaPagamento,
 				OT.TipoRD,
 				TD.TipoDevolucao,
-				TFP.FormaPag,
-				TSU.Nome
+				TFP.FormaPag
             FROM
-                App_Cliente AS C,
+                Sis_Usuario AS C,
                 App_OrcaTrata AS OT
-				LEFT JOIN Sis_Usuario AS TSU ON TSU.idSis_Usuario = OT.idSis_Usuario
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
 				LEFT JOIN Tab_TipoDevolucao AS TD ON TD.idTab_TipoDevolucao = OT.TipoDevolucao
             WHERE
-				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
+				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND				
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				C.Associado = ' . $_SESSION['log']['id'] . ' AND
                 (' . $consulta . ') AND
 				(' . $consulta2 . ') AND
 				(' . $consulta3 . ') AND
@@ -2968,8 +2965,8 @@ exit();*/
                 ' . $filtro1 . '
                 ' . $filtro2 . '
 				' . $filtro3 . '
-                C.idApp_Cliente = OT.idApp_Cliente
-                ' . $data['NomeCliente'] . ' AND
+                C.idSis_Usuario = OT.idApp_Cliente
+                ' . $data['Nome'] . ' AND
 				OT.TipoRD = "D"
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '

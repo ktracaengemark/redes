@@ -41,10 +41,10 @@
                 <thead>
                     <tr>
 
-						<th class="active">Cliente</th>
+						
 						<th class="active">Devol.</th>
 						<th class="active">Orçam.</th>
-                        
+                        <th class="active">Cliente</th>
 						<th class="active">Tipo Devol.</th>
 						<!--<th class="active">Valid. do Orçam.</th>
 						<th class="active">Prazo de Entrega</th>-->
@@ -59,7 +59,6 @@
                         <th class="active">Dt. Concl.</th>
                         <th class="active">Dt. Quit.</th>
 						<th class="active">Dt. Ret.</th>
-                        <th class="active">Prof.</th>
                         <th class="active"></th>
                     </tr>
                 </thead>
@@ -67,13 +66,13 @@
                     <?php
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata3/alterar/' . $row['idApp_OrcaTrata'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratadevcli/alterar/' . $row['idApp_OrcaTrata'] . '">';
 
                             #echo '<div class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
-							echo '<td>' . $row['NomeCliente'] . '</td>';
+							
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
 							echo '<td>' . $row['Orcamento'] . '</td>';
-                            
+                            echo '<td>' . $row['Nome'] . '</td>';
 							echo '<td>' . $row['TipoDevolucao'] . '</td>';
 							#echo '<td>' . $row['DataEntradaOrca'] . '</td>';
 							#echo '<td>' . $row['DataPrazo'] . '</td>';
@@ -88,7 +87,6 @@
 							echo '<td>' . $row['DataConclusao'] . '</td>';
                             echo '<td>' . $row['DataQuitado'] . '</td>';
 							echo '<td>' . $row['DataRetorno'] . '</td>';
-							echo '<td>' . $row['Nome'] . '</td>';
                             #echo '</div>';
                             echo '<td class="notclickable">
                                     <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintDev/imprimir/' . $row['idApp_OrcaTrata'] . '">

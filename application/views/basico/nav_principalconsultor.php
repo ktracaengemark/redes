@@ -193,9 +193,9 @@
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtoscomp"><span class="glyphicon glyphicon-list"></span> Despesas X Prd.</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>-->
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
+									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url() ?>relatorio/devolucao"><span class="glyphicon glyphicon-list"></span> Devol(Desp)</a></li>
 									<li role="separator" class="divider"></li>-->							
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Prd.</a></li>
@@ -209,9 +209,9 @@
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/estoque"><span class="glyphicon glyphicon-list"></span> Estoque</a></li>
-									<li role="separator" class="divider"></li>-->
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/rankingvendas"><span class="glyphicon glyphicon-list"></span> RankigVendas</a></li>
 									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/rankingvendas"><span class="glyphicon glyphicon-list"></span> RankigVendas</a></li>
+									-->
 								</ul>
 							</div>
 							<!--

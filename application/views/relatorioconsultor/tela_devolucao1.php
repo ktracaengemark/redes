@@ -22,10 +22,10 @@
 								<div class="col-md-4">
 									<label for="Ordenamento">Nome do Cliente:</label>
 									<select data-placeholder="Selecione uma opção..." class="form-control Chosen"
-											id="NomeCliente" name="NomeCliente">
+											id="Nome" name="Nome">
 										<?php
-										foreach ($select['NomeCliente'] as $key => $row) {
-											if ($query['NomeCliente'] == $key) {
+										foreach ($select['Nome'] as $key => $row) {
+											if ($query['Nome'] == $key) {
 												echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 											} else {
 												echo '<option value="' . $key . '">' . $row . '</option>';
