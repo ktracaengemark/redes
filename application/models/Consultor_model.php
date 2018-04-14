@@ -105,7 +105,7 @@ class Consultor_model extends CI_Model {
         */
 
         $this->db->delete('App_Consulta', array('idSis_Usuario' => $data));
-        $this->db->delete('App_ContatoConsultor', array('idSis_Usuario' => $data));
+        $this->db->delete('App_ContatoUsuario', array('idSis_Usuario' => $data));
 
         foreach ($query as $key) {
             $query = $this->db->delete('App_ProdutoVenda', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));

@@ -2,8 +2,8 @@
 	<div class="container-fluid">
 		<div class="row">
 
-			<div class="col-md-1"></div>
-			<div class="col-md-11 ">
+			<div class="col-md-3"></div>
+			<div class="col-md-9 ">
 				<div class="navbar-header ">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">MENU</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>

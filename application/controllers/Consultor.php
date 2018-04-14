@@ -267,7 +267,7 @@ class Consultor extends CI_Controller {
 
         $data['msg'] = '?m=1';
 
-		redirect(base_url() . 'agenda' . $data['msg']);
+		redirect(base_url() . 'relatoriofuncionario/consultores' . $data['msg']);
 		exit();
 
         $this->load->view('basico/footer');

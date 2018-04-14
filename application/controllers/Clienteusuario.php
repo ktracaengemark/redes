@@ -267,7 +267,7 @@ class Clienteusuario extends CI_Controller {
 
         $data['msg'] = '?m=1';
 
-		redirect(base_url() . 'agenda' . $data['msg']);
+		redirect(base_url() . 'relatorioconsultor/clientesusuario' . $data['msg']);
 		exit();
 
         $this->load->view('basico/footer');
