@@ -1950,6 +1950,116 @@ $(document).ready(function () {
         });
 		
 	});
+
+	//adiciona campos dinamicamente
+    var ps = $("#SCount").val(); //initlal text box count
+	$(".add_field_button10").click(function(e){ //on add input button click
+        e.preventDefault();
+    
+		ps++; //text box increment
+		$("#SCount").val(ps);
+		
+		$(".input_fields_wrap10").append('\
+			<div class="form-group" id="10div'+ps+'">\
+				<div class="panel panel-danger">\
+					<div class="panel-heading">\
+						<div class="row">\
+							<div class="col-md-1">\
+								<label for="QtdVendaServico">Qtd:</label><br>\
+								<div class="input-group">\
+									<input type="text" class="form-control Numero" maxlength="3" id="QtdVendaServico'+ps+'" placeholder="0"\
+										onkeyup="calculaSubtotalDev(this.value,this.name,'+ps+',\'QTD\',\'Servico\'),calculaQtdSomaDev(\'QtdVendaServico\',\'QtdSomaDev\',\'ServicoSoma\',0,0,\'CountMax2\',0,\'ServicoHidden\')"\
+										name="QtdVendaServico'+ps+'" value="">\
+								</div>\
+							</div>\
+							<div class="col-md-7">\
+								<label for="idTab_Servico">Produto:</label><br>\
+								<select class="form-control Chosen" id="listadinamica'+ps+'" onchange="buscaValor2Tabelas(this.value,this.name,\'Valor\','+ps+',\'Produto\')" name="idTab_Servico'+ps+'">\
+									<option value="">-- Selecione uma opção --</option>\
+								</select>\
+							</div>\
+							<div class="col-md-2">\
+								<label for="ValorVendaServico">Valor do Produto:</label><br>\
+								<div class="input-group">\
+									<span class="input-group-addon" id="basic-addon1">R$</span>\
+									<input type="text" class="form-control Valor" id="idTab_Servico'+ps+'" maxlength="10" placeholder="0,00" \
+										onkeyup="calculaSubtotalDev(this.value,this.name,'+ps+',\'VP\',\'Servico\')"\
+										name="ValorVendaServico'+ps+'" value="">\
+								</div>\
+							</div>\
+							<div class="col-md-2">\
+								<label for="SubtotalServico">Subtotal:</label><br>\
+								<div class="input-group id="txtHint">\
+									<span class="input-group-addon" id="basic-addon1">R$</span>\
+									<input type="text" class="form-control Valor" maxlength="10" placeholder="0,00" readonly="" id="SubtotalServico'+ps+'"\
+										   name="SubtotalServico'+ps+'" value="">\
+								</div>\
+							</div>\
+						</div>\
+						<div class="row">\
+							<div class="col-md-1"></div>\
+							<div class="col-md-7">\
+								<label for="ObsServico'+ps+'">Obs:</label><br>\
+								<input type="text" class="form-control" id="ObsServico'+ps+'" maxlength="250"\
+									   name="ObsServico'+ps+'" value="">\
+							</div>\
+							<div class="col-md-2">\
+								<label for="DataValidadeServico'+ps+'">Valid. do Prod:</label>\
+								<div class="input-group DatePicker">\
+									<span class="input-group-addon" disabled>\
+										<span class="glyphicon glyphicon-calendar"></span>\
+									</span>\
+									<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"\
+										   name="DataValidadeServico'+ps+'" value="'+currentDate.format('DD/MM/YYYY')+'">\
+								</div>\
+							</div>\
+							<div class="col-md-1">\
+								<label><br></label><br>\
+								<a href="#" id="'+ps+'" class="remove_field10 btn btn-danger"\
+									onclick="calculaQtdSomaDev(\'QtdVendaServico\',\'QtdSomaDev\',\'ServicoSoma\',1,'+ps+',\'CountMax2\',0,\'ServicoHidden\')">\
+									<span class="glyphicon glyphicon-trash"></span>\
+								</a>\
+							</div>\
+						</div>\
+					</div>\
+				</div>\
+			</div>'
+		); //add input box
+
+		//get a reference to the select element
+		$select = $('#listadinamica'+ps);
+
+		//request the JSON data and parse into the select element
+        $.ajax({
+            url: window.location.origin+ '/' + app + '/Getvalues_json.php?q=9',
+            dataType: 'JSON',
+            type: "GET",
+            success: function (data) {
+                //clear the current content of the select
+                $select.html('');
+                //iterate over the data and append a select option
+                $select.append('<option value="">-- Selecione uma opção --</option>');
+                $.each(data, function (key, val) {
+                    //alert(val.id);
+                    $select.append('<option value="' + val.id + '">' + val.name + '</option>');
+                })
+                $('.Chosen').chosen({
+                    disable_search_threshold: 10,
+                    multiple_text: "Selecione uma ou mais opções",
+                    single_text: "Selecione uma opção",
+                    no_results_text: "Nenhum resultado para",
+                    width: "100%"
+                });
+            },
+            error: function () {
+                //alert('erro listadinamicaB');
+                //if there is an error append a 'none available' option
+                $select.html('<option id="-1">ERRO</option>');
+            }
+
+        });
+		
+	});
 	
     //adiciona campos dinamicamente
     var pc = $("#PCount").val(); //initlal text box count
@@ -2568,6 +2678,13 @@ $(document).ready(function () {
         calculaDevolucao();
     })
 
+    //Remove os campos adicionados dinamicamente
+    $(".input_fields_wrap10").on("click",".remove_field10", function(e){ //user click on remove text
+        $("#10div"+$(this).attr("id")).remove();
+        //após remover o campo refaz o cálculo do orçamento e total restante
+        calculaDevolucao();
+    })
+	
     //Remove os campos adicionados dinamicamente
     $(".input_fields_wrap2").on("click",".remove_field2", function(e){ //user click on remove text
         $("#2div"+$(this).attr("id")).remove();

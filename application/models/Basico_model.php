@@ -943,6 +943,78 @@ class Basico_model extends CI_Model {
         return $array;
     }
 
+	public function select_produtoscons($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query(
+            'SELECT
+                V.idTab_Valor,
+                CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,""), " -- ", IFNULL(TCO.Convenio,""), " -- ", IFNULL(V.Convdesc,""), " --- ", V.ValorVendaProduto, " -- ", IFNULL(P.UnidadeProduto,""), " -- ", IFNULL(TFO.NomeFornecedor,"")) AS NomeProduto,
+                V.ValorVendaProduto,
+				P.Categoria
+            FROM
+                Tab_Valor AS V
+					LEFT JOIN Tab_Convenio AS TCO ON idTab_Convenio = V.Convenio
+					LEFT JOIN Tab_Produtos AS P ON P.idTab_Produtos = V.idTab_Produtos
+					LEFT JOIN App_Fornecedor AS TFO ON TFO.idApp_Fornecedor = P.Fornecedor
+					LEFT JOIN Tab_Prodaux3 AS TP3 ON TP3.idTab_Prodaux3 = P.Prodaux3
+					LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = P.Prodaux2
+					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
+            WHERE
+				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' OR 
+				P.ProdutoProprio = "0") AND
+				V.Convenio = "54" AND				
+                P.idTab_Produtos = V.idTab_Produtos
+			ORDER BY
+				P.CodProd ASC,
+				P.Categoria ASC,
+				TP3.Prodaux3,				
+				P.Produtos ASC,
+				TP1.Prodaux1,
+				TP2.Prodaux2,
+				TFO.NomeFornecedor ASC'
+    );
+        } else {
+            $query = $this->db->query(
+            'SELECT
+                V.idTab_Valor,
+                CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,""), " -- ", IFNULL(TCO.Convenio,""), " -- ", IFNULL(V.Convdesc,""), " --- ", V.ValorVendaProduto, " -- ", IFNULL(P.UnidadeProduto,""), " -- ", IFNULL(TFO.NomeFornecedor,"")) AS NomeProduto,
+                V.ValorVendaProduto,
+				P.Categoria
+            FROM
+                Tab_Valor AS V
+					LEFT JOIN Tab_Convenio AS TCO ON idTab_Convenio = V.Convenio
+					LEFT JOIN Tab_Produtos AS P ON P.idTab_Produtos = V.idTab_Produtos
+					LEFT JOIN App_Fornecedor AS TFO ON TFO.idApp_Fornecedor = P.Fornecedor
+					LEFT JOIN Tab_Prodaux3 AS TP3 ON TP3.idTab_Prodaux3 = P.Prodaux3
+					LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = P.Prodaux2
+					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
+            WHERE
+				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' OR 
+				P.ProdutoProprio = "0") AND
+				V.Convenio = "54" AND				
+                P.idTab_Produtos = V.idTab_Produtos
+			ORDER BY
+				P.CodProd ASC,
+				P.Categoria ASC,
+				TP3.Prodaux3,				
+				P.Produtos ASC,
+				TP1.Prodaux1,
+				TP2.Prodaux2,
+				TFO.NomeFornecedor ASC'
+    );
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idTab_Valor] = $row->NomeProduto;
+            }
+        }
+
+        return $array;
+    }
+	
 	public function select_servico4($data = FALSE) {
 
         if ($data === TRUE) {
