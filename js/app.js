@@ -286,7 +286,7 @@ function calculaResta(entrada) {
     //recebe o valor do orçamento
     var orcamento = $("#ValorOrca").val();
 	var devolucao = $("#ValorDev").val();
-    var resta = (orcamento.replace(".","").replace(",",".") - devolucao.replace(".","").replace(",",".") - entrada.replace(".","").replace(",","."));
+    var resta = (orcamento.replace(".","").replace(",",".") - devolucao.replace(".","").replace(",","."));
 
     resta = mascaraValorReal(resta);
 
@@ -1400,7 +1400,7 @@ function calculaDevolucao() {
 
     //escreve o subtotal no campo do formulário
     $('#ValorDev').val(subtotal);
-    calculaResta($("#ValorEntradaOrca").val());
+    calculaResta();
 }
 
 function calculaDespesas() {
