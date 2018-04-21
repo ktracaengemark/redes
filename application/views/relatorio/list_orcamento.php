@@ -73,7 +73,7 @@
 							#echo '<td>' . $row['DataEntradaOrca'] . '</td>';
 							#echo '<td>' . $row['DataPrazo'] . '</td>';
                             echo '<td class="text-left">R$ ' . $row['ValorOrca'] . '</td>';
-							echo '<td class="text-left">R$ ' . $row['ValorEntradaOrca'] . '</td>';
+							echo '<td class="text-left">R$ ' . $row['ValorDev'] . '</td>';
 							echo '<td class="text-left">R$ ' . $row['ValorRestanteOrca'] . '</td>';							
 							echo '<td>' . $row['AprovadoOrca'] . '</td>';
 							echo '<td>' . $row['ServicoConcluido'] . '</td>';

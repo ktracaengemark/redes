@@ -2529,6 +2529,7 @@ exit();*/
 				OT.DataEntradaOrca,
 				OT.DataPrazo,
                 OT.ValorOrca,
+				OT.ValorDev,
 				OT.ValorEntradaOrca,
 				OT.ValorRestanteOrca,
                 OT.ServicoConcluido,
@@ -2594,8 +2595,8 @@ exit();*/
                 $somaorcamento += $row->ValorOrca;
                 $row->ValorOrca = number_format($row->ValorOrca, 2, ',', '.');
 
-				$somadesconto += $row->ValorEntradaOrca;
-                $row->ValorEntradaOrca = number_format($row->ValorEntradaOrca, 2, ',', '.');
+				$somadesconto += $row->ValorDev;
+                $row->ValorDev = number_format($row->ValorDev, 2, ',', '.');
 
 				$somarestante += $row->ValorRestanteOrca;
                 $row->ValorRestanteOrca = number_format($row->ValorRestanteOrca, 2, ',', '.');

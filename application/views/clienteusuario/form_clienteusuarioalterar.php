@@ -15,7 +15,7 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-2 "></div>
-							<div class="col-md-8 col-lg-8">
+							<div class="col-md-8 col-lg-10">
 								<div class="col-md-3 text-left">
 									<label for="">Cliente:</label>
 									<div class="form-group">
@@ -159,6 +159,7 @@
 															<input type="text" class="form-control" id="Bairro" maxlength="100" <?php echo $readonly; ?>
 																   name="Email" value="<?php echo $query['Email']; ?>">
 														</div>
+														<!--
 														<div class="col-md-2">
 															<label for="Inativo">Ativo?</label><br>
 															<div class="form-group">
@@ -187,7 +188,7 @@
 																</div>
 															</div>
 														</div>
-														<!--
+														
 														<div class="col-md-3">
 															<label for="Usuario">Usuário:</label>
 															<input type="text" class="form-control" id="Usuario" maxlength="45" 

@@ -10,7 +10,7 @@
             </div>
         </div>
 		<div class="col-md-3">
-            <label for="DataFim">Total dos Descontos:</label>
+            <label for="DataFim">Total dos Desc./Devol.:</label>
             <div class="input-group">
                 <span class="input-group-addon">R$</span>
                 <input type="text" class="form-control" disabled aria-label="Total Descontos" value="<?php echo $report->soma->somadesconto ?>">
@@ -73,7 +73,7 @@
 							#echo '<td>' . $row['DataEntradaOrca'] . '</td>';
 							#echo '<td>' . $row['DataPrazo'] . '</td>';
                             echo '<td class="text-left">R$ ' . $row['ValorOrca'] . '</td>';
-							echo '<td class="text-left">R$ ' . $row['ValorEntradaOrca'] . '</td>';
+							echo '<td class="text-left">R$ ' . $row['ValorDev'] . '</td>';
 							echo '<td class="text-left">R$ ' . $row['ValorRestanteOrca'] . '</td>';							
 							echo '<td>' . $row['AprovadoOrca'] . '</td>';
 							echo '<td>' . $row['ServicoConcluido'] . '</td>';
