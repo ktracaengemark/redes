@@ -2049,9 +2049,10 @@ exit();*/
 				OT.Orcamento,
 				OT.AprovadoOrca,
 				TFP.FormaPag,
-				APV.QtdVendaProduto,
-				APV.ValorVendaProduto,
-				APV.ObsProduto,
+				APV.QtdVendaServico,
+				APV.ValorVendaServico,
+				APV.DataValidadeServico,
+				APV.ObsServico,
 				TPV.Produtos,
 				TPV.CodProd,
 				TPV.Fornecedor,
@@ -2064,8 +2065,8 @@ exit();*/
             FROM
                 Sis_Usuario AS C,
 				App_OrcaTrata AS OT
-					LEFT JOIN App_ProdutoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
-					LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
+					LEFT JOIN App_ServicoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+					LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Servico
 					LEFT JOIN Tab_Produtos AS TPV ON TPV.idTab_Produtos = TVV.idTab_Produtos
 					LEFT JOIN App_Fornecedor AS TFO ON TFO.idApp_Fornecedor = TPV.Fornecedor
 					LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
@@ -2078,14 +2079,13 @@ exit();*/
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				(C.Nivel = "3" OR C.Nivel = "4") AND
 				(' . $consulta . ') AND
-				APV.idApp_ProdutoVenda != "0" AND
+				APV.idApp_ServicoVenda != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '
 				' . $data['Produtos'] . '
 				' . $data['Prodaux1'] . '
 				' . $data['Prodaux2'] . '
-				' . $data['Prodaux3'] . ' AND
-				OT.TipoRD = "D"
+				' . $data['Prodaux3'] . ' 
             ORDER BY
 				' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
@@ -2106,9 +2106,9 @@ exit();*/
 			$quantidade=0;
             foreach ($query->result() as $row) {
 				$row->DataOrca = $this->basico->mascara_data($row->DataOrca, 'barras');
-
-				$quantidade += $row->QtdVendaProduto;
-                $row->QtdVendaProduto = number_format($row->QtdVendaProduto);
+				$row->DataValidadeServico = $this->basico->mascara_data($row->DataValidadeServico, 'barras');
+				$quantidade += $row->QtdVendaServico;
+                $row->QtdVendaServico = number_format($row->QtdVendaServico);
             }
 
 			$query->soma = new stdClass();

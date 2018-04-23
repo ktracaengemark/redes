@@ -170,17 +170,17 @@
 									<!--<li><a href="<?php echo base_url() ?>relatorio/clientes"><span class="glyphicon glyphicon-usd"></span> Clientes</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>agenda"><span class="glyphicon glyphicon-usd"></span> Consultas</a></li>
+									<li role="separator" class="divider"></li>-->
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/consultores"><span class="glyphicon glyphicon-usd"></span> Orçamentos</a></li>
+									<li role="separator" class="divider"></li>							
+									<!--<li><a href="<?php echo base_url() ?>despesas/cadastrar"><span class="glyphicon glyphicon-usd"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>orcatrata2/cadastrar"><span class="glyphicon glyphicon-usd"></span> Orçamentos</a></li>
-									<li role="separator" class="divider"></li>-->							
-									<li><a href="<?php echo base_url() ?>despesas/cadastrar"><span class="glyphicon glyphicon-usd"></span> Despesas</a></li>
-									<li role="separator" class="divider"></li>
-									<!--<li><a href="<?php echo base_url() ?>orcatrata3/cadastrar"><span class="glyphicon glyphicon-usd"></span> Devoluções</a></li>
+									<li><a href="<?php echo base_url() ?>orcatrata3/cadastrar"><span class="glyphicon glyphicon-usd"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>devolucao/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Devol(Desp)</a></li>
-									<li role="separator" class="divider"></li>-->
-									<li><a href="<?php echo base_url() ?>consumo/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
 									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>consumo/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
+									<li role="separator" class="divider"></li>-->
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosempresa"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/admin"><span class="glyphicon glyphicon-pencil"></span> Outros</a></li>
@@ -203,12 +203,12 @@
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtoscomp"><span class="glyphicon glyphicon-list"></span> Despesas X Prd.</a></li>
-									<li role="separator" class="divider"></li>-->
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
-									<li role="separator" class="divider"></li>							
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Prd.</a></li>
 									<li role="separator" class="divider"></li>
-									<!--<li><a href="<?php echo base_url() ?>relatorio/produtosdevol"><span class="glyphicon glyphicon-list"></span> Devol. X Cl. X Prd.(Desp)</a></li>
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
+									<li role="separator" class="divider"></li>-->						
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Prd.</a></li>
+									<!--<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorio/produtosdevol"><span class="glyphicon glyphicon-list"></span> Devol. X Cl. X Prd.(Desp)</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/consumo"><span class="glyphicon glyphicon-list"></span> Consumos</a></li>
 									<li role="separator" class="divider"></li>
