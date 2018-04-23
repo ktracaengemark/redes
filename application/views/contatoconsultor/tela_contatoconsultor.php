@@ -69,7 +69,7 @@
 										</div>		
 									</div>	
 								</div>
-								
+								<!--
 								<div class="col-md-3 text-left">
 									<label for="">Devoluções:</label>
 									<div class="form-group ">
@@ -87,7 +87,7 @@
 										</div>		
 									</div>	
 								</div>
-								
+								-->
 							</div>
 							<div class="col-md-2"></div>
 						</div>
