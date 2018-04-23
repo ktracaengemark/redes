@@ -226,7 +226,7 @@
 									</button>
 								</div>
 								<div class="col-md-2 text-right">											
-									<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>relatorioconsultor/clienteusuario" role="button"> 
+									<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>relatorioconsultor/clientesusuario" role="button"> 
 										<span class="glyphicon glyphicon-plus"></span> Novo Orç.
 									</a>
 								</div>

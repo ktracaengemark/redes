@@ -64,7 +64,7 @@ class OrcatrataPrintcons extends CI_Controller {
 			$_SESSION['Orcatrata'] = $this->OrcatrataPrintcons_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata'], TRUE);
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Consultor']['idApp_Cliente'];
 
-            /*
+            
             #### App_ServicoVenda ####
             $data['servico'] = $this->OrcatrataPrintcons_model->get_servico($id);
             if (count($data['servico']) > 0) {
@@ -73,11 +73,13 @@ class OrcatrataPrintcons extends CI_Controller {
 
                 if (isset($data['servico'])) {
 
-                    for($j=1;$j<=$data['count']['SCount'];$j++)
+                    for($j=1;$j<=$data['count']['SCount'];$j++) {
                         $data['servico'][$j]['SubtotalServico'] = number_format(($data['servico'][$j]['ValorVendaServico'] * $data['servico'][$j]['QtdVendaServico']), 2, ',', '.');
-                }
+						$data['servico'][$j]['DataValidadeServico'] = $this->basico->mascara_data($data['servico'][$j]['DataValidadeServico'], 'barras');
+					}                
+				}
             }
-            */
+            
 
             #### App_ProdutoVenda ####
             $data['produto'] = $this->OrcatrataPrintcons_model->get_produto($id);

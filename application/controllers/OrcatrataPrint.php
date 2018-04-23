@@ -64,7 +64,7 @@ class OrcatrataPrint extends CI_Controller {
 			$_SESSION['Orcatrata'] = $this->OrcatrataPrint_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata'], TRUE);
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Cliente']['idApp_Cliente'];
 
-            /*
+            
             #### App_ServicoVenda ####
             $data['servico'] = $this->OrcatrataPrint_model->get_servico($id);
             if (count($data['servico']) > 0) {
@@ -73,11 +73,13 @@ class OrcatrataPrint extends CI_Controller {
 
                 if (isset($data['servico'])) {
 
-                    for($j=1;$j<=$data['count']['SCount'];$j++)
+                    for($j=1;$j<=$data['count']['SCount'];$j++) {
                         $data['servico'][$j]['SubtotalServico'] = number_format(($data['servico'][$j]['ValorVendaServico'] * $data['servico'][$j]['QtdVendaServico']), 2, ',', '.');
-                }
+						$data['servico'][$j]['DataValidadeServico'] = $this->basico->mascara_data($data['servico'][$j]['DataValidadeServico'], 'barras');
+					}
+				}
             }
-            */
+            
 
             #### App_ProdutoVenda ####
             $data['produto'] = $this->OrcatrataPrint_model->get_produto($id);
