@@ -2684,13 +2684,20 @@ $(document).ready(function () {
         //após remover o campo refaz o cálculo do orçamento e total restante
         calculaDevolucao();
     })
-	
+			
     //Remove os campos adicionados dinamicamente
     $(".input_fields_wrap2").on("click",".remove_field2", function(e){ //user click on remove text
         $("#2div"+$(this).attr("id")).remove();
         //após remover o campo refaz o cálculo do orçamento e total restante
         calculaOrcamento();
     })
+	
+    //Remove os campos adicionados dinamicamente
+    $(".input_fields_wrap9").on("click",".remove_field9", function(e){ //user click on remove text
+        $("#9div"+$(this).attr("id")).remove();
+        //após remover o campo refaz o cálculo do orçamento e total restante
+        calculaOrcamento();
+    })	
 
 	//Remove os campos adicionados dinamicamente
     $(".input_fields_wrap4").on("click",".remove_field4", function(e){ //user click on remove text

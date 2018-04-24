@@ -2523,6 +2523,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 C.Nome,
+				OT.idApp_Cliente,
                 OT.idApp_OrcaTrata,
                 OT.AprovadoOrca,
                 OT.DataOrca,
@@ -2538,12 +2539,11 @@ exit();*/
 				OT.DataRetorno,
 				OT.TipoRD,
 				OT.FormaPagamento,
-				TFP.FormaPag,
-				TSU.Nome
+				TFP.FormaPag
             FROM
                 Sis_Usuario AS C,
                 App_OrcaTrata AS OT
-				LEFT JOIN Sis_Usuario AS TSU ON TSU.idSis_Usuario = OT.idSis_Usuario
+				
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
 
             WHERE

@@ -2524,6 +2524,7 @@ exit();*/
             SELECT
                 C.Nome,
                 OT.idApp_OrcaTrata,
+				OT.idApp_Cliente,
                 OT.AprovadoOrca,
                 OT.DataOrca,
 				OT.DataEntradaOrca,

@@ -890,8 +890,9 @@ class Basico_model extends CI_Model {
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
 				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' OR 
-				P.ProdutoProprio = ' . $_SESSION['log']['id'] . ') AND
+				P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				(P.ProdutoProprio = ' . $_SESSION['log']['id'] . ' OR 
+				P.ProdutoProprio = "0") AND
 				V.Convenio = "53" AND				
                 P.idTab_Produtos = V.idTab_Produtos
 			ORDER BY
@@ -920,8 +921,9 @@ class Basico_model extends CI_Model {
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
 				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' OR 
-				P.ProdutoProprio = ' . $_SESSION['log']['id'] . ') AND
+				P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				(P.ProdutoProprio = ' . $_SESSION['log']['id'] . ' OR 
+				P.ProdutoProprio = "0") AND
 				V.Convenio = "53" AND				
                 P.idTab_Produtos = V.idTab_Produtos
 			ORDER BY
@@ -962,7 +964,7 @@ class Basico_model extends CI_Model {
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
 				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' OR 
+				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND				
 				P.ProdutoProprio = "0") AND
 				V.Convenio = "54" AND				
                 P.idTab_Produtos = V.idTab_Produtos
@@ -992,7 +994,7 @@ class Basico_model extends CI_Model {
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
 				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' OR 
+				(P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND				
 				P.ProdutoProprio = "0") AND
 				V.Convenio = "54" AND				
                 P.idTab_Produtos = V.idTab_Produtos

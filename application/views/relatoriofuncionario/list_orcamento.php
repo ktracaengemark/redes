@@ -56,7 +56,6 @@
                         <th class="active">Dt. Orç.</th>
 						<th class="active">Dt. Concl.</th>
                         <th class="active">Dt. Quit.</th>					
-                        <th class="active">Profissional</th>
                         <th class="active"></th>
                     </tr>
                 </thead>
@@ -82,7 +81,6 @@
                             echo '<td>' . $row['DataOrca'] . '</td>';
 							echo '<td>' . $row['DataConclusao'] . '</td>';
                             echo '<td>' . $row['DataQuitado'] . '</td>';							
-							echo '<td>' . $row['Nome'] . '</td>';
                             #echo '</div>';
                             echo '<td class="notclickable">
                                     <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrata'] . '">
