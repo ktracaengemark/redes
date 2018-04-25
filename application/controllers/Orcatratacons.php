@@ -13,7 +13,7 @@ class Orcatratacons extends CI_Controller {
         $this->load->helper(array('form', 'url', 'date', 'string'));
         #$this->load->library(array('basico', 'Basico_model', 'form_validation'));
         $this->load->library(array('basico', 'form_validation'));
-        $this->load->model(array('Basico_model', 'Orcatratacons_model', 'Profissional_model', 'Relatorio_model', 'Formapag_model', 'Consultor_model'));
+        $this->load->model(array('Basico_model', 'Orcatratacons_model', 'Profissional_model', 'Usuario_model', 'Relatorio_model', 'Formapag_model', 'Consultor_model'));
         $this->load->driver('session');
 
         #load header view
@@ -186,7 +186,7 @@ class Orcatratacons extends CI_Controller {
 		$data['select']['QuitadoOrca'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoRecebiveis'] = $this->Basico_model->select_status_sn();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
-		$data['select']['idSis_Usuario'] = $this->Profissional_model->select_profissional();
+		$data['select']['idSis_Usuario'] = $this->Usuario_model->select_profissional();
         #$data['select']['Servico'] = $this->Basico_model->select_servico();
         #$data['select']['Produto'] = $this->Basico_model->select_produto();
         $data['select']['Servico'] = $this->Basico_model->select_produtoscons();
@@ -586,7 +586,7 @@ class Orcatratacons extends CI_Controller {
 		$data['select']['QuitadoOrca'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoRecebiveis'] = $this->Basico_model->select_status_sn();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
-        $data['select']['idSis_Usuario'] = $this->Profissional_model->select_profissional();
+        $data['select']['idSis_Usuario'] = $this->Usuario_model->select_profissional();
 		#$data['select']['Servico'] = $this->Basico_model->select_servico();
         #$data['select']['Produto'] = $this->Basico_model->select_produto();
         $data['select']['Servico'] = $this->Basico_model->select_produtoscons();
