@@ -108,7 +108,7 @@ class Consultor extends CI_Controller {
 			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
             $data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
 			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
-			#$data['query']['Associado'] = 0;
+			$data['query']['Associado'] = 1;
 			$data['query']['QuemCad'] = $_SESSION['log']['id'];
 			$data['query']['Senha'] = md5($data['query']['Senha']);
 			$data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
