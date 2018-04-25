@@ -777,9 +777,9 @@
 																		<label for="idSis_Usuario<?php echo $i ?>">Profissional:</label>
 																		<?php if ($i == 1) { ?>
 																		<?php } ?>
-																		<select data-placeholder="Selecione uma opção..." class="form-control"
+																		<select data-placeholder="Selecione uma opção..." class="form-control" readonly=""
 																				 id="listadinamicac<?php echo $i ?>" name="idSis_Usuario<?php echo $i ?> readonly="" ">
-																			<option value="">-- Selecione uma opção --</option>
+																			<!--<option value="">-- Selecione uma opção --</option>-->
 																			<?php
 																			foreach ($select['idSis_Usuario'] as $key => $row) {
 																				if ($procedimento[$i]['idSis_Usuario'] == $key) {

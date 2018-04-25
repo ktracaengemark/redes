@@ -612,7 +612,7 @@ function adicionaProcedimento() {
 							<textarea class="form-control" id="Procedimento'+pc+'"\
 									  name="Procedimento'+pc+'"></textarea>\
 						</div>\
-						<div class="col-md-3">\
+						<div class="col-md-2">\
 							<label for="DataProcedimento'+pc+'">Data do Proced.:</label>\
 							<div class="input-group DatePicker">\
 								<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"\
@@ -622,7 +622,7 @@ function adicionaProcedimento() {
 								</span>\
 							</div>\
 						</div>\
-						<div class="col-md-3">\
+						<div class="col-md-2">\
 							<label for="ConcluidoProcedimento">Proc. Concl.? </label><br>\
 							<div class="form-group">\
 								<div class="btn-group" data-toggle="buttons">\
