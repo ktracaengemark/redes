@@ -496,5 +496,46 @@ class Relatorioempresa extends CI_Controller {
         $this->load->view('basico/footerempresa');
 
     }
+
+    public function balanco() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+            'Ano',
+        ), TRUE));
+
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+        $this->form_validation->set_rules('Ano', 'Ano', 'required|trim|integer|greater_than[1900]');
+
+        $data['titulo'] = 'Relatório de Balanço';
+
+        #run form validation
+        if ($this->form_validation->run() !== FALSE) {
+
+            $data['report'] = $this->Relatorioempresa_model->list_balanco($data['query']);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatorioempresa/list_balanco', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatorioempresa/tela_balanco', $data);
+
+        $this->load->view('basico/footer');
+
+    }
 	
 }

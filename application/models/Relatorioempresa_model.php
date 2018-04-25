@@ -870,13 +870,13 @@ class Relatorioempresa_model extends CI_Model {
             'SELECT
                 ' . $somareceitas . '
             FROM
-                App_Cliente AS C,
+                Sis_Usuario AS C,
                 App_OrcaTrata AS OT
                     LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
-                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                C.Empresa = ' . $_SESSION['log']['id'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                C.idApp_Cliente = OT.idApp_Cliente AND
+                C.idSis_Usuario = OT.idApp_Cliente AND
 				OT.TipoRD = "R" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
@@ -900,13 +900,13 @@ class Relatorioempresa_model extends CI_Model {
             'SELECT
                 ' . $somadevolucoes . '
             FROM
-                App_Cliente AS C,
+                Sis_Usuario AS C,
                 App_OrcaTrata AS OT
                     LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
-                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                C.Empresa = ' . $_SESSION['log']['id'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                C.idApp_Cliente = OT.idApp_Cliente AND
+                C.idSis_Usuario = OT.idApp_Cliente AND
 				OT.TipoRD = "D" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
@@ -934,7 +934,7 @@ class Relatorioempresa_model extends CI_Model {
                     LEFT JOIN App_ParcelasPagaveis AS PP ON DS.idApp_Despesas = PP.idApp_Despesas
                     LEFT JOIN Tab_TipoDespesa AS TD ON TD.idTab_TipoDespesa = DS.TipoDespesa
             WHERE
-                DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                DS.Empresa = ' . $_SESSION['log']['id'] . ' AND
                 DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 (DS.TipoProduto = "D") AND
             	YEAR(PP.DataPagoPagaveis) = ' . $data['Ano']

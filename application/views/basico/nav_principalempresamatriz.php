@@ -78,8 +78,14 @@
 								<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">
-								<!--<li><a href="<?php echo base_url() ?>relatorioempresa/orcamentoempresa"><span class="glyphicon glyphicon-list"></span> Rel.Orçam.</a></li>-->
-								
+								<li><a href="<?php echo base_url() ?>relatorioempresa/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
+								<!--<li role="separator" class="divider"></li>
+								<li><a href="<?php echo base_url() ?>relatorioempresa/orcamentoempresa"><span class="glyphicon glyphicon-list"></span> Rel.Orçam.</a></li>
+								<li role="separator" class="divider"></li>								
+								<li><a href="<?php echo base_url() ?>relatorio/estoque"><span class="glyphicon glyphicon-list"></span> Estoque</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="<?php echo base_url() ?>relatorio/rankingvendas"><span class="glyphicon glyphicon-list"></span> RankigVendas</a></li>
+								<li role="separator" class="divider"></li>-->
 							</ul>
 						</div>
 						<div class="btn-group" role="group" aria-label="..."> </div>
