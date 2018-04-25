@@ -2496,7 +2496,7 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['Nome'] = $this->Relatoriofuncionario_model->select_consultores();
-		#$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
+		$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
 
         $data['titulo'] = 'Relatório de Consultores';
 

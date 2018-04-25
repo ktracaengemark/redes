@@ -56,7 +56,7 @@
                             #echo '<td>' . $row['Bairro'] . '</td>';
                             #echo '<td>' . $row['Municipio'] . '</td>';
                             echo '<td>' . $row['Email'] . '</td>';
-							echo '<td>' . $row['Inativo'] . '</td>';
+							echo '<td>' . $row['StatusSN'] . '</td>';
 							#echo '<td>' . $row['NomeContatoCliente'] . '</td>';
 							#echo '<td>' . $row['Sexo'] . '</td>';
 							#echo '<td>' . $row['RelaCom'] . '</td>';

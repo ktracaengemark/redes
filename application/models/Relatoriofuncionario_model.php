@@ -3335,6 +3335,8 @@ exit();*/
 				C.idSis_Usuario,
                 C.Nome,
 				C.Inativo,
+				SN.Abrev,
+				SN.StatusSN,
                 C.DataNascimento,
 				C.Celular,
 				C.Usuario,
@@ -3351,8 +3353,8 @@ exit();*/
 				6 = ' . $_SESSION['log']['Nivel'] . ' AND
 				(C.Nivel = 3 OR 
 				C.Nivel = 4) 
-				' . $data['Nome'] . '
-				
+				' . $data['Nome'] . ' 
+
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
@@ -3374,7 +3376,7 @@ exit();*/
 
             foreach ($query->result() as $row) {
 				$row->DataNascimento = $this->basico->mascara_data($row->DataNascimento, 'barras');
-				$row->Inativo = $this->basico->mascara_palavra_completa($row->Inativo, 'NS');
+				#$row->Inativo = $this->basico->mascara_palavra_completa($row->Inativo, 'NS');
                 #$row->Sexo = $this->basico->get_sexo($row->Sexo);
                 #$row->Sexo = ($row->Sexo == 2) ? 'F' : 'M';
 
@@ -4938,10 +4940,11 @@ exit();*/
         $query = $this->db->query('
             SELECT
 				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
+				CONCAT(IFNULL(SN.StatusSN,""), " - ", IFNULL(P.idSis_Usuario,""), " - ", IFNULL(P.Nome,"")) AS Nome
             FROM
                 Sis_Usuario AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+					LEFT JOIN Tab_StatusSN AS SN ON SN.Inativo = P.Inativo
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND				
@@ -4958,5 +4961,20 @@ exit();*/
 
         return $array;
     }
-		
+
+	public function select_inativo($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query('SELECT * FROM Tab_StatusInativo');
+        } else {
+            $query = $this->db->query('SELECT * FROM Tab_StatusInativo');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->Abrev] = $row->StatusInativo;
+            }
+        }
+
+        return $array;
+    }
 }
