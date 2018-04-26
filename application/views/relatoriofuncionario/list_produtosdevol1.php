@@ -6,15 +6,15 @@
 			<table class="table table-bordered table-condensed table-striped">
                 <thead>
 					<tr>
-						<th colspan="6" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
+						<th colspan="4" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
 						<th colspan="2" class="active"> <?php echo $report->soma->quantidade ?> Produtos</th>
 					</tr>
 				</thead>
 				<thead>
                     <tr>						
-						<th class="active">Nº Dev.</th>
+						<th class="active">NºOrç.</th>
                         <th class="active">Consultor</th>
-						<th class="active">Dt.Dev.</th>
+						<th class="active">Dt.Orç.</th>
 						<!--<th class="active">Fornec</th>-->
 						<th class="active">Código</th>
 						<th class="active">Qtd.</th>
@@ -25,8 +25,7 @@
 						<th class="active">Valor</th>
 						<!--<th class="active">Valor do Orç.</th>-->						
 						<th class="active">Obs</th>
-						<th class="active">Dt Dev.</th>
-						<th class="active">Forma de Pag.</th>
+						<th class="active">Dt.Dev.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +49,6 @@
 							#echo '<td>' . $row['ValorOrca'] . '</td>';
 							echo '<td>' . $row['ObsServico'] . '</td>';
 							echo '<td>' . $row['DataValidadeServico'] . '</td>';
-							echo '<td>' . $row['FormaPag'] . '</td>';
                         echo '</tr>';
                     }
                     ?>
@@ -59,7 +57,7 @@
 
                 <tfoot>
                     <tr>
-						<th colspan="6" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
+						<th colspan="4" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
 						<th colspan="2" class="active"> <?php echo $report->soma->quantidade ?> Produtos</th>
 					</tr>
                 </tfoot>

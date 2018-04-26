@@ -1186,7 +1186,7 @@ class Relatoriofuncionario extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
         $this->form_validation->set_rules('DataInicio', 'Data Início', 'required|trim|valid_date');
-        $this->form_validation->set_rules('DataFim', 'Data Fim', 'trim|valid_date');
+        #$this->form_validation->set_rules('DataFim', 'Data Fim', 'trim|valid_date');
 
 		$data['select']['AprovadoOrca'] = array(
             '#' => 'TODOS',
@@ -1197,8 +1197,7 @@ class Relatoriofuncionario extends CI_Controller {
         $data['select']['Campo'] = array(
             'C.Nome' => 'Nome do Consultor',
 			'OT.idApp_OrcaTrata' => 'Id Orçam.',
-			'OT.AprovadoOrca' => 'Orç. Aprov./Fechado?',
-            'OT.DataOrca' => 'Data do Orçam.',
+            'APV.DataValidadeProduto' => 'Data da Entrega.',			
 			'TPV.CodProd' => 'Código',
 			'TPV.Produtos' => 'Produto',
 			'TPV.Prodaux1' => 'Aux1',
@@ -1290,16 +1289,9 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.Nome' => 'Nome do Consultor',
-			'OT.idApp_OrcaTrata' => 'Nº Dev.',
-			'OT.Orcamento' => 'Nº Orç.',
-            'OT.DataOrca' => 'Dt. Dev.',
-			'OT.AprovadoDespesas' => 'Apr./Fech.',
-			'OT.CodProd' => 'Cd. Prod.',
-			'TPV.QtdVendaServico' => 'Qtd. do Produto',
-			'TPV.Produtos' => 'Produto',
-			'TPV.Prodaux1' => 'Aux1',
-			'TPV.Prodaux2' => 'Aux2',
-			'TPV.Prodaux3' => 'Categoria',
+			'OT.idApp_OrcaTrata' => 'NºOrç.',
+            'OT.DataOrca' => 'Dt.Orç.',
+			'APV.DataValidadeServico' => 'Dt.Dev.',
 
         );
 

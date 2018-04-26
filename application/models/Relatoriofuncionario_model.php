@@ -1977,7 +1977,7 @@ exit();*/
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				(C.Nivel = "3" OR C.Nivel = "4") AND
 				(' . $consulta . ') AND
-				' . $filtro1 . '
+
 				APV.idApp_ProdutoVenda != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '

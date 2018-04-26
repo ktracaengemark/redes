@@ -11,22 +11,24 @@
 
 				<div class="panel panel-primary">
 
-					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
-					<div class="panel-body">
-
-						<?php echo form_open('relatoriofuncionario/orcamento', 'role="form"'); ?>
+					<div class="panel-heading"><strong><?php echo $titulo; ?></strong>
+					<?php echo form_open('relatoriofuncionario/orcamento', 'role="form"'); ?>
 						
+						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
+							<span class="glyphicon glyphicon-search"></span> Pesquisar
+						</button>
+						<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
+							<span class="glyphicon glyphicon-filter"></span> Filtros
+						</button>																										
+						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatoriofuncionario/consultores" role="button"> 
+							<span class="glyphicon glyphicon-plus"></span> Novo Orçam.
+						</a>
+						
+					</div>
+					<div class="panel-body">
+					
 						<div class="form-group">
 							
-							<button class="btn btn-sm btn-primary" name="pesquisar" value="0" type="submit">
-								<span class="glyphicon glyphicon-search"></span> Pesquisar
-							</button>
-							<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
-								<span class="glyphicon glyphicon-filter"></span> Filtros
-							</button>																										
-							<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatoriofuncionario/consultores" role="button"> 
-								<span class="glyphicon glyphicon-plus"></span> Novo Orçam.
-							</a>
 							<div class="modal fade bs-excluir-modal2-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
@@ -238,28 +240,31 @@
 															
 														</div>
 													</div>
+												</div>
+												<div class="row">
+													<br>
 													<div class="col-md-3 text-left">
-														<div class="modal-footer">
-															<button class="btn btn-primary btn-block" name="pesquisar" value="0" type="submit">
+														<div class="form-footer btn-block">
+															<button class="btn btn-primary" name="pesquisar" value="0" type="submit">
 															<span class="glyphicon glyphicon-search"></span> Pesquisar</button>
 														</div>
 													</div>
 													<div class="col-md-2 text-left">
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default btn-block" data-dismiss="modal">
+														<div class="form-footer btn-block">
+															<button type="button" class="btn btn-default " data-dismiss="modal">
 															<span class="glyphicon glyphicon-remove"> Fechar</button>
 														</div>
-													</div>	
+													</div>
 												</div>
 											</div>	
 										</div>
 									</div>
 								</div>
-							</div>
-						
+							</div>						
 						</div>
+						
 						</form>
-						<br>
+
 						<?php echo (isset($list)) ? $list : FALSE ?>
 					</div>
 				</div>			
