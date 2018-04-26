@@ -33,7 +33,7 @@
 			<table class="table table-bordered table-condensed table-striped">
 				<tfoot>
                     <tr>
-                        <th colspan="3" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
+                        <th colspan="3" class="active">Total: <?php echo $report->num_rows(); ?> resultado(s)</th>
                     </tr>
                 </tfoot>
 			</table>

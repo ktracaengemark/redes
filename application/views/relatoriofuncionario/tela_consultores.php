@@ -7,8 +7,10 @@
 				<?php echo validation_errors(); ?>
 				<div class="panel panel-primary">
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong>
-					<?php echo form_open('relatoriofuncionario/consultores', 'role="form"'); ?>
-						<button class="btn btn-sm btn-primary" name="pesquisar" value="0" type="submit">
+						
+						<?php echo form_open('relatoriofuncionario/consultores', 'role="form"'); ?>
+						
+						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
 							<span class="glyphicon glyphicon-search"></span> Pesq.
 						</button>
 						

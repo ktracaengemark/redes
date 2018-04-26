@@ -1977,7 +1977,7 @@ exit();*/
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				C.Associado = ' . $_SESSION['log']['id'] . ' AND				
 				(' . $consulta . ') AND
-				' . $filtro1 . '
+
 				APV.idApp_ProdutoVenda != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '
@@ -2691,7 +2691,7 @@ exit();*/
 				(' . $consulta2 . ') AND
 				(' . $consulta3 . ') AND
 				(' . $consulta4 . ') AND
-                ' . $filtro1 . '
+
                 ' . $filtro2 . '
 				' . $filtro3 . '
 				OT.TipoRD = "R"
@@ -3535,6 +3535,7 @@ exit();*/
 				C.idSis_Usuario,
                 C.Nome,
 				C.Inativo,
+				SN.StatusSN,
                 C.DataNascimento,
                 C.Sexo,
                 C.Email,

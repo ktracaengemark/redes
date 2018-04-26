@@ -14,15 +14,19 @@
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong>
 					
 					<?php echo form_open('relatoriofuncionario/produtosdevol1', 'role="form"'); ?>
-						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
-							<span class="glyphicon glyphicon-search"></span> Pesq.
-						</button>
-						<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
-							<span class="glyphicon glyphicon-filter"></span> Filtros
-						</button>										
-						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatoriofuncionario/consultores" role="button"> 
-							<span class="glyphicon glyphicon-plus"></span> Nova Devoloção
-						</a>					
+						
+						<div class="text-left">
+							<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
+								<span class="glyphicon glyphicon-search"></span> Pesq.
+							</button>
+							<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
+								<span class="glyphicon glyphicon-filter"></span> Filtros
+							</button>										
+							<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatoriofuncionario/consultores" role="button"> 
+								<span class="glyphicon glyphicon-plus"></span> Nova Devoloção
+							</a>
+						</div>
+						
 					</div>
 					
 					<div class="panel-body">
@@ -193,10 +197,12 @@
 								</div>
 							</div>
 						</div>
+						
+						<?php echo (isset($list)) ? $list : FALSE ?>
+						
 					</div>
+					
 					</form>
-
-					<?php echo (isset($list)) ? $list : FALSE ?>
 
 				</div>
 			</div>

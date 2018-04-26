@@ -254,6 +254,7 @@
 
 						<?php echo (isset($list)) ? $list : FALSE ?>
 					</div>
+				
 				</div>				
 			</div>
 		</div>		

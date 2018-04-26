@@ -4,12 +4,24 @@
         <div>
 	
 			<table class="table table-bordered table-condensed table-striped">
-                <thead>
+                <!--
+				<thead>
 					<tr>
-						<th colspan="6" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
+						<th colspan="4" class="active">Total encontrado: <?php echo $report->num_rows(); ?> Linha(s)</th>
 						<th colspan="2" class="active"> <?php echo $report->soma->quantidade ?> Produtos</th>
 					</tr>
 				</thead>
+				-->
+				<tfoot>
+                    <tr>
+                        <th colspan="3" class="active">Total encontrado: <?php echo $report->num_rows(); ?> Linha(s)</th>
+						<th colspan="2" class="active"> <?php echo $report->soma->quantidade ?> Produtos</th>
+                    </tr>
+                </tfoot>
+				
+			</table>	
+				
+			<table class="table table-bordered table-condensed table-striped">	
 				<thead>
                     <tr>
 						<th class="active">Cliente</th>
@@ -56,13 +68,6 @@
                     ?>
 
                 </tbody>
-
-                <tfoot>
-                    <tr>
-						<th colspan="6" class="active">Total encontrado: <?php echo $report->num_rows(); ?> resultado(s)</th>
-						<th colspan="2" class="active"> <?php echo $report->soma->quantidade ?> Produtos</th>
-					</tr>
-                </tfoot>
             </table>
         </div>
     </div>
