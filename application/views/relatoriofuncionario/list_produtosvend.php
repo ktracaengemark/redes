@@ -23,9 +23,7 @@
 						<th class="active">Aux2</th>
 						<th class="active">Valor</th>
 						<th class="active">Dt Ent.</th>
-						<th class="active">Obs</th>
-						
-
+						<th class="active">Obs</th>						
                     </tr>
                 </thead>
                 <tbody>
@@ -46,8 +44,7 @@
 							echo '<td>' . $row['Prodaux2'] . '</td>';
 							echo '<td>' . $row['ValorVendaProduto'] . '</td>';
 							echo '<td>' . $row['DataValidadeProduto'] . '</td>';
-							echo '<td>' . $row['ObsProduto'] . '</td>';
-														
+							echo '<td>' . $row['ObsProduto'] . '</td>';														
                         echo '</tr>';
                     }
                     ?>
