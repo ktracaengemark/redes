@@ -8,7 +8,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">MENU</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand"> <?php echo $_SESSION['log']['NomeEmpresa']; ?></a>
+					<a class="navbar-brand"> <?php echo $_SESSION['log']['NomeEmpresa2']; ?></a>
 				</div>
 				<div class="collapse navbar-collapse">
 
@@ -31,10 +31,10 @@
 
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?> <span class="caret"></span>
+									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Nome2']; ?> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url() ?>acesso/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?></a></li>
+									<li><a href="<?php echo base_url() ?>acesso/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Nome2']; ?></a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span>Agenda</a></li>
 									<li role="separator" class="divider"></li>
@@ -77,10 +77,10 @@
 							-->
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?> <span class="caret"></span>
+									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Nome2']; ?> <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url() ?>acessoconsultor/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Usuario']; ?></a></li>
+									<li><a href="<?php echo base_url() ?>acessoconsultor/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Nome2']; ?></a></li>
 									<li role="separator" class="divider"></li>
 									<!--
 									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>

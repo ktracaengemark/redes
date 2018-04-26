@@ -110,11 +110,12 @@ class Loginempresamatriz extends CI_Controller {
                 //se for necessário reduzir o tamanho do nome de usuário, que pode ser um email
                 $_SESSION['log']['UsuarioEmpresaMatriz'] = (strlen($query['UsuarioEmpresaMatriz']) > 15) ? substr($query['UsuarioEmpresaMatriz'], 0, 15) : $query['UsuarioEmpresaMatriz'];
                 $_SESSION['log']['Nome'] = (strlen($query['Nome']) > 10) ? substr($query['Nome'], 0, 10) : $query['Nome'];
+				$_SESSION['log']['Nome'] = $query['Nome'];
 				#$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
 				$_SESSION['log']['id'] = $query['idSis_EmpresaMatriz'];				
 				#$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
-				$_SESSION['log']['NomeEmpresa'] = (strlen($query['NomeEmpresa']) > 18) ? substr($query['NomeEmpresa'], 0, 18) : $query['NomeEmpresa'];
-				#$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
+				$_SESSION['log']['NomeEmpresa2'] = (strlen($query['NomeEmpresa']) > 18) ? substr($query['NomeEmpresa'], 0, 18) : $query['NomeEmpresa'];
+				$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
 				#$_SESSION['log']['Nome'] = $query['Nome'];
 
 			
