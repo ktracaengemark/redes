@@ -52,8 +52,8 @@ class Clienteusuario extends CI_Controller {
 			'idSis_Usuario',
 			'Usuario',
             'Nome',
-			'Senha',
-			'Confirma',
+			#'Senha',
+			#'Confirma',
             'DataNascimento',
             'Celular',
 			'Email',
@@ -110,10 +110,10 @@ class Clienteusuario extends CI_Controller {
 			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
 			$data['query']['Associado'] = $_SESSION['log']['id'];
 			$data['query']['QuemCad'] = $_SESSION['log']['id'];
-			$data['query']['Senha'] = md5($data['query']['Senha']);
+			#$data['query']['Senha'] = md5($data['query']['Senha']);
 			$data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             $data['query']['DataCriacao'] = $this->basico->mascara_data($data['query']['DataCriacao'], 'mysql');
-			$data['query']['Codigo'] = md5(uniqid(time() . rand()));
+			#$data['query']['Codigo'] = md5(uniqid(time() . rand()));
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
 			$data['query']['Inativo'] = 0;
 			$data['query']['Nivel'] = 2;

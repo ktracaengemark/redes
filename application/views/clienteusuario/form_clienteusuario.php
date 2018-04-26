@@ -69,6 +69,7 @@
 															<input type="text" class="form-control" id="Bairro" maxlength="100" <?php echo $readonly; ?>
 																   name="Email" value="<?php echo $query['Email']; ?>">
 														</div>
+														<!--
 														<div class="col-md-2">
 															<label for="Inativo">Ativo?</label><br>
 															<div class="form-group">
@@ -96,7 +97,8 @@
 																	?>
 																</div>
 															</div>
-														</div>									
+														</div>
+														-->
 													</div>
 												</div>
 												<!--
