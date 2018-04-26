@@ -179,7 +179,30 @@
 															
 														</div>
 													</div>
-
+													<div class="col-md-3">
+														<label for="DataInicio2">Dt Ent I: *</label>
+														<div class="input-group DatePicker">
+															<span class="input-group-addon" disabled>
+																<span class="glyphicon glyphicon-calendar"></span>
+															</span>
+															<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"
+																   autofocus name="DataInicio2" value="<?php echo set_value('DataInicio2', $query['DataInicio2']); ?>">
+															
+														</div>
+													</div>
+													<div class="col-md-3">
+														<label for="DataFim2">Dt Ent F: (opcional)</label>
+														<div class="input-group DatePicker">
+															<span class="input-group-addon" disabled>
+																<span class="glyphicon glyphicon-calendar"></span>
+															</span>
+															<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"
+																   autofocus name="DataFim2" value="<?php echo set_value('DataFim2', $query['DataFim2']); ?>">
+															
+														</div>
+													</div>
+												</div>
+												<div class="row">
 													<br>
 													<div class="col-md-3 text-left">
 														<div class="form-footer btn-block">

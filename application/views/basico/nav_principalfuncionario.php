@@ -196,7 +196,7 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/receitas"><span class="glyphicon glyphicon-list"></span> Orçam. X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosvend"><span class="glyphicon glyphicon-list"></span> Orçam. X Prd.</a></li>
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosvend"><span class="glyphicon glyphicon-list"></span> Prd. X Ent.</a></li>
 									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url() ?>relatoriofuncionario/despesas"><span class="glyphicon glyphicon-list"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>
@@ -206,7 +206,7 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>-->						
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Prd.</a></li>
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Prd. X Dev.</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/produtosdevol"><span class="glyphicon glyphicon-list"></span> Devol. X Cl. X Prd.(Desp)</a></li>
 									<li role="separator" class="divider"></li>

@@ -1930,6 +1930,15 @@ exit();*/
             $consulta =
                 '(OT.DataOrca >= "' . $data['DataInicio'] . '")';
         }
+		
+		if ($data['DataFim2']) {
+            $consulta2 =
+                '(APV.DataValidadeProduto >= "' . $data['DataInicio2'] . '" AND APV.DataValidadeProduto <= "' . $data['DataFim2'] . '")';
+        }
+        else {
+            $consulta2 =
+                '(APV.DataValidadeProduto >= "' . $data['DataInicio2'] . '")';
+        }
 
         $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
 		$data['Produtos'] = ($data['Produtos']) ? ' AND TPV.idTab_Produtos = ' . $data['Produtos'] : FALSE;
@@ -1977,7 +1986,7 @@ exit();*/
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				(C.Nivel = "3" OR C.Nivel = "4") AND
 				(' . $consulta . ') AND
-
+				(' . $consulta2 . ') AND
 				APV.idApp_ProdutoVenda != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '
@@ -2029,6 +2038,15 @@ exit();*/
             $consulta =
                 '(OT.DataOrca >= "' . $data['DataInicio'] . '")';
         }
+		
+		if ($data['DataFim2']) {
+            $consulta2 =
+                '(APV.DataValidadeServico >= "' . $data['DataInicio2'] . '" AND APV.DataValidadeServico <= "' . $data['DataFim2'] . '")';
+        }
+        else {
+            $consulta2 =
+                '(APV.DataValidadeServico >= "' . $data['DataInicio2'] . '")';
+        }
 
         $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
 		$data['Produtos'] = ($data['Produtos']) ? ' AND TPV.idTab_Produtos = ' . $data['Produtos'] : FALSE;
@@ -2079,6 +2097,7 @@ exit();*/
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				(C.Nivel = "3" OR C.Nivel = "4") AND
 				(' . $consulta . ') AND
+				(' . $consulta2 . ') AND
 				APV.idApp_ServicoVenda != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '

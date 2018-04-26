@@ -1175,18 +1175,22 @@ class Relatorioconsultor extends CI_Controller {
 			'AprovadoOrca',
 			'DataInicio',
             'DataFim',
+			'DataInicio2',
+            'DataFim2',
 			'Ordenamento',
             'Campo',
 
         ), TRUE));
-
+/*
         if (!$data['query']['DataInicio'])
            $data['query']['DataInicio'] = '01/01/2017';
-
+*/
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início', 'required|trim|valid_date');
+        $this->form_validation->set_rules('DataInicio', 'Data Início', 'trim|valid_date');
         $this->form_validation->set_rules('DataFim', 'Data Fim', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio2', 'Data Entrega Início', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim2', 'Data Entrega Fim', 'trim|valid_date');
 
 		$data['select']['AprovadoOrca'] = array(
             '#' => 'TODOS',
@@ -1231,6 +1235,8 @@ class Relatorioconsultor extends CI_Controller {
 			$data['bd']['Prodaux3'] = $data['query']['Prodaux3'];
 			$data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
+			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
+            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
 			$data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
@@ -1274,18 +1280,22 @@ class Relatorioconsultor extends CI_Controller {
 			'AprovadoOrca',
 			'DataInicio',
             'DataFim',
+			'DataInicio2',
+            'DataFim2',
 			'Ordenamento',
             'Campo',
 
         ), TRUE));
-
+/*
         if (!$data['query']['DataInicio'])
            $data['query']['DataInicio'] = '01/01/2017';
-
+*/
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início', 'required|trim|valid_date');
+        $this->form_validation->set_rules('DataInicio', 'Data Início', 'trim|valid_date');
         $this->form_validation->set_rules('DataFim', 'Data Fim', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio2', 'Data Entrega Início', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim2', 'Data Entrega Fim', 'trim|valid_date');
 
 
         $data['select']['Campo'] = array(
@@ -1327,6 +1337,8 @@ class Relatorioconsultor extends CI_Controller {
 			$data['bd']['Prodaux3'] = $data['query']['Prodaux3'];
 			$data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
+			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
+            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
 			$data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
 			$data['bd']['TipoDevolucao'] = $data['query']['TipoDevolucao'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];

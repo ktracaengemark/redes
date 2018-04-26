@@ -185,7 +185,7 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/receitas"><span class="glyphicon glyphicon-list"></span> Orçam. X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosvend"><span class="glyphicon glyphicon-list"></span> Orçam. X Prd.</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosvend"><span class="glyphicon glyphicon-list"></span> Prd. X Ent.</a></li>
 									<li role="separator" class="divider"></li>																		
 									<!--<li><a href="<?php echo base_url() ?>relatorioconsultor/despesas"><span class="glyphicon glyphicon-list"></span> Despesas</a></li>
 									<li role="separator" class="divider"></li>
@@ -197,7 +197,7 @@
 									<li role="separator" class="divider"></li>-->
 									<!--<li><a href="<?php echo base_url() ?>relatorio/devolucao"><span class="glyphicon glyphicon-list"></span> Devol(Desp)</a></li>
 									<li role="separator" class="divider"></li>-->							
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Devol. X Prd.</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Prd. X Dev.</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamentorede"><span class="glyphicon glyphicon-list"></span> Orçam. Rede</a></li>
 									<!--<li role="separator" class="divider"></li>
