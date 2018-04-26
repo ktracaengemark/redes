@@ -1860,7 +1860,7 @@ class Relatoriofuncionario extends CI_Controller {
 			'OT.DataEntradaOrca' => 'Validade do Orçamento',
 			'OT.DataPrazo' => 'Data da Entrega',
             'OT.ValorOrca' => 'Valor do Orçamento',
-			'OT.ValorEntradaOrca' => 'Valor do Desconto',
+			'OT.ValorDev' => 'Valor do Desconto',
 			'OT.ValorRestanteOrca' => 'Valor a Receber',
 			'OT.FormaPag' => 'Forma de Pag.?',
             'OT.ServicoConcluido' => 'Serviço Concluído?',
