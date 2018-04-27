@@ -290,7 +290,7 @@ class Orcatratacons extends CI_Controller {
                     $data['servico'][$j]['ValorVendaServico'] = str_replace(',', '.', str_replace('.', '', $data['servico'][$j]['ValorVendaServico']));
                     unset($data['servico'][$j]['SubtotalServico']);
                 }
-                $data['servico']['idApp_ServicoVenda'] = $this->Orcatrata_model->set_servico_venda($data['servico']);
+                $data['servico']['idApp_ServicoVenda'] = $this->Orcatratacons_model->set_servico_venda($data['servico']);
             }
 
             #### App_ProdutoVenda ####
