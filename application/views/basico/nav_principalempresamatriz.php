@@ -3,12 +3,12 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<div class="navbar-header ">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
 					<span class="sr-only">MENU</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand"> <?php echo $_SESSION['log']['NomeEmpresa']; ?></a>
 			</div>
-			<div class="collapse navbar-collapse">
+			<div class="collapse navbar-collapse" id="myNavbar1">
 
 				<ul class="nav navbar-nav navbar-center">
 					<!--
