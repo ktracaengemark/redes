@@ -11,23 +11,31 @@
 
 				<div class="panel panel-primary">
 
-					<div class="panel-heading"><strong><?php echo $titulo; ?> - Ano</strong>
-						
+					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
+					<div class="panel-body">
+
 						<?php echo form_open('relatorioempresa/balanco', 'role="form"'); ?>
 
-						<button class="btn btn-sm">
-							<input type="text" class="form-control" maxlength="4" placeholder="AAAA"
-								   autofocus name="Ano" value="<?php echo set_value('Ano', $query['Ano']); ?>">
-						</button>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-2">
+									<label for="Ano">Ano</label>
+									<div class="input-group">
+										<input type="text" class="form-control" maxlength="4" placeholder="AAAA"
+											   autofocus name="Ano" value="<?php echo set_value('Ano', $query['Ano']); ?>">
+									</div>
+								</div>
+								<div class="col-md-2 text-left"><br />
+									<button class="btn btn-lg btn-primary" name="pesquisar" value="0" type="submit">
+										<span class="glyphicon glyphicon-search"></span> Pesquisar
+									</button>
+								</div>
+							</div>
+						</div>
 
-						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
-							<span class="glyphicon glyphicon-search"></span> Pesquisar
-						</button>
-					
-					</div>
-					<div class="panel-body">
-						
 						</form>
+
+						<br>
 
 						<?php echo (isset($list)) ? $list : FALSE ?>
 
