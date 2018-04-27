@@ -16,14 +16,14 @@
 
 							<div class="row">
 								<div class="col-md-2">
-									<button>
-										<input type="text" class="form-control" maxlength="4" placeholder="AAAA"
+									<div>
+										<input type="text" class="form-control Numero" maxlength="4" placeholder="AAAA"
 											   autofocus name="Ano" value="<?php echo set_value('Ano', $query['Ano']); ?>">
-									</button>
+									</div>
 								
 									<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
 										<span class="glyphicon glyphicon-search"></span> Pesq.
-									</button>
+									</button>									
 								</div>
 							</div>
 
