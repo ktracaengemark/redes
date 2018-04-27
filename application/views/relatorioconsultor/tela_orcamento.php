@@ -41,9 +41,9 @@
 									<div class="modal-footer">
 										<div class="form-group text-left">
 											<div class="row">
-												<div class="col-md-12 btn-block text-left">
+												<div class="col-md-9  text-left">
 													<label for="Ordenamento">Nome do Cliente:</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
 															id="Nome" name="Nome">
 														<?php
 														foreach ($select['Nome'] as $key => $row) {
@@ -56,12 +56,29 @@
 														?>
 													</select>
 												</div>
-												<div class="col-md-12 text-left">
+												<div class="col-md-3 text-left">
+													<label for="ServicoConcluido">Prod. Entr.?</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " onchange="this.form.submit()"
+															id="ServicoConcluido" name="ServicoConcluido">
+														<?php
+														foreach ($select['ServicoConcluido'] as $key => $row) {
+															if ($query['ServicoConcluido'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>												
+											</div>	
+											<div class="row">	
+												<div class="col-md-9 text-left">
 													<label for="Ordenamento">Ordenamento:</label>
 													<div class="form-group btn-block">
 														<div class="row">
-															<div class="col-md-8">
-																<select data-placeholder="Selecione uma opção..." class="form-control Chosen " onchange="this.form.submit()"
+															<div class="col-md-9">
+																<select data-placeholder="Selecione uma opção..." class="form-control Chosen " 
 																		id="Campo" name="Campo">
 																	<?php
 																	foreach ($select['Campo'] as $key => $row) {
@@ -75,8 +92,8 @@
 																</select>
 															</div>
 
-															<div class="col-md-4">
-																<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
+															<div class="col-md-3">
+																<select data-placeholder="Selecione uma opção..." class="form-control Chosen" 
 																		id="Ordenamento" name="Ordenamento">
 																	<?php
 																	foreach ($select['Ordenamento'] as $key => $row) {
@@ -93,51 +110,6 @@
 													</div>
 												</div>
 												<div class="col-md-3 text-left">
-													<label for="AprovadoOrca">Aprovado?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " onchange="this.form.submit()"
-															id="AprovadoOrca" name="AprovadoOrca">
-														<?php
-														foreach ($select['AprovadoOrca'] as $key => $row) {
-															if ($query['AprovadoOrca'] == $key) {
-																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-															} else {
-																echo '<option value="' . $key . '">' . $row . '</option>';
-															}
-														}
-														?>
-													</select>
-												</div>
-												<div class="col-md-3 text-left">
-													<label for="ServicoConcluido">Concluído?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " onchange="this.form.submit()"
-															id="ServicoConcluido" name="ServicoConcluido">
-														<?php
-														foreach ($select['ServicoConcluido'] as $key => $row) {
-															if ($query['ServicoConcluido'] == $key) {
-																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-															} else {
-																echo '<option value="' . $key . '">' . $row . '</option>';
-															}
-														}
-														?>
-													</select>
-												</div>
-												<div class="col-md-3 text-left">
-													<label for="QuitadoOrca">Quitado?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " onchange="this.form.submit()"
-															id="QuitadoOrca" name="QuitadoOrca">
-														<?php
-														foreach ($select['QuitadoOrca'] as $key => $row) {
-															if ($query['QuitadoOrca'] == $key) {
-																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-															} else {
-																echo '<option value="' . $key . '">' . $row . '</option>';
-															}
-														}
-														?>
-													</select>
-												</div>
-												<div class="col-md-3 text-left">
 													<label for="Ordenamento">Forma de Pag.</label>
 													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " onchange="this.form.submit()"
 															id="FormaPag" name="FormaPag">
@@ -151,8 +123,9 @@
 														}
 														?>
 													</select>
-												</div>																
-
+												</div>
+											</div>	
+											<div class="row">																	
 												<div class="col-md-3 text-left">
 													<label for="DataInicio">Orç. - Dt Inc.</label>
 													<div class="input-group DatePicker btn-block">
@@ -175,51 +148,7 @@
 														
 													</div>
 												</div>
-												<div class="col-md-3 text-left">
-													<label for="DataInicio2">Concl. - Dt Inc.</label>
-													<div class="input-group DatePicker btn-block">
-														<span class="input-group-addon" disabled>
-															<span class="glyphicon glyphicon-calendar"></span>
-														</span>
-														<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"
-																name="DataInicio2" value="<?php echo set_value('DataInicio2', $query['DataInicio2']); ?>">
-														
-													</div>
-												</div>
-												<div class="col-md-3 text-left">
-													<label for="DataFim2">Concl. - Dt Fim</label>
-													<div class="input-group DatePicker btn-block">
-														<span class="input-group-addon" disabled>
-															<span class="glyphicon glyphicon-calendar"></span>
-														</span>
-														<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"
-																name="DataFim2" value="<?php echo set_value('DataFim2', $query['DataFim2']); ?>">
-														
-													</div>
-												</div>
-												<div class="col-md-3 text-left">
-													<label for="DataInicio4">Quit. - Dt Inc.</label>
-													<div class="input-group DatePicker btn-block">
-														<span class="input-group-addon" disabled>
-															<span class="glyphicon glyphicon-calendar"></span>
-														</span>
-														<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"
-																name="DataInicio4" value="<?php echo set_value('DataInicio4', $query['DataInicio4']); ?>">
-														
-													</div>
-												</div>
-												<div class="col-md-3 text-left">
-													<label for="DataFim4">Quit. - Dt Fim</label>
-													<div class="input-group DatePicker btn-block">
-														<span class="input-group-addon" disabled>
-															<span class="glyphicon glyphicon-calendar"></span>
-														</span>
-														<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"
-																name="DataFim4" value="<?php echo set_value('DataFim4', $query['DataFim4']); ?>">
-														
-													</div>
-												</div>								
-
+							
 												<div class="col-md-3 text-left">
 													<label for="DataInicio3">Ret. - Dt Inc.</label>
 													<div class="input-group DatePicker btn-block">

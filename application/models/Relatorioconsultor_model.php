@@ -215,9 +215,6 @@ class Relatorioconsultor_model extends CI_Model {
 				C.Associado = ' . $_SESSION['log']['id'] . ' AND
                 (' . $consulta . ') AND
 				(' . $consulta2 . ') AND
-				(' . $consulta3 . ') AND
-                ' . $filtro1 . '
-                ' . $filtro2 . '
                 ' . $filtro3 . '
 				' . $filtro4 . '
                 C.idSis_Usuario = OT.idApp_Cliente
@@ -2548,6 +2545,7 @@ exit();*/
 				OT.DataEntradaOrca,
 				OT.DataPrazo,
                 OT.ValorOrca,
+				OT.ValorDev,
 				OT.ValorEntradaOrca,
 				OT.ValorRestanteOrca,
                 OT.ServicoConcluido,
@@ -2569,11 +2567,7 @@ exit();*/
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				C.Associado = ' . $_SESSION['log']['id'] . ' AND
                 (' . $consulta . ') AND
-				(' . $consulta2 . ') AND
 				(' . $consulta3 . ') AND
-				(' . $consulta4 . ') AND
-                ' . $filtro1 . '
-                ' . $filtro2 . '
 				' . $filtro3 . '
                 C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '

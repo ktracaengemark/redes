@@ -2080,6 +2080,11 @@ $(document).ready(function () {
                                     <option value="">-- Selecione uma opção --</option>\
                                 </select>\
                             </div>\
+							<div class="col-md-3">\
+								<label for="ObsProduto'+pc+'">Obs:</label><br>\
+								<input type="text" class="form-control" id="ObsProduto'+pc+'" maxlength="250"\
+									   name="ObsProduto'+pc+'" value="">\
+							</div>\
 							<div class="col-md-1">\
                                 <label for="QtdVendaProduto">Qtd:</label><br>\
                                 <div class="input-group">\
@@ -2088,11 +2093,6 @@ $(document).ready(function () {
                                         name="QtdVendaProduto'+pc+'" value="">\
                                 </div>\
                             </div>\
-							<div class="col-md-3">\
-								<label for="ObsProduto'+pc+'">Obs:</label><br>\
-								<input type="text" class="form-control" id="ObsProduto'+pc+'" maxlength="250"\
-									   name="ObsProduto'+pc+'" value="">\
-							</div>\
                             <div class="col-md-2">\
                                 <label for="ValorVendaProduto">Valor do Produto:</label><br>\
                                 <div class="input-group id="txtHint">\

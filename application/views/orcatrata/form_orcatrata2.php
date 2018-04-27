@@ -358,7 +358,7 @@
 							</div>
 						</div>
 					</div>
-			<!--#######################################-->
+
 					<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-primary">
 							<div class="panel-heading collapsed" role="tab" id="heading4" data-toggle="collapse" data-parent="#accordion4" data-target="#collapse4" aria-expanded="false">								<h4 class="panel-title">
@@ -375,7 +375,7 @@
 										<div class="panel panel-info">
 											<div class="panel-heading">
 												<div class="row">
-													<div class="col-md-4">
+													<div class="col-md-2">
 														<label for="ValorOrca">Orçamento:</label><br>
 														<div class="input-group" id="txtHint">
 															<span class="input-group-addon" id="basic-addon1">R$</span>
@@ -384,7 +384,7 @@
 														</div>
 													</div>
 													
-													<div class="col-md-4">
+													<div class="col-md-2">
 														<label for="ValorDev">Devolução/ Desconto:</label><br>
 														<div class="input-group" id="txtHint">
 															<span class="input-group-addon" id="basic-addon1">R$</span>
@@ -403,24 +403,15 @@
 														</div>
 													</div>
 													-->
-													<div class="col-md-4">
+													<div class="col-md-2">
 														<label for="ValorRestanteOrca">Resta Pagar:</label><br>
 														<div class="input-group" id="txtHint">
 															<span class="input-group-addon" id="basic-addon1">R$</span>
 															<input type="text" class="form-control Valor" id="ValorRestanteOrca" maxlength="10" placeholder="0,00" readonly=""
 																   name="ValorRestanteOrca" value="<?php echo $orcatrata['ValorRestanteOrca'] ?>">
 														</div>
-													</div>																		
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="panel-body">
-									<div class="form-group">
-										<div class="panel panel-info">
-											<div class="panel-heading">
-												<div class="row">
+													</div>
+													<!--
 													<div class="col-md-2">
 														<label for="Modalidade">Modalidade:</label><br>
 														<div class="form-group" id="txtHint">
@@ -436,6 +427,17 @@
 															?>
 														</div>
 													</div>
+													-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="form-group">
+										<div class="panel panel-info">
+											<div class="panel-heading">
+												<div class="row">													
 													<div class="col-md-2">
 														<label for="FormaPagamento">Forma de Pagam.:</label>
 														<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -453,14 +455,14 @@
 															?>
 														</select>
 													</div>																																			
-													<div class="col-md-1">
+													<div class="col-md-2">
 														<label for="QtdParcelasOrca">Qtd.Parc.:</label><br>
 														<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"
 															   data-toggle="collapse" onkeyup="calculaParcelas()"
 																	data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 															   name="QtdParcelasOrca" value="<?php echo $orcatrata['QtdParcelasOrca'] ?>">
 													</div>																		
-													<div class="col-md-3">
+													<div class="col-md-2">
 														<label for="DataVencimentoOrca">1º Venc.</label>
 														<div class="input-group <?php echo $datepicker; ?>">
 															<span class="input-group-addon" disabled>
@@ -751,7 +753,7 @@
 															<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
 																	  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
 														</div>														
-														<div class="col-md-3">
+														<div class="col-md-2">
 															<label for="DataOrca">Orçado em:</label>
 															<div class="input-group <?php echo $datepicker; ?>">
 																<span class="input-group-addon" disabled>
@@ -762,7 +764,7 @@
 																
 															</div>
 														</div>														
-														<div class="col-md-3">
+														<div class="col-md-2">
 															<label for="DataRetorno">Retornar em:</label>
 															<div class="input-group <?php echo $datepicker; ?>">
 																<span class="input-group-addon" disabled>
@@ -774,7 +776,7 @@
 															</div>
 														</div>
 														<div class="form-inline col-md-2">
-															<label for="ServicoConcluido">Concluído?</label><br>
+															<label for="ServicoConcluido">Prod. Entr.?</label><br>
 															<div class="form-group">
 																<div class="btn-group" data-toggle="buttons">
 																	<?php

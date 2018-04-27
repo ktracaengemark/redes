@@ -40,14 +40,10 @@
 			<table class="table table-bordered table-condensed table-striped">
                 <thead>
                     <tr>
-                        <th class="active">Cliente</th>
-						<th class="active">Orç.</th>                                             
-                        <th class="active">Data do Orç.</th>
-                        <!--<th class="active">Data Entrada</th>
-                        <th class="active">Valor Entrada</th>-->
-						<th class="active">Orç. Aprov.?</th>
-						<th class="active">Serv. Concl.?</th>
-						<th class="active">Orç. Quit.?</th>						
+                        <th class="active">Orç.</th>
+						<th class="active">Cliente</th>						                                             
+                        <!--<th class="active">Data do Orç.</th>-->
+						<th class="active">Prod. Entr.?</th>						
                         <th class="active">Parcela</th>
                         <th class="active">Data do Venc.</th>
                         <th class="active">Valor À Receber</th>
@@ -61,14 +57,10 @@
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
-                            echo '<td>' . $row['Nome'] . '</td>';
-							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';                                                       
-                            echo '<td>' . $row['DataOrca'] . '</td>';
-                           # echo '<td>' . $row['DataEntradaOrca'] . '</td>';
-                           # echo '<td class="text-right">R$ ' . $row['ValorEntradaOrca'] . '</td>';
-						    echo '<td>' . $row['AprovadoOrca'] . '</td>';
-							echo '<td>' . $row['ServicoConcluido'] . '</td>';
-							echo '<td>' . $row['QuitadoOrca'] . '</td>';						
+                            echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
+							echo '<td>' . $row['Nome'] . '</td>';							                                                       
+                            #echo '<td>' . $row['DataOrca'] . '</td>';
+							echo '<td>' . $row['ServicoConcluido'] . '</td>';						
                             echo '<td>' . $row['ParcelaRecebiveis'] . '</td>';
                             echo '<td>' . $row['DataVencimentoRecebiveis'] . '</td>';
                             echo '<td class="text-right">R$ ' . $row['ValorParcelaRecebiveis'] . '</td>';
