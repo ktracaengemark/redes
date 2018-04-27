@@ -12,6 +12,57 @@
 				<div class="panel-heading"><strong><?php echo '<strong>' . $_SESSION['Funcionario']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Funcionario']['idSis_Usuario'] . '</small>' ?></strong></div>
 				<div class="panel-body">
 			
+					<nav class="navbar navbar-inverse">
+					  <div class="container-fluid">
+						<div class="navbar-header">
+						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span> 
+						  </button>
+						  <a class="navbar-brand" href="#">Menu </a>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav navbar-center">
+						
+								<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
+
+									<div class="btn-group">
+										<button type="button" class="btn btn-sm btn-default  dropdown-toggle" data-toggle="dropdown">
+											<span class="glyphicon glyphicon-user"></span> Funcionário <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li>
+												<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
+													<a href="<?php echo base_url() . 'funcionario/prontuario/' . $_SESSION['Funcionario']['idSis_Usuario']; ?>">
+														<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
+													</a>
+												</a>
+											</li>
+											<li role="separator" class="divider"></li>
+											<li>
+												<a <?php if (preg_match("/funcionario\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
+													<a href="<?php echo base_url() . 'funcionario/alterar/' . $_SESSION['Funcionario']['idSis_Usuario']; ?>">
+														<span class="glyphicon glyphicon-edit"></span> Edit.
+													</a>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="btn-group" role="group" aria-label="..."> </div>
+								</li>
+							</ul>
+							<!--
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
+							-->
+						</div>
+					  </div>
+					</nav>
+					
+					<!--
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
@@ -34,16 +85,9 @@
 								</div>
 							</div>	
 						</div>
-					</div>
-					<!--
-					<div class="form-group">
-						<div class="row">
-							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Funcionario']['Nome'] . '</strong> - <small>Id.: ' . $_SESSION['Funcionario']['idSis_Usuario'] . '</small>' ?></h3>
-							</div>
-						</div>
-					</div>
+					</div>					
 					-->
+
 					<?php } ?>
 
 					<div class="row">
@@ -188,12 +232,12 @@
 											<?php if ($metodo == 2) { ?>
 
 												<div class="col-md-6">
-													<button class="btn btn-lg btn-primary" id="inputDb" data-loading-text="Aguarde..." type="submit">
+													<button class="btn btn-md btn-primary" id="inputDb" data-loading-text="Aguarde..." type="submit">
 														<span class="glyphicon glyphicon-save"></span> Salvar
 													</button>
 												</div>
 												<div class="col-md-6 text-right">
-													<button  type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal-sm">
+													<button  type="button" class="btn btn-md btn-danger" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal-sm">
 														<span class="glyphicon glyphicon-trash"></span> Excluir
 													</button>
 												</div>
@@ -227,7 +271,7 @@
 
 											<?php } else { ?>
 												<div class="col-md-6">
-													<button class="btn btn-lg btn-primary" id="inputDb" data-loading-text="Aguarde..." type="submit">
+													<button class="btn btn-md btn-primary" id="inputDb" data-loading-text="Aguarde..." type="submit">
 														<span class="glyphicon glyphicon-save"></span> Salvar
 													</button>
 												</div>

@@ -77,13 +77,13 @@ class Empresafilial extends CI_Controller {
 		
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-		$this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[Sis_EmpresaFilial.Email]');
+		$this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email|is_unique[Sis_EmpresaFilial.Email]');
         #$this->form_validation->set_rules('UsuarioEmpresaFilial', 'Nome do Func./ Usuário', 'required|trim|is_unique[Sis_EmpresaFilial.UsuarioEmpresaFilial]');
 		$this->form_validation->set_rules('Nome', 'Nome do Usuário', 'required|trim');
 		#$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
         #$this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         #$this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
-        $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
+        #$this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
 
 		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
 
@@ -188,7 +188,7 @@ class Empresafilial extends CI_Controller {
         #$this->form_validation->set_rules('Nome', 'Nome do Responsável', 'required|trim|is_unique_duplo[Sis_EmpresaFilial.Nome.DataNascimento.' . $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql') . ']');
         $this->form_validation->set_rules('Nome', 'Nome do Responsável', 'required|trim');
         #$this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
-        $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
+        #$this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
         $this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email');
 
         $data['select']['Municipio'] = $this->Basico_model->select_municipio();
@@ -213,7 +213,7 @@ class Empresafilial extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('empresafilial/form_empresafilial', $data);
+            $this->load->view('empresafilial/form_empresafilialalterar', $data);
         } else {
 
             $data['query']['Nome'] = trim(mb_strtoupper($data['query']['Nome'], 'ISO-8859-1'));
@@ -228,7 +228,7 @@ class Empresafilial extends CI_Controller {
 
             if ($data['auditoriaitem'] && $this->Empresafilial_model->update_empresafilial($data['query'], $data['query']['idSis_EmpresaFilial']) === FALSE) {
                 $data['msg'] = '?m=2';
-                redirect(base_url() . 'empresafilial/form_empresafilial/' . $data['query']['idSis_EmpresaFilial'] . $data['msg']);
+                redirect(base_url() . 'empresafilial/form_empresafilialalterar/' . $data['query']['idSis_EmpresaFilial'] . $data['msg']);
                 exit();
             } else {
 

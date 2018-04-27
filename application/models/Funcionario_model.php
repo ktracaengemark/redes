@@ -29,6 +29,28 @@ class Funcionario_model extends CI_Model {
         }
     }
 
+    public function set_agenda($data) {
+        #unset($data['idSisgef_Fila']);
+        /*
+          echo $this->db->last_query();
+          echo '<br>';
+          echo "<pre>";
+          print_r($data);
+          echo "</pre>";
+          exit();
+         */
+        $query = $this->db->insert('App_Agenda', $data);
+
+        if ($this->db->affected_rows() === 0) {
+            return FALSE;
+        }
+        else {
+            #return TRUE;
+            return $this->db->insert_id();
+        }
+
+    }
+	
     public function get_funcionario($data) {
         $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE idSis_Usuario = ' . $data);
 

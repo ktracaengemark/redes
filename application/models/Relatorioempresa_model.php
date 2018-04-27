@@ -3534,7 +3534,7 @@ exit();*/
 	
 	public function list_empresafilial($data, $completo) {
 
-        $data['Nome'] = ($data['Nome']) ? ' AND F.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['Nome'] = ($data['Nome']) ? ' AND F.idSis_EmpresaFilial = ' . $data['Nome'] : FALSE;
         $data['Campo'] = (!$data['Campo']) ? 'F.Nome' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 
