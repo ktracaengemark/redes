@@ -299,7 +299,7 @@ function calculaRestaDespesas(entrada) {
 
     //recebe o valor da despesa
     var despesa = $("#ValorDespesas").val();
-    var resta = (despesa.replace(".","").replace(",",".") - entrada.replace(".","").replace(",","."));
+    var resta = (despesa.replace(".","").replace(",",".") + entrada.replace(".","").replace(",","."));
 
     resta = mascaraValorReal(resta);
 
@@ -1442,8 +1442,8 @@ function calculaDespesas() {
     subtotal = mascaraValorReal(subtotal);
 
     //escreve o subtotal no campo do formulário
-    $('#ValorDespesas').val(subtotal);
-    calculaRestaDespesas($("#ValorEntradaDespesas").val());
+    $('#ValorRestanteDespesas').val(subtotal);
+    calculaRestaDespesas();
 }
 
 function calculaConsumo() {
