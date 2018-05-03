@@ -544,7 +544,7 @@
 																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																			   name="QtdParcelasOrca" value="<?php echo $orcatrata['QtdParcelasOrca'] ?>">
 																	</div>																		
-																	<div class="col-md-3">
+																	<div class="col-md-2">
 																		<label for="DataVencimentoOrca">1º Venc.</label>
 																		<div class="input-group <?php echo $datepicker; ?>">
 																			<input type="text" class="form-control Date" id="DataVencimentoOrca" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
@@ -555,9 +555,39 @@
 																		</div>
 
 																	</div>
+																	<div class="col-md-3">
+																		<label for="Modalidade">Modalidade</label><br>
+																		<div class="form-group">
+																			<div class="btn-block" data-toggle="buttons">
+																				<?php
+																				foreach ($select['Modalidade'] as $key => $row) {
+																					(!$orcatrata['Modalidade']) ? $orcatrata['Modalidade'] = 'P' : FALSE;
+
+																					if ($orcatrata['Modalidade'] == $key) {
+																						echo ''
+																						. '<label class="btn btn-warning active" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
+																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
+																						. 'onchange="calculaParcelas()" '
+																						. 'autocomplete="off" value="' . $key . '" checked>' . $row
+																						. '</label>'
+																						;
+																					} else {
+																						echo ''
+																						. '<label class="btn btn-default" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
+																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
+																						. 'onchange="calculaParcelasMensais()" '
+																						. 'autocomplete="off" value="' . $key . '" >' . $row
+																						. '</label>'
+																						;
+																					}
+																				}
+																				?>
+																			</div>
+																		</div>
+																	</div>
 																	<br>
 																	<div class="form-group">
-																		<div class="col-md-3 text-left">
+																		<div class="col-md-2 text-left">
 																			<button class="btn btn-danger" type="button" data-toggle="collapse" onclick="calculaParcelas()"
 																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
 																				<span class="glyphicon glyphicon-menu-down"></span> Gerar Parcelas

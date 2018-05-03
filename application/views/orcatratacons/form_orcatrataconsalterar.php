@@ -685,7 +685,7 @@
 																			<button type="button" id="<?php echo $i ?>" class="remove_field21 btn btn-danger">
 																				<span class="glyphicon glyphicon-trash"></span>
 																			</button>
-																		</div>
+																		</div>																	
 																	</div>
 																</div>
 															</div>
@@ -695,7 +695,7 @@
 													}
 													?>
 													</div>
-
+													<!--
 													<div class="form-group">
 														<div class="row">
 															<div class="col-md-4">
@@ -705,7 +705,16 @@
 															</div>
 														</div>
 													</div>
-													
+													-->
+													<br>
+													<div class="form-group">
+														<div class="col-md-2 text-left">
+															<button class="btn btn-warning" type="button" data-toggle="collapse" onclick="adicionaParcelasRecebiveis()"
+																	data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
+																<span class="glyphicon glyphicon-menu-down"></span> Adicionar Parcelas
+															</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
