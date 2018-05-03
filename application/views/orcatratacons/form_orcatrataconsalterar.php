@@ -258,6 +258,7 @@
 															</div>
 														</div>
 													</div>	
+													
 													<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">
 														<div class="panel panel-primary">
 															<div class="panel-heading collapsed" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion6" data-target="#collapse6" aria-expanded="false">
