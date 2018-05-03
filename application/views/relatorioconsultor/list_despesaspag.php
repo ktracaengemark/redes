@@ -86,7 +86,7 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'despesascons/alterar/' . $row['idApp_Despesas'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'despesas/alterar/' . $row['idApp_Despesas'] . '">';
                             echo '<td>' . $row['TipoProduto'] . '</td>';
 							echo '<td>' . $row['idApp_Despesas'] . '</td>';							
 							echo '<td>' . $row['Despesa'] . '</td>';
