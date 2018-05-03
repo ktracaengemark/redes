@@ -1107,7 +1107,7 @@
 																	</button>
 																</div>
 																<div class="col-md-6 text-right">
-																	<a class="btn btn-danger" href="<?php echo base_url() . 'orcatratacons/excluir/' . $orcatrata['idApp_OrcaTrata'] ?>" role="button">
+																	<a class="btn btn-danger" href="<?php echo base_url() . 'orcatrata/excluir/' . $orcatrata['idApp_OrcaTrata'] ?>" role="button">
 																		<span class="glyphicon glyphicon-trash"></span> Confirmar Exclusão
 																	</a>
 																</div>
