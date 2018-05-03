@@ -490,8 +490,6 @@
 																		<div class="input-group" id="txtHint">
 																			<span class="input-group-addon" id="basic-addon1">R$</span>
 																			<input type="text" class="form-control Valor" id="ValorRestanteOrca" maxlength="10" placeholder="0,00" readonly=""
-																				   data-toggle="collapse" onkeyup="calculaParcelas()"
-																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																				   name="ValorRestanteOrca" value="<?php echo $orcatrata['ValorRestanteOrca'] ?>">
 																		</div>
 																	</div>																		
@@ -531,8 +529,7 @@
 																			}
 																			?>
 																		</select>
-																	</div>
-																	
+																	</div>																																			
 																	<div class="col-md-1">
 																		<label for="QtdParcelasOrca">Qtd.Parc.</label><br>
 																		<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"
@@ -552,7 +549,7 @@
 																						echo ''
 																						. '<label class="btn btn-warning active" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
 																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
-																						. 'onchange="calculaParcelas()" '
+																						
 																						. 'autocomplete="off" value="' . $key . '" checked>' . $row
 																						. '</label>'
 																						;
@@ -560,7 +557,7 @@
 																						echo ''
 																						. '<label class="btn btn-default" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
 																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
-																						. 'onchange="calculaParcelasMensais()" '
+																						
 																						. 'autocomplete="off" value="' . $key . '" >' . $row
 																						. '</label>'
 																						;
@@ -590,26 +587,28 @@
 												</h4>
 											</div>
 											<div id="collapse2" class="panel-collapse" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
+												
 												<div class="panel-body">
-													<!--App_parcelasRec-->
-													<div class="input_fields_parcelas">
+													
+													<input type="hidden" name="PRCount" id="PRCount" value="<?php echo $count['PRCount']; ?>"/>
+
+													<div class="input_fields_wrap21">
 
 													<?php
-													for ($i=1; $i <= $orcatrata['QtdParcelasOrca']; $i++) {
+													for ($i=1; $i <= $count['PRCount']; $i++) {
 													?>
 
 														<?php if ($metodo > 1) { ?>
 														<input type="hidden" name="idApp_ParcelasRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['idApp_ParcelasRecebiveis']; ?>"/>
 														<?php } ?>
 
-
-														<div class="form-group">
+														<div class="form-group" id="21div<?php echo $i ?>">
 															<div class="panel panel-info">
 																<div class="panel-heading">
 																	<div class="row">
-																		<div class="col-md-2">
+																		<div class="col-md-1">
 																			<label for="ParcelaRecebiveis">Parcela:</label><br>
-																			<input type="text" class="form-control" maxlength="6" readonly=""
+																			<input type="text" class="form-control" maxlength="6" 
 																				   name="ParcelaRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['ParcelaRecebiveis'] ?>">
 																		</div>
 																		<div class="col-md-2">
@@ -623,11 +622,12 @@
 																		<div class="col-md-2">
 																			<label for="DataVencimentoRecebiveis">Data Venc. Parc.</label>
 																			<div class="input-group DatePicker">
-																				<input type="text" class="form-control Date" id="DataVencimentoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataVencimentoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
+																				<input type="text" class="form-control Date" id="DataVencimentoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataVencimentoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-2">
@@ -641,11 +641,12 @@
 																		<div class="col-md-2">
 																			<label for="DataPagoRecebiveis">Data Pag.</label>
 																			<div class="input-group DatePicker">
-																				<input type="text" class="form-control Date" id="DataPagoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataPagoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
+																				<input type="text" class="form-control Date" id="DataPagoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataPagoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-2">
@@ -678,9 +679,13 @@
 																				</div>
 																			</div>
 																		</div>
+																		<div class="col-md-1">
+																			<label><br></label><br>
+																			<button type="button" id="<?php echo $i ?>" class="remove_field21 btn btn-danger">
+																				<span class="glyphicon glyphicon-trash"></span>
+																			</button>
+																		</div>
 																	</div>
-
-
 																</div>
 															</div>
 														</div>
@@ -690,6 +695,16 @@
 													?>
 													</div>
 
+													<div class="form-group">
+														<div class="row">
+															<div class="col-md-4">
+																<a class="add_field_button21 btn btn-danger">
+																	<span class="glyphicon glyphicon-plus"></span> Ad. Parcelas Extras
+																</a>
+															</div>
+														</div>
+													</div>
+													
 												</div>
 											</div>
 										</div>

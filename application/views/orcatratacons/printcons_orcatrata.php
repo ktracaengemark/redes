@@ -192,7 +192,7 @@
 					<tbody>
 
 						<?php
-						for ($i=1; $i <= $orcatrata['QtdParcelasOrca']; $i++) {
+						for ($i=1; $i <= $count['PRCount']; $i++) {
 							#echo $produto[$i]['QtdVendaProduto'];
 						?>
 

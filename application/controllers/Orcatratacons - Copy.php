@@ -174,8 +174,6 @@ class Orcatratacons extends CI_Controller {
         #$this->form_validation->set_rules('DataProcedimento', 'DataProcedimento', 'required|trim');
         #$this->form_validation->set_rules('ParcelaRecebiveis', 'ParcelaRecebiveis', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalOrca', 'Profissional', 'required|trim');
-		$this->form_validation->set_rules('Modalidade', 'Tipo de Recebimento', 'required|trim');		
-		$this->form_validation->set_rules('ValorRestanteOrca', 'Valor da Receita', 'required|trim');		
 		$this->form_validation->set_rules('FormaPagamento', 'Forma de Pagamento', 'required|trim');
 		$this->form_validation->set_rules('QtdParcelasOrca', 'Qtd de Parcelas', 'required|trim');
 		$this->form_validation->set_rules('DataVencimentoOrca', 'Data do 1ºVenc.', 'required|trim|valid_date');
@@ -185,7 +183,6 @@ class Orcatratacons extends CI_Controller {
         $data['select']['ServicoConcluido'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoServico'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
-		$data['select']['Modalidade'] = $this->Basico_model->select_modalidade();
 		$data['select']['QuitadoOrca'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoRecebiveis'] = $this->Basico_model->select_status_sn();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
@@ -413,8 +410,7 @@ class Orcatratacons extends CI_Controller {
         (!$this->input->post('SCount')) ? $data['count']['SCount'] = 0 : $data['count']['SCount'] = $this->input->post('SCount');
         (!$this->input->post('PCount')) ? $data['count']['PCount'] = 0 : $data['count']['PCount'] = $this->input->post('PCount');
         (!$this->input->post('PMCount')) ? $data['count']['PMCount'] = 0 : $data['count']['PMCount'] = $this->input->post('PMCount');
-		(!$this->input->post('PRCount')) ? $data['count']['PRCount'] = 0 : $data['count']['PRCount'] = $this->input->post('PRCount');
-		
+
 		#(!$data['orcatrata']['TipoRD']) ? $data['orcatrata']['TipoRD'] = 'R' : FALSE;
 
         $j = 1;
@@ -473,23 +469,21 @@ class Orcatratacons extends CI_Controller {
         }
         $data['count']['PMCount'] = $j - 1;
 
-        $j = 1;
-        for ($i = 1; $i <= $data['count']['PRCount']; $i++) {
+        if ($data['orcatrata']['QtdParcelasOrca'] > 0) {
 
-            if ($this->input->post('ParcelaRecebiveis' . $i) || $this->input->post('ValorParcelaRecebiveis' . $i) || 
-					$this->input->post('DataVencimentoRecebiveis' . $i) || $this->input->post('ValorPagoRecebiveis' . $i) || 
-					$this->input->post('DataPagoRecebiveis' . $i) || $this->input->post('QuitadoRecebiveis' . $i)) {
-                $data['parcelasrec'][$j]['idApp_ParcelasRecebiveis'] = $this->input->post('idApp_ParcelasRecebiveis' . $i);
-                $data['parcelasrec'][$j]['ParcelaRecebiveis'] = $this->input->post('ParcelaRecebiveis' . $i);
-                $data['parcelasrec'][$j]['ValorParcelaRecebiveis'] = $this->input->post('ValorParcelaRecebiveis' . $i);
-                $data['parcelasrec'][$j]['DataVencimentoRecebiveis'] = $this->input->post('DataVencimentoRecebiveis' . $i);
-                $data['parcelasrec'][$j]['ValorPagoRecebiveis'] = $this->input->post('ValorPagoRecebiveis' . $i);
-                $data['parcelasrec'][$j]['DataPagoRecebiveis'] = $this->input->post('DataPagoRecebiveis' . $i);
-                $data['parcelasrec'][$j]['QuitadoRecebiveis'] = $this->input->post('QuitadoRecebiveis' . $i);
-				$j++;
+            for ($i = 1; $i <= $data['orcatrata']['QtdParcelasOrca']; $i++) {
+
+                $data['parcelasrec'][$i]['idApp_ParcelasRecebiveis'] = $this->input->post('idApp_ParcelasRecebiveis' . $i);
+                $data['parcelasrec'][$i]['ParcelaRecebiveis'] = $this->input->post('ParcelaRecebiveis' . $i);
+                $data['parcelasrec'][$i]['ValorParcelaRecebiveis'] = $this->input->post('ValorParcelaRecebiveis' . $i);
+                $data['parcelasrec'][$i]['DataVencimentoRecebiveis'] = $this->input->post('DataVencimentoRecebiveis' . $i);
+                $data['parcelasrec'][$i]['ValorPagoRecebiveis'] = $this->input->post('ValorPagoRecebiveis' . $i);
+                $data['parcelasrec'][$i]['DataPagoRecebiveis'] = $this->input->post('DataPagoRecebiveis' . $i);
+                $data['parcelasrec'][$i]['QuitadoRecebiveis'] = $this->input->post('QuitadoRecebiveis' . $i);
+
             }
+
         }
-		$data['count']['PRCount'] = $j - 1;
 
         //Fim do trecho de código que dá pra melhorar
 
@@ -545,11 +539,10 @@ class Orcatratacons extends CI_Controller {
             $data['parcelasrec'] = $this->Orcatratacons_model->get_parcelasrec($id);
             if (count($data['parcelasrec']) > 0) {
                 $data['parcelasrec'] = array_combine(range(1, count($data['parcelasrec'])), array_values($data['parcelasrec']));
-				$data['count']['PRCount'] = count($data['parcelasrec']);
-				
+
                 if (isset($data['parcelasrec'])) {
 
-                    for($j=1; $j <= $data['count']['PRCount']; $j++) {
+                    for($j=1; $j <= $data['orcatrata']['QtdParcelasOrca']; $j++) {
                         $data['parcelasrec'][$j]['DataVencimentoRecebiveis'] = $this->basico->mascara_data($data['parcelasrec'][$j]['DataVencimentoRecebiveis'], 'barras');
                         $data['parcelasrec'][$j]['DataPagoRecebiveis'] = $this->basico->mascara_data($data['parcelasrec'][$j]['DataPagoRecebiveis'], 'barras');
                     }
@@ -590,7 +583,6 @@ class Orcatratacons extends CI_Controller {
         $data['select']['ServicoConcluido'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoServico'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
-		$data['select']['Modalidade'] = $this->Basico_model->select_modalidade();
 		$data['select']['QuitadoOrca'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoRecebiveis'] = $this->Basico_model->select_status_sn();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();

@@ -101,10 +101,11 @@ class OrcatrataPrintcons extends CI_Controller {
             $data['parcelasrec'] = $this->OrcatrataPrintcons_model->get_parcelasrec($id);
             if (count($data['parcelasrec']) > 0) {
                 $data['parcelasrec'] = array_combine(range(1, count($data['parcelasrec'])), array_values($data['parcelasrec']));
-
+				$data['count']['PRCount'] = count($data['parcelasrec']);
+				
                 if (isset($data['parcelasrec'])) {
 
-                    for($j=1; $j <= $data['orcatrata']['QtdParcelasOrca']; $j++) {
+                    for($j=1; $j <= $data['count']['PRCount']; $j++) {
                         $data['parcelasrec'][$j]['DataVencimentoRecebiveis'] = $this->basico->mascara_data($data['parcelasrec'][$j]['DataVencimentoRecebiveis'], 'barras');
                         $data['parcelasrec'][$j]['DataPagoRecebiveis'] = $this->basico->mascara_data($data['parcelasrec'][$j]['DataPagoRecebiveis'], 'barras');
                     }

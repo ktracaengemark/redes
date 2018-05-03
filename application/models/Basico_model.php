@@ -1398,4 +1398,20 @@ class Basico_model extends CI_Model {
         return $array;
     }
 
+	public function select_modalidade($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query('SELECT * FROM Tab_Modalidade');
+        } else {
+            $query = $this->db->query('SELECT * FROM Tab_Modalidade');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->Abrev] = $row->Modalidade;
+            }
+        }
+
+        return $array;
+    }
+	
 }
