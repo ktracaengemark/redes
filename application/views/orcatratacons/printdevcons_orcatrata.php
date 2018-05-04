@@ -7,7 +7,7 @@
 		<div class="col-md-12">
 		
 			<div class="panel-heading text-center">
-				<h3 class="text-center"><?php echo '<strong>' . $_SESSION['Consultor']['NomeEmpresa'] . '</strong> - <strong>DEVOLUÇÃO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h3>
+				<h3 class="text-center"><?php echo '<strong>' . $_SESSION['Consultor']['NomeEmpresa'] . '</strong> - <strong>DEVOLUÇÃO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrataCons'] . '</strong>' ?></h3>
 			</div>
 
 			<div class="panel-body">
@@ -64,7 +64,7 @@
 						</tr>						
 						<tr>
 							<td></td>
-							<td><?php echo $produto[$i]['idApp_ProdutoVenda'] ?></td>
+							<td><?php echo $produto[$i]['idApp_ProdutoVendaCons'] ?></td>
 							<!--<td><?php echo $produto[$i]['UnidadeProduto'] ?></td>						
 							<td><?php echo $produto[$i]['Prodaux3'] ?></td>
 							
