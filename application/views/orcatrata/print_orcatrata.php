@@ -13,7 +13,7 @@
 			<div class="panel-body">
 
 				<hr />
-				<?php echo '<h4>Cliente: ' . $_SESSION['Cliente']['Nome'] . ' - Id: ' . $_SESSION['Cliente']['idSis_Usuario'] . '</h4>' ?>
+				<?php echo '<h4>Cliente: ' . $_SESSION['Cliente']['NomeCliente'] . ' - Id: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</h4>' ?>
 				<hr />
 
 				<h3 class="text-center">Produtos Entregues </h3>

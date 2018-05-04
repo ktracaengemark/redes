@@ -180,7 +180,7 @@ class Relatorioconsultor_model extends CI_Model {
                 '(OT.DataOrca >= "' . $data['DataInicio3'] . '")';
         }
 
-		$data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+		$data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
 		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
@@ -188,7 +188,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         $query = $this->db->query(
             'SELECT
-                C.Nome,
+                C.NomeCliente,
                 OT.idApp_OrcaTrata,
 				OT.TipoRD,
                 OT.AprovadoOrca,
@@ -206,23 +206,23 @@ class Relatorioconsultor_model extends CI_Model {
 				PR.ValorPagoPagaveis,
                 PR.QuitadoRecebiveis
             FROM
-                Sis_Usuario AS C,
+                App_Cliente AS C,
                 App_OrcaTrata AS OT
                     LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				C.Associado = ' . $_SESSION['log']['id'] . ' AND
+				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
                 (' . $consulta . ') AND
 				(' . $consulta2 . ') AND
                 ' . $filtro3 . '
 				' . $filtro4 . '
-                C.idSis_Usuario = OT.idApp_Cliente
-                ' . $data['Nome'] . ' AND
+                C.idApp_Cliente = OT.idApp_Cliente
+                ' . $data['NomeCliente'] . ' AND
 				OT.TipoRD = "R"
 
             ORDER BY
-                C.Nome,
+                C.NomeCliente,
 				OT.AprovadoOrca DESC,
 				PR.DataVencimentoRecebiveis'
             );
@@ -2527,9 +2527,9 @@ exit();*/
                 '(OT.DataQuitado >= "' . $data['DataInicio4'] . '")';
         }
 
-        $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
 		$data['FormaPag'] = ($data['FormaPag']) ? ' AND TFP.idTab_FormaPag = ' . $data['FormaPag'] : FALSE;
-        $data['Campo'] = (!$data['Campo']) ? 'C.Nome' : $data['Campo'];
+        $data['Campo'] = (!$data['Campo']) ? 'C.NomeCliente' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
@@ -2537,7 +2537,7 @@ exit();*/
 
         $query = $this->db->query('
             SELECT
-                C.Nome,
+                C.NomeCliente,
 				OT.idApp_Cliente,
                 OT.idApp_OrcaTrata,
                 OT.AprovadoOrca,
@@ -2557,7 +2557,7 @@ exit();*/
 				OT.FormaPagamento,
 				TFP.FormaPag
             FROM
-                Sis_Usuario AS C,
+                App_Cliente AS C,
                 App_OrcaTrata AS OT
 				
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
@@ -2565,12 +2565,12 @@ exit();*/
             WHERE
 				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				C.Associado = ' . $_SESSION['log']['id'] . ' AND
+				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
                 (' . $consulta . ') AND
 				(' . $consulta3 . ') AND
 				' . $filtro3 . '
-                C.idSis_Usuario = OT.idApp_Cliente
-                ' . $data['Nome'] . '
+                C.idApp_Cliente = OT.idApp_Cliente
+
 				' . $data['FormaPag'] . ' AND
 				OT.TipoRD = "R"
             ORDER BY
@@ -4591,7 +4591,7 @@ exit();*/
 
     }
 
-    public function select_cliente() {
+    public function select_clientes() {
 
         $query = $this->db->query('
             SELECT
@@ -5185,7 +5185,7 @@ exit();*/
         return $array;
     }
 
-	public function select_clienteusuario() {
+	public function select_clientesusuario() {
 
         $query = $this->db->query('
             SELECT

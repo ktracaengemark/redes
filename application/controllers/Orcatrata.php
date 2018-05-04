@@ -361,7 +361,7 @@ class Orcatrata extends CI_Controller {
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
 
 				exit();
             }
@@ -1204,7 +1204,7 @@ class Orcatrata extends CI_Controller {
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
 
 				exit();
             }
@@ -1223,31 +1223,13 @@ class Orcatrata extends CI_Controller {
         else
             $data['msg'] = '';
 
-        /*
-        #run form validation
-        if ($this->form_validation->run() === FALSE) {
-            $this->load->view('orcatrata/tela_orcatrata', $data);
-        } else {
-
-            if (!$id) {
-                $data['msg'] = '?m=2';
-                $this->load->view('orcatrata/form_orcatrata', $data);
-            } else {
-
-                /*
-                $data['anterior'] = $this->Orcatrata_model->get_orcatrata($data['query']['idApp_OrcaTrata']);
-                $data['campos'] = array_keys($data['anterior']);
-
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], NULL, $data['campos'], $data['query']['idApp_OrcaTrata'], FALSE, TRUE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'DELETE', $data['auditoriaitem']);
-                */
-
+ 
                 $this->Orcatrata_model->delete_orcatrata($id);
 
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
-				#redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
+                #redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
+				redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/orcamento/' . $data['msg']);
                 exit();
             //}
