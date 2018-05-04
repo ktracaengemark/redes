@@ -18,8 +18,8 @@ class Cliente extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/header');
-        $this->load->view('basico/nav_principal');
+        $this->load->view('basico/headerconsultor');
+        $this->load->view('basico/nav_principalconsultor');
 
         #$this->load->view('cliente/nav_secundario');
     }

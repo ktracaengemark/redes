@@ -139,7 +139,8 @@
 						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario">
+								<!--<a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario">-->
+								<a href="<?php echo base_url(); ?>relatorioconsultor/clientes">
 									<button type="button" class="btn btn-md btn-success ">
 										<span class="glyphicon glyphicon-user"></span> Clientes
 									</button>
@@ -154,7 +155,7 @@
 									<span class="glyphicon glyphicon-pencil"></span> Cadastros <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">							
-									<li><a href="<?php echo base_url() ?>orcatrata2/cadastrar"><span class="glyphicon glyphicon-usd"></span> Vendas</a></li>
+									<li><a href="<?php echo base_url() ?>orcatrata/cadastrar2"><span class="glyphicon glyphicon-usd"></span> Vendas</a></li>
 									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Vendas</a></li>
 									<li role="separator" class="divider"></li>

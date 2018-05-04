@@ -112,7 +112,7 @@
 												<div class="panel-body">
 													<!--#######################################-->														
 													<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
-														<div class="panel panel-primary">
+														<div class="panel panel-success">
 															<div class="panel-heading collapsed" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion5" data-target="#collapse5" aria-expanded="false">								
 																<h4 class="panel-title">
 																	<a class="accordion-toggle">
@@ -226,22 +226,22 @@
 
 																	</div>
 
-																	<div class="panel panel-info">
+																	<div class="panel panel-success">
 																		<div class="panel-heading text-left">
 																			<div class="form-group">
 																				<div class="row">
 																					<br>
 																					<div class="col-md-3">
-																						<a class="add_field_button9 btn btn-primary"
+																						<a class="add_field_button9 btn btn-success"
 																								onclick="calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',1,0)">
 																							<span class="glyphicon glyphicon-plus"></span> Adic. Prod. Entregues
 																						</a>
 																					</div>
 																					<div class="col-md-2">	
-																						<b>Total de Produtos: <span id="ProdutoSoma"><?php echo $ProdutoSoma ?></span></b><br />
+																						<b>Linhas: <span id="ProdutoSoma"><?php echo $ProdutoSoma ?></span></b><br />
 																					</div>
 																					<div class="col-md-2">	
-																						<b>Total de Peças: <span id="QtdSoma"><?php echo $QtdSoma ?></span></b>
+																						<b>Prod. Entregues: <span id="QtdSoma"><?php echo $QtdSoma ?></span></b>
 																					</div>
 																					<div class="col-md-3 text-left">																							
 																						<a class="accordion-toggle btn btn-heading  collapsed" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion5" data-target="#collapse5" aria-expanded="false">
@@ -260,7 +260,7 @@
 													</div>	
 													
 													<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">
-														<div class="panel panel-primary">
+														<div class="panel panel-danger">
 															<div class="panel-heading collapsed" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion6" data-target="#collapse6" aria-expanded="false">
 																<h4 class="panel-title">
 																	<a class="accordion-toggle">

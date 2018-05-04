@@ -2488,7 +2488,7 @@ $(document).ready(function () {
 
         $(".input_fields_wrap2").append('\
             <div class="form-group" id="2div'+pc+'">\
-                <div class="panel panel-info">\
+                <div class="panel panel-success">\
                     <div class="panel-heading">\
                         <div class="row">\
                             <div class="col-md-3">\
@@ -2585,7 +2585,7 @@ $(document).ready(function () {
 
         $(".input_fields_wrap9").append('\
             <div class="form-group" id="9div'+pc+'">\
-                <div class="panel panel-info">\
+                <div class="panel panel-success">\
                     <div class="panel-heading">\
                         <div class="row">\
                             <div class="col-md-1">\
