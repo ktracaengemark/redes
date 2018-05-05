@@ -457,7 +457,7 @@
 														<div class="panel panel-info">
 															<div class="panel-heading">
 																<div class="row">
-																	<div class="col-md-3">
+																	<div class="col-md-2">
 																		<label for="ValorOrca">Orçamento:</label><br>
 																		<div class="input-group" id="txtHint">
 																			<span class="input-group-addon" id="basic-addon1">R$</span>
@@ -466,7 +466,7 @@
 																		</div>
 																	</div>
 																	
-																	<div class="col-md-3">
+																	<div class="col-md-2">
 																		<label for="ValorDev">Devolução/ Desconto:</label><br>
 																		<div class="input-group" id="txtHint">
 																			<span class="input-group-addon" id="basic-addon1">R$</span>
@@ -485,7 +485,7 @@
 																		</div>
 																	</div>
 																	-->
-																	<div class="col-md-3">
+																	<div class="col-md-2">
 																		<label for="ValorRestanteOrca">Resta Pagar:</label><br>
 																		<div class="input-group" id="txtHint">
 																			<span class="input-group-addon" id="basic-addon1">R$</span>
@@ -520,23 +520,7 @@
 																			}
 																			?>
 																		</select>
-																	</div>
-																	<div class="col-md-2">
-																		<label for="Modalidade">Modalidade:</label><br>
-																		<div class="form-group" id="txtHint">
-																			<?php
-																			$options = array(
-																				#''	=> '-- Selecione uma opção --',
-																				'P'	=> 'PARCELADO',
-																				'M'	=> 'MENSALIDADE',
-																			);
-																			$cfg = 'data-placeholder="Selecione uma opção..." class="form-control" ' . $readonly . '
-																					id="Modalidade"';
-																			echo form_dropdown('Modalidade', $options, $orcatrata['Modalidade'], $cfg);
-																			?>
-																		</div>
 																	</div>	
-
 																	<div class="col-md-2">
 																		<label for="QtdParcelasOrca">Qtd. Parc.:</label><br>
 																		<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"

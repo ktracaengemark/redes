@@ -48,7 +48,7 @@ class OrcatrataPrintcons extends CI_Controller {
             $data['msg'] = '';
 
         if ($id) {
-            #### App_OrcaTrata ####
+            #### App_OrcaTrataCons ####
             $data['orcatrata'] = $this->OrcatrataPrintcons_model->get_orcatrata($id);
             $data['orcatrata']['DataOrca'] = $this->basico->mascara_data($data['orcatrata']['DataOrca'], 'barras');
             $data['orcatrata']['DataPrazo'] = $this->basico->mascara_data($data['orcatrata']['DataPrazo'], 'barras');
@@ -61,11 +61,11 @@ class OrcatrataPrintcons extends CI_Controller {
             #### Carrega os dados do cliente nas variáves de sessão ####
             $this->load->model('Consultor_model');
             $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($data['orcatrata']['idApp_Cliente'], TRUE);
-			$_SESSION['Orcatrata'] = $this->OrcatrataPrintcons_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrata'], TRUE);
+			$_SESSION['Orcatrata'] = $this->OrcatrataPrintcons_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrataCons'], TRUE);
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Consultor']['idApp_Cliente'];
 
             
-            #### App_ServicoVenda ####
+            #### App_ServicoVendaCons ####
             $data['servico'] = $this->OrcatrataPrintcons_model->get_servico($id);
             if (count($data['servico']) > 0) {
                 $data['servico'] = array_combine(range(1, count($data['servico'])), array_values($data['servico']));
@@ -81,7 +81,7 @@ class OrcatrataPrintcons extends CI_Controller {
             }
             
 
-            #### App_ProdutoVenda ####
+            #### App_ProdutoVendaCons ####
             $data['produto'] = $this->OrcatrataPrintcons_model->get_produto($id);
             if (count($data['produto']) > 0) {
                 $data['produto'] = array_combine(range(1, count($data['produto'])), array_values($data['produto']));
@@ -97,7 +97,7 @@ class OrcatrataPrintcons extends CI_Controller {
                 }
             }
 
-            #### App_ParcelasRecebiveis ####
+            #### App_ParcelasRecebiveisCons ####
             $data['parcelasrec'] = $this->OrcatrataPrintcons_model->get_parcelasrec($id);
             if (count($data['parcelasrec']) > 0) {
                 $data['parcelasrec'] = array_combine(range(1, count($data['parcelasrec'])), array_values($data['parcelasrec']));
@@ -113,7 +113,7 @@ class OrcatrataPrintcons extends CI_Controller {
                 }
             }
 
-            #### App_Procedimento ####
+            #### App_ProcedimentoCons ####
             $data['procedimento'] = $this->OrcatrataPrintcons_model->get_procedimento($id);
             if (count($data['procedimento']) > 0) {
                 $data['procedimento'] = array_combine(range(1, count($data['procedimento'])), array_values($data['procedimento']));

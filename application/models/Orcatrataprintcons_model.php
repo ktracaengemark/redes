@@ -36,10 +36,10 @@ class orcatrataprintcons_model extends CI_Model {
                 *
             FROM           	
                 Tab_FormaPag AS FP,
-				App_OrcaTrata AS OT
+				App_OrcaTrataCons AS OT
 				LEFT JOIN Sis_EmpresaFilial AS EF ON EF.idSis_EmpresaFilial = OT.Empresa
             WHERE
-            	OT.idApp_OrcaTrata = ' . $data . ' AND
+            	OT.idApp_OrcaTrataCons = ' . $data . ' AND
                 OT.FormaPagamento = FP.idTab_FormaPag'
         );
         $query = $query->result_array();
@@ -62,8 +62,8 @@ class orcatrataprintcons_model extends CI_Model {
             	PV.QtdVendaServico,
 				PV.DataValidadeServico,
 				PV.ObsServico,
-				PV.idApp_ServicoVenda,
-				PV.idApp_OrcaTrata,
+				PV.idApp_ServicoVendaCons,
+				PV.idApp_OrcaTrataCons,
 				P.UnidadeProduto,
 				P.CodProd,
 				TP3.Prodaux3,
@@ -72,12 +72,12 @@ class orcatrataprintcons_model extends CI_Model {
 				TCO.Convenio,
 				V.Convdesc,
 				TFO.NomeFornecedor,
-				CONCAT(IFNULL(PV.idApp_ServicoVenda,""), " - Obs.: " , IFNULL(PV.ObsServico,"")) AS idApp_ServicoVenda,
+				CONCAT(IFNULL(PV.idApp_ServicoVendaCons,""), " - Obs.: " , IFNULL(PV.ObsServico,"")) AS idApp_ServicoVendaCons,
 				CONCAT(IFNULL(PV.QtdVendaServico,""), " - " , IFNULL(P.UnidadeProduto,"")) AS QtdVendaServico,
             	CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,"")) AS NomeServico,
             	PV.ValorVendaServico
             FROM
-            	App_ServicoVenda AS PV,
+            	App_ServicoVendaCons AS PV,
             	Tab_Valor AS V
             		LEFT JOIN Tab_Convenio AS TCO ON idTab_Convenio = V.Convenio
             		LEFT JOIN Tab_Produtos AS P ON P.idTab_Produtos = V.idTab_Produtos
@@ -86,11 +86,11 @@ class orcatrataprintcons_model extends CI_Model {
             		LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = P.Prodaux2
             		LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
-            	PV.idApp_OrcaTrata = ' . $data . ' AND
+            	PV.idApp_OrcaTrataCons = ' . $data . ' AND
                 PV.idTab_Servico = V.idTab_Valor AND
             	P.idTab_Produtos = V.idTab_Produtos
             ORDER BY
-            	PV.idApp_ServicoVenda'
+            	PV.idApp_ServicoVendaCons'
         );
         $query = $query->result_array();
 
@@ -103,8 +103,8 @@ class orcatrataprintcons_model extends CI_Model {
             	PV.QtdVendaProduto,
 				PV.DataValidadeProduto,
 				PV.ObsProduto,
-				PV.idApp_ProdutoVenda,
-				PV.idApp_OrcaTrata,
+				PV.idApp_ProdutoVendaCons,
+				PV.idApp_OrcaTrataCons,
 				P.UnidadeProduto,
 				P.CodProd,
 				TP3.Prodaux3,
@@ -113,12 +113,12 @@ class orcatrataprintcons_model extends CI_Model {
 				TCO.Convenio,
 				V.Convdesc,
 				TFO.NomeFornecedor,
-				CONCAT(IFNULL(PV.idApp_ProdutoVenda,""), " - Obs.: " , IFNULL(PV.ObsProduto,"")) AS idApp_ProdutoVenda,
+				CONCAT(IFNULL(PV.idApp_ProdutoVendaCons,""), " - Obs.: " , IFNULL(PV.ObsProduto,"")) AS idApp_ProdutoVendaCons,
 				CONCAT(IFNULL(PV.QtdVendaProduto,""), " - " , IFNULL(P.UnidadeProduto,"")) AS QtdVendaProduto,
             	CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,"")) AS NomeProduto,
             	PV.ValorVendaProduto
             FROM
-            	App_ProdutoVenda AS PV,
+            	App_ProdutoVendaCons AS PV,
             	Tab_Valor AS V
             		LEFT JOIN Tab_Convenio AS TCO ON idTab_Convenio = V.Convenio
             		LEFT JOIN Tab_Produtos AS P ON P.idTab_Produtos = V.idTab_Produtos
@@ -127,11 +127,11 @@ class orcatrataprintcons_model extends CI_Model {
             		LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = P.Prodaux2
             		LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = P.Prodaux1
             WHERE
-            	PV.idApp_OrcaTrata = ' . $data . ' AND
+            	PV.idApp_OrcaTrataCons = ' . $data . ' AND
                 PV.idTab_Produto = V.idTab_Valor AND
             	P.idTab_Produtos = V.idTab_Produtos
             ORDER BY
-            	PV.idApp_ProdutoVenda'
+            	PV.idApp_ProdutoVendaCons'
         );
         $query = $query->result_array();
 
@@ -139,14 +139,14 @@ class orcatrataprintcons_model extends CI_Model {
     }
 
     public function get_parcelasrec($data) {
-		$query = $this->db->query('SELECT * FROM App_ParcelasRecebiveis WHERE idApp_OrcaTrata = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_ParcelasRecebiveisCons WHERE idApp_OrcaTrataCons = ' . $data);
         $query = $query->result_array();
 
         return $query;
     }
 
     public function get_procedimento($data) {
-		$query = $this->db->query('SELECT * FROM App_Procedimento WHERE idApp_OrcaTrata = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_ProcedimentoCons WHERE idApp_OrcaTrataCons = ' . $data);
         $query = $query->result_array();
 
         return $query;
