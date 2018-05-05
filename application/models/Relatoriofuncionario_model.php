@@ -44,7 +44,7 @@ class Relatoriofuncionario_model extends CI_Model {
             SELECT
                 C.NomeCliente,
 
-                OT.idApp_OrcaTrata,
+                OT.idApp_OrcaTrataCons,
                 OT.AprovadoOrca,
                 OT.DataOrca,
                 OT.DataEntradaOrca,
@@ -62,8 +62,8 @@ class Relatoriofuncionario_model extends CI_Model {
 
             FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
 
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
@@ -106,8 +106,8 @@ class Relatoriofuncionario_model extends CI_Model {
 
                 #esse trecho pode ser melhorado, serve para somar apenas uma vez
                 #o valor da entrada que pode aparecer mais de uma vez
-                if ($ant != $row->idApp_OrcaTrata) {
-                    $ant = $row->idApp_OrcaTrata;
+                if ($ant != $row->idApp_OrcaTrataCons) {
+                    $ant = $row->idApp_OrcaTrataCons;
                     $somaentrada += $row->ValorEntradaOrca;
                 }
                 else {
@@ -189,7 +189,7 @@ class Relatoriofuncionario_model extends CI_Model {
         $query = $this->db->query(
             'SELECT
                 C.Nome,
-                OT.idApp_OrcaTrata,
+                OT.idApp_OrcaTrataCons,
 				OT.TipoRD,
                 OT.AprovadoOrca,
                 OT.DataOrca,
@@ -207,8 +207,8 @@ class Relatoriofuncionario_model extends CI_Model {
                 PR.QuitadoRecebiveis
             FROM
                 Sis_Usuario AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
@@ -256,8 +256,8 @@ class Relatoriofuncionario_model extends CI_Model {
 
                 #esse trecho pode ser melhorado, serve para somar apenas uma vez
                 #o valor da entrada que pode aparecer mais de uma vez
-                if ($ant != $row->idApp_OrcaTrata) {
-                    $ant = $row->idApp_OrcaTrata;
+                if ($ant != $row->idApp_OrcaTrataCons) {
+                    $ant = $row->idApp_OrcaTrataCons;
                     $somaentrada += $row->ValorEntradaOrca;
                 }
                 else {
@@ -874,8 +874,8 @@ class Relatoriofuncionario_model extends CI_Model {
                 ' . $somareceitas . '
             FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
@@ -905,8 +905,8 @@ class Relatoriofuncionario_model extends CI_Model {
                 ' . $somadevolucoes . '
             FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
@@ -1145,8 +1145,8 @@ class Relatoriofuncionario_model extends CI_Model {
                 OT.TipoRD
             FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ProdutoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ProdutoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
                     LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
                     LEFT JOIN Tab_Produtos AS TP ON TP.idTab_Produtos = TVV.idTab_Produtos
                     LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = TP.Prodaux1
@@ -1157,7 +1157,7 @@ class Relatoriofuncionario_model extends CI_Model {
 				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 (' . $consulta . ') AND
-                APV.idApp_ProdutoVenda != "0" AND
+                APV.idApp_ProdutoVendaCons != "0" AND
                 C.idApp_Cliente = OT.idApp_Cliente
                 ' . $data['Produtos'] . ' AND
                 OT.TipoRD = "R"
@@ -1187,8 +1187,8 @@ class Relatoriofuncionario_model extends CI_Model {
                 OT.TipoRD
             FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ProdutoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ProdutoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
                     LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
                     LEFT JOIN Tab_Produtos AS TP ON TP.idTab_Produtos = TVV.idTab_Produtos
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = TP.Prodaux1
@@ -1199,7 +1199,7 @@ class Relatoriofuncionario_model extends CI_Model {
 				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 (' . $consulta . ') AND
-                APV.idApp_ProdutoVenda != "0" AND
+                APV.idApp_ProdutoVendaCons != "0" AND
                 C.idApp_Cliente = OT.idApp_Cliente
                 ' . $data['Produtos'] . ' AND
                 OT.TipoRD = "D"
@@ -1418,7 +1418,7 @@ exit();*/
 				TOT.ValorOrca
             FROM
                 App_Cliente AS TC
-				LEFT JOIN App_OrcaTrata AS TOT ON TOT.idApp_Cliente = TC.idApp_Cliente
+				LEFT JOIN App_OrcaTrataCons AS TOT ON TOT.idApp_Cliente = TC.idApp_Cliente
             WHERE
                 TC.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				TC.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
@@ -1445,7 +1445,7 @@ exit();*/
                 SUM(TOT.ValorOrca) AS QtdOrcam,
                 TC.idApp_Cliente
             FROM
-                App_OrcaTrata AS TOT
+                App_OrcaTrataCons AS TOT
                     LEFT JOIN App_Cliente AS TC ON TC.idApp_Cliente = TOT.idApp_Cliente
 
             WHERE
@@ -1479,7 +1479,7 @@ exit();*/
                 SUM(TOT.ValorEntradaOrca) AS QtdDescon,
                 TC.idApp_Cliente
             FROM
-                App_OrcaTrata AS TOT
+                App_OrcaTrataCons AS TOT
                     LEFT JOIN App_Cliente AS TC ON TC.idApp_Cliente = TOT.idApp_Cliente
 
             WHERE
@@ -1513,9 +1513,9 @@ exit();*/
                 SUM(TPR.ValorPagoRecebiveis) AS QtdParc,
                 TC.idApp_Cliente
             FROM
-                App_OrcaTrata AS TOT
+                App_OrcaTrataCons AS TOT
                     LEFT JOIN App_Cliente AS TC ON TC.idApp_Cliente = TOT.idApp_Cliente
-					LEFT JOIN App_ParcelasRecebiveis AS TPR ON TPR.idApp_OrcaTrata = TOT.idApp_OrcaTrata
+					LEFT JOIN App_ParcelasRecebiveisCons AS TPR ON TPR.idApp_OrcaTrataCons = TOT.idApp_OrcaTrataCons
 
             WHERE
                 TOT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
@@ -1548,7 +1548,7 @@ exit();*/
                 SUM(TOT.ValorOrca) AS QtdDevol,
                 TC.idApp_Cliente
             FROM
-                App_OrcaTrata AS TOT
+                App_OrcaTrataCons AS TOT
                     LEFT JOIN App_Cliente AS TC ON TC.idApp_Cliente = TOT.idApp_Cliente
 
             WHERE
@@ -1747,15 +1747,15 @@ exit();*/
 				OT.TipoRD
             FROM
             	App_Cliente AS C,
-            	App_OrcaTrata AS OT
-            		LEFT JOIN App_ProdutoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+            	App_OrcaTrataCons AS OT
+            		LEFT JOIN App_ProdutoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
             		LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
             		LEFT JOIN Tab_Produtos AS TP ON TP.idTab_Produtos = TVV.idTab_Produtos
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 (' . $consulta . ') AND
-            	APV.idApp_ProdutoVenda != "0" AND
+            	APV.idApp_ProdutoVendaCons != "0" AND
             	C.idApp_Cliente = OT.idApp_Cliente
                 ' . $data['Produtos'] . ' AND
 				OT.TipoRD = "R"
@@ -1785,15 +1785,15 @@ exit();*/
 				OT.TipoRD
             FROM
             	App_Cliente AS C,
-            	App_OrcaTrata AS OT
-            		LEFT JOIN App_ProdutoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+            	App_OrcaTrataCons AS OT
+            		LEFT JOIN App_ProdutoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
             		LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
             		LEFT JOIN Tab_Produtos AS TP ON TP.idTab_Produtos = TVV.idTab_Produtos
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 (' . $consulta . ') AND
-            	APV.idApp_ProdutoVenda != "0" AND
+            	APV.idApp_ProdutoVendaCons != "0" AND
             	C.idApp_Cliente = OT.idApp_Cliente
                 ' . $data['Produtos'] . ' AND
 				OT.TipoRD = "D"
@@ -1950,7 +1950,7 @@ exit();*/
 		$query = $this->db->query('
             SELECT
                 C.Nome,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				OT.ValorOrca,
 				OT.FormaPagamento,
@@ -1972,8 +1972,8 @@ exit();*/
 
             FROM
                 Sis_Usuario AS C,
-				App_OrcaTrata AS OT
-					LEFT JOIN App_ProdutoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+				App_OrcaTrataCons AS OT
+					LEFT JOIN App_ProdutoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
 					LEFT JOIN Tab_Produtos AS TPV ON TPV.idTab_Produtos = TVV.idTab_Produtos
 					LEFT JOIN App_Fornecedor AS TFO ON TFO.idApp_Fornecedor = TPV.Fornecedor
@@ -1987,7 +1987,7 @@ exit();*/
 				(C.Nivel = "3" OR C.Nivel = "4") AND
 				(' . $consulta . ') AND
 				(' . $consulta2 . ') AND
-				APV.idApp_ProdutoVenda != "0" AND
+				APV.idApp_ProdutoVendaCons != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '
 				' . $data['Produtos'] . '
@@ -2058,7 +2058,7 @@ exit();*/
 		$query = $this->db->query('
             SELECT
                 C.Nome,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				OT.ValorOrca,
 				OT.FormaPagamento,
@@ -2082,8 +2082,8 @@ exit();*/
 
             FROM
                 Sis_Usuario AS C,
-				App_OrcaTrata AS OT
-					LEFT JOIN App_ServicoVenda AS APV ON APV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+				App_OrcaTrataCons AS OT
+					LEFT JOIN App_ServicoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Servico
 					LEFT JOIN Tab_Produtos AS TPV ON TPV.idTab_Produtos = TVV.idTab_Produtos
 					LEFT JOIN App_Fornecedor AS TFO ON TFO.idApp_Fornecedor = TPV.Fornecedor
@@ -2098,7 +2098,7 @@ exit();*/
 				(C.Nivel = "3" OR C.Nivel = "4") AND
 				(' . $consulta . ') AND
 				(' . $consulta2 . ') AND
-				APV.idApp_ServicoVenda != "0" AND
+				APV.idApp_ServicoVendaCons != "0" AND
 				C.idSis_Usuario = OT.idApp_Cliente
                 ' . $data['Nome'] . '
 				' . $data['Produtos'] . '
@@ -2154,16 +2154,16 @@ exit();*/
             SELECT
                 C.NomeCliente,
 				P.NomeProfissional,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				PV.QtdVendaServico,
-				PV.idApp_ServicoVenda,
+				PV.idApp_ServicoVendaCons,
 				PD.idTab_Servico,
 				TPB.ServicoBase
             FROM
                 App_Cliente AS C,
-				App_OrcaTrata AS OT
-					LEFT JOIN App_ServicoVenda AS PV ON PV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+				App_OrcaTrataCons AS OT
+					LEFT JOIN App_ServicoVendaCons AS PV ON PV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Servico AS PD ON PD.idTab_Servico = PV.idTab_Servico
 					LEFT JOIN Tab_ServicoCompra AS TSC ON TSC.idTab_ServicoCompra = PD.ServicoBase
 					LEFT JOIN Tab_ServicoBase AS TPB ON TPB.idTab_ServicoBase = TSC.ServicoBase
@@ -2172,7 +2172,7 @@ exit();*/
                 C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				(' . $consulta . ') AND
-				PV.idApp_ServicoVenda != "0" AND
+				PV.idApp_ServicoVendaCons != "0" AND
 				C.idApp_Cliente = OT.idApp_Cliente
                 ' . $data['NomeCliente'] . '
 				' . $data['NomeProfissional'] . '
@@ -2219,16 +2219,16 @@ exit();*/
                 C.NomeCliente,
 				TSU.Nome,
 				P.NomeProfissional,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				PV.QtdVendaServico,
-				PV.idApp_ServicoVenda,
+				PV.idApp_ServicoVendaCons,
 				PD.idTab_Servico,
 				PD.NomeServico
             FROM
                 App_Cliente AS C,
-				App_OrcaTrata AS OT
-					LEFT JOIN App_ServicoVenda AS PV ON PV.idApp_OrcaTrata = OT.idApp_OrcaTrata
+				App_OrcaTrataCons AS OT
+					LEFT JOIN App_ServicoVendaCons AS PV ON PV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Servico AS PD ON PD.idTab_Servico = PV.idTab_Servico
 					LEFT JOIN Sis_Usuario AS TSU ON TSU.idSis_Usuario = PV.idSis_Usuario
 					LEFT JOIN App_Profissional AS P ON P.idApp_Profissional = OT.ProfissionalOrca
@@ -2236,7 +2236,7 @@ exit();*/
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				(' . $consulta . ') AND
-				PV.idApp_ServicoVenda != "0" AND
+				PV.idApp_ServicoVendaCons != "0" AND
 				C.idApp_Cliente = OT.idApp_Cliente
                 ' . $data['NomeCliente'] . '
 
@@ -2425,7 +2425,7 @@ exit();*/
             SELECT
                 C.NomeCliente,
 				TCO.idApp_Despesas,
-				TCO.idApp_OrcaTrata,
+				TCO.idApp_OrcaTrataCons,
 				TCO.Despesa,
 				TTC.TipoDespesa,
 				TCO.TipoProduto,
@@ -2452,7 +2452,7 @@ exit();*/
 					LEFT JOIN Tab_Prodaux3 AS TP3 ON TP3.idTab_Prodaux3 = TPB.Prodaux3
 					LEFT JOIN Tab_Prodaux2 AS TP2 ON TP2.idTab_Prodaux2 = TPB.Prodaux2
 					LEFT JOIN Tab_Prodaux1 AS TP1 ON TP1.idTab_Prodaux1 = TPB.Prodaux1
-					LEFT JOIN App_OrcaTrata AS TR ON TR.idApp_OrcaTrata = TCO.idApp_OrcaTrata
+					LEFT JOIN App_OrcaTrataCons AS TR ON TR.idApp_OrcaTrataCons = TCO.idApp_OrcaTrataCons
 					LEFT JOIN App_Cliente AS C ON C.idApp_Cliente = TR.idApp_Cliente
             WHERE
                 TCO.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
@@ -2542,7 +2542,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 C.Nome,
-                OT.idApp_OrcaTrata,
+                OT.idApp_OrcaTrataCons,
 				OT.idApp_Cliente,
                 OT.AprovadoOrca,
                 OT.DataOrca,
@@ -2562,7 +2562,7 @@ exit();*/
 				TFP.FormaPag
             FROM
                 Sis_Usuario AS C,
-                App_OrcaTrata AS OT
+                App_OrcaTrataCons AS OT
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
 
             WHERE
@@ -2682,7 +2682,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 C.Nome,
-                OT.idApp_OrcaTrata,
+                OT.idApp_OrcaTrataCons,
 				OT.Orcamento,
                 OT.AprovadoOrca,
                 OT.DataOrca,
@@ -2702,7 +2702,7 @@ exit();*/
 				TFP.FormaPag
             FROM
                 Sis_Usuario AS C,
-                App_OrcaTrata AS OT
+                App_OrcaTrataCons AS OT
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
 				LEFT JOIN Tab_TipoDevolucao AS TD ON TD.idTab_TipoDevolucao = OT.TipoDevolucao
             WHERE
@@ -2812,7 +2812,7 @@ exit();*/
             SELECT
 				C.NomeCliente,
                 OT.idApp_Despesas,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.AprovadoDespesas,
                 OT.DataDespesas,
 				OT.DataEntradaDespesas,
@@ -2832,7 +2832,7 @@ exit();*/
                 App_Despesas AS OT
 				LEFT JOIN Sis_Usuario AS TSU ON TSU.idSis_Usuario = OT.idSis_Usuario
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamentoDespesas
-				LEFT JOIN App_OrcaTrata AS TR ON TR.idApp_OrcaTrata = OT.idApp_OrcaTrata
+				LEFT JOIN App_OrcaTrataCons AS TR ON TR.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 				LEFT JOIN App_Cliente AS C ON C.idApp_Cliente = TR.idApp_Cliente
 
             WHERE
@@ -2940,7 +2940,7 @@ exit();*/
             SELECT
 
                 OT.idApp_Despesas,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.AprovadoDespesas,
                 OT.DataDespesas,
 				TD.TipoDespesa,
@@ -2966,7 +2966,7 @@ exit();*/
                 App_Despesas AS OT
 				LEFT JOIN Sis_Usuario AS TSU ON TSU.idSis_Usuario = OT.idSis_Usuario
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamentoDespesas
-				LEFT JOIN App_OrcaTrata AS TR ON TR.idApp_OrcaTrata = OT.idApp_OrcaTrata
+				LEFT JOIN App_OrcaTrataCons AS TR ON TR.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 				LEFT JOIN App_Cliente AS C ON C.idApp_Cliente = TR.idApp_Cliente
 				LEFT JOIN Tab_TipoDespesa AS TD ON TD.idTab_TipoDespesa = OT.TipoDespesa
 				LEFT JOIN Tab_Categoriadesp AS CD ON CD.idTab_Categoriadesp = TD.Categoriadesp
@@ -3070,12 +3070,12 @@ exit();*/
                 D.ValorTotalDesp,
 				FP.FormaPag,
 				E.NomeEmpresa AS Empresa,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				OT.ValorOrca
 
             FROM
-                App_OrcaTrata AS OT,
+                App_OrcaTrataCons AS OT,
 				App_Despesa AS D
                     LEFT JOIN Tab_TipoDespesa AS TD ON TD.idTab_TipoDespesa = D.TipoDespesa
                     LEFT JOIN Tab_FormaPag    AS FP ON FP.idTab_FormaPag    = D.FormaPag
@@ -4024,7 +4024,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 C.NomeCliente,
-                OT.idApp_OrcaTrata,
+                OT.idApp_OrcaTrataCons,
                 OT.AprovadoOrca,
                 OT.DataOrca,
 				OT.DataPrazo,
@@ -4038,10 +4038,10 @@ exit();*/
 				PC.ConcluidoProcedimento
 			FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-					LEFT JOIN App_ProdutoVenda AS PD ON OT.idApp_OrcaTrata = PD.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+					LEFT JOIN App_ProdutoVendaCons AS PD ON OT.idApp_OrcaTrataCons = PD.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Produto AS TPD ON TPD.idTab_Produto = PD.idTab_Produto
-					LEFT JOIN App_Procedimento AS PC ON OT.idApp_OrcaTrata = PC.idApp_OrcaTrata
+					LEFT JOIN App_ProcedimentoCons AS PC ON OT.idApp_OrcaTrataCons = PC.idApp_OrcaTrataCons
 					LEFT JOIN App_Profissional AS PR ON PR.idApp_Profissional = PC.Profissional
 			WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
@@ -4186,7 +4186,7 @@ exit();*/
             SELECT
 
                 C.NomeCliente,
-				OT.idApp_OrcaTrata,
+				OT.idApp_OrcaTrataCons,
 				OT.AprovadoOrca,
 				PD.QtdVendaProduto,
 				TPD.NomeProduto,
@@ -4194,10 +4194,10 @@ exit();*/
 				PC.ConcluidoProcedimento
             FROM
                 App_Cliente AS C,
-				App_OrcaTrata AS OT
-				LEFT JOIN App_ProdutoVenda AS PD ON OT.idApp_OrcaTrata = PD.idApp_OrcaTrata
+				App_OrcaTrataCons AS OT
+				LEFT JOIN App_ProdutoVendaCons AS PD ON OT.idApp_OrcaTrataCons = PD.idApp_OrcaTrataCons
 				LEFT JOIN Tab_Produto AS TPD ON TPD.idTab_Produto = PD.idTab_Produto
-				LEFT JOIN App_Procedimento AS PC ON OT.idApp_OrcaTrata = PC.idApp_OrcaTrata
+				LEFT JOIN App_ProcedimentoCons AS PC ON OT.idApp_OrcaTrataCons = PC.idApp_OrcaTrataCons
             WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				C.idApp_Cliente = OT.idApp_Cliente
@@ -4256,7 +4256,7 @@ exit();*/
             SELECT
                 C.NomeCliente,
 
-                OT.idApp_OrcaTrata,
+                OT.idApp_OrcaTrataCons,
                 OT.AprovadoOrca,
                 OT.DataOrca,
 				OT.DataPrazo,
@@ -4275,10 +4275,10 @@ exit();*/
 
 			FROM
                 App_Cliente AS C,
-                App_OrcaTrata AS OT
-					LEFT JOIN App_ServicoVenda AS SV ON OT.idApp_OrcaTrata = SV.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+					LEFT JOIN App_ServicoVendaCons AS SV ON OT.idApp_OrcaTrataCons = SV.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Servico AS TSV ON TSV.idTab_Servico = SV.idTab_Servico
-					LEFT JOIN App_Procedimento AS PC ON OT.idApp_OrcaTrata = PC.idApp_OrcaTrata
+					LEFT JOIN App_ProcedimentoCons AS PC ON OT.idApp_OrcaTrataCons = PC.idApp_OrcaTrataCons
 					LEFT JOIN App_Profissional AS PR ON PR.idApp_Profissional = PC.Profissional
 
 			WHERE
@@ -4836,23 +4836,23 @@ exit();*/
 
         $query = $this->db->query('
             SELECT
-                CONCAT(P.idApp_OrcaTrata, " - ",C.NomeCliente) AS idApp_OrcaTrata,
+                CONCAT(P.idApp_OrcaTrataCons, " - ",C.NomeCliente) AS idApp_OrcaTrataCons,
                 P.idApp_Cliente,
 				C.NomeCliente
             FROM
-                App_OrcaTrata AS P
+                App_OrcaTrataCons AS P
 				LEFT JOIN App_Cliente AS C ON C.idApp_Cliente = P.idApp_Cliente
             WHERE
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
             ORDER BY
-                idApp_OrcaTrata ASC
+                idApp_OrcaTrataCons ASC
         ');
 
         $array = array();
         $array[0] = ':: Todos ::';
         foreach ($query->result() as $row) {
-            $array[$row->idApp_OrcaTrata] = $row->idApp_OrcaTrata;
+            $array[$row->idApp_OrcaTrataCons] = $row->idApp_OrcaTrataCons;
         }
 
         return $array;

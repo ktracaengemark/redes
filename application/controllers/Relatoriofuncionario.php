@@ -87,7 +87,7 @@ class Relatoriofuncionario extends CI_Controller {
         $data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
 
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
             'OT.ValorOrca' => 'Valor do Orçamento',
@@ -224,7 +224,7 @@ class Relatoriofuncionario extends CI_Controller {
 			'PR.DataPagoRecebiveis' => 'Data do Pagam.',
 			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
 			'C.Nome' => 'Nome do Consultor',
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
             'OT.ValorOrca' => 'Valor do Orçamento',
@@ -1206,7 +1206,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.Nome' => 'Nome do Consultor',
-			'OT.idApp_OrcaTrata' => 'Id Orçam.',
+			'OT.idApp_OrcaTrataCons' => 'Id Orçam.',
             'APV.DataValidadeProduto' => 'Data da Entrega.',			
 			'TPV.CodProd' => 'Código',
 			'TPV.Produtos' => 'Produto',
@@ -1311,7 +1311,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.Nome' => 'Nome do Consultor',
-			'OT.idApp_OrcaTrata' => 'NºOrç.',
+			'OT.idApp_OrcaTrataCons' => 'NºOrç.',
             'OT.DataOrca' => 'Dt.Orç.',
 			'APV.DataValidadeServico' => 'Dt.Dev.',
 
@@ -1398,7 +1398,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
-			'OT.idApp_OrcaTrata' => 'Id Orçam.',
+			'OT.idApp_OrcaTrataCons' => 'Id Orçam.',
             'OT.DataOrca' => 'Data do Orçam.',
 			'OT.ProfissionalOrca' => 'Responsável',
 			'TPB.ServicoBase' => 'Serviço',
@@ -1475,7 +1475,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
-			'OT.idApp_OrcaTrata' => 'Id Orçam.',
+			'OT.idApp_OrcaTrataCons' => 'Id Orçam.',
             'OT.DataOrca' => 'Data do Orçam.',
 			'OT.ProfissionalOrca' => 'Responsável',
 			'PD.NomeServico' => 'Serviço',
@@ -1724,7 +1724,7 @@ class Relatoriofuncionario extends CI_Controller {
 		$data['select']['Campo'] = array(
 			'C.NomeCliente' => 'Cliente',
 			'TCO.idApp_Despesas' => 'Nº da Devol.',
-			'TCO.idApp_OrcaTrata' => 'Nº do Orçam.',
+			'TCO.idApp_OrcaTrataCons' => 'Nº do Orçam.',
             'TCO.DataDespesas' => 'Data da Devol.',
 			'TCO.AprovadoDespesas' => 'Devol. Aprov./Fechado?',
 			'TCO.CodProd' => 'Código',
@@ -1854,7 +1854,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.Nome' => 'Nome do Cliente',
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
 			'OT.DataEntradaOrca' => 'Validade do Orçamento',
@@ -1989,7 +1989,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.Nome' => 'Nome do Consultor',
-            'OT.idApp_OrcaTrata' => 'Nº Devol.',
+            'OT.idApp_OrcaTrataCons' => 'Nº Devol.',
             'OT.AprovadoOrca' => 'Aprovado.',
             'OT.DataOrca' => 'Dt. Devol.',
 			'OT.TipoDevolucao' => 'Tipo Devol.',
@@ -2070,7 +2070,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
 			'idApp_Despesas',
-			'idApp_OrcaTrata',
+			'idApp_OrcaTrataCons',
 			'NomeCliente',
             'DataFim',
 			'DataInicio',
@@ -2121,7 +2121,7 @@ class Relatoriofuncionario extends CI_Controller {
 
 			'C.NomeCliente' => 'Cliente',
             'OT.idApp_Despesas' => 'Número da Devolução',
-			'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+			'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoDespesas' => 'Orçamento Aprovado?',
             'OT.DataDespesas' => 'Data do Orçamento',
 			'OT.DataEntradaDespesas' => 'Validade do Orçamento',
@@ -2198,7 +2198,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
 			'idApp_Despesas',
-			'idApp_OrcaTrata',
+			'idApp_OrcaTrataCons',
 			'Categoriadesp',
 			'TipoDespesa',
 			'NomeCliente',
@@ -3201,7 +3201,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
-			'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+			'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
 			'OT.DataOrca' => 'Data do Orçamento',
             'OT.DataPrazo' => 'Data Prazo',
 			'OT.AprovadoOrca' => 'Orçamento Aprovado?',
@@ -3417,7 +3417,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
 			'C.NomeCliente' => 'Nome do Cliente',
-			'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+			'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
 			'OT.AprovadoOrca' => 'Aprovado?',
 			'PD.QtdVendaProduto' => 'Qtd. do Produto',
 			'PD.idTab_Produto' => 'Produto',
@@ -3514,7 +3514,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
-			'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+			'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
 			'OT.DataOrca' => 'Data do Orçamento',
             'OT.DataPrazo' => 'Data Prazo',
 			'OT.AprovadoOrca' => 'Orçamento Aprovado?',

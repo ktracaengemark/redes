@@ -78,7 +78,7 @@
 							echo '<td>' . $row['Categoriadesp'] . '</td>';
 							echo '<td>' . $row['TipoDespesa'] . '</td>';
 							echo '<td>' . $row['Despesa'] . '</td>';							
-							#echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
+							#echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
 							#echo '<td>' . $row['NomeCliente'] . '</td>';
                             
 							#echo '<td>' . $row['DataEntradaDespesas'] . '</td>';

@@ -33,7 +33,7 @@
                             #echo '<td>' . $row['TipoProduto'] . '</td>';
 							
 							echo '<td>' . $row['idApp_Despesas'] . '</td>';
-							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
+							echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
 							echo '<td>' . $row['NomeCliente'] . '</td>';
 							#echo '<td>' . $row['Despesa'] . '</td>';
 							echo '<td>' . $row['DataDespesas'] . '</td>';							

@@ -89,7 +89,7 @@
 
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_Despesa'] . '">';
-                            echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
+                            echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
                             echo '<td>' . $row['DataOrca'] . '</td>';							
                             echo '<td class="text-left">R$ ' . $row['ValorOrca'] . '</td>';
                         echo '</tr>';
