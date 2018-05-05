@@ -307,11 +307,11 @@ class Orcatratacons_model extends CI_Model {
         $this->db->delete($tables);
         */
 
-        $query = $this->db->delete('App_ServicoVendaCons', array('idApp_Orcatrata' => $id));
-        $query = $this->db->delete('App_ProdutoVendaCons', array('idApp_Orcatrata' => $id));
-        $query = $this->db->delete('App_ParcelasRecebiveisCons', array('idApp_Orcatrata' => $id));
-        $query = $this->db->delete('App_ProcedimentoCons', array('idApp_Orcatrata' => $id));
-        $query = $this->db->delete('App_OrcaTrataCons', array('idApp_Orcatrata' => $id));
+        $query = $this->db->delete('App_ServicoVendaCons', array('idApp_OrcatrataCons' => $id));
+        $query = $this->db->delete('App_ProdutoVendaCons', array('idApp_OrcatrataCons' => $id));
+        $query = $this->db->delete('App_ParcelasRecebiveisCons', array('idApp_OrcatrataCons' => $id));
+        $query = $this->db->delete('App_ProcedimentoCons', array('idApp_OrcatrataCons' => $id));
+        $query = $this->db->delete('App_OrcaTrataCons', array('idApp_OrcatrataCons' => $id));
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
