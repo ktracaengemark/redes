@@ -140,7 +140,7 @@
 																	<input type="hidden" name="ProdutoHidden" id="ProdutoHidden<?php echo $i ?>" value="<?php echo $i ?>">
 
 																	<div class="form-group" id="9div<?php echo $i ?>">
-																		<div class="panel panel-info">
+																		<div class="panel panel-success">
 																			<div class="panel-heading">
 																				<div class="row">
 																					<div class="col-md-1">
@@ -289,7 +289,7 @@
 																	<input type="hidden" name="ServicoHidden" id="ServicoHidden<?php echo $i ?>" value="<?php echo $i ?>">
 																	
 																	<div class="form-group" id="10div<?php echo $i ?>">
-																		<div class="panel panel-info">
+																		<div class="panel panel-danger">
 																			<div class="panel-heading">
 																				<div class="row">
 																					<div class="col-md-1">
