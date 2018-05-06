@@ -22,12 +22,12 @@
     <p><a href="<?php echo base_url(); ?>loginfuncionario/recuperar/?usuario=<?php echo set_value('Usuario'); ?>">Esqueci Usuário/senha!</a></p> 
 	<br>
 	<!--<a class="btn btn-lg btn-info btn-block" href="<?php echo base_url(); ?>logincliente/index" role="button">Acesso dos Clientes</a>
-	<br>-->
+	<br>
 	<a class="btn btn-lg btn-success btn-block" href="<?php echo base_url(); ?>loginconsultor/index" role="button">Acesso dos Consultores</a>
-	<br>
+	<br>-->
 	<a class="btn btn-lg btn-warning btn-block" href="<?php echo base_url(); ?>loginempresamatriz/index" role="button">Acesso do Administrador</a>
-	<br>
-	<a class="btn btn-lg btn-danger btn-block" href="<?php echo base_url(); ?>loginconsultor/registrar" role="button">Cadastrar Novo Consultor</a>
+	<!--<br>
+	<a class="btn btn-lg btn-danger btn-block" href="<?php echo base_url(); ?>loginconsultor/registrar" role="button">Cadastrar Novo Consultor</a>-->
 </form>
 
 </div>
