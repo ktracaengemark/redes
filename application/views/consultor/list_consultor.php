@@ -14,12 +14,12 @@
         foreach ($list->result_array() as $row) {
 
             if (isset($_SESSION['agenda']))
-                $url = base_url() . 'consulta/cadastrar/' . $row['idSis_Usuario'];
+                $url = base_url() . 'consulta/cadastrar/' . $row['idApp_Consultor'];
             else
-                $url = base_url() . 'consultor/prontuario/' . $row['idSis_Usuario'];
+                $url = base_url() . 'consultor/prontuario/' . $row['idApp_Consultor'];
 
             echo '<tr class="clickable-row" data-href="' . $url . '">';
-                echo '<td>' . $row['Nome'] . '</td>';
+                echo '<td>' . $row['NomeConsultor'] . '</td>';
                 echo '<td>' . $row['DataNascimento'] . '</td>';
                 echo '<td>' . $row['Celular'] . '</td>';
             echo '</tr>';

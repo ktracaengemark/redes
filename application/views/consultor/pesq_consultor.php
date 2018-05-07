@@ -13,7 +13,7 @@
 				<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 				<div class="panel-body">
 
-					<p>Informe <b>Nome ou Telefone</b> do Consultor:</p>
+					<p>Informe <b>NomeConsultor ou Telefone</b> do Consultor:</p>
 
 					<div class="row">
 						<?php echo form_open('consultor/pesquisar', 'role="form"'); ?>

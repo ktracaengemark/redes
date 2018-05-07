@@ -29,9 +29,9 @@
 												<div class="form-group">
 													<div class="row">
 														<div class="col-md-3">
-															<label for="Nome">Nome do Consultor:</label>
-															<input type="text" class="form-control" id="Nome" maxlength="45" 
-																	name="Nome" autofocus value="<?php echo $query['Nome']; ?>">
+															<label for="NomeConsultor">Nome do Consultor:</label>
+															<input type="text" class="form-control" id="NomeConsultor" maxlength="45" 
+																	name="NomeConsultor" autofocus value="<?php echo $query['NomeConsultor']; ?>">
 														</div>																		
 														<div class="col-md-3">
 															<label for="Celular">Tel.- Fixo ou Celular*</label>
@@ -102,10 +102,10 @@
 												<div class="form-group">
 													<div class="row">																					
 														<div class="col-md-3">
-															<label for="Usuario">Usuário:</label>
-															<input type="text" class="form-control" id="Usuario" maxlength="45" 
-																   autofocus name="Usuario" value="<?php echo $query['Usuario']; ?>">
-															<?php echo form_error('Usuario'); ?>
+															<label for="Consultor">Usuário:</label>
+															<input type="text" class="form-control" id="Consultor" maxlength="45" 
+																   autofocus name="Consultor" value="<?php echo $query['Consultor']; ?>">
+															<?php echo form_error('Consultor'); ?>
 														</div>						
 														<div class="col-md-3">
 															<label for="Senha">Senha:</label>
@@ -168,7 +168,7 @@
 
 												<div class="form-group">
 													<div class="row">
-														<input type="hidden" name="idSis_Usuario" value="<?php echo $query['idSis_Usuario']; ?>">
+														<input type="hidden" name="idApp_Consultor" value="<?php echo $query['idApp_Consultor']; ?>">
 														<?php if ($metodo == 2) { ?>
 
 															<div class="col-md-6">
@@ -200,7 +200,7 @@
 																				</button>
 																			</div>
 																			<div class="col-md-6 text-right">
-																				<a class="btn btn-danger" href="<?php echo base_url() . 'consultor/excluir/' . $query['idSis_Usuario'] ?>" role="button">
+																				<a class="btn btn-danger" href="<?php echo base_url() . 'consultor/excluir/' . $query['idApp_Consultor'] ?>" role="button">
 																					<span class="glyphicon glyphicon-trash"></span> Confirmar Exclusão
 																				</a>
 																			</div>

@@ -7,7 +7,7 @@
 		<div class="col-md-12">
 
 			<div class="panel-heading text-center">
-				<h3><?php echo '<strong>' . $_SESSION['Cliente']['idSis_Usuario'] . '</strong> - <strong>ORÇAMENTO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h3>
+				<h3><?php echo '<strong>' . $_SESSION['Cliente']['idApp_Consultor'] . '</strong> - <strong>ORÇAMENTO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrata'] . '</strong>' ?></h3>
 			</div>
 
 			<div class="panel-body">
@@ -75,16 +75,13 @@
 					</tbody>
 				</table>
 				<hr />
-				
+				<!--
 				<h3 class="text-center">Produtos Devolvidos  </h3>
 
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<!--<th scope="col">Nº</th>-->
-							<th class="col-md-1" scope="col">Qtd</th>																				
-							<!--<th scope="col">CodProd.</th>
-							<th scope="col">CategProd.</th>-->												
+							<th class="col-md-1" scope="col">Qtd</th>																															
 							<th class="col-md-9" scope="col">DescProd.</th>							
 							<th class="col-md-1" scope="col">Valor</th>
 							<th class="col-md-1" scope="col">Subtotal</th>
@@ -92,11 +89,7 @@
 						<tr>
 							<th class="col-md-1" scope="col"></th>
 							<th class="col-md-9" scope="col">id</th>	
-							<!--<th scope="col">Unidade</th>																				
-							<th scope="col">Aux1</th>
-							<th scope="col">Aux2</th>-->
-							<!--<th scope="col">Tipo Venda</th>
-							<th scope="col">Desc Venda</th>-->
+
 							<th class="col-md-1" scope="col">Data</th>							
 						</tr>
 					</thead>
@@ -109,10 +102,7 @@
 						?>
 
 						<tr>
-							<!--<td><?php echo $servico[$i]['idApp_OrcaTrata'] ?></td>-->
-							<td><?php echo $servico[$i]['QtdVendaServico'] ?></td>														
-							<!--<td><?php echo $servico[$i]['CodProd'] ?></td>
-							<td><?php echo $servico[$i]['Prodaux3'] ?></td>-->					
+							<td><?php echo $servico[$i]['QtdVendaServico'] ?></td>																			
 							<td><?php echo $servico[$i]['NomeServico'] ?></td>							
 							<td><?php echo number_format($servico[$i]['ValorVendaServico'], 2, ',', '.') ?></td>
 							<td><?php echo $servico[$i]['SubtotalServico'] ?></td>
@@ -120,11 +110,6 @@
 						<tr>
 							<td></td>
 							<td><?php echo $servico[$i]['idApp_ServicoVenda'] ?></td>
-							<!--<td><?php echo $servico[$i]['UnidadeProduto'] ?></td>														
-							<td><?php echo $servico[$i]['Prodaux1'] ?></td>
-							<td><?php echo $servico[$i]['Prodaux2'] ?></td>-->
-							<!--<td><?php echo $servico[$i]['Convenio'] ?></td>
-							<td><?php echo $servico[$i]['Convdesc'] ?></td>-->
 							<td><?php echo $servico[$i]['DataValidadeServico'] ?></td>							
 						</tr>
 
@@ -134,15 +119,15 @@
 
 					</tbody>
 				</table>
-				
+				-->
 				<hr />
-				<h3 class="text-center">Orçamento, Devolução & Forma de Pagam.</h3>
+				<h3 class="text-center">Orçamento, Desconto & Forma de Pagam.</h3>
 
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Orçamento</th>
-							<th class="col-md-4" scope="col">Devolução</th>
+							<th class="col-md-4" scope="col">Desconto</th>
 							<!--<th class="col-md-3" scope="col">Desconto</th>-->
 							<th class="col-md-4" scope="col">Resta Pagar</th>
 						</tr>

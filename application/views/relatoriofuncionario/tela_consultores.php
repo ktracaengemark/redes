@@ -38,12 +38,12 @@
 												<div class="form-group">
 													<div class="row">
 														<div class="col-md-12 text-left">
-															<label for="Ordenamento">Nome do Cliente:</label>
+															<label for="Ordenamento">Nome do Consultor:</label>
 															<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
-																	id="Nome" autofocus name="Nome">
+																	id="NomeConsultor" autofocus name="NomeConsultor">
 																<?php
-																foreach ($select['Nome'] as $key => $row) {
-																	if ($query['Nome'] == $key) {
+																foreach ($select['NomeConsultor'] as $key => $row) {
+																	if ($query['NomeConsultor'] == $key) {
 																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																	} else {
 																		echo '<option value="' . $key . '">' . $row . '</option>';

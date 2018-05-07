@@ -15,7 +15,7 @@ class Contatoconsultor_model extends CI_Model {
     
     public function set_contatoconsultor($data) {
 
-        $query = $this->db->insert('App_ContatoUsuario', $data);
+        $query = $this->db->insert('App_ContatoConsultor', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -26,7 +26,7 @@ class Contatoconsultor_model extends CI_Model {
     }
 
     public function get_contatoconsultor($data) {
-        $query = $this->db->query('SELECT * FROM App_ContatoUsuario WHERE idApp_ContatoUsuario = ' . $data);
+        $query = $this->db->query('SELECT * FROM App_ContatoConsultor WHERE idApp_ContatoConsultor = ' . $data);
         
         $query = $query->result_array();
 
@@ -36,7 +36,7 @@ class Contatoconsultor_model extends CI_Model {
     public function update_contatoconsultor($data, $id) {
 
         unset($data['Id']);
-        $query = $this->db->update('App_ContatoUsuario', $data, array('idApp_ContatoUsuario' => $id));
+        $query = $this->db->update('App_ContatoConsultor', $data, array('idApp_ContatoConsultor' => $id));
         /*
           echo $this->db->last_query();
           echo '<br>';
@@ -53,7 +53,7 @@ class Contatoconsultor_model extends CI_Model {
     }
 
     public function delete_contatoconsultor($data) {
-        $query = $this->db->delete('App_ContatoUsuario', array('idApp_ContatoUsuario' => $data));
+        $query = $this->db->delete('App_ContatoConsultor', array('idApp_ContatoConsultor' => $data));
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -65,9 +65,9 @@ class Contatoconsultor_model extends CI_Model {
     public function lista_contatoconsultor($x) {
 
         $query = $this->db->query('SELECT * '
-                . 'FROM App_ContatoUsuario WHERE '
-                . 'idSis_Usuario = ' . $_SESSION['Consultor']['idSis_Usuario'] . ' '
-                . 'ORDER BY NomeContatoUsuario ASC ');
+                . 'FROM App_ContatoConsultor WHERE '
+                . 'idApp_Consultor = ' . $_SESSION['Consultor']['idApp_Consultor'] . ' '
+                . 'ORDER BY NomeContatoConsultor ASC ');
         /*
           echo $this->db->last_query();
           echo "<pre>";

@@ -2685,7 +2685,7 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['Campo'] = array(
-            'C.idSis_Usuario' => 'nº Cliente',
+            'C.idApp_Consultor' => 'nº Cliente',
 			'C.Nome' => 'Nome do Cliente',
 			'C.Inativo' => 'Ativo',
             'C.DataNascimento' => 'Data de Nascimento',
@@ -2760,7 +2760,7 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['Campo'] = array(
-            'C.idSis_Usuario' => 'nº Consultor',
+            'C.idApp_Consultor' => 'nº Consultor',
 			'C.Nome' => 'Nome do Consultor',
 			'C.Inativo' => 'Ativo',
             'C.DataNascimento' => 'Data de Nascimento',

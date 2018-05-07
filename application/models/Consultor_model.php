@@ -19,7 +19,7 @@ class Consultor_model extends CI_Model {
 
     public function set_consultor($data) {
 
-        $query = $this->db->insert('Sis_Usuario', $data);
+        $query = $this->db->insert('App_Consultor', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -52,7 +52,7 @@ class Consultor_model extends CI_Model {
     }
 	
 	public function get_consultor($data) {
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE idSis_Usuario = ' . $data);
+        $query = $this->db->query('SELECT * FROM App_Consultor WHERE idApp_Consultor = ' . $data);
 
         $query = $query->result_array();
 
@@ -62,7 +62,7 @@ class Consultor_model extends CI_Model {
     public function update_consultor($data, $id) {
 
         unset($data['Id']);
-        $query = $this->db->update('Sis_Usuario', $data, array('idSis_Usuario' => $id));
+        $query = $this->db->update('App_Consultor', $data, array('idApp_Consultor' => $id));
         /*
           echo $this->db->last_query();
           echo '<br>';
@@ -80,7 +80,7 @@ class Consultor_model extends CI_Model {
 
     public function delete_consultor($data) {
 
-        $query = $this->db->query('SELECT idApp_OrcaTrata FROM App_OrcaTrata WHERE idSis_Usuario = ' . $data);
+        $query = $this->db->query('SELECT idApp_OrcaTrataCons FROM App_OrcaTrataCons WHERE idApp_Consultor = ' . $data);
         $query = $query->result_array();
 
         /*
@@ -94,7 +94,7 @@ class Consultor_model extends CI_Model {
 
         foreach ($query as $key) {
             /*
-            echo $key['idApp_OrcaTrata'];
+            echo $key['idApp_OrcaTrataCons'];
             echo '<br />';
             #echo $value;
             echo '<br />';
@@ -104,18 +104,18 @@ class Consultor_model extends CI_Model {
 
         */
 
-        $this->db->delete('App_Consulta', array('idSis_Usuario' => $data));
-        $this->db->delete('App_ContatoUsuario', array('idSis_Usuario' => $data));
+        #$this->db->delete('App_Consulta', array('idApp_Consultor' => $data));
+        $this->db->delete('App_ContatoConsultor', array('idApp_Consultor' => $data));
 
         foreach ($query as $key) {
-            $query = $this->db->delete('App_ProdutoVenda', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
-            $query = $this->db->delete('App_ServicoVenda', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
-            $query = $this->db->delete('App_ParcelasRecebiveis', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
-            $query = $this->db->delete('App_Procedimento', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
+            $query = $this->db->delete('App_ProdutoVenda', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ServicoVenda', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ParcelasRecebiveis', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_Procedimento', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
         }
 
-        $this->db->delete('App_OrcaTrata', array('idSis_Usuario' => $data));
-        $this->db->delete('Sis_Usuario', array('idSis_Usuario' => $data));
+        $this->db->delete('App_OrcaTrataCons', array('idApp_Consultor' => $data));
+        $this->db->delete('App_Consultor', array('idApp_Consultor' => $data));
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -127,16 +127,16 @@ class Consultor_model extends CI_Model {
     public function lista_consultor($data, $x) {
 
         $query = $this->db->query('SELECT * '
-                . 'FROM Sis_Usuario WHERE '
+                . 'FROM App_Consultor WHERE '
                 . 'Empresa = ' . $_SESSION['log']['Empresa'] . ' AND '
 				. 'idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND '
 				. 'Nivel =  3  AND '
-                . '(Nome like "%' . $data . '%" OR '
+                . '(NomeConsultor like "%' . $data . '%" OR '
                 #. 'DataNascimento = "' . $this->basico->mascara_data($data, 'mysql') . '" OR '
-                #. 'Nome like "%' . $data . '%" OR '
+                #. 'NomeConsultor like "%' . $data . '%" OR '
                 . 'DataNascimento = "' . $this->basico->mascara_data($data, 'mysql') . '" OR '
                 . 'Celular like "%' . $data . '%") '
-                . 'ORDER BY Nome ASC ');
+                . 'ORDER BY NomeConsultor ASC ');
         /*
           echo $this->db->last_query();
           echo "<pre>";
@@ -163,9 +163,9 @@ class Consultor_model extends CI_Model {
 
         $query = $this->db->query(
             'SELECT * '
-                . 'FROM App_ContatoUsuario WHERE '
-                . 'idSis_Usuario = ' . $id . ' '
-            . 'ORDER BY NomeContatoUsuario ASC ');
+                . 'FROM App_ContatoConsultor WHERE '
+                . 'idApp_Consultor = ' . $id . ' '
+            . 'ORDER BY NomeContatoConsultor ASC ');
         /*
           echo $this->db->last_query();
           echo "<pre>";
@@ -196,22 +196,22 @@ class Consultor_model extends CI_Model {
 
         $query = $this->db->query('
             SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
             FROM
-                Sis_Usuario AS P
+                App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "2"  
-			ORDER BY P.Nome ASC
+			ORDER BY P.NomeConsultor ASC
         ');
 
         $array = array();
         $array[0] = ':: Todos ::';
         foreach ($query->result() as $row) {
-            $array[$row->idSis_Usuario] = $row->Nome;
+            $array[$row->idApp_Consultor] = $row->NomeConsultor;
         }
 
         return $array;
@@ -222,36 +222,36 @@ class Consultor_model extends CI_Model {
         if ($data === TRUE) {
             $array = $this->db->query(					
 				'SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
             FROM
-                Sis_Usuario AS P
+                App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "3"  
-			ORDER BY P.Nome ASC'
+			ORDER BY P.NomeConsultor ASC'
     );
 					
         } else {
             $query = $this->db->query(
                 'SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
             FROM
-                Sis_Usuario AS P
+                App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "3"  
-			ORDER BY P.Nome ASC'
+			ORDER BY P.NomeConsultor ASC'
     );
             
             $array = array();
             foreach ($query->result() as $row) {
-                $array[$row->idSis_Usuario] = $row->Nome;
+                $array[$row->idApp_Consultor] = $row->NomeConsultor;
             }
         }
 
@@ -263,36 +263,36 @@ class Consultor_model extends CI_Model {
         if ($data === TRUE) {
             $array = $this->db->query(					
 				'SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
             FROM
-                Sis_Usuario AS P
+                App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "4"  
-			ORDER BY P.Nome ASC'
+			ORDER BY P.NomeConsultor ASC'
     );
 					
         } else {
             $query = $this->db->query(
                 'SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(P.Nome,"")) AS Nome
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
             FROM
-                Sis_Usuario AS P
+                App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
             WHERE
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "4"  
-			ORDER BY P.Nome ASC'
+			ORDER BY P.NomeConsultor ASC'
     );
             
             $array = array();
             foreach ($query->result() as $row) {
-                $array[$row->idSis_Usuario] = $row->Nome;
+                $array[$row->idApp_Consultor] = $row->NomeConsultor;
             }
         }
 

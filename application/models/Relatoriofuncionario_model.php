@@ -180,7 +180,7 @@ class Relatoriofuncionario_model extends CI_Model {
                 '(OT.DataOrca >= "' . $data['DataInicio3'] . '")';
         }
 
-		$data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+		$data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
 		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
@@ -188,7 +188,7 @@ class Relatoriofuncionario_model extends CI_Model {
 
         $query = $this->db->query(
             'SELECT
-                C.Nome,
+                C.NomeConsultor,
                 OT.idApp_OrcaTrataCons,
 				OT.TipoRD,
                 OT.AprovadoOrca,
@@ -206,7 +206,7 @@ class Relatoriofuncionario_model extends CI_Model {
 				PR.ValorPagoPagaveis,
                 PR.QuitadoRecebiveis
             FROM
-                Sis_Usuario AS C,
+                App_Consultor AS C,
                 App_OrcaTrataCons AS OT
                     LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
@@ -220,12 +220,12 @@ class Relatoriofuncionario_model extends CI_Model {
                 ' . $filtro2 . '
                 ' . $filtro3 . '
 				' . $filtro4 . '
-                C.idSis_Usuario = OT.idApp_Cliente
-                ' . $data['Nome'] . ' AND
+                C.idApp_Consultor = OT.idApp_Consultor
+                ' . $data['NomeConsultor'] . ' AND
 				OT.TipoRD = "R"
 
             ORDER BY
-                C.Nome,
+                C.NomeConsultor,
 				OT.AprovadoOrca DESC,
 				PR.DataVencimentoRecebiveis'
             );
@@ -1940,7 +1940,7 @@ exit();*/
                 '(APV.DataValidadeProduto >= "' . $data['DataInicio2'] . '")';
         }
 
-        $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
 		$data['Produtos'] = ($data['Produtos']) ? ' AND TPV.idTab_Produtos = ' . $data['Produtos'] : FALSE;
 		$data['Prodaux1'] = ($data['Prodaux1']) ? ' AND TP1.idTab_Prodaux1 = ' . $data['Prodaux1'] : FALSE;
 		$data['Prodaux2'] = ($data['Prodaux2']) ? ' AND TP2.idTab_Prodaux2 = ' . $data['Prodaux2'] : FALSE;
@@ -1949,7 +1949,7 @@ exit();*/
 
 		$query = $this->db->query('
             SELECT
-                C.Nome,
+                C.NomeConsultor,
 				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				OT.ValorOrca,
@@ -1971,7 +1971,7 @@ exit();*/
 				TP1.Prodaux1
 
             FROM
-                Sis_Usuario AS C,
+                App_Consultor AS C,
 				App_OrcaTrataCons AS OT
 					LEFT JOIN App_ProdutoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Produto
@@ -1988,8 +1988,8 @@ exit();*/
 				(' . $consulta . ') AND
 				(' . $consulta2 . ') AND
 				APV.idApp_ProdutoVendaCons != "0" AND
-				C.idSis_Usuario = OT.idApp_Cliente
-                ' . $data['Nome'] . '
+				C.idApp_Consultor = OT.idApp_Consultor
+                ' . $data['NomeConsultor'] . '
 				' . $data['Produtos'] . '
 				' . $data['Prodaux1'] . '
 				' . $data['Prodaux2'] . '
@@ -2048,16 +2048,16 @@ exit();*/
                 '(APV.DataValidadeServico >= "' . $data['DataInicio2'] . '")';
         }
 
-        $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
 		$data['Produtos'] = ($data['Produtos']) ? ' AND TPV.idTab_Produtos = ' . $data['Produtos'] : FALSE;
 		$data['Prodaux1'] = ($data['Prodaux1']) ? ' AND TP1.idTab_Prodaux1 = ' . $data['Prodaux1'] : FALSE;
 		$data['Prodaux2'] = ($data['Prodaux2']) ? ' AND TP2.idTab_Prodaux2 = ' . $data['Prodaux2'] : FALSE;
         $data['Prodaux3'] = ($data['Prodaux3']) ? ' AND TP3.idTab_Prodaux3 = ' . $data['Prodaux3'] : FALSE;
-		$data['Campo'] = (!$data['Campo']) ? 'C.Nome' : $data['Campo'];
+		$data['Campo'] = (!$data['Campo']) ? 'C.NomeConsultor' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$query = $this->db->query('
             SELECT
-                C.Nome,
+                C.NomeConsultor,
 				OT.idApp_OrcaTrataCons,
                 OT.DataOrca,
 				OT.ValorOrca,
@@ -2081,7 +2081,7 @@ exit();*/
 				TP1.Prodaux1
 
             FROM
-                Sis_Usuario AS C,
+                App_Consultor AS C,
 				App_OrcaTrataCons AS OT
 					LEFT JOIN App_ServicoVendaCons AS APV ON APV.idApp_OrcaTrataCons = OT.idApp_OrcaTrataCons
 					LEFT JOIN Tab_Valor AS TVV ON TVV.idTab_Valor = APV.idTab_Servico
@@ -2099,8 +2099,8 @@ exit();*/
 				(' . $consulta . ') AND
 				(' . $consulta2 . ') AND
 				APV.idApp_ServicoVendaCons != "0" AND
-				C.idSis_Usuario = OT.idApp_Cliente
-                ' . $data['Nome'] . '
+				C.idApp_Consultor = OT.idApp_Consultor
+                ' . $data['NomeConsultor'] . '
 				' . $data['Produtos'] . '
 				' . $data['Prodaux1'] . '
 				' . $data['Prodaux2'] . '
@@ -2531,9 +2531,9 @@ exit();*/
                 '(OT.DataQuitado >= "' . $data['DataInicio4'] . '")';
         }
 
-        $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
+        $data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
 		$data['FormaPag'] = ($data['FormaPag']) ? ' AND TFP.idTab_FormaPag = ' . $data['FormaPag'] : FALSE;
-        $data['Campo'] = (!$data['Campo']) ? 'C.Nome' : $data['Campo'];
+        $data['Campo'] = (!$data['Campo']) ? 'C.NomeConsultor' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
@@ -2541,9 +2541,9 @@ exit();*/
 
         $query = $this->db->query('
             SELECT
-                C.Nome,
+                C.NomeConsultor,
                 OT.idApp_OrcaTrataCons,
-				OT.idApp_Cliente,
+				OT.idApp_Consultor,
                 OT.AprovadoOrca,
                 OT.DataOrca,
 				OT.DataEntradaOrca,
@@ -2561,7 +2561,7 @@ exit();*/
 				OT.FormaPagamento,
 				TFP.FormaPag
             FROM
-                Sis_Usuario AS C,
+                App_Consultor AS C,
                 App_OrcaTrataCons AS OT
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
 
@@ -2576,8 +2576,8 @@ exit();*/
                 ' . $filtro1 . '
                 ' . $filtro2 . '
 				' . $filtro3 . '
-                C.idSis_Usuario = OT.idApp_Cliente
-                ' . $data['Nome'] . '
+                C.idApp_Consultor = OT.idApp_Consultor
+                ' . $data['NomeConsultor'] . '
 				' . $data['FormaPag'] . ' AND
 				OT.TipoRD = "R"
             ORDER BY
@@ -3345,26 +3345,26 @@ exit();*/
 
 	public function list_consultores($data, $completo) {
 
-        $data['Nome'] = ($data['Nome']) ? ' AND C.idSis_Usuario = ' . $data['Nome'] : FALSE;
-        $data['Campo'] = (!$data['Campo']) ? 'C.Nome' : $data['Campo'];
+        $data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
+        $data['Campo'] = (!$data['Campo']) ? 'C.NomeConsultor' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$filtro1 = ($data['Inativo'] != '#') ? 'C.Inativo = "' . $data['Inativo'] . '" AND ' : FALSE;
         $query = $this->db->query('
             SELECT
-				C.idSis_Usuario,
-                C.Nome,
+				C.idApp_Consultor,
+                C.NomeConsultor,
 				C.Inativo,
 				SN.Abrev,
 				SN.StatusSN,
                 C.DataNascimento,
 				C.Celular,
-				C.Usuario,
+				C.Consultor,
 				C.Nivel,
                 C.Sexo,
                 C.Email,
 				C.Nivel
             FROM
-				Sis_Usuario AS C
+				App_Consultor AS C
 					LEFT JOIN Tab_StatusSN AS SN ON SN.Inativo = C.Inativo
             WHERE
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
@@ -3372,7 +3372,7 @@ exit();*/
 				6 = ' . $_SESSION['log']['Nivel'] . ' AND
 				(C.Nivel = 3 OR 
 				C.Nivel = 4) 
-				' . $data['Nome'] . ' 
+				' . $data['NomeConsultor'] . ' 
 
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
@@ -3836,12 +3836,11 @@ exit();*/
             WHERE
                 TP.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				TP.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				TP.idSis_Usuario = ' . $_SESSION['log']['id'] . ' 
+ 
 				' . $data['Produtos'] . '
 				' . $data['Prodaux1'] . '
 				' . $data['Prodaux2'] . '
-				' . $data['Prodaux3'] . ' AND
-				TP.OrigemOrca = "U/C"
+				' . $data['Prodaux3'] . ' 
 			ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
@@ -4958,10 +4957,10 @@ exit();*/
 
         $query = $this->db->query('
             SELECT
-				P.idSis_Usuario,
-				CONCAT(IFNULL(SN.StatusSN,""), " - ", IFNULL(P.idSis_Usuario,""), " - ", IFNULL(P.Nome,"")) AS Nome
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,""), " - ", IFNULL(P.idApp_Consultor,""), " - ", IFNULL(SN.StatusSN,"")) AS NomeConsultor
             FROM
-                Sis_Usuario AS P
+                App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
 					LEFT JOIN Tab_StatusSN AS SN ON SN.Inativo = P.Inativo
             WHERE
@@ -4969,13 +4968,13 @@ exit();*/
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND				
 				(P.Nivel = 3 OR 
 				P.Nivel = 4)
-			ORDER BY P.Nome ASC
+			ORDER BY P.NomeConsultor ASC
         ');
 
         $array = array();
         $array[0] = ':: Todos ::';
         foreach ($query->result() as $row) {
-            $array[$row->idSis_Usuario] = $row->Nome;
+            $array[$row->idApp_Consultor] = $row->NomeConsultor;
         }
 
         return $array;

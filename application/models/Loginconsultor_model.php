@@ -46,7 +46,7 @@ class Loginconsultor_model extends CI_Model {
 	
 	public function check_dados_usuario($senha, $usuario, $retorna = FALSE) {
 
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE '
+        $query = $this->db->query('SELECT * FROM App_Consultor WHERE '
                 . '(Usuario = "' . $usuario . '" AND '
                 . 'Senha = "' . $senha . '" AND '
 
@@ -56,7 +56,7 @@ class Loginconsultor_model extends CI_Model {
 
 				. 'idTab_Modulo = "' . $_SESSION['log']['idTab_Modulo'] . '") '	
         );
-        #$query = $this->db->get_where('Sis_Usuario', $data);
+        #$query = $this->db->get_where('App_Consultor', $data);
         /*
           echo $this->db->last_query();
           echo "<pre>";
@@ -81,7 +81,7 @@ class Loginconsultor_model extends CI_Model {
 
     public function check_usuario($data) {
 
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE Usuario = "' . $data . '" OR Email = "' . $data . '"');
+        $query = $this->db->query('SELECT * FROM App_Consultor WHERE Usuario = "' . $data . '" OR Email = "' . $data . '"');
         if ($query->num_rows() === 0) {
             return 1;
         }
@@ -101,7 +101,7 @@ class Loginconsultor_model extends CI_Model {
 				return FALSE;			
         }
 
-        #$query = $this->db->get_where('Sis_Usuario', $data);
+        #$query = $this->db->get_where('App_Consultor', $data);
         /*
           echo $this->db->last_query();
           echo "<pre>";
@@ -114,7 +114,7 @@ class Loginconsultor_model extends CI_Model {
 	
 	public function check_nomeempresa($data) {
 
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE NomeEmpresa = "' . $data . '"');
+        $query = $this->db->query('SELECT * FROM App_Consultor WHERE NomeEmpresa = "' . $data . '"');
         if ($query->num_rows() === 0) {
             return 1;
         }
@@ -127,7 +127,7 @@ class Loginconsultor_model extends CI_Model {
                 return FALSE;
         }
 
-        #$query = $this->db->get_where('Sis_Usuario', $data);
+        #$query = $this->db->get_where('App_Consultor', $data);
         /*
           echo $this->db->last_query();
           echo "<pre>";
@@ -143,7 +143,7 @@ class Loginconsultor_model extends CI_Model {
         $data = array(
             'Data' => date('Y-m-d H:i:s'),
             'Operacao' => $operacao,
-            'idSis_Usuario' => $usuario,
+            'idApp_Consultor' => $usuario,
             'Ip' => $this->input->ip_address(),
             'So' => $this->agent->platform(),
             'Navegador' => $this->agent->browser(),
@@ -172,7 +172,7 @@ class Loginconsultor_model extends CI_Model {
           echo "</pre>";
           exit();
          */
-        $query = $this->db->insert('Sis_Usuario', $data);
+        $query = $this->db->insert('App_Consultor', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -208,12 +208,12 @@ class Loginconsultor_model extends CI_Model {
 
     public function ativa_usuario($id, $data) {
 
-        $query = $this->db->query('SELECT * FROM Sis_Usuario WHERE Codigo = "' . $id . '"');
+        $query = $this->db->query('SELECT * FROM App_Consultor WHERE Codigo = "' . $id . '"');
         if ($query->num_rows() === 0) {
             return FALSE;
         }
         else {
-            $query = $this->db->update('Sis_Usuario', $data, array('Codigo' => $id));
+            $query = $this->db->update('App_Consultor', $data, array('Codigo' => $id));
 
             if ($this->db->affected_rows() === 0)
                 return FALSE;
@@ -225,7 +225,7 @@ class Loginconsultor_model extends CI_Model {
 
     public function get_data_by_usuario($data) {
 
-        $query = $this->db->query('SELECT idSis_Usuario, Usuario, Email FROM Sis_Usuario WHERE '
+        $query = $this->db->query('SELECT idApp_Consultor, Usuario, Email FROM App_Consultor WHERE '
                 . 'Usuario = "' . $data . '" OR Email = "' . $data . '"');
         $query = $query->result_array();
         return $query[0];
@@ -234,16 +234,16 @@ class Loginconsultor_model extends CI_Model {
 
     public function get_data_by_codigo($data) {
 
-        $query = $this->db->query('SELECT idSis_Usuario, Usuario, Email FROM Sis_Usuario WHERE Codigo = "' . $data . '"');
+        $query = $this->db->query('SELECT idApp_Consultor, Usuario, Email FROM App_Consultor WHERE Codigo = "' . $data . '"');
         $query = $query->result_array();
-        #return $query[0]['idSis_Usuario'];
+        #return $query[0]['idApp_Consultor'];
         return $query[0];
 
     }
 
     public function troca_senha($id, $data) {
 
-        $query = $this->db->update('Sis_Usuario', $data, array('idSis_Usuario' => $id));
+        $query = $this->db->update('App_Consultor', $data, array('idApp_Consultor' => $id));
 
         if ($this->db->affected_rows() === 0)
             return TRUE;
@@ -254,9 +254,9 @@ class Loginconsultor_model extends CI_Model {
 
     public function get_agenda_padrao($data) {
 
-        $query = $this->db->query('SELECT idApp_Agenda FROM App_Agenda WHERE idSis_Usuario = ' . $data . ' ORDER BY idApp_Agenda ASC LIMIT 1');
+        $query = $this->db->query('SELECT idApp_Agenda FROM App_Agenda WHERE idApp_Consultor = ' . $data . ' ORDER BY idApp_Agenda ASC LIMIT 1');
         $query = $query->result_array();
-        #return $query[0]['idSis_Usuario'];
+        #return $query[0]['idApp_Consultor'];
         return $query[0]['idApp_Agenda'];
 
     }

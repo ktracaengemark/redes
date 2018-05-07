@@ -60,9 +60,9 @@ class OrcatrataPrintcons extends CI_Controller {
 
             #### Carrega os dados do cliente nas variáves de sessão ####
             $this->load->model('Consultor_model');
-            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($data['orcatrata']['idApp_Cliente'], TRUE);
+            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($data['orcatrata']['idApp_Consultor'], TRUE);
 			$_SESSION['Orcatrata'] = $this->OrcatrataPrintcons_model->get_orcatrata($data['orcatrata']['idApp_OrcaTrataCons'], TRUE);
-            #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Consultor']['idApp_Cliente'];
+            #$_SESSION['log']['idApp_Consultor'] = $_SESSION['Consultor']['idApp_Consultor'];
 
             
             #### App_ServicoVendaCons ####

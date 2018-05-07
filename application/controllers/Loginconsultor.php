@@ -90,7 +90,7 @@ class Loginconsultor extends CI_Controller {
               exit();
              */
             $query = $this->Loginconsultor_model->check_dados_usuario($senha, $usuario, TRUE);
-            $_SESSION['log']['Agenda'] = $this->Loginconsultor_model->get_agenda_padrao($query['idSis_Usuario']);
+            #$_SESSION['log']['Agenda'] = $this->Loginconsultor_model->get_agenda_padrao($query['idApp_Consultor']);
 
             #echo "<pre>".print_r($query)."</pre>";
             #exit();
@@ -109,9 +109,9 @@ class Loginconsultor extends CI_Controller {
                 #$_SESSION['log']['Usuario'] = $query['Usuario'];
                 //se for necessário reduzir o tamanho do nome de usuário, que pode ser um email
                 $_SESSION['log']['Usuario'] = (strlen($query['Usuario']) > 15) ? substr($query['Usuario'], 0, 15) : $query['Usuario'];
-                $_SESSION['log']['Nome2'] = (strlen($query['Nome']) > 10) ? substr($query['Nome'], 0, 10) : $query['Nome'];
-				$_SESSION['log']['Nome'] = $query['Nome'];
-				$_SESSION['log']['id'] = $query['idSis_Usuario'];
+                $_SESSION['log']['NomeConsultor2'] = (strlen($query['NomeConsultor']) > 10) ? substr($query['NomeConsultor'], 0, 10) : $query['NomeConsultor'];
+				$_SESSION['log']['NomeConsultor'] = $query['NomeConsultor'];
+				$_SESSION['log']['id'] = $query['idApp_Consultor'];
 				$_SESSION['log']['idSis_EmpresaFilial'] = $query['idSis_EmpresaFilial'];
 				$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
 				$_SESSION['log']['Empresa'] = $query['Empresa'];
@@ -192,15 +192,15 @@ class Loginconsultor extends CI_Controller {
 		
 		$this->form_validation->set_error_delimiters('<h5 style="color: red;">', '</h5>');
 	
-        $this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[Sis_Usuario.Email]');		
-        $this->form_validation->set_rules('Usuario', 'Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
+        $this->form_validation->set_rules('Email', 'E-mail', 'required|trim|valid_email|is_unique[App_Consultor.Email]');		
+        $this->form_validation->set_rules('Usuario', 'Usuário', 'required|trim|is_unique[App_Consultor.Usuario]');
 		$this->form_validation->set_rules('Nome', 'Nome do Usuário', 'required|trim');      	
         $this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
         $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
 		$this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
 		
-		#$this->form_validation->set_rules('CpfUsuario', 'Cpf', 'required|trim|valid_cpf|is_unique[Sis_Usuario.CpfUsuario]');
+		#$this->form_validation->set_rules('CpfUsuario', 'Cpf', 'required|trim|valid_cpf|is_unique[App_Consultor.CpfUsuario]');
 		#$this->form_validation->set_rules('RgUsuario', 'Rg', 'required|trim');
 		$this->form_validation->set_rules('EnderecoUsuario', 'Endereço', 'required|trim');
 		$this->form_validation->set_rules('BairroUsuario', 'Bairro', 'required|trim');
@@ -248,16 +248,16 @@ class Loginconsultor extends CI_Controller {
             $data['anterior'] = array();
             $data['campos'] = array_keys($data['query']);
 
-            $data['idSis_Usuario'] = $this->Loginconsultor_model->set_usuario($data['query']);
+            $data['idApp_Consultor'] = $this->Loginconsultor_model->set_usuario($data['query']);
             $_SESSION['log']['id'] = 1;
 
-            if ($data['idSis_Usuario'] === FALSE) {
+            if ($data['idApp_Consultor'] === FALSE) {
                 $data['msg'] = '?m=2';
                 $this->load->view('loginconsultor/form_loginconsultor', $data);
             } else {
 
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idSis_Usuario']);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'CREATE', $data['auditoriaitem'], $data['idSis_Usuario']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_Consultor']);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'CREATE', $data['auditoriaitem'], $data['idApp_Consultor']);
                 /*
                   echo $this->db->last_query();
                   echo "<pre>";
@@ -268,13 +268,13 @@ class Loginconsultor extends CI_Controller {
                 $data['agenda'] = array(
                     'NomeAgenda' => 'Padrão',
 					'Empresa' => '2',
-                    'idSis_Usuario' => $data['idSis_Usuario']
+                    'idApp_Consultor' => $data['idApp_Consultor']
                 );
                 $data['campos'] = array_keys($data['agenda']);
 
                 $data['idApp_Agenda'] = $this->Loginconsultor_model->set_agenda($data['agenda']);
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idSis_Usuario']);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idSis_Usuario']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idApp_Consultor']);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idApp_Consultor']);
 
                 $this->load->library('email');
 
@@ -348,8 +348,8 @@ class Loginconsultor extends CI_Controller {
 
         if ($this->Loginconsultor_model->ativa_usuario($codigo, $data['confirmar']) === TRUE) {
 
-            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['confirmar'], $data['campos'], $id['idSis_Usuario'], TRUE);
-            $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'UPDATE', $data['auditoriaitem'], $id['idSis_Usuario']);
+            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['confirmar'], $data['campos'], $id['idApp_Consultor'], TRUE);
+            $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'UPDATE', $data['auditoriaitem'], $id['idApp_Consultor']);
 
             $data['msg'] = '?m=4';
             redirect(base_url() . 'loginconsultor/' . $data['msg']);
@@ -392,7 +392,7 @@ class Loginconsultor extends CI_Controller {
 
             $id = $this->Loginconsultor_model->get_data_by_usuario($data['query']['Usuario']);
 
-            if ($this->Loginconsultor_model->troca_senha($id['idSis_Usuario'], array('Codigo' => $data['query']['Codigo'])) === FALSE) {
+            if ($this->Loginconsultor_model->troca_senha($id['idApp_Consultor'], array('Codigo' => $data['query']['Codigo'])) === FALSE) {
 
                 $data['anterior'] = array(
                     'Codigo' => 'NULL'
@@ -404,8 +404,8 @@ class Loginconsultor extends CI_Controller {
 
                 $data['campos'] = array_keys($data['confirmar']);
 
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['confirmar'], $data['campos'], $id['idSis_Usuario'], TRUE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'UPDATE', $data['auditoriaitem'], $id['idSis_Usuario']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['confirmar'], $data['campos'], $id['idApp_Consultor'], TRUE);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'UPDATE', $data['auditoriaitem'], $id['idApp_Consultor']);
 
                 $this->load->library('email');
 
@@ -452,7 +452,7 @@ class Loginconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = $this->input->post(array(
-            'idSis_Usuario',
+            'idApp_Consultor',
             'Email',
             'Usuario',
             'Codigo',
@@ -489,13 +489,13 @@ class Loginconsultor extends CI_Controller {
             $data['anterior'] = array();
             $data['campos'] = array_keys($data['query']);
 
-            if ($this->Loginconsultor_model->troca_senha($data['query']['idSis_Usuario'], $data['query']) === TRUE) {
+            if ($this->Loginconsultor_model->troca_senha($data['query']['idApp_Consultor'], $data['query']) === TRUE) {
                 $data['msg'] = '?m=2';
                 $this->load->view('loginconsultor/form_troca_senha', $data);
             } else {
 
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idSis_Usuario'], TRUE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'UPDATE', $data['auditoriaitem'], $data['query']['idSis_Usuario']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Consultor'], TRUE);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'UPDATE', $data['auditoriaitem'], $data['query']['idApp_Consultor']);
                 /*
                   echo $this->db->last_query();
                   echo "<pre>";

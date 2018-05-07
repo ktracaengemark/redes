@@ -50,8 +50,9 @@ class Consultor extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
 			'idSis_Usuario',
-			'Usuario',
-            'Nome',
+			'idApp_Consultor',
+			'Consultor',
+            'NomeConsultor',
 			'Senha',
 			'Confirma',
             'DataNascimento',
@@ -71,9 +72,9 @@ class Consultor extends CI_Controller {
 		
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-		$this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email|is_unique[Sis_Usuario.Email]');
-        $this->form_validation->set_rules('Usuario', 'Usuário', 'required|trim|is_unique[Sis_Usuario.Usuario]');
-		$this->form_validation->set_rules('Nome', 'Nome do Usuário', 'required|trim');
+		$this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email|is_unique[App_Consultor.Email]');
+        $this->form_validation->set_rules('Consultor', 'Usuário', 'required|trim|is_unique[App_Consultor.Consultor]');
+		$this->form_validation->set_rules('NomeConsultor', 'NomeConsultor do Usuário', 'required|trim');
 		$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
         $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
@@ -104,7 +105,7 @@ class Consultor extends CI_Controller {
             $this->load->view('consultor/form_consultor', $data);
         } else {
 
-
+			$data['query']['idSis_Usuario'] = $_SESSION['log']['id'];
 			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
             $data['query']['NomeEmpresa'] = $_SESSION['log']['NomeEmpresa'];
 			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
@@ -125,31 +126,31 @@ class Consultor extends CI_Controller {
             $data['campos'] = array_keys($data['query']);
             $data['anterior'] = array();
 
-            $data['idSis_Usuario'] = $this->Consultor_model->set_consultor($data['query']);
+            $data['idApp_Consultor'] = $this->Consultor_model->set_consultor($data['query']);
 
-            if ($data['idSis_Usuario'] === FALSE) {
+            if ($data['idApp_Consultor'] === FALSE) {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
 
                 $this->basico->erro($msg);
                 $this->load->view('consultor/form_consultor', $data);
             } else {
 
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idSis_Usuario'], FALSE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'CREATE', $data['auditoriaitem']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_Consultor'], FALSE);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
-
+				/*
 				$data['agenda'] = array(
                     'NomeAgenda' => 'Padrão',
 					'Empresa' => $_SESSION['log']['Empresa'],
-                    'idSis_Usuario' => $data['idSis_Usuario']
+                    'idApp_Consultor' => $data['idApp_Consultor']
                 );
                 $data['campos'] = array_keys($data['agenda']);
 
                 $data['idApp_Agenda'] = $this->Consultor_model->set_agenda($data['agenda']);
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idSis_Usuario']);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idSis_Usuario']);
-                
-				redirect(base_url() . 'consultor/prontuario/' . $data['idSis_Usuario'] . $data['msg']);
+				$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idApp_Consultor']);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idApp_Consultor']);
+				*/
+				redirect(base_url() . 'consultor/prontuario/' . $data['idApp_Consultor'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/consultor/' .  $data['msg']);
                 exit();
             }
@@ -169,9 +170,9 @@ class Consultor extends CI_Controller {
 
         $data['query'] = $this->input->post(array(
 
-			'idSis_Usuario',
-			#'Usuario',
-            'Nome',
+			'idApp_Consultor',
+			#'Consultor',
+            'NomeConsultor',
             'DataNascimento',
             'Celular',
             'Email',
@@ -189,8 +190,8 @@ class Consultor extends CI_Controller {
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-        #$this->form_validation->set_rules('Nome', 'Nome do Responsável', 'required|trim|is_unique_duplo[Sis_Usuario.Nome.DataNascimento.' . $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql') . ']');
-        $this->form_validation->set_rules('Nome', 'Nome do Responsável', 'required|trim');
+        #$this->form_validation->set_rules('NomeConsultor', 'NomeConsultor do Responsável', 'required|trim|is_unique_duplo[App_Consultor.NomeConsultor.DataNascimento.' . $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql') . ']');
+        $this->form_validation->set_rules('NomeConsultor', 'NomeConsultor do Responsável', 'required|trim');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
         $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
         $this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email');
@@ -223,30 +224,30 @@ class Consultor extends CI_Controller {
             $this->load->view('consultor/form_consultoralterar', $data);
         } else {
 
-            $data['query']['Nome'] = trim(mb_strtoupper($data['query']['Nome'], 'ISO-8859-1'));
+            $data['query']['NomeConsultor'] = trim(mb_strtoupper($data['query']['NomeConsultor'], 'ISO-8859-1'));
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             #$data['query']['Obs'] = nl2br($data['query']['Obs']);
             #$data['query']['Consultor'] = $_SESSION['log']['id'];
 
-            $data['anterior'] = $this->Consultor_model->get_consultor($data['query']['idSis_Usuario']);
+            $data['anterior'] = $this->Consultor_model->get_consultor($data['query']['idApp_Consultor']);
             $data['campos'] = array_keys($data['query']);
 
-            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idSis_Usuario'], TRUE);
+            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Consultor'], TRUE);
 
-            if ($data['auditoriaitem'] && $this->Consultor_model->update_consultor($data['query'], $data['query']['idSis_Usuario']) === FALSE) {
+            if ($data['auditoriaitem'] && $this->Consultor_model->update_consultor($data['query'], $data['query']['idApp_Consultor']) === FALSE) {
                 $data['msg'] = '?m=2';
-                redirect(base_url() . 'consultor/form_consultoralterar/' . $data['query']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'consultor/form_consultoralterar/' . $data['query']['idApp_Consultor'] . $data['msg']);
                 exit();
             } else {
 
                 if ($data['auditoriaitem'] === FALSE) {
                     $data['msg'] = '';
                 } else {
-                    $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_Usuario', 'UPDATE', $data['auditoriaitem']);
+                    $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'UPDATE', $data['auditoriaitem']);
                     $data['msg'] = '?m=1';
                 }
 
-                redirect(base_url() . 'consultor/prontuario/' . $data['query']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'consultor/prontuario/' . $data['query']['idApp_Consultor'] . $data['msg']);
                 exit();
             }
         }
@@ -307,9 +308,9 @@ class Consultor extends CI_Controller {
                 $info = $data['query']->result_array();
 
                 if ($_SESSION['agenda'])
-                    redirect('consulta/cadastrar/' . $info[0]['idSis_Usuario'] );
+                    redirect('consulta/cadastrar/' . $info[0]['idApp_Consultor'] );
                 else
-                    redirect('consultor/prontuario/' . $info[0]['idSis_Usuario'] );
+                    redirect('consultor/prontuario/' . $info[0]['idApp_Consultor'] );
 
                 exit();
             } else {
@@ -336,12 +337,12 @@ class Consultor extends CI_Controller {
 
         $_SESSION['Consultor'] = $data['query'] = $this->Consultor_model->get_consultor($id, TRUE);
         #$data['query'] = $this->Paciente_model->get_paciente($prontuario, TRUE);
-        $data['titulo'] = 'Prontuário ' . $data['query']['Nome'];
+        $data['titulo'] = 'Prontuário ' . $data['query']['NomeConsultor'];
         $data['panel'] = 'primary';
         $data['metodo'] = 4;
 
-        $_SESSION['log']['idSis_Usuario'] = $data['resumo']['idSis_Usuario'] = $data['query']['idSis_Usuario'];
-        $data['resumo']['Nome'] = $data['query']['Nome'];
+        $_SESSION['log']['idApp_Consultor'] = $data['resumo']['idApp_Consultor'] = $data['query']['idApp_Consultor'];
+        $data['resumo']['NomeConsultor'] = $data['query']['NomeConsultor'];
 
         $data['query']['Idade'] = $this->basico->calcula_idade($data['query']['DataNascimento']);
         $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'barras');
