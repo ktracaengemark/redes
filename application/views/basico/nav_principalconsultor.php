@@ -198,9 +198,9 @@
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/devolucao1"><span class="glyphicon glyphicon-list"></span> Devoluções</a></li>
 									<li role="separator" class="divider"></li>-->
 									<!--<li><a href="<?php echo base_url() ?>relatorio/devolucao"><span class="glyphicon glyphicon-list"></span> Devol(Desp)</a></li>
-									<li role="separator" class="divider"></li>-->							
+									<li role="separator" class="divider"></li>							
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Prd. X Dev.</a></li>
-									<li role="separator" class="divider"></li>
+									<li role="separator" class="divider"></li>-->
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamentorede"><span class="glyphicon glyphicon-list"></span> Orçam. Rede</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/devolucaorede"><span class="glyphicon glyphicon-list"></span> Devol. Rede</a></li>

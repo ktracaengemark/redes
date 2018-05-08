@@ -179,7 +179,7 @@
 
 									<input type="hidden" name="PTCount" id="PTCount" value="<?php echo $count['PTCount']; ?>"/>
 
-									<div class="input_fields_wrap3">
+									<div class="input_fields_wrap13">
 
 									<?php
 									for ($i=1; $i <= $count['PTCount']; $i++) {
@@ -189,11 +189,11 @@
 									<input type="hidden" name="idTab_Valor<?php echo $i ?>" value="<?php echo $valor[$i]['idTab_Valor']; ?>"/>
 									<?php } ?>
 
-									<div class="form-group" id="3div<?php echo $i ?>">
+									<div class="form-group" id="13div<?php echo $i ?>">
 										<div class="panel panel-info">
 											<div class="panel-heading">			
 												<div class="row">																					
-
+													<!--
 													<div class="col-md-4">
 														<label for="Convenio<?php echo $i ?>">Plano:</label>
 														<?php if ($i == 1) { ?>
@@ -203,6 +203,7 @@
 															<option value="">-- Selecione uma opção --</option>
 															<?php
 															foreach ($select['Convenio'] as $key => $row) {
+																(!$valor['Convenio']) ? $valor['Convenio'] = '53' : FALSE;
 																if ($valor[$i]['Convenio'] == $key) {
 																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																} else {
@@ -212,6 +213,7 @@
 															?>
 														</select>
 													</div>
+													-->
 													<div class="col-md-4">
 														<label for="Convdesc<?php echo $i ?>">Descrição:</label>
 														<input type="text" class="form-control"  id="Convdesc<?php echo $i ?>" <?php echo $readonly; ?>
@@ -235,7 +237,7 @@
 													
 													<div class="col-md-1">
 														<label><br></label><br>
-														<button type="button" id="<?php echo $i ?>" class="remove_field3 btn btn-danger">
+														<button type="button" id="<?php echo $i ?>" class="remove_field13 btn btn-danger">
 															<span class="glyphicon glyphicon-trash"></span>
 														</button>
 													</div>
@@ -253,7 +255,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-4">
-												<a class="add_field_button3 btn btn-md btn-warning" onclick="adicionaValor()">
+												<a class="add_field_button13 btn btn-md btn-warning" onclick="adicionaValorConsultor()">
 													<span class="glyphicon glyphicon-plus"></span> Adicionar Valor
 												</a>
 											</div>

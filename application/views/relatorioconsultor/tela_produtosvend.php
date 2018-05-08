@@ -45,10 +45,10 @@
 													<div class="col-md-6">
 														<label for="Ordenamento">Nome do Cliente:</label>
 														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
-																id="Nome" name="Nome">
+																id="NomeCliente" name="NomeCliente">
 															<?php
-															foreach ($select['Nome'] as $key => $row) {
-																if ($query['Nome'] == $key) {
+															foreach ($select['NomeCliente'] as $key => $row) {
+																if ($query['NomeCliente'] == $key) {
 																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																} else {
 																	echo '<option value="' . $key . '">' . $row . '</option>';

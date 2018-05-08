@@ -64,7 +64,7 @@
                     <?php
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
-							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
+							echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
 							#echo '<td>' . $row['Nome'] . '</td>';							
                             echo '<td>' . $row['DataOrca'] . '</td>';
 							echo '<td>' . $row['DataRetorno'] . '</td>';
@@ -81,7 +81,7 @@
 							echo '<td>' . $row['FormaPag'] . '</td>';							
                             #echo '</div>';
                             echo '<td class="notclickable">
-                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrata'] . '">
+                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrataCons'] . '">
                                         <span class="glyphicon glyphicon-print notclickable"></span>
                                     </a>
                                 </td>';

@@ -1125,6 +1125,88 @@ function adicionaValor() {
 
 }
 
+function adicionaValorConsultor() {
+
+    var pt = $("#PTCount").val(); //initlal text box count
+
+    //alert( $("#SCount").val() );
+    pt++; //text box increment
+    $("#PTCount").val(pt);
+    //console.log(pt);
+
+    if (pt >= 2) {
+        //console.log( $("#listadinamicad"+(pt-1)).val() );
+        var chosen;
+        chosen = $("#listadinamicad"+(pt-1)).val();
+        //console.log( chosen + ' :: ' + pt );
+    }
+
+    //Captura a data do dia e carrega no campo correspondente
+    var currentDate = moment();
+
+    $(".input_fields_wrap13").append('\
+        <div class="form-group" id="13div'+pt+'">\
+			<div class="panel panel-info">\
+				<div class="panel-heading">\
+					<div class="row">\
+						<div class="col-md-4">\
+							<label for="Convdesc'+pt+'">Descrição:</label>\
+							<input type="text" class="form-control" id="Convdesc'+pt+'"\
+									  name="Convdesc'+pt+'" value="">\
+						</div>\
+						<div class="col-md-3">\
+							<label for="ValorVendaProduto'+pt+'">Valor Venda:</label><br>\
+							<div class="input-group id="ValorVendaProduto'+pt+'">\
+								<span class="input-group-addon" id="basic-addon1">R$</span>\
+								<input type="text" class="form-control Valor" id="ValorVendaProduto'+pt+'" maxlength="10" placeholder="0,00" \
+									name="ValorVendaProduto'+pt+'" value="">\
+							</div>\
+						</div>\
+						<div class="col-md-1">\
+							<label><br></label><br>\
+							<button type="button" id="'+pt+'" class="remove_field13 btn btn-danger">\
+								<span class="glyphicon glyphicon-trash"></span>\
+							</button>\
+						</div>\
+					</div>\
+				</div>\
+			</div>\
+        </div>'
+    ); //add input box
+    //habilita o botão de calendário após a geração dos campos dinâmicos
+    $('.DatePicker').datetimepicker(dateTimePickerOptions);
+
+    //get a reference to the select element
+    $select = $('#listadinamicad'+pt);
+
+    //request the JSON data and parse into the select element
+    $.ajax({
+        url: window.location.origin+ '/' + app + '/Getvalues_json.php?q=4',
+        dataType: 'JSON',
+        type: "GET",
+        success: function (data) {
+            //clear the current content of the select
+            $select.html('');
+            //iterate over the data and append a select option
+            $select.append('<option value="">-- Selecione uma opção --</option>');
+            $.each(data, function (key, val) {
+                //alert(val.id);
+                if (val.id == chosen)
+                    $select.append('<option value="' + val.id + '" selected="selected">' + val.name + '</option>');
+                else
+                    $select.append('<option value="' + val.id + '">' + val.name + '</option>');
+            })
+        },
+        error: function () {
+            //alert('erro listadinamicaB');
+            //if there is an error append a 'none available' option
+            $select.html('<option id="-1">ERRO</option>');
+        }
+
+    });
+
+}
+
 function adicionaValorServ() {
 
     var pt = $("#PTCount").val(); //initlal text box count
@@ -3136,6 +3218,11 @@ $(document).ready(function () {
         $("#3div"+$(this).attr("id")).remove();
     })
 
+    //Remove os campos adicionados dinamicamente
+    $(".input_fields_wrap13").on("click",".remove_field13", function(e){ //user click on remove text
+        $("#13div"+$(this).attr("id")).remove();
+    })
+	
     //Remove as PARCELAS RECEBÍVEIS dinamicamente
     $(".input_fields_wrap21").on("click",".remove_field21", function(e){ //user click on remove text
         $("#21div"+$(this).attr("id")).remove();

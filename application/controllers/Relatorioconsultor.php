@@ -1216,7 +1216,7 @@ class Relatorioconsultor extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-		$data['select']['Nome'] = $this->Relatorioconsultor_model->select_clientes();
+		$data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
 		$data['select']['Produtos'] = $this->Relatorioconsultor_model->select_produtos();
 		$data['select']['Prodaux1'] = $this->Relatorioconsultor_model->select_prodaux1();
 		$data['select']['Prodaux2'] = $this->Relatorioconsultor_model->select_prodaux2();
@@ -1228,7 +1228,7 @@ class Relatorioconsultor extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-			$data['bd']['Nome'] = $data['query']['Nome'];
+			$data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 			$data['bd']['Produtos'] = $data['query']['Produtos'];
 			$data['bd']['Prodaux1'] = $data['query']['Prodaux1'];
 			$data['bd']['Prodaux2'] = $data['query']['Prodaux2'];
@@ -1930,7 +1930,7 @@ class Relatorioconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'Nome',
+            'NomeConsultor',
             'DataInicio',
             'DataFim',
 			'DataInicio',
@@ -1984,7 +1984,7 @@ class Relatorioconsultor extends CI_Controller {
 
         $data['select']['Campo'] = array(
 
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
 			'OT.ServicoConcluido' => 'Orçam. Concluído?',
             'OT.DataOrca' => 'Data do Orçamento',
@@ -2007,7 +2007,7 @@ class Relatorioconsultor extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['Nome'] = $this->Relatorioconsultor_model->select_consultores();
+        $data['select']['NomeConsultor'] = $this->Relatorioconsultor_model->select_consultores();
 		$data['select']['FormaPag'] = $this->Relatorioconsultor_model->select_formapag();
 
         $data['titulo'] = 'Orçamentos com a Rede';
@@ -2016,7 +2016,7 @@ class Relatorioconsultor extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['Nome'] = $data['query']['Nome'];
+            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
 			$data['bd']['FormaPag'] = $data['query']['FormaPag'];
             $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');

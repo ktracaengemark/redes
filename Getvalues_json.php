@@ -46,7 +46,7 @@ elseif ($_GET['q'] == 2) {
     $result = mysql_query(
             'SELECT
                 V.idTab_Valor,
-                CONCAT(IFNULL(P.CodProd,""), " -- ", IFNULL(TP3.Prodaux3,""), " -- ", IFNULL(P.Produtos,""), " -- ", IFNULL(TP1.Prodaux1,""), " -- ", IFNULL(TP2.Prodaux2,""), " -- ", IFNULL(TCO.Convenio,""), " -- ", IFNULL(V.Convdesc,""), " --- ", V.ValorVendaProduto, " -- ", IFNULL(P.UnidadeProduto,""), " -- ", IFNULL(TFO.NomeFornecedor,"")) AS NomeProduto,
+                CONCAT(IFNULL(P.CodProd,""), " - ", IFNULL(P.Produtos,""), " - ", IFNULL(V.Convdesc,""), " - R$ ", IFNULL(V.ValorVendaProduto,"")) AS NomeProduto,
                 V.ValorVendaProduto,
 				P.Categoria
             FROM

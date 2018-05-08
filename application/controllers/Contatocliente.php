@@ -13,7 +13,7 @@ class Contatocliente extends CI_Controller {
         $this->load->helper(array('form', 'url', 'date', 'string'));
         #$this->load->library(array('basico', 'Basico_model', 'form_validation'));
         $this->load->library(array('basico', 'form_validation'));
-        $this->load->model(array('Basico_model', 'Contatocliente_model', 'Relapes_model', 'Usuario_model'));
+        $this->load->model(array('Basico_model', 'Contatocliente_model', 'Relapes_model', 'Cliente_model'));
         $this->load->driver('session');
 
         #load header view
@@ -38,7 +38,7 @@ class Contatocliente extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function cadastrar($idSis_Usuario = NULL) {
+    public function cadastrar($idApp_Cliente = NULL) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -48,16 +48,17 @@ class Contatocliente extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'idApp_ContatoUsuario',
-            'idSis_Usuario',
+            'idApp_Consultor',
+			'idApp_ContatoCliente',
+            'idApp_Cliente',
 			'idSis_EmpresaMatriz',			
-            'NomeContatoUsuario',
+            'NomeContatoCliente',
             'StatusVida',
 			'Ativo',
             'DataNascimento',
             'Sexo',
 			'RelaPes',
-			'TelefoneContatoUsuario',
+			'TelefoneContatoCliente',
             'Obs',
 			'QuemCad',
             
@@ -67,9 +68,9 @@ class Contatocliente extends CI_Controller {
         
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-        $this->form_validation->set_rules('NomeContatoUsuario', 'Nome do Responsável', 'required|trim');
+        $this->form_validation->set_rules('NomeContatoCliente', 'Nome do Responsável', 'required|trim');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
-		$this->form_validation->set_rules('TelefoneContatoUsuario', 'TelefoneContatoUsuario', 'required|trim');
+		$this->form_validation->set_rules('TelefoneContatoCliente', 'TelefoneContatoCliente', 'required|trim');
         $this->form_validation->set_rules('RelaPes', 'RelaPes', 'required|trim');
 		$data['select']['Sexo'] = $this->Basico_model->select_sexo();
         $data['select']['StatusVida'] = $this->Contatocliente_model->select_status_vida();
@@ -90,29 +91,30 @@ class Contatocliente extends CI_Controller {
             $this->load->view('contatocliente/form_contatocliente', $data);
         } else {
 
-            $data['query']['NomeContatoUsuario'] = trim(mb_strtoupper($data['query']['NomeContatoUsuario'], 'ISO-8859-1'));
+            $data['query']['NomeContatoCliente'] = trim(mb_strtoupper($data['query']['NomeContatoCliente'], 'ISO-8859-1'));
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             $data['query']['Obs'] = nl2br($data['query']['Obs']);
 			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
             $data['query']['QuemCad'] = $_SESSION['log']['id'];
+			$data['query']['idApp_Consultor'] = $_SESSION['log']['id'];
 			$data['campos'] = array_keys($data['query']);
             $data['anterior'] = array();
 
-            $data['idApp_ContatoUsuario'] = $this->Contatocliente_model->set_contatocliente($data['query']);
+            $data['idApp_ContatoCliente'] = $this->Contatocliente_model->set_contatocliente($data['query']);
 
-            if ($data['idApp_ContatoUsuario'] === FALSE) {
+            if ($data['idApp_ContatoCliente'] === FALSE) {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
 
                 $this->basico->erro($msg);
                 $this->load->view('contatocliente/form_contatocliente', $data);
             } else {
 
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_ContatoUsuario'], FALSE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_ContatoUsuario', 'CREATE', $data['auditoriaitem']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_ContatoCliente'], FALSE);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_ContatoCliente', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'contatocliente/pesquisar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'contatocliente/pesquisar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
                 exit();
             }
         }
@@ -130,15 +132,15 @@ class Contatocliente extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = $this->input->post(array(
-            'idApp_ContatoUsuario',
-            #'idSis_Usuario',
+            'idApp_ContatoCliente',
+            #'idApp_Cliente',
 			'idSis_EmpresaMatriz',
-            'NomeContatoUsuario',
+            'NomeContatoCliente',
             'StatusVida',
             'DataNascimento',
             'Sexo',
 			'RelaPes',
-            'TelefoneContatoUsuario',
+            'TelefoneContatoCliente',
             'Obs',       
 			'Ativo',
                 ), TRUE);
@@ -146,15 +148,15 @@ class Contatocliente extends CI_Controller {
         if ($id) {
             $data['query'] = $this->Contatocliente_model->get_contatocliente($id);
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'barras');
-            $_SESSION['log']['idApp_ContatoUsuario'] = $id;
+            $_SESSION['log']['idApp_ContatoCliente'] = $id;
 						
         }
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-        $this->form_validation->set_rules('NomeContatoUsuario', 'Nome do Responsável', 'required|trim');
+        $this->form_validation->set_rules('NomeContatoCliente', 'Nome do Responsável', 'required|trim');
         $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
-		$this->form_validation->set_rules('TelefoneContatoUsuario', 'TelefoneContatoUsuario', 'required|trim');
+		$this->form_validation->set_rules('TelefoneContatoCliente', 'TelefoneContatoCliente', 'required|trim');
         $this->form_validation->set_rules('RelaPes', 'RelaPes', 'required|trim');
 		$data['select']['Sexo'] = $this->Basico_model->select_sexo();
         $data['select']['StatusVida'] = $this->Contatocliente_model->select_status_vida();
@@ -175,31 +177,31 @@ class Contatocliente extends CI_Controller {
             $this->load->view('contatocliente/form_contatocliente', $data);
         } else {
 
-            $data['query']['NomeContatoUsuario'] = trim(mb_strtoupper($data['query']['NomeContatoUsuario'], 'ISO-8859-1'));
+            $data['query']['NomeContatoCliente'] = trim(mb_strtoupper($data['query']['NomeContatoCliente'], 'ISO-8859-1'));
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             $data['query']['Obs'] = nl2br($data['query']['Obs']);
             $data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa']; 
-			$data['query']['idApp_ContatoUsuario'] = $_SESSION['log']['idApp_ContatoUsuario'];
+			$data['query']['idApp_ContatoCliente'] = $_SESSION['log']['idApp_ContatoCliente'];
 
-            $data['anterior'] = $this->Contatocliente_model->get_contatocliente($data['query']['idApp_ContatoUsuario']);
+            $data['anterior'] = $this->Contatocliente_model->get_contatocliente($data['query']['idApp_ContatoCliente']);
             $data['campos'] = array_keys($data['query']);
 
-            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_ContatoUsuario'], TRUE);
+            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_ContatoCliente'], TRUE);
 
-            if ($data['auditoriaitem'] && $this->Contatocliente_model->update_contatocliente($data['query'], $data['query']['idApp_ContatoUsuario']) === FALSE) {
+            if ($data['auditoriaitem'] && $this->Contatocliente_model->update_contatocliente($data['query'], $data['query']['idApp_ContatoCliente']) === FALSE) {
                 $data['msg'] = '?m=2';
-                redirect(base_url() . 'contatocliente/form_contatocliente/' . $data['query']['idApp_ContatoUsuario'] . $data['msg']);
+                redirect(base_url() . 'contatocliente/form_contatocliente/' . $data['query']['idApp_ContatoCliente'] . $data['msg']);
                 exit();
             } else {
 
                 if ($data['auditoriaitem'] === FALSE) {
                     $data['msg'] = '';
                 } else {
-                    $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_ContatoUsuario', 'UPDATE', $data['auditoriaitem']);
+                    $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_ContatoCliente', 'UPDATE', $data['auditoriaitem']);
                     $data['msg'] = '?m=1';
                 }
 
-                redirect(base_url() . 'contatocliente/pesquisar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
+                redirect(base_url() . 'contatocliente/pesquisar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
                 exit();
             }
         }
@@ -217,7 +219,7 @@ class Contatocliente extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = $this->input->post(array(
-            'idApp_ContatoUsuario',
+            'idApp_ContatoCliente',
             'submit'
                 ), TRUE);
 
@@ -244,18 +246,18 @@ class Contatocliente extends CI_Controller {
             $this->load->view('contatocliente/tela_contatocliente', $data);
         } else {
 
-            if ($data['query']['idApp_ContatoUsuario'] === FALSE) {
+            if ($data['query']['idApp_ContatoCliente'] === FALSE) {
                 $data['msg'] = '?m=2';
                 $this->load->view('contatocliente/form_contatocliente', $data);
             } else {
 
-                $data['anterior'] = $this->Contatocliente_model->get_contatocliente($data['query']['idApp_ContatoUsuario']);
+                $data['anterior'] = $this->Contatocliente_model->get_contatocliente($data['query']['idApp_ContatoCliente']);
                 $data['campos'] = array_keys($data['anterior']);
 
-                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], NULL, $data['campos'], $data['query']['idApp_ContatoUsuario'], FALSE, TRUE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_ContatoUsuario', 'DELETE', $data['auditoriaitem']);
+                $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], NULL, $data['campos'], $data['query']['idApp_ContatoCliente'], FALSE, TRUE);
+                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_ContatoCliente', 'DELETE', $data['auditoriaitem']);
 
-                $this->Contatocliente_model->delete_contatocliente($data['query']['idApp_ContatoUsuario']);
+                $this->Contatocliente_model->delete_contatocliente($data['query']['idApp_ContatoCliente']);
 
                 $data['msg'] = '?m=1';
 
@@ -280,7 +282,7 @@ class Contatocliente extends CI_Controller {
 
                 $data['msg'] = '?m=1';
 
-				redirect(base_url() . 'contatocliente/pesquisar/' . $_SESSION['Cliente']['idSis_Usuario'] . $data['msg']);
+				redirect(base_url() . 'contatocliente/pesquisar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
 				exit();
             //}
         //}
@@ -304,7 +306,7 @@ class Contatocliente extends CI_Controller {
             $_SESSION['agenda']['HoraFim'] = substr($this->input->get('end'), 0, -3);
         }
 
-        $_SESSION['Cliente'] = $this->Usuario_model->get_usuario($id, TRUE);
+        $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($id, TRUE);
         
         //echo date('d/m/Y H:i:s', $data['start'],0,-3));
 
