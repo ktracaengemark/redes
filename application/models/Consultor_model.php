@@ -108,10 +108,10 @@ class Consultor_model extends CI_Model {
         $this->db->delete('App_ContatoConsultor', array('idApp_Consultor' => $data));
 
         foreach ($query as $key) {
-            $query = $this->db->delete('App_ProdutoVenda', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
-            $query = $this->db->delete('App_ServicoVenda', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
-            $query = $this->db->delete('App_ParcelasRecebiveis', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
-            $query = $this->db->delete('App_Procedimento', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ProdutoVendaCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ServicoVendaCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ParcelasRecebiveisCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ProcedimentoCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
         }
 
         $this->db->delete('App_OrcaTrataCons', array('idApp_Consultor' => $data));

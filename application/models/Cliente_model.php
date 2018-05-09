@@ -82,7 +82,7 @@ class Cliente_model extends CI_Model {
 
         */
 
-        $this->db->delete('App_Consulta', array('idApp_Cliente' => $data));
+        #$this->db->delete('App_Consulta', array('idApp_Cliente' => $data));
         $this->db->delete('App_ContatoCliente', array('idApp_Cliente' => $data));
 
         foreach ($query as $key) {
