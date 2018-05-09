@@ -3358,7 +3358,7 @@ exit();*/
 				SN.StatusSN,
                 C.DataNascimento,
 				C.Celular,
-				C.Consultor,
+				C.Usuario,
 				C.Nivel,
                 C.Sexo,
                 C.Email,

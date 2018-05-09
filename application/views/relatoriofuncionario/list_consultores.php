@@ -14,7 +14,7 @@
                     <tr>
                         <th class="active">id</th>
                         <th class="active">Cliente</th>
-						<th class="active">UsuarioCons</th>
+						<th class="active">Usuario</th>
                         <th class="active">Sexo</th>
 						<th class="active">Nivel</th>
                         <th class="active">Telefone</th>
@@ -45,7 +45,7 @@
                             echo '<td>' . $row['idApp_Consultor'] . '</td>';
 
                             echo '<td>' . $row['NomeConsultor'] . '</td>';
-							echo '<td>' . $row['Consultor'] . '</td>';
+							echo '<td>' . $row['Usuario'] . '</td>';
                             echo '<td>' . $row['Sexo'] . '</td>';
 							echo '<td>' . $row['Nivel'] . '</td>';
                             echo '<td>' . $row['Celular'] . '</td>';

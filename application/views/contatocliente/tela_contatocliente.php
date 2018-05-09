@@ -7,10 +7,10 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 		
-			<div class="panel panel-primary">
+
 				
-				<div class="panel-heading"><strong><?php echo '<strong>' . $_SESSION['Cliente']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></strong></div>
-				<div class="panel-body">
+
+
 			
 					<nav class="navbar navbar-inverse">
 					  <div class="container-fluid">
@@ -20,7 +20,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span> 
 						  </button>
-						  <a class="navbar-brand" href="#">Menu </a>
+						  <a class="navbar-brand" href="#"><?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav navbar-center">
@@ -113,8 +113,8 @@
 							</div>
 						</div>	
 					</div>	
-				</div>	
-			</div>		
+
+	
 		</div>
 		<div class="col-md-2"></div>
 	</div>	

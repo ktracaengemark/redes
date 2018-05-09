@@ -51,7 +51,7 @@ class Consultor extends CI_Controller {
         $data['query'] = quotes_to_entities($this->input->post(array(
 			'idSis_Usuario',
 			'idApp_Consultor',
-			'Consultor',
+			'Usuario',
             'NomeConsultor',
 			'Senha',
 			'Confirma',
@@ -73,7 +73,7 @@ class Consultor extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
 		$this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email|is_unique[App_Consultor.Email]');
-        $this->form_validation->set_rules('Consultor', 'Usuário', 'required|trim|is_unique[App_Consultor.Consultor]');
+        $this->form_validation->set_rules('Usuario', 'Usuário', 'required|trim|is_unique[App_Consultor.Usuario]');
 		$this->form_validation->set_rules('NomeConsultor', 'NomeConsultor do Usuário', 'required|trim');
 		$this->form_validation->set_rules('Senha', 'Senha', 'required|trim');
         $this->form_validation->set_rules('Confirma', 'Confirmar Senha', 'required|trim|matches[Senha]');
@@ -171,7 +171,7 @@ class Consultor extends CI_Controller {
         $data['query'] = $this->input->post(array(
 
 			'idApp_Consultor',
-			#'Consultor',
+			#'Usuario',
             'NomeConsultor',
             'DataNascimento',
             'Celular',
@@ -227,7 +227,7 @@ class Consultor extends CI_Controller {
             $data['query']['NomeConsultor'] = trim(mb_strtoupper($data['query']['NomeConsultor'], 'ISO-8859-1'));
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
             #$data['query']['Obs'] = nl2br($data['query']['Obs']);
-            #$data['query']['Consultor'] = $_SESSION['log']['id'];
+
 
             $data['anterior'] = $this->Consultor_model->get_consultor($data['query']['idApp_Consultor']);
             $data['campos'] = array_keys($data['query']);

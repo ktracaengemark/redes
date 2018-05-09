@@ -102,10 +102,10 @@
 												<div class="form-group">
 													<div class="row">																					
 														<div class="col-md-3">
-															<label for="Consultor">Usuário:</label>
-															<input type="text" class="form-control" id="Consultor" maxlength="45" 
-																   autofocus name="Consultor" value="<?php echo $query['Consultor']; ?>">
-															<?php echo form_error('Consultor'); ?>
+															<label for="Usuario">Usuário:</label>
+															<input type="text" class="form-control" id="Usuario" maxlength="45" 
+																   autofocus name="Usuario" value="<?php echo $query['Usuario']; ?>">
+															<?php echo form_error('Usuario'); ?>
 														</div>						
 														<div class="col-md-3">
 															<label for="Senha">Senha:</label>

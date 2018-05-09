@@ -41,10 +41,10 @@
 
                         #echo '<tr>';
                         #echo '<tr class="clickable-row" data-href="' . base_url() . 'cliente/prontuario/' . $row['idApp_Cliente'] . '">';
-						echo '<tr class="clickable-row" data-href="' . base_url() . 'consultor/prontuario/' . $row['idSis_Usuario'] . '">';
-                            echo '<td>' . $row['idSis_Usuario'] . '</td>';
+						echo '<tr class="clickable-row" data-href="' . base_url() . 'consultor/prontuario/' . $row['idApp_Consultor'] . '">';
+                            echo '<td>' . $row['idApp_Consultor'] . '</td>';
 
-                            echo '<td>' . $row['Nome'] . '</td>';
+                            echo '<td>' . $row['NomeConsultor'] . '</td>';
 							echo '<td>' . $row['Usuario'] . '</td>';
                             echo '<td>' . $row['Sexo'] . '</td>';
 							echo '<td>' . $row['Nivel'] . '</td>';
