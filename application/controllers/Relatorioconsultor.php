@@ -178,13 +178,17 @@ class Relatorioconsultor extends CI_Controller {
 			'QuitadoRecebiveis',
         ), TRUE));
 
-		/*
-        if (!$data['query']['DataInicio'])
-           $data['query']['DataInicio'] = '01/01/2017';
-
 		if (!$data['query']['DataInicio2'])
-           $data['query']['DataInicio2'] = '01/01/2017';
-		*/
+           $data['query']['DataInicio2'] = date("d/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));
+		
+		if (!$data['query']['DataFim2'])
+           $data['query']['DataFim2'] = date("t/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));
+						
+		if (!$data['query']['DataInicio'])
+           $data['query']['DataInicio'] = '01/01/2018';
+		
+		if (!$data['query']['DataFim'])
+           $data['query']['DataFim'] = date("t/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
@@ -214,9 +218,9 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['QuitadoRecebiveis'] = array(
-            '#' => 'TODOS',
             'N' => 'Não',
             'S' => 'Sim',
+			'#' => 'TODOS',
         );
 
         $data['select']['Campo'] = array(
@@ -253,7 +257,7 @@ class Relatorioconsultor extends CI_Controller {
         */
 
 
-        $data['titulo'] = 'Relatório de Receitas & Entradas';
+        $data['titulo'] = 'Vendas & Receitas';
 
         #run form validation
         if ($this->form_validation->run() !== FALSE) {
@@ -292,6 +296,353 @@ class Relatorioconsultor extends CI_Controller {
 
     }
 
+    public function orcamento() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+
+            'DataInicio',
+            'DataFim',
+			'DataInicio',
+            'DataFim2',
+			'DataInicio2',
+            'DataFim3',
+			'DataInicio3',
+			'DataFim4',
+			'DataInicio4',
+            'Ordenamento',
+            'Campo',
+            'AprovadoOrca',
+            'QuitadoOrca',
+			'ServicoConcluido',
+			'FormaPag',
+
+        ), TRUE));
+		/*
+		if (!$data['query']['DataInicio'])
+           $data['query']['DataInicio'] = '01/01/2017';
+		*/
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+        $this->form_validation->set_rules('DataInicio', 'Data Início do Orçamento', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim', 'Data Fim do Orçamento', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio2', 'Data Início da Entrega', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim2', 'Data Fim da Entrega', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio3', 'Data Início do Retorno', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim3', 'Data Fim do Retorno', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio4', 'Data Início do Quitado', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim4', 'Data Fim do Quitado', 'trim|valid_date');
+
+
+        $data['select']['AprovadoOrca'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+        $data['select']['QuitadoOrca'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+		$data['select']['ServicoConcluido'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+        $data['select']['Campo'] = array(
+
+
+            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
+            'OT.DataOrca' => 'Data do Orçamento',
+			'OT.DataEntradaOrca' => 'Validade do Orçamento',
+			'OT.DataPrazo' => 'Data da Entrega',
+            'OT.ValorOrca' => 'Valor do Orçamento',
+			'OT.ValorEntradaOrca' => 'Valor do Desconto',
+			'OT.ValorRestanteOrca' => 'Valor a Receber',
+			'OT.FormaPag' => 'Forma de Pag.?',
+            'OT.ServicoConcluido' => 'Serviço Concluído?',
+            'OT.QuitadoOrca' => 'Orçamento Quitado?',
+            'OT.DataConclusao' => 'Data de Conclusão',
+			'OT.DataQuitado' => 'Data de Quitado',
+            'OT.DataRetorno' => 'Data de Retorno',
+			'OT.ProfissionalOrca' => 'Profissional',
+
+        );
+
+        $data['select']['Ordenamento'] = array(
+            'ASC' => 'Crescente',
+            'DESC' => 'Decrescente',
+        );
+
+        #$data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
+		$data['select']['FormaPag'] = $this->Relatorioconsultor_model->select_formapag();
+
+        $data['titulo'] = 'Clientes & Orçamentos';
+
+        #run form validation
+        if ($this->form_validation->run() !== FALSE) {
+
+            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
+
+			$data['bd']['FormaPag'] = $data['query']['FormaPag'];
+            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
+            $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
+			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
+            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
+			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
+            $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
+			$data['bd']['DataInicio4'] = $this->basico->mascara_data($data['query']['DataInicio4'], 'mysql');
+            $data['bd']['DataFim4'] = $this->basico->mascara_data($data['query']['DataFim4'], 'mysql');
+
+            $data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
+            $data['bd']['Campo'] = $data['query']['Campo'];
+            $data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
+            $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
+			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
+
+            $data['report'] = $this->Relatorioconsultor_model->list_orcamento($data['bd'],TRUE);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatorioconsultor/list_orcamento', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatorioconsultor/tela_orcamento', $data);
+
+        $this->load->view('basico/footer');
+
+
+
+    }
+
+    public function orcamento2() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+
+            'idApp_OrcaTrata',
+
+        ), TRUE));
+		/*
+		if (!$data['query']['DataInicio'])
+           $data['query']['DataInicio'] = '01/01/2017';
+		*/
+        #$this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+        #$this->form_validation->set_rules('DataInicio', 'Data Início do Orçamento', 'trim|valid_date');
+        #$this->form_validation->set_rules('DataFim', 'Data Fim do Orçamento', 'trim|valid_date');
+		#$this->form_validation->set_rules('DataInicio2', 'Data Início da Entrega', 'trim|valid_date');
+        #$this->form_validation->set_rules('DataFim2', 'Data Fim da Entrega', 'trim|valid_date');
+		#$this->form_validation->set_rules('DataInicio3', 'Data Início do Retorno', 'trim|valid_date');
+        #$this->form_validation->set_rules('DataFim3', 'Data Fim do Retorno', 'trim|valid_date');
+		#$this->form_validation->set_rules('DataInicio4', 'Data Início do Quitado', 'trim|valid_date');
+        #$this->form_validation->set_rules('DataFim4', 'Data Fim do Quitado', 'trim|valid_date');
+
+
+
+        $data['select']['Campo'] = array(
+
+            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+
+
+        );
+
+        $data['select']['Ordenamento'] = array(
+            'ASC' => 'Crescente',
+            'DESC' => 'Decrescente',
+        );
+
+
+
+        $data['titulo'] = 'Clientes & Orçamentos';
+
+        #run form validation
+        if ($this->form_validation->run() !== FALSE) {
+
+            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
+
+
+            $data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
+            $data['bd']['Campo'] = $data['query']['Campo'];
+
+
+            $data['report'] = $this->Relatorioconsultor_model->list_orcamento($data['bd'],TRUE);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatorioconsultor/list_orcamento', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatorioconsultor/tela_orcamento', $data);
+
+        $this->load->view('basico/footer');
+
+
+
+    }
+	
+    public function orcamentorede() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+            'NomeConsultor',
+            'DataInicio',
+            'DataFim',
+			'DataInicio',
+            'DataFim2',
+			'DataInicio2',
+            'DataFim3',
+			'DataInicio3',
+			'DataFim4',
+			'DataInicio4',
+            'Ordenamento',
+            'Campo',
+            'AprovadoOrca',
+            'QuitadoOrca',
+			'ServicoConcluido',
+			'FormaPag',
+
+        ), TRUE));
+		/*
+		if (!$data['query']['DataInicio'])
+           $data['query']['DataInicio'] = '01/01/2017';
+		*/
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+        $this->form_validation->set_rules('DataInicio', 'Data Início do Orçamento', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim', 'Data Fim do Orçamento', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio2', 'Data Início da Entrega', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim2', 'Data Fim da Entrega', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio3', 'Data Início do Retorno', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim3', 'Data Fim do Retorno', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio4', 'Data Início do Quitado', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim4', 'Data Fim do Quitado', 'trim|valid_date');
+
+
+        $data['select']['AprovadoOrca'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+        $data['select']['QuitadoOrca'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+		$data['select']['ServicoConcluido'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+        $data['select']['Campo'] = array(
+
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
+            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
+			'OT.ServicoConcluido' => 'Orçam. Concluído?',
+            'OT.DataOrca' => 'Data do Orçamento',
+			'OT.QuitadoOrca' => 'Orçam. Quitado?',
+            'OT.DataConclusao' => 'Data de Conclusão',
+			'OT.DataQuitado' => 'Data de Quitado',
+            'OT.DataRetorno' => 'Data de Retorno',          
+			#'OT.DataEntradaOrca' => 'Validade do Orçamento',
+			#'OT.DataPrazo' => 'Data da Entrega',
+            'OT.ValorOrca' => 'Valor do Orçamento',
+			'OT.ValorEntradaOrca' => 'Valor do Desconto',
+			'OT.ValorRestanteOrca' => 'Valor a Receber',
+			'OT.FormaPag' => 'Forma de Pag.?',
+            
+
+        );
+
+        $data['select']['Ordenamento'] = array(
+            'ASC' => 'Crescente',
+            'DESC' => 'Decrescente',
+        );
+
+        $data['select']['NomeConsultor'] = $this->Relatorioconsultor_model->select_consultores();
+		$data['select']['FormaPag'] = $this->Relatorioconsultor_model->select_formapag();
+
+        $data['titulo'] = 'Orçamentos com a Rede';
+
+        #run form validation
+        if ($this->form_validation->run() !== FALSE) {
+
+            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
+            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+			$data['bd']['FormaPag'] = $data['query']['FormaPag'];
+            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
+            $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
+			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
+            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
+			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
+            $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
+			$data['bd']['DataInicio4'] = $this->basico->mascara_data($data['query']['DataInicio4'], 'mysql');
+            $data['bd']['DataFim4'] = $this->basico->mascara_data($data['query']['DataFim4'], 'mysql');
+
+            $data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
+            $data['bd']['Campo'] = $data['query']['Campo'];
+            $data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
+            $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
+			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
+
+            $data['report'] = $this->Relatorioconsultor_model->list_orcamentorede($data['bd'],TRUE);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatorioconsultor/list_orcamentorede', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatorioconsultor/tela_orcamentorede', $data);
+
+        $this->load->view('basico/footer');
+
+
+
+    }
+	
 	public function despesas1() {
 
         if ($this->input->get('m') == 1)
@@ -1785,274 +2136,6 @@ class Relatorioconsultor extends CI_Controller {
 
     }
 
-    public function orcamento() {
-
-        if ($this->input->get('m') == 1)
-            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
-        elseif ($this->input->get('m') == 2)
-            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
-        else
-            $data['msg'] = '';
-
-        $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeCliente',
-            'DataInicio',
-            'DataFim',
-			'DataInicio',
-            'DataFim2',
-			'DataInicio2',
-            'DataFim3',
-			'DataInicio3',
-			'DataFim4',
-			'DataInicio4',
-            'Ordenamento',
-            'Campo',
-            'AprovadoOrca',
-            'QuitadoOrca',
-			'ServicoConcluido',
-			'FormaPag',
-
-        ), TRUE));
-		/*
-		if (!$data['query']['DataInicio'])
-           $data['query']['DataInicio'] = '01/01/2017';
-		*/
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
-        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início do Orçamento', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim', 'Data Fim do Orçamento', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio2', 'Data Início da Entrega', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim2', 'Data Fim da Entrega', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio3', 'Data Início do Retorno', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim3', 'Data Fim do Retorno', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio4', 'Data Início do Quitado', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim4', 'Data Fim do Quitado', 'trim|valid_date');
-
-
-        $data['select']['AprovadoOrca'] = array(
-            '#' => 'TODOS',
-            'N' => 'Não',
-            'S' => 'Sim',
-        );
-
-        $data['select']['QuitadoOrca'] = array(
-            '#' => 'TODOS',
-            'N' => 'Não',
-            'S' => 'Sim',
-        );
-
-		$data['select']['ServicoConcluido'] = array(
-            '#' => 'TODOS',
-            'N' => 'Não',
-            'S' => 'Sim',
-        );
-
-        $data['select']['Campo'] = array(
-            'C.NomeCliente' => 'Nome do Cliente',
-
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
-            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
-            'OT.DataOrca' => 'Data do Orçamento',
-			'OT.DataEntradaOrca' => 'Validade do Orçamento',
-			'OT.DataPrazo' => 'Data da Entrega',
-            'OT.ValorOrca' => 'Valor do Orçamento',
-			'OT.ValorEntradaOrca' => 'Valor do Desconto',
-			'OT.ValorRestanteOrca' => 'Valor a Receber',
-			'OT.FormaPag' => 'Forma de Pag.?',
-            'OT.ServicoConcluido' => 'Serviço Concluído?',
-            'OT.QuitadoOrca' => 'Orçamento Quitado?',
-            'OT.DataConclusao' => 'Data de Conclusão',
-			'OT.DataQuitado' => 'Data de Quitado',
-            'OT.DataRetorno' => 'Data de Retorno',
-			'OT.ProfissionalOrca' => 'Profissional',
-
-        );
-
-        $data['select']['Ordenamento'] = array(
-            'ASC' => 'Crescente',
-            'DESC' => 'Decrescente',
-        );
-
-        $data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
-		$data['select']['FormaPag'] = $this->Relatorioconsultor_model->select_formapag();
-
-        $data['titulo'] = 'Clientes & Orçamentos';
-
-        #run form validation
-        if ($this->form_validation->run() !== FALSE) {
-
-            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
-			$data['bd']['FormaPag'] = $data['query']['FormaPag'];
-            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
-            $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
-			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
-            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
-			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
-            $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
-			$data['bd']['DataInicio4'] = $this->basico->mascara_data($data['query']['DataInicio4'], 'mysql');
-            $data['bd']['DataFim4'] = $this->basico->mascara_data($data['query']['DataFim4'], 'mysql');
-
-            $data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
-            $data['bd']['Campo'] = $data['query']['Campo'];
-            $data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
-            $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
-			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
-
-            $data['report'] = $this->Relatorioconsultor_model->list_orcamento($data['bd'],TRUE);
-
-            /*
-              echo "<pre>";
-              print_r($data['report']);
-              echo "</pre>";
-              exit();
-              */
-
-            $data['list'] = $this->load->view('relatorioconsultor/list_orcamento', $data, TRUE);
-            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
-        }
-
-        $this->load->view('relatorioconsultor/tela_orcamento', $data);
-
-        $this->load->view('basico/footer');
-
-
-
-    }
-
-    public function orcamentorede() {
-
-        if ($this->input->get('m') == 1)
-            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
-        elseif ($this->input->get('m') == 2)
-            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
-        else
-            $data['msg'] = '';
-
-        $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
-            'DataInicio',
-            'DataFim',
-			'DataInicio',
-            'DataFim2',
-			'DataInicio2',
-            'DataFim3',
-			'DataInicio3',
-			'DataFim4',
-			'DataInicio4',
-            'Ordenamento',
-            'Campo',
-            'AprovadoOrca',
-            'QuitadoOrca',
-			'ServicoConcluido',
-			'FormaPag',
-
-        ), TRUE));
-		/*
-		if (!$data['query']['DataInicio'])
-           $data['query']['DataInicio'] = '01/01/2017';
-		*/
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
-        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início do Orçamento', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim', 'Data Fim do Orçamento', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio2', 'Data Início da Entrega', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim2', 'Data Fim da Entrega', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio3', 'Data Início do Retorno', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim3', 'Data Fim do Retorno', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio4', 'Data Início do Quitado', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim4', 'Data Fim do Quitado', 'trim|valid_date');
-
-
-        $data['select']['AprovadoOrca'] = array(
-            '#' => 'TODOS',
-            'N' => 'Não',
-            'S' => 'Sim',
-        );
-
-        $data['select']['QuitadoOrca'] = array(
-            '#' => 'TODOS',
-            'N' => 'Não',
-            'S' => 'Sim',
-        );
-
-		$data['select']['ServicoConcluido'] = array(
-            '#' => 'TODOS',
-            'N' => 'Não',
-            'S' => 'Sim',
-        );
-
-        $data['select']['Campo'] = array(
-
-            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
-            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
-			'OT.ServicoConcluido' => 'Orçam. Concluído?',
-            'OT.DataOrca' => 'Data do Orçamento',
-			'OT.QuitadoOrca' => 'Orçam. Quitado?',
-            'OT.DataConclusao' => 'Data de Conclusão',
-			'OT.DataQuitado' => 'Data de Quitado',
-            'OT.DataRetorno' => 'Data de Retorno',          
-			#'OT.DataEntradaOrca' => 'Validade do Orçamento',
-			#'OT.DataPrazo' => 'Data da Entrega',
-            'OT.ValorOrca' => 'Valor do Orçamento',
-			'OT.ValorEntradaOrca' => 'Valor do Desconto',
-			'OT.ValorRestanteOrca' => 'Valor a Receber',
-			'OT.FormaPag' => 'Forma de Pag.?',
-            
-
-        );
-
-        $data['select']['Ordenamento'] = array(
-            'ASC' => 'Crescente',
-            'DESC' => 'Decrescente',
-        );
-
-        $data['select']['NomeConsultor'] = $this->Relatorioconsultor_model->select_consultores();
-		$data['select']['FormaPag'] = $this->Relatorioconsultor_model->select_formapag();
-
-        $data['titulo'] = 'Orçamentos com a Rede';
-
-        #run form validation
-        if ($this->form_validation->run() !== FALSE) {
-
-            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
-			$data['bd']['FormaPag'] = $data['query']['FormaPag'];
-            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
-            $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
-			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
-            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
-			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
-            $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
-			$data['bd']['DataInicio4'] = $this->basico->mascara_data($data['query']['DataInicio4'], 'mysql');
-            $data['bd']['DataFim4'] = $this->basico->mascara_data($data['query']['DataFim4'], 'mysql');
-
-            $data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
-            $data['bd']['Campo'] = $data['query']['Campo'];
-            $data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
-            $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
-			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
-
-            $data['report'] = $this->Relatorioconsultor_model->list_orcamentorede($data['bd'],TRUE);
-
-            /*
-              echo "<pre>";
-              print_r($data['report']);
-              echo "</pre>";
-              exit();
-              */
-
-            $data['list'] = $this->load->view('relatorioconsultor/list_orcamentorede', $data, TRUE);
-            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
-        }
-
-        $this->load->view('relatorioconsultor/tela_orcamentorede', $data);
-
-        $this->load->view('basico/footer');
-
-
-
-    }
 
     public function devolucaorede() {
 

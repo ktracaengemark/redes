@@ -152,7 +152,7 @@
 																						</a>-->
 																						<?php } ?>
 																						<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="buscaValor2Tabelas(this.value,this.name,'Valor',<?php echo $i ?>,'Produto')" <?php echo $readonly; ?>
-																								 id="listadinamicab<?php echo $i ?>" name="idTab_Produto<?php echo $i ?>">
+																								 id="listadinamicab<?php echo $i ?>" autofocus name="idTab_Produto<?php echo $i ?>">
 																							<option value="">-- Selecione uma opção --</option>
 																							<?php
 																							foreach ($select['Produto'] as $key => $row) {
@@ -174,7 +174,7 @@
 																						<label for="QtdVendaProduto">Qtd<?php echo $i ?>:</label>
 																						<input type="text" class="form-control Numero" maxlength="3" id="QtdVendaProduto<?php echo $i ?>" placeholder="0"
 																								onkeyup="calculaSubtotal(this.value,this.name,'<?php echo $i ?>','QTD','Produto'),calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',0,'ProdutoHidden')"
-																								autofocus name="QtdVendaProduto<?php echo $i ?>" value="<?php echo $produto[$i]['QtdVendaProduto'] ?>">
+																								 name="QtdVendaProduto<?php echo $i ?>" value="<?php echo $produto[$i]['QtdVendaProduto'] ?>">
 																					</div>
 																					<div class="col-md-2">
 																						<label for="ValorVendaProduto">Valor do Produto:</label>
@@ -287,7 +287,7 @@
 																						<label for="QtdVendaServico">Qtd:</label>
 																						<input type="text" class="form-control Numero" maxlength="3" id="QtdVendaServico<?php echo $i ?>" placeholder="0"
 																								onkeyup="calculaSubtotalDev(this.value,this.name,'<?php echo $i ?>','QTD','Servico'),calculaQtdSomaDev('QtdVendaServico','QtdSomaDev','ServicoSoma',0,0,'CountMax2',0,'ServicoHidden')"
-																								autofocus name="QtdVendaServico<?php echo $i ?>" value="<?php echo $servico[$i]['QtdVendaServico'] ?>">
+																								 name="QtdVendaServico<?php echo $i ?>" value="<?php echo $servico[$i]['QtdVendaServico'] ?>">
 																					</div>
 																					<div class="col-md-7">
 																						<label for="idTab_Servico">Produto:</label>

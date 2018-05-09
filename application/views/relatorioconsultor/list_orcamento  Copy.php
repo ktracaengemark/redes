@@ -2,8 +2,7 @@
     <div class="panel-body">
 
 		<div class="col-md-1"></div>
-        <!--
-		<div class="col-md-3">
+        <div class="col-md-3">
             <label for="DataFim">Total dos Orçamentos:</label>
             <div class="input-group">
                 <span class="input-group-addon">R$</span>
@@ -17,7 +16,6 @@
                 <input type="text" class="form-control" disabled aria-label="Total Descontos" value="<?php echo $report->soma->somadesconto ?>">
             </div>
         </div>
-		-->
 		<div class="col-md-3">
             <label for="DataFim">Total A Receber:</label>
             <div class="input-group">
@@ -43,16 +41,7 @@
                 <thead>
                     <tr>
 						<th class="active">Orç.</th>
-						
-						<!--<th class="active">Cliente</th>-->
-						<th class="active">Cliente/ Rec.</th>
-                        <th class="active">Concl.</th>
-						<th class="active">Dt. Orç.</th>
-						<th class="active">Dt. Retor.</th>
-						<!--<th class="active">Orçam.</th>
-						<th class="active">Descontos</th>-->
-						<th class="active">A Receber</th>											
-						<!--<th class="active">Forma Pag.</th>-->
+
                         				
                         <th class="active"></th>
                     </tr>
@@ -65,15 +54,7 @@
 
 						#echo '<div class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
 							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
-							#echo '<td>' . $row['NomeCliente'] . '</td>';
-							echo '<td>' . $row['Receitas'] . '</td>';
-							echo '<td>' . $row['ServicoConcluido'] . '</td>';
-							echo '<td>' . $row['DataOrca'] . '</td>';
-                            echo '<td>' . $row['DataRetorno'] . '</td>';
-                            #echo '<td class="text-left">R$ ' . $row['ValorOrca'] . '</td>';
-							#echo '<td class="text-left">R$ ' . $row['ValorDev'] . '</td>';
-							echo '<td class="text-left">R$ ' . $row['ValorRestanteOrca'] . '</td>';														
-                            #echo '<td>' . $row['FormaPag'] . '</td>';                            							
+                           							
                             #echo '</div>';
                             echo '<td class="notclickable">
                                     <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrint/imprimir/' . $row['idApp_OrcaTrata'] . '">

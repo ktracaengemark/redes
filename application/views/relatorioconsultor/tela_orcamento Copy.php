@@ -57,7 +57,7 @@
 														?>
 													</select>
 												</div>
-												-->
+												
 												<div class="col-md-3 text-left">
 													<label for="ServicoConcluido">Prod. Entr.?</label>
 													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " onchange="this.form.submit()"
@@ -72,8 +72,10 @@
 														}
 														?>
 													</select>
-												</div>												
-											</div>	
+												</div>
+												-->												
+											</div>
+											
 											<div class="row">	
 												<div class="col-md-9 text-left">
 													<label for="Ordenamento">Ordenamento:</label>
@@ -129,6 +131,7 @@
 												</div>
 												-->
 											</div>	
+											<!--
 											<div class="row">																	
 												<div class="col-md-3 text-left">
 													<label for="DataInicio">Orç. - Dt Inc.</label>
@@ -175,7 +178,8 @@
 														
 													</div>
 												</div>	
-											</div>	
+											</div>
+											-->
 											<div class="row">
 												<br>
 												<div class="col-md-3 text-left">

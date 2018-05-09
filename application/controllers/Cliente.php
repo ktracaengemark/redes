@@ -49,7 +49,7 @@ class Cliente extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'idSis_Usuario',
+            'idApp_Consultor',
 			'idApp_Cliente',
             'NomeCliente',
             'DataNascimento',
@@ -124,7 +124,7 @@ class Cliente extends CI_Controller {
 			$data['query']['DataCadastroCliente'] = $this->basico->mascara_data($data['query']['DataCadastroCliente'], 'mysql');
 			$data['query']['Obs'] = nl2br($data['query']['Obs']);
 			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
-			$data['query']['idSis_Usuario'] = $_SESSION['log']['id'];
+			$data['query']['idApp_Consultor'] = $_SESSION['log']['id'];
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
 
             $data['campos'] = array_keys($data['query']);
@@ -228,7 +228,7 @@ class Cliente extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('cliente/form_cliente', $data);
+            $this->load->view('cliente/form_clientealterar', $data);
         } else {
 
             $data['query']['NomeCliente'] = trim(mb_strtoupper($data['query']['NomeCliente'], 'ISO-8859-1'));
@@ -245,7 +245,7 @@ class Cliente extends CI_Controller {
 
             if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
                 $data['msg'] = '?m=2';
-                redirect(base_url() . 'cliente/form_cliente/' . $data['query']['idApp_Cliente'] . $data['msg']);
+                redirect(base_url() . 'cliente/form_clientealterar/' . $data['query']['idApp_Cliente'] . $data['msg']);
                 exit();
             } else {
 
