@@ -287,6 +287,7 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['servico']);
                 for($j=1;$j<=$max;$j++) {
                     $data['servico'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
+					$data['servico'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['servico'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['servico'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['servico'][$j]['DataValidadeServico'] = $this->basico->mascara_data($data['servico'][$j]['DataValidadeServico'], 'mysql');
@@ -301,7 +302,8 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['produto']);
                 for($j=1;$j<=$max;$j++) {
                     $data['produto'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
-                    $data['produto'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['produto'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['produto'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['produto'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['produto'][$j]['DataValidadeProduto'] = $this->basico->mascara_data($data['produto'][$j]['DataValidadeProduto'], 'mysql');
                     $data['produto'][$j]['ValorVendaProduto'] = str_replace(',', '.', str_replace('.', '', $data['produto'][$j]['ValorVendaProduto']));
@@ -315,7 +317,8 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['parcelasrec']);
                 for($j=1;$j<=$max;$j++) {
                     $data['parcelasrec'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
-                    $data['parcelasrec'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['parcelasrec'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['parcelasrec'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['parcelasrec'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 
                     $data['parcelasrec'][$j]['ValorParcelaRecebiveis'] = str_replace(',', '.', str_replace('.', '', $data['parcelasrec'][$j]['ValorParcelaRecebiveis']));
@@ -332,7 +335,8 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['procedimento']);
                 for($j=1;$j<=$max;$j++) {
                     $data['procedimento'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
-                    $data['procedimento'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['procedimento'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['procedimento'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['procedimento'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['procedimento'][$j]['Profissional'] = $_SESSION['log']['id'];
                     $data['procedimento'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['procedimento'][$j]['DataProcedimento'], 'mysql');
@@ -700,6 +704,7 @@ class Orcatratacons extends CI_Controller {
                 for($j=0;$j<$max;$j++) {
 
                     $data['update']['servico']['inserir'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
+					$data['update']['servico']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['update']['servico']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['servico']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['update']['servico']['inserir'][$j]['DataValidadeServico'] = $this->basico->mascara_data($data['update']['servico']['inserir'][$j]['DataValidadeServico'], 'mysql');
@@ -739,6 +744,7 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['update']['produto']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['produto']['inserir'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
+					$data['update']['produto']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['update']['produto']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['produto']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['update']['produto']['inserir'][$j]['DataValidadeProduto'] = $this->basico->mascara_data($data['update']['produto']['inserir'][$j]['DataValidadeProduto'], 'mysql');
@@ -779,6 +785,7 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['update']['parcelasrec']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['parcelasrec']['inserir'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
+					$data['update']['parcelasrec']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['update']['parcelasrec']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['parcelasrec']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 
@@ -823,6 +830,7 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['update']['procedimento']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['procedimento']['inserir'][$j]['idSis_Usuario'] = $_SESSION['log']['id'];
+					$data['update']['procedimento']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['update']['procedimento']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['procedimento']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 
