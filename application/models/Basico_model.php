@@ -244,6 +244,33 @@ class Basico_model extends CI_Model {
         }
     }
 
+    function set_auditoriaconsultor($auditoriaitem, $tabela, $operacao, $data, $id = NULL) {
+
+        if ($id == NULL)
+            $id = $_SESSION['log']['id'];
+
+        $auditoria = array(
+            'Tabela' => $tabela,
+            'idApp_Consultor' => $id,
+            'DataAuditoria' => date('Y-m-d H:i:s', time()),
+            'Operacao' => $operacao,
+            'Ip' => $this->input->ip_address(),
+            'So' => $this->agent->platform(),
+            'Navegador' => $this->agent->browser(),
+            'NavegadorVersao' => $this->agent->version(),
+        );
+
+        if ($this->db->insert('Sis_AuditoriaConsultor', $auditoria)) {
+            $i = 0;
+            while (isset($data['auditoriaitem'][$i])) {
+                $data['auditoriaitem'][$i]['idSis_AuditoriaConsultor'] = $this->db->insert_id();
+                $i++;
+            }
+
+            $this->db->insert_batch('Sis_AuditoriaItemConsultor', $data['auditoriaitem']);
+        }
+    }
+
     public function get_municipio($data) {
 
         if (isset($data) && $data) {

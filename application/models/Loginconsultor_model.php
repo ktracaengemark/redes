@@ -151,7 +151,7 @@ class Loginconsultor_model extends CI_Model {
             'SessionId' => session_id(),
         );
 
-        $query = $this->db->insert('Sis_AuditoriaAcesso', $data);
+        $query = $this->db->insert('Sis_AuditoriaAcessoConsultor', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;

@@ -140,7 +140,7 @@ class Cliente extends CI_Controller {
             } else {
 
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_Cliente'], FALSE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Cliente', 'CREATE', $data['auditoriaitem']);
+                $data['auditoria'] = $this->Basico_model->set_auditoriaconsultor($data['auditoriaitem'], 'App_Cliente', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
                 redirect(base_url() . 'cliente/prontuario/' . $data['idApp_Cliente'] . $data['msg']);
@@ -252,7 +252,7 @@ class Cliente extends CI_Controller {
                 if ($data['auditoriaitem'] === FALSE) {
                     $data['msg'] = '';
                 } else {
-                    $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Cliente', 'UPDATE', $data['auditoriaitem']);
+                    $data['auditoria'] = $this->Basico_model->set_auditoriaconsultor($data['auditoriaitem'], 'App_Cliente', 'UPDATE', $data['auditoriaitem']);
                     $data['msg'] = '?m=1';
                 }
 
