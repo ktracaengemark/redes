@@ -586,7 +586,7 @@ class Relatorioconsultor extends CI_Controller {
             'OT.ValorOrca' => 'Valor do Orçamento',
 			'OT.ValorEntradaOrca' => 'Valor do Desconto',
 			'OT.ValorRestanteOrca' => 'Valor a Receber',
-			'OT.FormaPag' => 'Forma de Pag.?',
+			'OT.FormaPagamento' => 'Forma de Pag.?',
             
 
         );
