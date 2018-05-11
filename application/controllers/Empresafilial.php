@@ -135,7 +135,7 @@ class Empresafilial extends CI_Controller {
             } else {
 
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idSis_EmpresaFilial'], FALSE);
-                $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_EmpresaFilial', 'CREATE', $data['auditoriaitem']);
+                $data['auditoria'] = $this->Basico_model->set_auditoriaempresa($data['auditoriaitem'], 'Sis_EmpresaFilial', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
                 redirect(base_url() . 'empresafilial/prontuario/' . $data['idSis_EmpresaFilial'] . $data['msg']);
@@ -235,7 +235,7 @@ class Empresafilial extends CI_Controller {
                 if ($data['auditoriaitem'] === FALSE) {
                     $data['msg'] = '';
                 } else {
-                    $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'Sis_EmpresaFilial', 'UPDATE', $data['auditoriaitem']);
+                    $data['auditoria'] = $this->Basico_model->set_auditoriaempresa($data['auditoriaitem'], 'Sis_EmpresaFilial', 'UPDATE', $data['auditoriaitem']);
                     $data['msg'] = '?m=1';
                 }
 
