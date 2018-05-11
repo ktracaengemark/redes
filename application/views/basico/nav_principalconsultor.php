@@ -98,42 +98,6 @@
 									<li><a href="<?php echo base_url(); ?>loginconsultor/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 								</ul>
 							</div>
-							<!--
-							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-user"></span> Clientes <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url(); ?>clienteusuario/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad. Clientes/Usuario</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Clientes</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/clientes"><span class="glyphicon glyphicon-list"></span> Clientes & Contatos</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url(); ?>relatorio/clientes"><span class="glyphicon glyphicon-calendar"></span> Aniversariantes</a></li>							
-									
-								</ul>
-							</div>
-							
-							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url(); ?>relatorio/clientes">
-									<button type="button" class="btn btn-md btn-success ">
-										<span class="glyphicon glyphicon-user"></span>Clientes
-									</button>
-								</a>
-							</div>										
-							
-							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-warning dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-calendar"></span> Agendas <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
-								</ul>
-							</div>
-							-->
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
 						
@@ -155,7 +119,7 @@
 									<span class="glyphicon glyphicon-pencil"></span> Cadastros <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">							
-									<li><a href="<?php echo base_url() ?>orcatrata/cadastrar2"><span class="glyphicon glyphicon-usd"></span> Vendas/Receitas</a></li>
+									<li><a href="<?php echo base_url() ?>orcatrata/cadastrar2"><span class="glyphicon glyphicon-usd"></span> Vendas & Receitas</a></li>
 									<li role="separator" class="divider"></li>
 									<!--<li><a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario"><span class="glyphicon glyphicon-pencil"></span> Vendas</a></li>
 									<li role="separator" class="divider"></li>
@@ -178,6 +142,9 @@
 									<li role="separator" class="divider"></li>-->
 								</ul>
 							</div>
+							<div class="btn-group" role="group" aria-label="..."> </div>
+						</li>
+						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
@@ -217,27 +184,11 @@
 									-->
 								</ul>
 							</div>
-							<!--
-							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url() ?>loginempresafilial/index">
-									<button type="button" class="btn btn-md active " id="countdowndiv">
-										<span class="glyphicon glyphicon-hourglass" id="clock"></span>
-									</button>
-								</a>
-							</div>
-							-->
+
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
 						<!--
 						<li class="btn-toolbar navbar-form navbar-right" role="toolbar" aria-label="...">
-
-							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url() ?>loginempresafilial/index">
-									<button type="button" class="btn btn-md active " id="countdowndiv">
-										<span class="glyphicon glyphicon-hourglass" id="clock"></span>
-									</button>
-								</a>
-							</div>
 
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>relatorio/sistema">

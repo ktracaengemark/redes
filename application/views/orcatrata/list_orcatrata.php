@@ -132,7 +132,7 @@
 													<h5>
 														<span class="glyphicon glyphicon-calendar"></span> <b>Data do Orçamento:</b> <?php echo $row['DataOrca']; ?>
 													</h5>
-
+													<!--
 													<p>
 														<?php if ($row['ProfissionalOrca']) { ?>
 														<span class="glyphicon glyphicon-user"></span> <b>Profissional:</b> <?php echo $row['ProfissionalOrca']; ?> -
@@ -141,16 +141,19 @@
 														<?php } ?>
 
 													</p>
+													-->
 													<p>
 														<?php if ($row['ServicoConcluido']) { ?>
 														<span class="glyphicon glyphicon-ok"></span> <b>Orç. Concluído?</b> <?php echo $row['ServicoConcluido']; ?>
 														<?php } ?>
 													</p>
+													<!--
 													<p>
 														<?php if ($row['QuitadoOrca']) { ?>
 														<span class="glyphicon glyphicon-usd"></span> <b>Orç. Quitado?</b> <?php echo $row['QuitadoOrca']; ?>
 														<?php } ?>
 													</p>
+													-->
 													<p>
 														<span class="glyphicon glyphicon-pencil"></span> <b>Obs:</b> <?php echo nl2br($row['ObsOrca']); ?>
 													</p>

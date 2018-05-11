@@ -203,16 +203,16 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="col-md-4" scope="col">Aprovado?</th>
+							<!--<th class="col-md-4" scope="col">Aprovado?</th>-->
 							<th class="col-md-4" scope="col">Concluído?</th>
-							<th class="col-md-4" scope="col">Quitado?</th>
+							<!--<th class="col-md-4" scope="col">Quitado?</th>-->
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo $this->basico->mascara_palavra_completa($orcatrata['AprovadoOrca'], 'NS') ?></td>
+							<!--<td><?php echo $this->basico->mascara_palavra_completa($orcatrata['AprovadoOrca'], 'NS') ?></td>-->
 							<td><?php echo $this->basico->mascara_palavra_completa($orcatrata['ServicoConcluido'], 'NS') ?></td>
-							<td><?php echo $this->basico->mascara_palavra_completa($orcatrata['QuitadoOrca'], 'NS') ?></td>
+							<!--<td><?php echo $this->basico->mascara_palavra_completa($orcatrata['QuitadoOrca'], 'NS') ?></td>-->
 						</tr>
 					</tbody>
 				</table>
@@ -221,15 +221,15 @@
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Data do Orçamento</th>
-							<th class="col-md-4" scope="col">Data da Conclusão</th>
-							<th class="col-md-4" scope="col">Data do Quitação</th>
+							<!--<th class="col-md-4" scope="col">Data da Conclusão</th>
+							<th class="col-md-4" scope="col">Data do Quitação</th>-->
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td><?php echo $orcatrata['DataOrca'] ?></td>
-							<td><?php echo $orcatrata['DataConclusao'] ?></td>
-							<td><?php echo $orcatrata['DataQuitado'] ?></td>
+							<!--<td><?php echo $orcatrata['DataConclusao'] ?></td>
+							<td><?php echo $orcatrata['DataQuitado'] ?></td>-->
 						</tr>
 					</tbody>
 				</table>
