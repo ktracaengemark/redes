@@ -866,11 +866,11 @@ function adicionaProcedimento() {
 						<div class="col-md-2">\
 							<label for="DataProcedimento'+pc+'">Data do Proced.:</label>\
 							<div class="input-group DatePicker">\
-								<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"\
-									   name="DataProcedimento'+pc+'" value="'+currentDate.format('DD/MM/YYYY')+'">\
 								<span class="input-group-addon" disabled>\
 									<span class="glyphicon glyphicon-calendar"></span>\
 								</span>\
+								<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"\
+									   name="DataProcedimento'+pc+'" value="'+currentDate.format('DD/MM/YYYY')+'">\
 							</div>\
 						</div>\
 						<div class="col-md-2">\
@@ -2525,6 +2525,9 @@ $(document).ready(function () {
 			</div>'
 		); //add input box
 
+		//habilita o botão de calendário após a geração dos campos dinâmicos
+		$('.DatePicker').datetimepicker(dateTimePickerOptions);
+		
 		//get a reference to the select element
 		$select = $('#listadinamica'+ps);
 
@@ -2622,7 +2625,10 @@ $(document).ready(function () {
             </div>'
         ); //add input box
 
-        //get a reference to the select element
+        //habilita o botão de calendário após a geração dos campos dinâmicos
+		$('.DatePicker').datetimepicker(dateTimePickerOptions);	
+		
+		//get a reference to the select element
         $select = $('#listadinamicab'+pc);
 
         //request the JSON data and parse into the select element
@@ -2712,11 +2718,11 @@ $(document).ready(function () {
 							<div class="col-md-2">\
 								<label for="DataValidadeProduto'+pc+'">Val. do Produto:</label>\
 								<div class="input-group DatePicker">\
-									<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"\
-										   name="DataValidadeProduto'+pc+'" value="'+currentDate.format('DD/MM/YYYY')+'">\
 									<span class="input-group-addon" disabled>\
 										<span class="glyphicon glyphicon-calendar"></span>\
 									</span>\
+									<input type="text" class="form-control Date" maxlength="10" placeholder="DD/MM/AAAA"\
+										   name="DataValidadeProduto'+pc+'" value="'+currentDate.format('DD/MM/YYYY')+'">\
 								</div>\
 							</div>\
 							<div class="col-md-1">\
@@ -2732,7 +2738,10 @@ $(document).ready(function () {
             </div>'
         ); //add input box
 
-        //get a reference to the select element
+		//habilita o botão de calendário após a geração dos campos dinâmicos
+		$('.DatePicker').datetimepicker(dateTimePickerOptions);
+		
+		//get a reference to the select element
         $select = $('#listadinamicab'+pc);
 
         //request the JSON data and parse into the select element
