@@ -60,7 +60,7 @@
 												<div class="row">	
 													<div class="col-md-3">
 														<label for="AprovadoOrca">Orç.Aprov.?</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 																id="AprovadoOrca" name="AprovadoOrca">
 															<?php
 															foreach ($select['AprovadoOrca'] as $key => $row) {
@@ -75,7 +75,7 @@
 													</div>
 													<div class="col-md-3">
 														<label for="ServicoConcluido">Serv. Concl.?</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 																id="ServicoConcluido" name="ServicoConcluido">
 															<?php
 															foreach ($select['ServicoConcluido'] as $key => $row) {
@@ -90,7 +90,7 @@
 													</div>
 													<div class="col-md-3">
 														<label for="QuitadoOrca">Orç.Quit.?</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 																id="QuitadoOrca" name="QuitadoOrca">
 															<?php
 															foreach ($select['QuitadoOrca'] as $key => $row) {
@@ -105,7 +105,7 @@
 													</div>
 													<div class="col-md-3">
 														<label for="QuitadoRecebiveis">Parc. Quit.?</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 																id="QuitadoRecebiveis" name="QuitadoRecebiveis">
 															<?php
 															foreach ($select['QuitadoRecebiveis'] as $key => $row) {
