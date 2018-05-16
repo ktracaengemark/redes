@@ -2576,13 +2576,7 @@ $(document).ready(function () {
                 <div class="panel panel-success">\
                     <div class="panel-heading">\
                         <div class="row">\
-                            <div class="col-md-1">\
-                                <label for="QtdVendaProduto">Qtd:</label><br>\
-                                    <input type="text" class="form-control Numero" maxlength="3" id="QtdVendaProduto'+pc+'" placeholder="0"\
-                                        onkeyup="calculaSubtotal(this.value,this.name,'+pc+',\'QTD\',\'Produto\'),calculaQtdSoma(\'QtdVendaProduto\',\'QtdSoma\',\'ProdutoSoma\',0,0,\'CountMax\',0,\'ProdutoHidden\')"\
-                                        name="QtdVendaProduto'+pc+'" value="">\
-                            </div>\
-							<div class="col-md-3">\
+                            <div class="col-md-3">\
                                 <label for="idTab_Produto">Produto:</label><br>\
                                 <select class="form-control Chosen" id="listadinamicab'+pc+'" onchange="buscaValor2Tabelas(this.value,this.name,\'Valor\','+pc+',\'Produto\')" name="idTab_Produto'+pc+'">\
                                     <option value="">-- Selecione uma opção --</option>\
@@ -2593,6 +2587,14 @@ $(document).ready(function () {
 								<input type="text" class="form-control" id="ObsProduto'+pc+'" maxlength="250"\
 									   name="ObsProduto'+pc+'" value="">\
 							</div>\
+							<div class="col-md-1">\
+                                <label for="QtdVendaProduto">Qtd:</label><br>\
+                                <div class="input-group">\
+                                    <input type="text" class="form-control Numero" maxlength="3" id="QtdVendaProduto'+pc+'" placeholder="0"\
+                                        onkeyup="calculaSubtotal(this.value,this.name,'+pc+',\'QTD\',\'Produto\'),calculaQtdSoma(\'QtdVendaProduto\',\'QtdSoma\',\'ProdutoSoma\',0,0,\'CountMax\',0,\'ProdutoHidden\')"\
+                                        name="QtdVendaProduto'+pc+'" value="">\
+                                </div>\
+                            </div>\
                             <div class="col-md-2">\
                                 <label for="ValorVendaProduto">Valor do Produto:</label><br>\
                                 <div class="input-group id="txtHint">\
@@ -2638,7 +2640,7 @@ $(document).ready(function () {
                 //clear the current content of the select
                 $select.html('');
                 //iterate over the data and append a select option
-                //$select.append('<option value="">-- Selecione uma opção --</option>');
+                $select.append('<option value="">-- Selecione uma opção --</option>');
                 $.each(data, function (key, val) {
                     //alert(val.id);
                     $select.append('<option value="' + val.id + '">' + val.name + '</option>');

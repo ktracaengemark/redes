@@ -92,7 +92,7 @@
 																				onkeyup="calculaSubtotal(this.value,this.name,'<?php echo $i ?>','QTD','Produto'),calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',0,'ProdutoHidden')"
 																				 name="QtdVendaProduto<?php echo $i ?>" value="<?php echo $produto[$i]['QtdVendaProduto'] ?>">
 																	</div>
-																	<div class="col-md-7">
+																	<div class="col-md-3">
 																		<label for="idTab_Produto">Produto:</label>
 																		<?php if ($i == 1) { ?>
 																		<!--<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>produto/cadastrar/produto" role="button">
@@ -101,7 +101,7 @@
 																		<?php } ?>
 																		<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="buscaValor2Tabelas(this.value,this.name,'Valor',<?php echo $i ?>,'Produto')" <?php echo $readonly; ?>
 																				 id="listadinamicab<?php echo $i ?>" name="idTab_Produto<?php echo $i ?>">
-																			<option value="">-- Selecione uma opção --</option>
+																			<!--<option value="">-- Selecione uma opção --</option>-->
 																			<?php
 																			foreach ($select['Produto'] as $key => $row) {
 																				if ($produto[$i]['idTab_Produto'] == $key) {
@@ -113,7 +113,11 @@
 																			?>
 																		</select>
 																	</div>
-
+																	<div class="col-md-3">
+																		<label for="ObsProduto<?php echo $i ?>">Obs:</label><br>
+																		<input type="text" class="form-control" id="ObsProduto<?php echo $i ?>" maxlength="250"
+																			   name="ObsProduto<?php echo $i ?>" value="<?php echo $produto[$i]['ObsProduto'] ?>">
+																	</div>
 																	<div class="col-md-2">
 																		<label for="ValorVendaProduto">Valor do Produto:</label>
 																		<div class="input-group">
@@ -130,25 +134,7 @@
 																			<input type="text" class="form-control Valor" maxlength="10" placeholder="0,00" readonly="" id="SubtotalProduto<?php echo $i ?>"
 																				   name="SubtotalProduto<?php echo $i ?>" value="<?php echo $produto[$i]['SubtotalProduto'] ?>">
 																		</div>
-																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-md-1"></div>
-																	<div class="col-md-7">
-																		<label for="ObsProduto<?php echo $i ?>">Obs:</label><br>
-																		<input type="text" class="form-control" id="ObsProduto<?php echo $i ?>" maxlength="250"
-																			   name="ObsProduto<?php echo $i ?>" value="<?php echo $produto[$i]['ObsProduto'] ?>">
-																	</div>
-																	<div class="col-md-2">
-																		<label for="DataValidadeProduto<?php echo $i ?>">Val. do Produto:</label>
-																		<div class="input-group <?php echo $datepicker; ?>">
-																			<span class="input-group-addon" disabled>
-																				<span class="glyphicon glyphicon-calendar"></span>
-																			</span>
-																			<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																				   name="DataValidadeProduto<?php echo $i ?>" value="<?php echo $produto[$i]['DataValidadeProduto']; ?>">																				
-																		</div>
-																	</div>
+																	</div>																	
 																	<div class="col-md-1">
 																		<label><br></label><br>
 																		<button type="button" id="<?php echo $i ?>" class="remove_field2 btn btn-danger"

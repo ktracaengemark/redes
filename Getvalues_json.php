@@ -65,6 +65,7 @@ elseif ($_GET['q'] == 2) {
 				V.Convenio = "53" AND				
                 P.idTab_Produtos = V.idTab_Produtos
 			ORDER BY
+				V.idTab_Valor,
 				P.CodProd ASC,
 				P.Categoria ASC,
 				TP3.Prodaux3,				

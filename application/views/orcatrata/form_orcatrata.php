@@ -144,6 +144,12 @@
 																		<div class="panel panel-success">
 																			<div class="panel-heading">
 																				<div class="row">																					
+																					<div class="col-md-1">
+																						<label for="QtdVendaProduto">Qtd<?php echo $i ?>:</label>
+																						<input type="text" class="form-control Numero" maxlength="3" id="QtdVendaProduto<?php echo $i ?>" placeholder="0"
+																								onkeyup="calculaSubtotal(this.value,this.name,'<?php echo $i ?>','QTD','Produto'),calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',0,'ProdutoHidden')"
+																								 name="QtdVendaProduto<?php echo $i ?>" value="<?php echo $produto[$i]['QtdVendaProduto'] ?>">
+																					</div>
 																					<div class="col-md-3">
 																						<label for="idTab_Produto">Produto:</label>
 																						<?php if ($i == 1) { ?>
@@ -153,7 +159,7 @@
 																						<?php } ?>
 																						<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="buscaValor2Tabelas(this.value,this.name,'Valor',<?php echo $i ?>,'Produto')" <?php echo $readonly; ?>
 																								 id="listadinamicab<?php echo $i ?>" autofocus name="idTab_Produto<?php echo $i ?>">
-																							<option value="">-- Selecione uma opção --</option>
+																							<!--<option value="">-- Selecione uma opção --</option>-->
 																							<?php
 																							foreach ($select['Produto'] as $key => $row) {
 																								if ($produto[$i]['idTab_Produto'] == $key) {
@@ -169,12 +175,6 @@
 																						<label for="ObsProduto<?php echo $i ?>">Obs:</label><br>
 																						<input type="text" class="form-control" id="ObsProduto<?php echo $i ?>" maxlength="250"
 																							   name="ObsProduto<?php echo $i ?>" value="<?php echo $produto[$i]['ObsProduto'] ?>">
-																					</div>
-																					<div class="col-md-1">
-																						<label for="QtdVendaProduto">Qtd<?php echo $i ?>:</label>
-																						<input type="text" class="form-control Numero" maxlength="3" id="QtdVendaProduto<?php echo $i ?>" placeholder="0"
-																								onkeyup="calculaSubtotal(this.value,this.name,'<?php echo $i ?>','QTD','Produto'),calculaQtdSoma('QtdVendaProduto','QtdSoma','ProdutoSoma',0,0,'CountMax',0,'ProdutoHidden')"
-																								 name="QtdVendaProduto<?php echo $i ?>" value="<?php echo $produto[$i]['QtdVendaProduto'] ?>">
 																					</div>
 																					<div class="col-md-2">
 																						<label for="ValorVendaProduto">Valor do Produto:</label>
