@@ -20,9 +20,12 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span> 
 						  </button>
-						  <a class="navbar-brand" href="#"><?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></a>
+						  <a class="navbar-brand" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+							<?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?>
+						  </a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
+							<!--
 							<ul class="nav navbar-nav navbar-center">
 						
 								<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
@@ -57,7 +60,7 @@
 											<li>
 												<a <?php if (preg_match("/orcatrata\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
 													<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-														<span class="glyphicon glyphicon-usd"></span> List.
+														<span class="glyphicon glyphicon-usd"></span> Ver Orçamentos
 													</a>
 												</a>
 											</li>
@@ -65,7 +68,7 @@
 											<li>
 												<a <?php if (preg_match("/orcatrata\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
 													<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-														<span class="glyphicon glyphicon-plus"></span> Cad.
+														<span class="glyphicon glyphicon-plus"></span> Cadastrar Orçamento
 													</a>
 												</a>
 											</li>
@@ -73,6 +76,26 @@
 									</div>
 
 									<div class="btn-group" role="group" aria-label="..."> </div>
+								</li>
+							</ul>
+							-->
+							<ul class="nav navbar-nav navbar-center">
+								<li>
+									<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-edit"></span> Editar Cliente
+									</a>
+								</li>
+
+								<li>
+									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-usd"></span> Ver Orçams.
+									</a>
+								</li>
+
+								<li>
+									<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
+									</a>
 								</li>
 							</ul>
 							<!--
