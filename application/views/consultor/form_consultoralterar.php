@@ -15,14 +15,17 @@
 					<nav class="navbar navbar-inverse">
 					  <div class="container-fluid">
 						<div class="navbar-header">
-						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span> 
-						  </button>
-						  <a class="navbar-brand" href="#"><?php echo '<small>' . $_SESSION['Consultor']['NomeConsultor'] . '</small> - <small>' . $_SESSION['Consultor']['idApp_Consultor'] . '</small>' ?></a>
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span> 
+							</button>
+							<a class="navbar-brand" href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+								<?php echo '<small>' . $_SESSION['Consultor']['NomeConsultor'] . '</small> - <small>' . $_SESSION['Consultor']['idApp_Consultor'] . '</small>' ?> 
+							</a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
+							<!--
 							<ul class="nav navbar-nav navbar-center">
 						
 								<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
@@ -73,6 +76,24 @@
 									</div>
 
 									<div class="btn-group" role="group" aria-label="..."> </div>
+								</li>
+							</ul>
+							-->
+							<ul class="nav navbar-nav navbar-center">
+								<li>
+									<a href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+										<span class="glyphicon glyphicon-edit"></span> Edit. Consultor
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+										<span class="glyphicon glyphicon-usd"></span> Listar Orçams.
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url() . 'orcatratacons/cadastrar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+										<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
+									</a>
 								</li>
 							</ul>
 							<!--
