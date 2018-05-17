@@ -1469,5 +1469,45 @@ class Basico_model extends CI_Model {
 
         return $array;
     }
-	
+
+    public function select_tiporeceita($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query('
+				SELECT 
+					TD.idTab_TipoReceita, 
+					CONCAT(TD.TipoReceita) AS TipoReceita
+				FROM 
+					Tab_TipoReceita AS TD
+				WHERE 
+					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
+					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+				ORDER BY
+					TD.TipoReceita
+				');
+				   
+        } 
+		else {
+            $query = $this->db->query('
+				SELECT 
+					TD.idTab_TipoReceita, 
+					CONCAT(TD.TipoReceita) AS TipoReceita
+				FROM 
+					Tab_TipoReceita AS TD
+				WHERE 
+					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
+					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+				ORDER BY
+					TD.TipoReceita
+				');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idTab_TipoReceita] = $row->TipoReceita;
+            }
+        }
+
+        return $array;
+    }
+		
 }
