@@ -656,7 +656,7 @@ class Relatorioconsultor_model extends CI_Model {
 
     }
 	
-	public function list_despesas1($data, $completo) {
+	public function list_despesas($data, $completo) {
 
         if ($data['DataFim']) {
             $consulta =
@@ -694,7 +694,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         $query = $this->db->query('
             SELECT
-                DS.idApp_Despesas,
+                DS.idApp_Despesascons,
 				DS.Despesa,
 				TD.TipoDespesa,
 				DS.TipoProduto,
@@ -711,8 +711,8 @@ class Relatorioconsultor_model extends CI_Model {
 				PP.ValorPagoPagaveis,
                 PP.QuitadoPagaveis
             FROM
-                App_Despesas AS DS
-                    LEFT JOIN App_ParcelasPagaveis AS PP ON DS.idApp_Despesas = PP.idApp_Despesas
+                App_Despesascons AS DS
+                    LEFT JOIN App_ParcelasPagaveiscons AS PP ON DS.idApp_Despesascons = PP.idApp_Despesascons
                     LEFT JOIN Tab_TipoDespesa AS TD ON TD.idTab_TipoDespesa = DS.TipoDespesa
             WHERE
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
@@ -753,8 +753,8 @@ class Relatorioconsultor_model extends CI_Model {
 
                 #esse trecho pode ser melhorado, serve para somar apenas uma vez
                 #o valor da entrada que pode aparecer mais de uma vez
-                if ($ant != $row->idApp_Despesas) {
-                    $ant = $row->idApp_Despesas;
+                if ($ant != $row->idApp_Despesascons) {
+                    $ant = $row->idApp_Despesascons;
                     $somaentrada += $row->ValorEntradaDespesas;
                 }
                 else {
@@ -3248,7 +3248,7 @@ exit();*/
 
     }
 
-	public function list_despesas($data, $completo) {
+	public function list_despesas2($data, $completo) {
 
         if ($data['DataFim']) {
             $consulta =

@@ -643,7 +643,7 @@ class Relatorioconsultor extends CI_Controller {
 
     }
 	
-	public function despesas1() {
+	public function despesas() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -714,7 +714,7 @@ class Relatorioconsultor extends CI_Controller {
             'PP.DataVencimentoPagaveis' => 'Data do Venc.',
 			'PP.DataPagoPagaveis' => 'Data do Pagam.',
 			'PP.QuitadoPagaveis' => 'Quit.Parc.',
-			'DS.idApp_Despesas' => 'Número da Despesa',
+			'DS.idApp_Despesascons' => 'Número da Despesa',
             'DS.DataDespesas' => 'Data da Despesa',
             'DS.ValorDespesas' => 'Valor da Despesa',
 			'DS.Despesa' => 'Despesa',
@@ -2534,7 +2534,7 @@ class Relatorioconsultor extends CI_Controller {
 
     }
 
-	public function despesas() {
+	public function despesas2() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
