@@ -46,36 +46,12 @@
 											<input type="text" class="form-control" maxlength="200"
 													name="Despesa" value="<?php echo $despesas['Despesa'] ?>">
 										</div>										
-										<!--
-										<div class="col-md-4">
-											<label for="idApp_OrcaTrata">Orçam</label>
-											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
-													id="idApp_OrcaTrata" name="idApp_OrcaTrata">
-												<option value="">-- Sel. um Orçam. --</option>
-												<?php
-												foreach ($select['idApp_OrcaTrata'] as $key => $row) {
-													if ($despesas['idApp_OrcaTrata'] == $key) {
-														echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-													} else {
-														echo '<option value="' . $key . '">' . $row . '</option>';
-													}
-												}
-												?>
-											</select>
-										</div>										
-										
-										<div class="col-md-6">
-											<label for="Despesa">Obs.</label><br>
-											<input type="text" class="form-control" maxlength="200"
-													name="Despesa" value="<?php echo $despesas['Despesa'] ?>">
-										</div>
-										-->
 									</div>
 								</div>
 							</div>
 						</div>	
 						
-											
+<!--										
 						<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-primary">
 								<div class="panel-heading collapsed " role="tab" id="heading1" data-toggle="collapse" data-parent="#accordion1" data-target="#collapse1" aria-expanded="false">								<h4 class="panel-title">
@@ -89,7 +65,6 @@
 								<div id="collapse1" class="panel-collapse" role="tabpanel" aria-labelledby="heading1" aria-expanded="false">
 									<div class="panel-body">
 
-										<!--#######################################-->
 
 										<input type="hidden" name="SCount" id="SCount" value="<?php echo $count['SCount']; ?>"/>
 
@@ -203,7 +178,7 @@
 										?>
 
 										</div>
-										<!--
+
 										<div class="form-group">
 											<div class="row">
 												<div class="col-md-4">
@@ -215,7 +190,7 @@
 										</div>
 										
 										<hr>
-										-->
+
 										<input type="hidden" name="PCount" id="PCount" value="<?php echo $count['PCount']; ?>"/>
 
 										<div class="input_fields_wrap6">
@@ -241,9 +216,9 @@
 														<div class="col-md-7">
 															<label for="idTab_Produto">Produto:</label>
 															<?php if ($i == 1) { ?>
-															<!--<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>produtos/cadastrar" role="button">
+															<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>produtos/cadastrar" role="button">
 																<span class="glyphicon glyphicon-plus"></span> <b>Novo Produto</b>
-															</a>-->
+															</a>
 															<?php } ?>
 															<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="buscaValorCompra(this.value,this.name,'Produto',<?php echo $i ?>)" <?php echo $readonly; ?>
 																	 id="listadinamicab<?php echo $i ?>" name="idTab_Produto<?php echo $i ?>">
@@ -324,8 +299,8 @@
 									</div>									
 								</div>
 							</div>
-						</div>
-			<!--#######################################-->					
+						</div>				
+-->
 						
 						<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
 							<div class="panel panel-primary">
