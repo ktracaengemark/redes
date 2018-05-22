@@ -341,9 +341,7 @@
 															<label for="ValorRestanteDespesas">Valor A Pagar:</label><br>
 															<div class="input-group" id="txtHint">
 																<span class="input-group-addon" id="basic-addon1">R$</span>
-																<input type="text" class="form-control Valor" id="ValorRestanteDespesas" maxlength="10" placeholder="0,00" 
-																	   data-toggle="collapse" onkeyup="calculaParcelasPagaveis()"
-																		data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
+																<input type="text" class="form-control Valor" id="ValorRestanteDespesas" maxlength="10" placeholder="0,00" readonly=""
 																	   name="ValorRestanteDespesas" value="<?php echo $despesas['ValorRestanteDespesas'] ?>">
 															</div>
 														</div>
@@ -361,10 +359,9 @@
 															<label for="FormaPagamentoDespesas">Forma de Pagamento:</label>
 															<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
 																	id="FormaPagamentoDespesas" name="FormaPagamentoDespesas">
-																<!--<option value="">-- Selecione uma opção --</option>-->
+																<option value="">-- Selecione uma opção --</option>
 																<?php
 																foreach ($select['FormaPagamentoDespesas'] as $key => $row) {
-																	(!$despesas['FormaPagamentoDespesas']) ? $despesas['FormaPagamentoDespesas'] = '1' : FALSE;
 																	if ($despesas['FormaPagamentoDespesas'] == $key) {
 																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																	} else {
@@ -377,8 +374,6 @@
 														<div class="col-md-3">
 															<label for="QtdParcelasDespesas">Qtd. Parc.:</label><br>
 															<input type="text" class="form-control Numero" id="QtdParcelasDespesas" maxlength="3" placeholder="0"
-																   data-toggle="collapse" onkeyup="calculaParcelasPagaveis()"
-																	data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																   name="QtdParcelasDespesas" value="<?php echo $despesas['QtdParcelasDespesas'] ?>">
 														</div>
 														<div class="col-md-3">
@@ -391,34 +386,13 @@
 																</span>
 															</div>
 														</div>
-														<div class="col-md-3">
-															<label for="ModalidadeDespesas">Modalidade</label><br>
-															<div class="form-group">
-																<div class="btn-block" data-toggle="buttons">
-																	<?php
-																	foreach ($select['ModalidadeDespesas'] as $key => $row) {
-																		(!$despesas['ModalidadeDespesas']) ? $despesas['ModalidadeDespesas'] = 'P' : FALSE;
-
-																		if ($despesas['ModalidadeDespesas'] == $key) {
-																			echo ''
-																			. '<label class="btn btn-warning active" name="radiobutton_ModalidadeDespesas" id="radiobutton_ModalidadeDespesas' .  $key . '">'
-																			. '<input type="radio" name="ModalidadeDespesas" id="radiobuttondinamico" '
-																			. 'onchange="calculaParcelasPagaveis()" '
-																			. 'autocomplete="off" value="' . $key . '" checked>' . $row
-																			. '</label>'
-																			;
-																		} else {
-																			echo ''
-																			. '<label class="btn btn-default" name="radiobutton_ModalidadeDespesas" id="radiobutton_ModalidadeDespesas' .  $key . '">'
-																			. '<input type="radio" name="ModalidadeDespesas" id="radiobuttondinamico" '
-																			. 'onchange="calculaParcelasPagaveisMensais()" '
-																			. 'autocomplete="off" value="' . $key . '" >' . $row
-																			. '</label>'
-																			;
-																		}
-																	}
-																	?>
-																</div>
+														<br>
+														<div class="form-group">
+															<div class="col-md-3 text-center">
+																<button class="btn btn-danger" type="button" data-toggle="collapse" onclick="calculaParcelasPagaveis()"
+																		data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
+																	<span class="glyphicon glyphicon-menu-down"></span> Gerar Parcelas
+																</button>
 															</div>
 														</div>
 													</div>
@@ -445,7 +419,7 @@
 									
 									<!--App_parcelasRec-->
 									<div class="panel-body">
-										<div class="input_fields_parcelas2">
+										<div class="input_fields_parcelas">
 
 										<?php
 										for ($i=1; $i <= $despesas['QtdParcelasDespesas']; $i++) {
@@ -458,7 +432,7 @@
 												<div class="panel panel-danger">
 													<div class="panel-heading">
 														<div class="row">
-															<div class="col-md-1">
+															<div class="col-md-2">
 																<label for="ParcelaPagaveis">Parcela:</label><br>
 																<input type="text" class="form-control" maxlength="6" readonly=""
 																	   name="ParcelaPagaveis<?php echo $i ?>" value="<?php echo $parcelaspag[$i]['ParcelaPagaveis'] ?>">

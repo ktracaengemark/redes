@@ -72,7 +72,7 @@ class Despesas_model extends CI_Model {
 
     public function set_procedimento($data) {
 
-        $query = $this->db->insert_batch('App_Procedimento', $data);
+        $query = $this->db->insert_batch('App_Proceddespesas', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -120,7 +120,7 @@ class Despesas_model extends CI_Model {
     }
 
     public function get_procedimento($data) {
-		$query = $this->db->query('SELECT * FROM App_Procedimento WHERE idApp_Despesas = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_Proceddespesas WHERE idApp_Despesas = ' . $data);
         $query = $query->result_array();
 
         return $query;
@@ -237,7 +237,7 @@ class Despesas_model extends CI_Model {
 
     public function update_procedimento($data) {
 
-        $query = $this->db->update_batch('App_Procedimento', $data, 'idApp_Procedimento');
+        $query = $this->db->update_batch('App_Proceddespesas', $data, 'idApp_Proceddespesas');
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
@@ -282,8 +282,8 @@ class Despesas_model extends CI_Model {
 
     public function delete_procedimento($data) {
 
-        $this->db->where_in('idApp_Procedimento', $data);
-        $this->db->delete('App_Procedimento');
+        $this->db->where_in('idApp_Proceddespesas', $data);
+        $this->db->delete('App_Proceddespesas');
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -295,7 +295,7 @@ class Despesas_model extends CI_Model {
     public function delete_despesas($id) {
 
         /*
-        $tables = array('App_ServicoCompra', 'App_ProdutoCompra', 'App_ParcelasPagaveis', 'App_Procedimento', 'App_Despesas');
+        $tables = array('App_ServicoCompra', 'App_ProdutoCompra', 'App_ParcelasPagaveis', 'App_Proceddespesas', 'App_Despesas');
         $this->db->where('idApp_Despesas', $id);
         $this->db->delete($tables);
         */
