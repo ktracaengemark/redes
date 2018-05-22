@@ -104,8 +104,8 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>							
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtoscomp"><span class="glyphicon glyphicon-list"></span> Despesas X Prd.</a></li>
-									<!--<li role="separator" class="divider"></li>-->
+									<!--<li><a href="<?php echo base_url() ?>relatorioconsultor/produtoscomp"><span class="glyphicon glyphicon-list"></span> Despesas X Prd.</a></li>
+									<li role="separator" class="divider"></li>-->
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamentorede"><span class="glyphicon glyphicon-list"></span> Orçam. Rede</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/consumo"><span class="glyphicon glyphicon-list"></span> Consumos</a></li>

@@ -38,7 +38,7 @@ class Despesascons extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function cadastrar($idApp_Cliente = NULL) {
+    public function cadastrar() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -71,6 +71,7 @@ class Despesascons extends CI_Controller {
             'DataVencimentoDespesas',
             'ObsDespesas',
 			'TipoProduto',
+			'ModalidadeDespesas',
         ), TRUE));
 
         //Dá pra melhorar/encurtar esse trecho (que vai daqui até onde estiver
@@ -142,19 +143,21 @@ class Despesascons extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Despesascons ####
-        $this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
+        #$this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
         #$this->form_validation->set_rules('Despesa', 'Despesa', 'required|trim');
         #$this->form_validation->set_rules('TipoDespesa', 'Tipo de Despesa', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalDespesas', 'Profissional', 'required|trim');
 		$this->form_validation->set_rules('FormaPagamentoDespesas', 'Forma de Pagamento', 'required|trim');
 		$this->form_validation->set_rules('QtdParcelasDespesas', 'Qtd de Parcelas', 'required|trim');
 		$this->form_validation->set_rules('DataVencimentoDespesas', 'Data do 1ºVenc.', 'required|trim|valid_date');
+		$this->form_validation->set_rules('ModalidadeDespesas', 'Tipo de Pagamento', 'required|trim');
+		
 		$data['select']['TipoDespesa'] = $this->Tipodespesa_model->select_tipodespesa();
         $data['select']['AprovadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['FormaPagamentoDespesas'] = $this->Formapag_model->select_formapag();
 		$data['select']['ServicoConcluidoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoServico'] = $this->Basico_model->select_status_sn();
-
+		$data['select']['ModalidadeDespesas'] = $this->Basico_model->select_modalidade();
 		$data['select']['QuitadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoPagaveis'] = $this->Basico_model->select_status_sn();
 		$data['select']['Profissional'] = $this->Profissional_model->select_profissional();
@@ -186,7 +189,8 @@ class Despesascons extends CI_Controller {
 
       
 
-
+		(!$data['despesas']['ModalidadeDespesas']) ? $data['despesas']['ModalidadeDespesas'] = 'P' : FALSE;
+		
         #Ver uma solução melhor para este campo
         (!$data['despesas']['AprovadoDespesas']) ? $data['despesas']['AprovadoDespesas'] = 'S' : FALSE;
 
@@ -374,8 +378,10 @@ class Despesascons extends CI_Controller {
 
         (!$this->input->post('SCount')) ? $data['count']['SCount'] = 0 : $data['count']['SCount'] = $this->input->post('SCount');
         (!$this->input->post('PCount')) ? $data['count']['PCount'] = 0 : $data['count']['PCount'] = $this->input->post('PCount');
-
+		(!$this->input->post('PRCount')) ? $data['count']['PRCount'] = 0 : $data['count']['PRCount'] = $this->input->post('PRCount');
+		
 		#(!$data['despesas']['TipoProduto']) ? $data['despesas']['TipoProduto'] = 'D' : FALSE;
+		(!$data['despesas']['DataDespesas']) ? $data['despesas']['DataDespesas'] = date('d/m/Y', time()) : FALSE;
 		
         $j = 1;
         for ($i = 1; $i <= $data['count']['SCount']; $i++) {
@@ -413,21 +419,25 @@ class Despesascons extends CI_Controller {
         $data['count']['PCount'] = $j - 1;
       
 
-        if ($data['despesas']['QtdParcelasDespesas'] > 0) {
+        $j = 1;
+        for ($i = 1; $i <= $data['count']['PRCount']; $i++) {
 
-            for ($i = 1; $i <= $data['despesas']['QtdParcelasDespesas']; $i++) {
-
-                $data['parcelaspag'][$i]['idApp_ParcelasPagaveiscons'] = $this->input->post('idApp_ParcelasPagaveiscons' . $i);
-                $data['parcelaspag'][$i]['ParcelaPagaveis'] = $this->input->post('ParcelaPagaveis' . $i);
-                $data['parcelaspag'][$i]['ValorParcelaPagaveis'] = $this->input->post('ValorParcelaPagaveis' . $i);
-                $data['parcelaspag'][$i]['DataVencimentoPagaveis'] = $this->input->post('DataVencimentoPagaveis' . $i);
-                $data['parcelaspag'][$i]['ValorPagoPagaveis'] = $this->input->post('ValorPagoPagaveis' . $i);
-                $data['parcelaspag'][$i]['DataPagoPagaveis'] = $this->input->post('DataPagoPagaveis' . $i);
-                $data['parcelaspag'][$i]['QuitadoPagaveis'] = $this->input->post('QuitadoPagaveis' . $i);
-
+            if ($this->input->post('ParcelaPagaveis' . $i) || $this->input->post('ValorParcelaPagaveis' . $i) || 
+					$this->input->post('DataVencimentoPagaveis' . $i) || $this->input->post('ValorPagoPagaveis' . $i) || 
+					$this->input->post('DataPagoPagaveis' . $i) || $this->input->post('QuitadoPagaveis' . $i)) {
+                $data['parcelaspag'][$j]['idApp_ParcelasPagaveiscons'] = $this->input->post('idApp_ParcelasPagaveiscons' . $i);
+                $data['parcelaspag'][$j]['ParcelaPagaveis'] = $this->input->post('ParcelaPagaveis' . $i);
+                $data['parcelaspag'][$j]['ValorParcelaPagaveis'] = $this->input->post('ValorParcelaPagaveis' . $i);
+                $data['parcelaspag'][$j]['DataVencimentoPagaveis'] = $this->input->post('DataVencimentoPagaveis' . $i);
+                $data['parcelaspag'][$j]['ValorPagoPagaveis'] = $this->input->post('ValorPagoPagaveis' . $i);
+                $data['parcelaspag'][$j]['DataPagoPagaveis'] = $this->input->post('DataPagoPagaveis' . $i);
+                $data['parcelaspag'][$j]['QuitadoPagaveis'] = $this->input->post('QuitadoPagaveis' . $i);
+				$j++;
+				
             }
 
         }
+		$data['count']['PRCount'] = $j - 1;
 
         //Fim do trecho de código que dá pra melhorar
 
@@ -477,14 +487,15 @@ class Despesascons extends CI_Controller {
                 }
             }
 
-            #### App_ParcelasPagaveis ####
+            #### App_ParcelasPagaveiscons ####
             $data['parcelaspag'] = $this->Despesascons_model->get_parcelaspag($id);
             if (count($data['parcelaspag']) > 0) {
                 $data['parcelaspag'] = array_combine(range(1, count($data['parcelaspag'])), array_values($data['parcelaspag']));
-
+				$data['count']['PRCount'] = count($data['parcelaspag']);
+				
                 if (isset($data['parcelaspag'])) {
 
-                    for($j=1; $j <= $data['despesas']['QtdParcelasDespesas']; $j++) {
+                    for($j=1; $j <= $data['count']['PRCount']; $j++) {
                         $data['parcelaspag'][$j]['DataVencimentoPagaveis'] = $this->basico->mascara_data($data['parcelaspag'][$j]['DataVencimentoPagaveis'], 'barras');
                         $data['parcelaspag'][$j]['DataPagoPagaveis'] = $this->basico->mascara_data($data['parcelaspag'][$j]['DataPagoPagaveis'], 'barras');
                     }
@@ -497,7 +508,7 @@ class Despesascons extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Despesascons ####
-        $this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
+        #$this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
         #$this->form_validation->set_rules('Despesa', 'Despesa', 'required|trim');
         #$this->form_validation->set_rules('TipoDespesa', 'Tipo de Despesa', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalDespesas', 'Profissional', 'required|trim');
@@ -511,6 +522,7 @@ class Despesascons extends CI_Controller {
         $data['select']['ServicoConcluidoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoServico'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
+		$data['select']['ModalidadeDespesas'] = $this->Basico_model->select_modalidade();
 		$data['select']['QuitadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoPagaveis'] = $this->Basico_model->select_status_sn();
 		$data['select']['Profissional'] = $this->Profissional_model->select_profissional();
@@ -582,7 +594,7 @@ class Despesascons extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('despesascons/form_despesascons', $data);
+            $this->load->view('despesascons/form_despesasalterarcons', $data);
         } else {
 
             ////////////////////////////////Preparar Dados para Inserção Ex. Datas "mysql" //////////////////////////////////////////////
@@ -752,7 +764,7 @@ class Despesascons extends CI_Controller {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
 
                 $this->basico->erro($msg);
-                $this->load->view('despesascons/form_despesascons', $data);
+                $this->load->view('despesascons/form_despesasalterarcons', $data);
             } else {
 
                 //$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_Despesascons'], FALSE);

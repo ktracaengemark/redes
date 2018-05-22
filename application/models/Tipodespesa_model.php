@@ -150,7 +150,7 @@ class Tipodespesa_model extends CI_Model {
             $array = $this->db->query('
 				SELECT 
 					TD.idTab_TipoDespesa, 
-					CONCAT(CD.Abrevcategoriadesp, " " , "--" , " " , TD.TipoDespesa) AS TipoDespesa,
+					CONCAT(TD.TipoDespesa) AS TipoDespesa,
 					CD.Categoriadesp,
 					CD.idTab_Categoriadesp,
 					CD.Abrevcategoriadesp
@@ -161,7 +161,6 @@ class Tipodespesa_model extends CI_Model {
 					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
 					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
 				ORDER BY
-					CD.idTab_Categoriadesp,
 					TD.TipoDespesa
 				');
 				   
@@ -170,7 +169,7 @@ class Tipodespesa_model extends CI_Model {
             $query = $this->db->query('
 				SELECT 
 					TD.idTab_TipoDespesa, 
-					CONCAT(CD.Abrevcategoriadesp, " " , "--" , " " , TD.TipoDespesa) AS TipoDespesa,
+					CONCAT(TD.TipoDespesa) AS TipoDespesa,
 					CD.Categoriadesp,
 					CD.idTab_Categoriadesp,
 					CD.Abrevcategoriadesp
@@ -181,7 +180,6 @@ class Tipodespesa_model extends CI_Model {
 					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
 					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
 				ORDER BY
-					CD.idTab_Categoriadesp,
 					TD.TipoDespesa
 				');
 
