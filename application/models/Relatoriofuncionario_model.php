@@ -873,14 +873,11 @@ class Relatoriofuncionario_model extends CI_Model {
             'SELECT
                 ' . $somareceitas . '
             FROM
-                App_Cliente AS C,
                 App_OrcaTrataCons AS OT
                     LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
-                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
-                C.idApp_Cliente = OT.idApp_Cliente AND
+                OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.TipoRD = "R" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
@@ -904,14 +901,12 @@ class Relatoriofuncionario_model extends CI_Model {
             'SELECT
                 ' . $somadevolucoes . '
             FROM
-                App_Cliente AS C,
+
                 App_OrcaTrataCons AS OT
                     LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
-                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
-                C.idApp_Cliente = OT.idApp_Cliente AND
+                OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.TipoRD = "D" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
@@ -941,7 +936,6 @@ class Relatoriofuncionario_model extends CI_Model {
             WHERE
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
                 DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				DS.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND
                 (DS.TipoProduto = "D") AND
             	YEAR(PP.DataPagoPagaveis) = ' . $data['Ano']
         );

@@ -1235,14 +1235,14 @@ class Relatorioconsultor_model extends CI_Model {
             'SELECT
                 ' . $somareceitas . '
             FROM
-                App_Cliente AS C,
+
                 App_OrcaTrata AS OT
                     LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
-                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-				C.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-                C.idApp_Cliente = OT.idApp_Cliente AND
+                OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				OT.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
+
 				OT.TipoRD = "R" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
@@ -1297,8 +1297,8 @@ class Relatorioconsultor_model extends CI_Model {
             'SELECT
                 ' . $somadespesas . '
             FROM
-                App_Despesas AS DS
-                    LEFT JOIN App_ParcelasPagaveis AS PP ON DS.idApp_Despesas = PP.idApp_Despesas
+                App_Despesascons AS DS
+                    LEFT JOIN App_ParcelasPagaveiscons AS PP ON DS.idApp_Despesascons = PP.idApp_Despesascons
                     LEFT JOIN Tab_TipoDespesa AS TD ON TD.idTab_TipoDespesa = DS.TipoDespesa
             WHERE
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND

@@ -34,7 +34,7 @@
                         echo '<td class="text-right">R$ ' . $report['TotalGeral']->Receitas . '</td>';
                         ?>
                     </tr>
-					
+					<!--
 					<tr>
                         <?php
                         echo '<td><b>' . $report['Devolucoes'][0]->Balanco . '</b></td>';
@@ -44,7 +44,7 @@
                         echo '<td class="text-right">R$ ' . $report['TotalGeral']->Devolucoes . '</td>';
                         ?>
                     </tr>
-
+					-->
                     <tr>
                         <?php
                         echo '<td><b>' . $report['Despesas'][0]->Balanco . '</b></td>';

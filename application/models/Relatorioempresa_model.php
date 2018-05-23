@@ -870,13 +870,11 @@ class Relatorioempresa_model extends CI_Model {
             'SELECT
                 ' . $somareceitas . '
             FROM
-                Sis_Usuario AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
-                C.Empresa = ' . $_SESSION['log']['id'] . ' AND
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                C.idSis_Usuario = OT.idApp_Cliente AND
+                OT.Empresa = ' . $_SESSION['log']['id'] . ' AND
+                OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.TipoRD = "R" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
@@ -900,13 +898,11 @@ class Relatorioempresa_model extends CI_Model {
             'SELECT
                 ' . $somadevolucoes . '
             FROM
-                Sis_Usuario AS C,
-                App_OrcaTrata AS OT
-                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+                App_OrcaTrataCons AS OT
+                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
             WHERE
-                C.Empresa = ' . $_SESSION['log']['id'] . ' AND
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                C.idSis_Usuario = OT.idApp_Cliente AND
+                OT.Empresa = ' . $_SESSION['log']['id'] . ' AND
+                OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.TipoRD = "D" AND
             	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
         );
