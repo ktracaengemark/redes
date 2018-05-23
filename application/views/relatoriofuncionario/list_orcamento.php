@@ -63,10 +63,10 @@
                     <?php
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratacons/alterar/' . $row['idApp_OrcaTrataCons'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
 
-                            #echo '<div class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrataCons'] . '">';
-							echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
+                            #echo '<div class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
+							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
 							echo '<td>' . $row['NomeConsultor'] . '</td>';							
                             echo '<td>' . $row['DataRetorno'] . '</td>';
 							#echo '<td>' . $row['DataEntradaOrca'] . '</td>';
@@ -83,7 +83,7 @@
                             echo '<td>' . $row['DataQuitado'] . '</td>';							
                             #echo '</div>';
                             echo '<td class="notclickable">
-                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrataCons'] . '">
+                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrint/imprimir/' . $row['idApp_OrcaTrata'] . '">
                                         <span class="glyphicon glyphicon-print notclickable"></span>
                                     </a>
                                 </td>';

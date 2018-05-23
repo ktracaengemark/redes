@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Orcatratacons_model extends CI_Model {
+class Orcatrata_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -15,7 +15,7 @@ class Orcatratacons_model extends CI_Model {
 
     public function set_orcatrata($data) {
 
-        $query = $this->db->insert('App_OrcaTrataCons', $data);
+        $query = $this->db->insert('App_OrcaTrata', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -36,7 +36,7 @@ class Orcatratacons_model extends CI_Model {
         //exit ();
         */
 
-        $query = $this->db->insert_batch('App_ServicoVendaCons', $data);
+        $query = $this->db->insert_batch('App_ServicoVenda', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -48,7 +48,7 @@ class Orcatratacons_model extends CI_Model {
 
     public function set_produto_venda($data) {
 
-        $query = $this->db->insert_batch('App_ProdutoVendaCons', $data);
+        $query = $this->db->insert_batch('App_ProdutoVenda', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -60,7 +60,7 @@ class Orcatratacons_model extends CI_Model {
 
     public function set_parcelasrec($data) {
 
-        $query = $this->db->insert_batch('App_ParcelasRecebiveisCons', $data);
+        $query = $this->db->insert_batch('App_ParcelasRecebiveis', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -72,7 +72,7 @@ class Orcatratacons_model extends CI_Model {
 
     public function set_procedimento($data) {
 
-        $query = $this->db->insert_batch('App_ProcedimentoCons', $data);
+        $query = $this->db->insert_batch('App_Procedimento', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -83,7 +83,7 @@ class Orcatratacons_model extends CI_Model {
     }
 
     public function get_orcatrata($data) {
-        $query = $this->db->query('SELECT * FROM App_OrcaTrataCons WHERE idApp_OrcaTrataCons = ' . $data);
+        $query = $this->db->query('SELECT * FROM App_OrcaTrata WHERE idApp_OrcaTrata = ' . $data);
         $query = $query->result_array();
 
         /*
@@ -99,28 +99,28 @@ class Orcatratacons_model extends CI_Model {
     }
 
 	public function get_servico($data) {
-		$query = $this->db->query('SELECT * FROM App_ServicoVendaCons WHERE idApp_OrcaTrataCons = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_ServicoVenda WHERE idApp_OrcaTrata = ' . $data);
         $query = $query->result_array();
 
         return $query;
     }
 
     public function get_produto($data) {
-		$query = $this->db->query('SELECT * FROM App_ProdutoVendaCons WHERE idApp_OrcaTrataCons = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_ProdutoVenda WHERE idApp_OrcaTrata = ' . $data);
         $query = $query->result_array();
 
         return $query;
     }
 
     public function get_parcelasrec($data) {
-		$query = $this->db->query('SELECT * FROM App_ParcelasRecebiveisCons WHERE idApp_OrcaTrataCons = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_ParcelasRecebiveis WHERE idApp_OrcaTrata = ' . $data);
         $query = $query->result_array();
 
         return $query;
     }
 
     public function get_procedimento($data) {
-		$query = $this->db->query('SELECT * FROM App_ProcedimentoCons WHERE idApp_OrcaTrataCons = ' . $data);
+		$query = $this->db->query('SELECT * FROM App_Procedimento WHERE idApp_OrcaTrata = ' . $data);
         $query = $query->result_array();
 
         return $query;
@@ -129,7 +129,7 @@ class Orcatratacons_model extends CI_Model {
     public function list_orcamento($id, $aprovado, $completo) {
 
         $query = $this->db->query('SELECT '
-            . 'OT.idApp_OrcaTrataCons, '
+            . 'OT.idApp_OrcaTrata, '
             . 'OT.DataOrca, '
 			. 'OT.DataPrazo, '
             . 'OT.ProfissionalOrca, '
@@ -138,9 +138,9 @@ class Orcatratacons_model extends CI_Model {
 			. 'OT.QuitadoOrca, '
             . 'OT.ObsOrca '
             . 'FROM '
-            . 'App_OrcaTrataCons AS OT '
+            . 'App_OrcaTrata AS OT '
             . 'WHERE '
-            . 'OT.idApp_Consultor = ' . $id . ' AND '
+            . 'OT.idApp_Cliente = ' . $id . ' AND '
 			. 'OT.TipoRD = "R" AND '
             . 'OT.AprovadoOrca = "' . $aprovado . '" '
             . 'ORDER BY '
@@ -176,16 +176,16 @@ class Orcatratacons_model extends CI_Model {
     public function list_orcatrataBKP($x) {
 
         $query = $this->db->query('SELECT '
-            . 'OT.idApp_OrcaTrataCons, '
+            . 'OT.idApp_OrcaTrata, '
             . 'OT.DataOrca, '
 			. 'OT.DataPrazo, '
             . 'OT.ProfissionalOrca, '
             . 'OT.AprovadoOrca, '
             . 'OT.ObsOrca '
             . 'FROM '
-            . 'App_OrcaTrataCons AS OT '
+            . 'App_OrcaTrata AS OT '
             . 'WHERE '
-            . 'OT.idApp_Consultor = ' . $_SESSION['OrcaTrataCons']['idApp_Consultor'] . ' '
+            . 'OT.idApp_Cliente = ' . $_SESSION['OrcaTrata']['idApp_Cliente'] . ' '
             . 'ORDER BY OT.DataOrca DESC ');
         /*
           echo $this->db->last_query();
@@ -215,46 +215,46 @@ class Orcatratacons_model extends CI_Model {
 
     public function update_orcatrata($data, $id) {
 
-        unset($data['idApp_OrcaTrataCons']);
-        $query = $this->db->update('App_OrcaTrataCons', $data, array('idApp_OrcaTrataCons' => $id));
+        unset($data['idApp_OrcaTrata']);
+        $query = $this->db->update('App_OrcaTrata', $data, array('idApp_OrcaTrata' => $id));
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
 
     public function update_servico_venda($data) {
 
-        $query = $this->db->update_batch('App_ServicoVendaCons', $data, 'idApp_ServicoVendaCons');
+        $query = $this->db->update_batch('App_ServicoVenda', $data, 'idApp_ServicoVenda');
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
 
     public function update_produto_venda($data) {
 
-        $query = $this->db->update_batch('App_ProdutoVendaCons', $data, 'idApp_ProdutoVendaCons');
+        $query = $this->db->update_batch('App_ProdutoVenda', $data, 'idApp_ProdutoVenda');
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
 
     public function update_parcelasrec($data) {
 
-        $query = $this->db->update_batch('App_ParcelasRecebiveisCons', $data, 'idApp_ParcelasRecebiveisCons');
+        $query = $this->db->update_batch('App_ParcelasRecebiveis', $data, 'idApp_ParcelasRecebiveis');
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
 
     public function update_procedimento($data) {
 
-        $query = $this->db->update_batch('App_ProcedimentoCons', $data, 'idApp_ProcedimentoCons');
+        $query = $this->db->update_batch('App_Procedimento', $data, 'idApp_Procedimento');
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
 
     public function delete_servico_venda($data) {
 
-        $this->db->where_in('idApp_ServicoVendaCons', $data);
-        $this->db->delete('App_ServicoVendaCons');
+        $this->db->where_in('idApp_ServicoVenda', $data);
+        $this->db->delete('App_ServicoVenda');
 
-        //$query = $this->db->delete('App_ServicoVendaCons', array('idApp_ServicoVendaCons' => $data));
+        //$query = $this->db->delete('App_ServicoVenda', array('idApp_ServicoVenda' => $data));
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -265,8 +265,8 @@ class Orcatratacons_model extends CI_Model {
 
     public function delete_produto_venda($data) {
 
-        $this->db->where_in('idApp_ProdutoVendaCons', $data);
-        $this->db->delete('App_ProdutoVendaCons');
+        $this->db->where_in('idApp_ProdutoVenda', $data);
+        $this->db->delete('App_ProdutoVenda');
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -277,8 +277,8 @@ class Orcatratacons_model extends CI_Model {
 
     public function delete_parcelasrec($data) {
 
-        $this->db->where_in('idApp_ParcelasRecebiveisCons', $data);
-        $this->db->delete('App_ParcelasRecebiveisCons');
+        $this->db->where_in('idApp_ParcelasRecebiveis', $data);
+        $this->db->delete('App_ParcelasRecebiveis');
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -289,8 +289,8 @@ class Orcatratacons_model extends CI_Model {
 
     public function delete_procedimento($data) {
 
-        $this->db->where_in('idApp_ProcedimentoCons', $data);
-        $this->db->delete('App_ProcedimentoCons');
+        $this->db->where_in('idApp_Procedimento', $data);
+        $this->db->delete('App_Procedimento');
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -302,16 +302,16 @@ class Orcatratacons_model extends CI_Model {
     public function delete_orcatrata($id) {
 
         /*
-        $tables = array('App_ServicoVendaCons', 'App_ProdutoVendaCons', 'App_ParcelasRecebiveisCons', 'App_ProcedimentoCons', 'App_OrcaTrataCons');
+        $tables = array('App_ServicoVenda', 'App_ProdutoVenda', 'App_ParcelasRecebiveis', 'App_Procedimento', 'App_OrcaTrata');
         $this->db->where('idApp_Orcatrata', $id);
         $this->db->delete($tables);
         */
 
-        $query = $this->db->delete('App_ServicoVendaCons', array('idApp_OrcatrataCons' => $id));
-        $query = $this->db->delete('App_ProdutoVendaCons', array('idApp_OrcatrataCons' => $id));
-        $query = $this->db->delete('App_ParcelasRecebiveisCons', array('idApp_OrcatrataCons' => $id));
-        $query = $this->db->delete('App_ProcedimentoCons', array('idApp_OrcatrataCons' => $id));
-        $query = $this->db->delete('App_OrcaTrataCons', array('idApp_OrcatrataCons' => $id));
+        $query = $this->db->delete('App_ServicoVenda', array('idApp_Orcatrata' => $id));
+        $query = $this->db->delete('App_ProdutoVenda', array('idApp_Orcatrata' => $id));
+        $query = $this->db->delete('App_ParcelasRecebiveis', array('idApp_Orcatrata' => $id));
+        $query = $this->db->delete('App_Procedimento', array('idApp_Orcatrata' => $id));
+        $query = $this->db->delete('App_OrcaTrata', array('idApp_Orcatrata' => $id));
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;

@@ -1854,7 +1854,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeConsultor' => 'Nome do Consultor',
-            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
 			'OT.DataEntradaOrca' => 'Validade do Orçamento',

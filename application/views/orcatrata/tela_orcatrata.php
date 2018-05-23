@@ -1,5 +1,5 @@
 <?php if ($msg) echo $msg; ?>
-<?php if ( !isset($evento) && isset($_SESSION['Cliente'])) { ?>
+<?php if ( !isset($evento) && isset($_SESSION['Consultor'])) { ?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -15,14 +15,14 @@
 					<nav class="navbar navbar-inverse">
 					  <div class="container-fluid">
 						<div class="navbar-header">
-						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span> 
-						  </button>
-						  <a class="navbar-brand" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-							<?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?>
-						  </a>
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span> 
+							</button>
+							<a class="navbar-brand" href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+								<?php echo '<small>' . $_SESSION['Consultor']['NomeConsultor'] . '</small> - <small>' . $_SESSION['Consultor']['idApp_Consultor'] . '</small>' ?> 
+							</a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<!--
@@ -32,23 +32,23 @@
 
 									<div class="btn-group">
 										<button type="button" class="btn btn-sm btn-default  dropdown-toggle" data-toggle="dropdown">
-											<span class="glyphicon glyphicon-user"></span> Cliente <span class="caret"></span>
+											<span class="glyphicon glyphicon-user"></span> Consultor <span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu" role="menu">
 											<li>
 												<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
-													<a href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+													<a href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
 														<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
 													</a>
 												</a>
 											</li>
 											<li role="separator" class="divider"></li>
 											<li>
-												<a <?php if (preg_match("/cliente\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
-												<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-edit"></span> Edit.
+												<a <?php if (preg_match("/consultor\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
+													<a href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+														<span class="glyphicon glyphicon-edit"></span> Editar
+													</a>
 												</a>
-											</a>
 											</li>
 										</ul>
 									</div>
@@ -59,16 +59,16 @@
 										<ul class="dropdown-menu" role="menu">
 											<li>
 												<a <?php if (preg_match("/orcatrata\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-													<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-														<span class="glyphicon glyphicon-usd"></span> Ver Orçamentos
+													<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+														<span class="glyphicon glyphicon-usd"></span> Listar
 													</a>
 												</a>
 											</li>
 											<li role="separator" class="divider"></li>
 											<li>
 												<a <?php if (preg_match("/orcatrata\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-													<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-														<span class="glyphicon glyphicon-plus"></span> Cadastrar Orçamento
+													<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+														<span class="glyphicon glyphicon-plus"></span> Cadastrar
 													</a>
 												</a>
 											</li>
@@ -81,19 +81,17 @@
 							-->
 							<ul class="nav navbar-nav navbar-center">
 								<li>
-									<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-edit"></span> Editar Cliente
+									<a href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+										<span class="glyphicon glyphicon-edit"></span> Edit. Consultor
 									</a>
 								</li>
-
 								<li>
-									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-usd"></span> Ver Orçams.
+									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+										<span class="glyphicon glyphicon-usd"></span> Listar Orçams.
 									</a>
 								</li>
-
 								<li>
-									<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+									<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
 										<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
 									</a>
 								</li>

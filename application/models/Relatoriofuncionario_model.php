@@ -2536,7 +2536,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
                 C.NomeConsultor,
-                OT.idApp_OrcaTrataCons,
+                OT.idApp_OrcaTrata,
 				OT.idApp_Consultor,
                 OT.AprovadoOrca,
                 OT.DataOrca,
@@ -2556,7 +2556,7 @@ exit();*/
 				TFP.FormaPag
             FROM
                 App_Consultor AS C,
-                App_OrcaTrataCons AS OT
+                App_OrcaTrata AS OT
 				LEFT JOIN Tab_FormaPag AS TFP ON TFP.idTab_FormaPag = OT.FormaPagamento
 
             WHERE
