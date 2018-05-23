@@ -25,60 +25,7 @@
 							</a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
-							<!--
-							<ul class="nav navbar-nav navbar-center">
-						
-								<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-default  dropdown-toggle" data-toggle="dropdown">
-											<span class="glyphicon glyphicon-user"></span> Consultor <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li>
-												<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
-													<a href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
-														<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
-													</a>
-												</a>
-											</li>
-											<li role="separator" class="divider"></li>
-											<li>
-												<a <?php if (preg_match("/consultor\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
-													<a href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
-														<span class="glyphicon glyphicon-edit"></span> Editar
-													</a>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-default  dropdown-toggle" data-toggle="dropdown">
-											<span class="glyphicon glyphicon-usd"></span> Orçamentos <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li>
-												<a <?php if (preg_match("/orcatrata\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-													<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
-														<span class="glyphicon glyphicon-usd"></span> Listar
-													</a>
-												</a>
-											</li>
-											<li role="separator" class="divider"></li>
-											<li>
-												<a <?php if (preg_match("/orcatrata\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-													<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
-														<span class="glyphicon glyphicon-plus"></span> Cadastrar
-													</a>
-												</a>
-											</li>
-										</ul>
-									</div>
-
-									<div class="btn-group" role="group" aria-label="..."> </div>
-								</li>
-							</ul>
-							-->
 							<ul class="nav navbar-nav navbar-center">
 								<li>
 									<a href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
@@ -96,12 +43,7 @@
 									</a>
 								</li>
 							</ul>
-							<!--
-							<ul class="nav navbar-nav navbar-right">
-								<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-								<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-							</ul>
-							-->
+
 						</div>
 					  </div>
 					</nav>
@@ -140,7 +82,7 @@
 													</a>
 													
 														
-													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
+													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
 														<span class="glyphicon glyphicon-print"></span> Versão para Impressão
 													</a>
 													
@@ -202,7 +144,7 @@
 														<span class="glyphicon glyphicon-edit"></span> Editar Dados
 													</a>
 													
-													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
+													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrint/imprimir/' . $row['idApp_OrcaTrata']; ?>" role="button">
 														<span class="glyphicon glyphicon-print"></span> Versão para Impressão
 													</a>
 

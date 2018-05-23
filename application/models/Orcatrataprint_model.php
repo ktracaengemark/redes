@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Orcatrataprint_model extends CI_Model {
+class orcatrataprint_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -56,7 +56,7 @@ class Orcatrataprint_model extends CI_Model {
         return $query[0];
     }
 
-		public function get_servico($data) {
+	public function get_servico($data) {
 		$query = $this->db->query(
             'SELECT
             	PV.QtdVendaServico,
