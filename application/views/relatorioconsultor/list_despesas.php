@@ -2,14 +2,13 @@
     <div class="panel-body">
 
         <div class="col-md-1"></div>
-
-        <!--<div class="col-md-2">
-            <label for="DataFim">Total de Desconto:</label>
+        <div class="col-md-3">
+            <label for="DataFim">Total do Período:</label>
             <div class="input-group">
                 <span class="input-group-addon">R$</span>
-                <input type="text" class="form-control" disabled aria-label="Total Entrada" value="<?php echo $report->soma->somaentrada ?>">
+                <input type="text" class="form-control" disabled aria-label="Total Entrada" value="<?php echo $report->soma->balanco ?>">
             </div>
-        </div>-->
+        </div>
 		<div class="col-md-3">
             <label for="DataFim">Total Pago:</label>
             <div class="input-group">
@@ -31,15 +30,6 @@
                 <input type="text" class="form-control" disabled aria-label="Total Real" value="<?php echo $report->soma->somareal ?>">
             </div>
         </div>-->
-
-        <div class="col-md-3">
-            <label for="DataFim">Total do Período:</label>
-            <div class="input-group">
-                <span class="input-group-addon">R$</span>
-                <input type="text" class="form-control" disabled aria-label="Total Entrada" value="<?php echo $report->soma->balanco ?>">
-            </div>
-        </div>
-
         <div class="col-md-1"></div>
 
     </div>	
@@ -70,13 +60,13 @@
                         <th class="active">Valor Entrada</th>
 						<th class="active">Desp. Aprov.?</th>
 						<th class="active">Desp. Concl.?</th>-->
-						<th class="active">Desp. Quit.?</th>						
+						<th class="active">Desp. Concl.</th>						
                         <th class="active">Parcela</th>
                         <th class="active">Data do Venc.</th>
                         <th class="active">Valor À Pagar</th>
                         <th class="active">Data do Pagam.</th>
                         <th class="active">Valor Pago</th>
-                        <th class="active">Parc. Quit.?</th>
+                        <th class="active">Parc. Quit.</th>
                     </tr>
                 </thead>
 
@@ -96,7 +86,7 @@
                             #echo '<td class="text-right">R$ ' . $row['ValorEntradaOrca'] . '</td>';
 							#echo '<td>' . $row['AprovadoDespesas'] . '</td>';
 							#echo '<td>' . $row['ServicoConcluidoDespesas'] . '</td>';
-							echo '<td>' . $row['QuitadoDespesas'] . '</td>';							
+							echo '<td>' . $row['ServicoConcluidoDespesas'] . '</td>';							
                             echo '<td>' . $row['ParcelaPagaveis'] . '</td>';
                             echo '<td>' . $row['DataVencimentoPagaveis'] . '</td>';
                             echo '<td class="text-left">R$ ' . $row['ValorParcelaPagaveis'] . '</td>';

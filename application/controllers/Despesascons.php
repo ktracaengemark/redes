@@ -267,7 +267,8 @@ class Despesascons extends CI_Controller {
                 $max = count($data['servico']);
                 for($j=1;$j<=$max;$j++) {
                     $data['servico'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['servico'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['servico'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['servico'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['servico'][$j]['idApp_Despesascons'] = $data['despesas']['idApp_Despesascons'];
 
                     $data['servico'][$j]['ValorCompraServico'] = str_replace(',', '.', str_replace('.', '', $data['servico'][$j]['ValorCompraServico']));
@@ -281,7 +282,8 @@ class Despesascons extends CI_Controller {
                 $max = count($data['produto']);
                 for($j=1;$j<=$max;$j++) {
                     $data['produto'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['produto'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['produto'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['produto'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['produto'][$j]['idApp_Despesascons'] = $data['despesas']['idApp_Despesascons'];
 					$data['produto'][$j]['DataValidadeProduto'] = $this->basico->mascara_data($data['produto'][$j]['DataValidadeProduto'], 'mysql');
                     $data['produto'][$j]['ValorCompraProduto'] = str_replace(',', '.', str_replace('.', '', $data['produto'][$j]['ValorCompraProduto']));
@@ -295,7 +297,8 @@ class Despesascons extends CI_Controller {
                 $max = count($data['parcelaspag']);
                 for($j=1;$j<=$max;$j++) {
                     $data['parcelaspag'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['parcelaspag'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['parcelaspag'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['parcelaspag'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['parcelaspag'][$j]['idApp_Despesascons'] = $data['despesas']['idApp_Despesascons'];
                     $data['parcelaspag'][$j]['ValorParcelaPagaveis'] = str_replace(',', '.', str_replace('.', '', $data['parcelaspag'][$j]['ValorParcelaPagaveis']));
                     $data['parcelaspag'][$j]['DataVencimentoPagaveis'] = $this->basico->mascara_data($data['parcelaspag'][$j]['DataVencimentoPagaveis'], 'mysql');
@@ -641,7 +644,8 @@ class Despesascons extends CI_Controller {
                 for($j=0;$j<$max;$j++) {
 
                     $data['update']['servico']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['servico']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['servico']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['servico']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['servico']['inserir'][$j]['idApp_Despesascons'] = $data['despesas']['idApp_Despesascons'];
 
                     $data['update']['servico']['inserir'][$j]['ValorCompraServico'] = str_replace(',', '.', str_replace('.', '', $data['update']['servico']['inserir'][$j]['ValorCompraServico']));
@@ -679,7 +683,8 @@ class Despesascons extends CI_Controller {
                 $max = count($data['update']['produto']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['produto']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['produto']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['produto']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['produto']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['produto']['inserir'][$j]['idApp_Despesascons'] = $data['despesas']['idApp_Despesascons'];
 					$data['update']['produto']['inserir'][$j]['DataValidadeProduto'] = $this->basico->mascara_data($data['update']['produto']['inserir'][$j]['DataValidadeProduto'], 'mysql');
                     $data['update']['produto']['inserir'][$j]['ValorCompraProduto'] = str_replace(',', '.', str_replace('.', '', $data['update']['produto']['inserir'][$j]['ValorCompraProduto']));
@@ -719,7 +724,8 @@ class Despesascons extends CI_Controller {
                 $max = count($data['update']['parcelaspag']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['parcelaspag']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['parcelaspag']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['parcelasrec']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['parcelaspag']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['parcelaspag']['inserir'][$j]['idApp_Despesascons'] = $data['despesas']['idApp_Despesascons'];
                     $data['update']['parcelaspag']['inserir'][$j]['ValorParcelaPagaveis'] = str_replace(',', '.', str_replace('.', '', $data['update']['parcelaspag']['inserir'][$j]['ValorParcelaPagaveis']));
                     $data['update']['parcelaspag']['inserir'][$j]['DataVencimentoPagaveis'] = $this->basico->mascara_data($data['update']['parcelaspag']['inserir'][$j]['DataVencimentoPagaveis'], 'mysql');

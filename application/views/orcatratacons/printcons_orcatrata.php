@@ -137,36 +137,34 @@
 				
 				<hr />
 				<h3 class="text-center">Orçamento, Devolução & Forma de Pagam.</h3>
-				<!--
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Orçamento</th>
 							<th class="col-md-4" scope="col">Devolução</th>
-							
+							<th class="col-md-4" scope="col">Valor</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td><?php echo number_format($orcatrata['ValorOrca'], 2, ',', '.') ?></td>
 							<td><?php echo number_format($orcatrata['ValorDev'], 2, ',', '.') ?></td>
-							
+							<td><?php echo number_format($orcatrata['ValorRestanteOrca'], 2, ',', '.') ?></td>
 						</tr>
 					</tbody>
 				</table>
-				-->
+
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="col-md-3" scope="col">Valor</th>
-							<th class="col-md-3" scope="col">Qtd Parc.</th>
-							<th class="col-md-3" scope="col">Forma de Pagam.</th>
-							<th class="col-md-3" scope="col">1º Venc.</th>
+							<th class="col-md-4" scope="col">Qtd Parc.</th>
+							<th class="col-md-4" scope="col">Forma de Pagam.</th>
+							<th class="col-md-4" scope="col">1º Venc.</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><?php echo number_format($orcatrata['ValorRestanteOrca'], 2, ',', '.') ?></td>
 							<td><?php echo $orcatrata['QtdParcelasOrca'] ?></td>
 							<td><?php echo $orcatrata['FormaPag'] ?></td>
 							<td><?php echo $orcatrata['DataVencimentoOrca'] ?></td>

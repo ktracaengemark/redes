@@ -690,7 +690,8 @@ class Relatorioconsultor_model extends CI_Model {
                 '(DS.DataDespesas >= "' . $data['DataInicio3'] . '")';
         }
 
-
+		$data['Campo'] = (!$data['Campo']) ? 'PP.DataVencimentoPagaveis' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$data['TipoDespesa'] = ($data['TipoDespesa']) ? ' AND TD.idTab_TipoDespesa = ' . $data['TipoDespesa'] : FALSE;
 		$filtro1 = ($data['AprovadoDespesas'] != '#') ? 'DS.AprovadoDespesas = "' . $data['AprovadoDespesas'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluidoDespesas'] != '#') ? 'DS.ServicoConcluidoDespesas = "' . $data['ServicoConcluidoDespesas'] . '" AND ' : FALSE;
@@ -723,15 +724,14 @@ class Relatorioconsultor_model extends CI_Model {
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				DS.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-				' . $filtro2 . '
+				' . $filtro3 . '
 				' . $filtro4 . '
 				(' . $consulta . ') AND
-				(' . $consulta2 . ') AND
-				(' . $consulta3 . ')
+				(' . $consulta2 . ') 
 				' . $data['TipoDespesa'] . ' AND
 				(DS.TipoProduto = "D" OR DS.TipoProduto = "E")
             ORDER BY
-				PP.DataVencimentoPagaveis
+				' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
 
         /*
@@ -4951,18 +4951,15 @@ exit();*/
         $query = $this->db->query('
             SELECT
 				TD.idTab_TipoDespesa,
-				CONCAT(CD.Abrevcategoriadesp, " " , "--" , " " , TD.TipoDespesa) AS TipoDespesa,
-				CD.Categoriadesp,
-				CD.idTab_Categoriadesp,
-				CD.Abrevcategoriadesp
+				TD.TipoDespesa,
+				TD.Categoriadesp
 			FROM
 				Tab_TipoDespesa AS TD
-					LEFT JOIN Tab_Categoriadesp AS CD ON CD.idTab_Categoriadesp = TD.Categoriadesp
 			WHERE
 				TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
-				TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+				TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				(TD.Categoriadesp = "1" OR TD.Categoriadesp = "3")
 			ORDER BY
-				CD.idTab_Categoriadesp,
 				TD.TipoDespesa
         ');
 
