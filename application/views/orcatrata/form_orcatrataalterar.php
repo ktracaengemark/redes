@@ -472,13 +472,39 @@
 																		</div>
 																		-->
 																		<div class="col-md-2">
-																			<label for="ValorRestanteOrca">Resta Pagar:</label><br>
+																			<label for="TipoReceita">Tipo de Receita</label>
+																			<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
+																					id="TipoReceita" name="TipoReceita">
+																				<!--<option value="">-- Selecione uma opção --</option>-->
+																				<?php
+																				foreach ($select['TipoReceita'] as $key => $row) {
+																					(!$orcatrata['TipoReceita']) ? $orcatrata['TipoReceita'] = '1' : FALSE;
+																					if ($orcatrata['TipoReceita'] == $key) {
+																						echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																					} else {
+																						echo '<option value="' . $key . '">' . $row . '</option>';
+																					}
+																				}
+																				?>
+																			</select>
+																		</div>
+																		<div class="col-md-2">
+																			<label for="Receitas">Receita</label><br>
+																			<input type="text" class="form-control" maxlength="200"
+																					name="Receitas" value="<?php echo $orcatrata['Receitas'] ?>">
+																		</div>
+																		<div class="col-md-2">
+																			<label for="ValorRestanteOrca">Valor Total:</label><br>
 																			<div class="input-group" id="txtHint">
 																				<span class="input-group-addon" id="basic-addon1">R$</span>
 																				<input type="text" class="form-control Valor" id="ValorRestanteOrca" maxlength="10" placeholder="0,00" 
 																					   name="ValorRestanteOrca" value="<?php echo $orcatrata['ValorRestanteOrca'] ?>">
 																			</div>
 																		</div>
+																	</div>
+																</div>	
+																<div class="form-group">
+																	<div class="row">																	
 																		<div class="col-md-2">
 																			<label for="DataVencimentoOrca">1º Venc.</label>
 																			<div class="input-group <?php echo $datepicker; ?>">
@@ -490,10 +516,6 @@
 																				
 																			</div>
 																		</div>
-																	</div>
-																</div>	
-																<div class="form-group">
-																	<div class="row">																	
 																		<div class="col-md-2">
 																			<label for="FormaPagamento">Forma de Pagam.:</label>
 																			<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>

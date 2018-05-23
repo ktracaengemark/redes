@@ -12,54 +12,7 @@
 				<div class="col-md-12 col-lg-12">			
 					<?php echo validation_errors(); ?>
 					<?php echo form_open_multipart($form_open_path); ?>
-					
-					<div class="panel panel-info">
-						<div class="panel-heading">								
-							<div class="form-group text-left">
-								<div class="row">																
-									<div class="col-md-4">
-										<label for="TipoReceita">Tipo de Receita</label>
-										<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
-												id="TipoReceita" name="TipoReceita">
-											<!--<option value="">-- Selecione uma opção --</option>-->
-											<?php
-											foreach ($select['TipoReceita'] as $key => $row) {
-												(!$orcatrata['TipoReceita']) ? $orcatrata['TipoReceita'] = '1' : FALSE;
-												if ($orcatrata['TipoReceita'] == $key) {
-													echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-												} else {
-													echo '<option value="' . $key . '">' . $row . '</option>';
-												}
-											}
-											?>
-										</select>
-									</div>
-									<div class="col-md-4">
-										<label for="idApp_Cliente">Cliente *</label>
-										<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
-												id="idApp_Cliente" autofocus name="idApp_Cliente">
-											<option value="">-- Sel. um Cliente --</option>
-											<?php
-											foreach ($select['idApp_Cliente'] as $key => $row) {
-												if ($orcatrata['idApp_Cliente'] == $key) {
-													echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-												} else {
-													echo '<option value="' . $key . '">' . $row . '</option>';
-												}
-											}
-											?>
-										</select>
-									</div>
-									<div class="col-md-4">
-										<label for="Receitas">Receita</label><br>
-										<input type="text" class="form-control" maxlength="200"
-												name="Receitas" value="<?php echo $orcatrata['Receitas'] ?>">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
+
 					<div class="panel panel-<?php echo $panel; ?>">
 						<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 						<div class="panel-body">
@@ -415,13 +368,56 @@
 																</div>
 																-->
 																<div class="col-md-2">
-																	<label for="ValorRestanteOrca">Resta Pagar:</label><br>
+																	<label for="TipoReceita">Tipo de Receita</label>
+																	<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
+																			id="TipoReceita" name="TipoReceita">
+																		<!--<option value="">-- Selecione uma opção --</option>-->
+																		<?php
+																		foreach ($select['TipoReceita'] as $key => $row) {
+																			(!$orcatrata['TipoReceita']) ? $orcatrata['TipoReceita'] = '1' : FALSE;
+																			if ($orcatrata['TipoReceita'] == $key) {
+																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																			} else {
+																				echo '<option value="' . $key . '">' . $row . '</option>';
+																			}
+																		}
+																		?>
+																	</select>
+																</div>
+																<div class="col-md-3">
+																	<label for="idApp_Cliente">Cliente *</label>
+																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
+																			id="idApp_Cliente" autofocus name="idApp_Cliente">
+																		<option value="">-- Sel. um Cliente --</option>
+																		<?php
+																		foreach ($select['idApp_Cliente'] as $key => $row) {
+																			if ($orcatrata['idApp_Cliente'] == $key) {
+																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																			} else {
+																				echo '<option value="' . $key . '">' . $row . '</option>';
+																			}
+																		}
+																		?>
+																	</select>
+																</div>
+																<div class="col-md-2">
+																	<label for="Receitas">Receita</label><br>
+																	<input type="text" class="form-control" maxlength="200"
+																			name="Receitas" value="<?php echo $orcatrata['Receitas'] ?>">
+																</div>
+																<div class="col-md-2">
+																	<label for="ValorRestanteOrca">Valor Total:</label><br>
 																	<div class="input-group" id="txtHint">
 																		<span class="input-group-addon" id="basic-addon1">R$</span>
 																		<input type="text" class="form-control Valor" id="ValorRestanteOrca" maxlength="10" placeholder="0,00" 
 																			   name="ValorRestanteOrca" value="<?php echo $orcatrata['ValorRestanteOrca'] ?>">
 																	</div>
 																</div>
+															</div>
+														</div>
+
+														<div class="form-group">
+															<div class="row">																										
 																<div class="col-md-2">
 																	<label for="DataVencimentoOrca">1º Venc.</label>
 																	<div class="input-group <?php echo $datepicker; ?>">
@@ -433,11 +429,6 @@
 																		
 																	</div>
 																</div>
-															</div>
-														</div>
-
-														<div class="form-group">
-															<div class="row">																										
 																<div class="col-md-2">
 																	<label for="FormaPagamento">Forma de Pagam.:</label>
 																	<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>

@@ -29,6 +29,7 @@
 											<option value="">-- Sel. Tipo Despesa --</option>
 											<?php
 											foreach ($select['TipoDespesa'] as $key => $row) {
+												(!$despesas['TipoDespesa']) ? $despesas['TipoDespesa'] = '12' : FALSE;
 												if ($despesas['TipoDespesa'] == $key) {
 													echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 												} else {

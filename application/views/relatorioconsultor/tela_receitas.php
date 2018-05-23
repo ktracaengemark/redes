@@ -41,7 +41,6 @@
 										<div class="modal-footer">
 											<div class="form-group text-left">
 												<div class="row">
-													<!--
 													<div class="col-md-6">
 														<label for="Ordenamento">Nome do Cliente:</label>
 														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
@@ -57,7 +56,6 @@
 															?>
 														</select>
 													</div>	
-													-->
 													<div class="col-md-6 text-left">
 														<label for="Ordenamento">Ordenamento:</label>
 														<div class="form-group btn-block">
@@ -96,9 +94,24 @@
 													</div>
 												</div>
 												<div class="row">	
+													<div class="col-md-6">
+														<label for="Ordenamento">Tipo de Receita:</label>
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+																id="TipoReceita" name="TipoReceita">
+															<?php
+															foreach ($select['TipoReceita'] as $key => $row) {
+																if ($query['TipoReceita'] == $key) {
+																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																} else {
+																	echo '<option value="' . $key . '">' . $row . '</option>';
+																}
+															}
+															?>
+														</select>
+													</div>
 													<div class="col-md-3">
 														<label for="ServicoConcluido">Serv. Concl.?</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 																id="ServicoConcluido" name="ServicoConcluido">
 															<?php
 															foreach ($select['ServicoConcluido'] as $key => $row) {
@@ -113,7 +126,7 @@
 													</div>
 													<div class="col-md-3">
 														<label for="QuitadoRecebiveis">Parc. Quit.?</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 																id="QuitadoRecebiveis" name="QuitadoRecebiveis">
 															<?php
 															foreach ($select['QuitadoRecebiveis'] as $key => $row) {
@@ -126,45 +139,6 @@
 															?>
 														</select>
 													</div>
-													<!--
-													<div class="col-md-3">
-														<label for="Ordenamento">Ordenamento:</label>
-
-														<div class="form-group btn-block">
-															<div class="row">
-																<div class="col-md-6">
-																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
-																			id="Campo" name="Campo">
-																		<?php
-																		foreach ($select['Campo'] as $key => $row) {
-																			if ($query['Campo'] == $key) {
-																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																			} else {
-																				echo '<option value="' . $key . '">' . $row . '</option>';
-																			}
-																		}
-																		?>
-																	</select>
-																</div>
-
-																<div class="col-md-4">
-																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
-																			id="Ordenamento" name="Ordenamento">
-																		<?php
-																		foreach ($select['Ordenamento'] as $key => $row) {
-																			if ($query['Ordenamento'] == $key) {
-																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																			} else {
-																				echo '<option value="' . $key . '">' . $row . '</option>';
-																			}
-																		}
-																		?>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-													-->
 												</div>
 												<div class="row">
 													<!--

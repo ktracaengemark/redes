@@ -181,6 +181,7 @@ class Relatorioconsultor_model extends CI_Model {
         }
 
 		$data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
+		$data['TipoReceita'] = ($data['TipoReceita']) ? ' AND OT.TipoReceita = ' . $data['TipoReceita'] : FALSE;
         $data['Campo'] = (!$data['Campo']) ? 'PR.DataVencimentoRecebiveis' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];		
 		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
@@ -191,7 +192,8 @@ class Relatorioconsultor_model extends CI_Model {
         $query = $this->db->query('
             SELECT
                 C.NomeCliente,
-                CONCAT(IFNULL(C.NomeCliente,""), "  ", IFNULL(OT.Receitas,"")) AS NomeCliente,
+                CONCAT(IFNULL(C.NomeCliente,""), " / ", IFNULL(TR.TipoReceita,""), " / ", IFNULL(OT.Receitas,"")) AS NomeCliente,
+				TR.TipoReceita,
 				OT.idApp_OrcaTrata,
 				OT.idApp_Consultor,
 				OT.TipoRD,
@@ -201,6 +203,7 @@ class Relatorioconsultor_model extends CI_Model {
                 OT.ValorEntradaOrca,
 				OT.QuitadoOrca,
 				OT.ServicoConcluido,
+				OT.Modalidade,
                 PR.ParcelaRecebiveis,
                 PR.DataVencimentoRecebiveis,
                 PR.ValorParcelaRecebiveis,
@@ -209,18 +212,20 @@ class Relatorioconsultor_model extends CI_Model {
                 PR.ValorPagoRecebiveis,
 				PR.ValorPagoPagaveis,
                 PR.QuitadoRecebiveis,
-				CONCAT(IFNULL(PR.QuitadoRecebiveis,""), " - ", IFNULL(PR.ParcelaRecebiveis,"")) AS ParcelaRecebiveis
+				CONCAT(IFNULL(OT.Modalidade,""), " / ", IFNULL(PR.QuitadoRecebiveis,""), " - ", IFNULL(PR.ParcelaRecebiveis,"")) AS ParcelaRecebiveis
             FROM
 
                 App_OrcaTrata AS OT
 					LEFT JOIN App_Cliente AS C ON C.idApp_Cliente = OT.idApp_Cliente
                     LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+					LEFT JOIN Tab_TipoReceita AS TR ON TR.idTab_TipoReceita = OT.TipoReceita
             WHERE
                 OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-                ((' . $filtro4 . ' (' . $consulta . ')) OR (' . $consulta2 . '))
-
+                ((' . $filtro4 . ' (' . $consulta . ')) OR (' . $consulta2 . ')) 
+				' . $data['NomeCliente'] . ' 
+				' . $data['TipoReceita'] . ' 
 
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
@@ -717,6 +722,7 @@ class Relatorioconsultor_model extends CI_Model {
             WHERE
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				DS.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
 				' . $filtro2 . '
 				' . $filtro4 . '
 				(' . $consulta . ') AND
@@ -2846,7 +2852,6 @@ exit();*/
         }
     }
 
-
     public function list_devolucaorede($data, $completo) {
 
         if ($data['DataFim']) {
@@ -4970,6 +4975,30 @@ exit();*/
         return $array;
     }
 
+	public function select_tiporeceita() {
+
+        $query = $this->db->query('
+            SELECT
+				TR.idTab_TipoReceita,
+				TR.TipoReceita
+			FROM
+				Tab_TipoReceita AS TR
+			WHERE
+				TR.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				TR.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+			ORDER BY
+				TR.TipoReceita
+        ');
+
+        $array = array();
+        $array[0] = ':: Todos ::';
+        foreach ($query->result() as $row) {
+            $array[$row->idTab_TipoReceita] = $row->TipoReceita;
+        }
+
+        return $array;
+    }
+	
 	public function select_categoriadesp() {
 
         $query = $this->db->query('

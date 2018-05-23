@@ -152,7 +152,7 @@ class Despesascons extends CI_Controller {
 		$this->form_validation->set_rules('DataVencimentoDespesas', 'Data do 1ºVenc.', 'required|trim|valid_date');
 		$this->form_validation->set_rules('ModalidadeDespesas', 'Tipo de Pagamento', 'required|trim');
 		
-		$data['select']['TipoDespesa'] = $this->Tipodespesa_model->select_tipodespesa();
+		$data['select']['TipoDespesa'] = $this->Tipodespesa_model->select_tipodespesacons();
         $data['select']['AprovadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['FormaPagamentoDespesas'] = $this->Formapag_model->select_formapag();
 		$data['select']['ServicoConcluidoDespesas'] = $this->Basico_model->select_status_sn();
@@ -516,7 +516,7 @@ class Despesascons extends CI_Controller {
 		$this->form_validation->set_rules('QtdParcelasDespesas', 'Qtd de Parcelas', 'required|trim');
 		$this->form_validation->set_rules('DataVencimentoDespesas', 'Data do 1ºVenc.', 'required|trim|valid_date');
 		
-		$data['select']['TipoDespesa'] = $this->Tipodespesa_model->select_tipodespesa();
+		$data['select']['TipoDespesa'] = $this->Tipodespesa_model->select_tipodespesacons();
         $data['select']['AprovadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['FormaPagamentoDespesas'] = $this->Formapag_model->select_formapag();
         $data['select']['ServicoConcluidoDespesas'] = $this->Basico_model->select_status_sn();

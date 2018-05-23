@@ -164,6 +164,7 @@ class Relatorioconsultor extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
             'NomeCliente',
+			'TipoReceita',
             'DataInicio',
             'DataFim',
 			'DataInicio2',
@@ -228,6 +229,7 @@ class Relatorioconsultor extends CI_Controller {
 			'PR.DataPagoRecebiveis' => 'Data do Pagam.',
 			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
 			'C.NomeCliente' => 'Nome do Cliente',
+			'TR.TipoReceita' => 'Tipo de Receita',
             'OT.idApp_OrcaTrata' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
@@ -248,6 +250,7 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
+		$data['select']['TipoReceita'] = $this->Relatorioconsultor_model->select_tiporeceita();
 
 		/*
         $data['select']['Pesquisa'] = array(
@@ -264,7 +267,8 @@ class Relatorioconsultor extends CI_Controller {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
             $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
-            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
+            $data['bd']['TipoReceita'] = $data['query']['TipoReceita'];
+			$data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
 			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
             $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');

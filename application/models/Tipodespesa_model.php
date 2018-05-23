@@ -151,15 +151,14 @@ class Tipodespesa_model extends CI_Model {
 				SELECT 
 					TD.idTab_TipoDespesa, 
 					CONCAT(TD.TipoDespesa) AS TipoDespesa,
-					CD.Categoriadesp,
-					CD.idTab_Categoriadesp,
-					CD.Abrevcategoriadesp
+					TD.Categoriadesp
 				FROM 
 					Tab_TipoDespesa AS TD
-						LEFT JOIN Tab_Categoriadesp AS CD ON CD.idTab_Categoriadesp = TD.Categoriadesp
+
 				WHERE 
 					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
-					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+					(TD.Categoriadesp = "2" OR TD.Categoriadesp = "3")
 				ORDER BY
 					TD.TipoDespesa
 				');
@@ -170,15 +169,14 @@ class Tipodespesa_model extends CI_Model {
 				SELECT 
 					TD.idTab_TipoDespesa, 
 					CONCAT(TD.TipoDespesa) AS TipoDespesa,
-					CD.Categoriadesp,
-					CD.idTab_Categoriadesp,
-					CD.Abrevcategoriadesp
+					TD.Categoriadesp
 				FROM 
 					Tab_TipoDespesa AS TD
-						LEFT JOIN Tab_Categoriadesp AS CD ON CD.idTab_Categoriadesp = TD.Categoriadesp
+
 				WHERE 
 					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
-					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . '
+					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+					(TD.Categoriadesp = "2" OR TD.Categoriadesp = "3")
 				ORDER BY
 					TD.TipoDespesa
 				');
@@ -191,6 +189,52 @@ class Tipodespesa_model extends CI_Model {
 
         return $array;
     }
+	
+    public function select_tipodespesacons($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query('
+				SELECT 
+					TD.idTab_TipoDespesa, 
+					CONCAT(TD.TipoDespesa) AS TipoDespesa,
+					TD.Categoriadesp
+				FROM 
+					Tab_TipoDespesa AS TD
+
+				WHERE 
+					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
+					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+					(TD.Categoriadesp = "1" OR TD.Categoriadesp = "3")
+				ORDER BY
+					TD.TipoDespesa
+				');
+				   
+        } 
+		else {
+            $query = $this->db->query('
+				SELECT 
+					TD.idTab_TipoDespesa, 
+					CONCAT(TD.TipoDespesa) AS TipoDespesa,
+					TD.Categoriadesp
+				FROM 
+					Tab_TipoDespesa AS TD
+
+				WHERE 
+					TD.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND 
+					TD.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+					(TD.Categoriadesp = "1" OR TD.Categoriadesp = "3")
+				ORDER BY
+					TD.TipoDespesa
+				');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idTab_TipoDespesa] = $row->TipoDespesa;
+            }
+        }
+
+        return $array;
+    }	
 
     public function select_tipodevolucao($data = FALSE) {
 

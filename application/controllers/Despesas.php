@@ -797,7 +797,7 @@ class Despesas extends CI_Controller {
 
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'relatorio/despesaspag/' . $data['msg']);
+                redirect(base_url() . 'relatoriofuncionario/despesaspag/' . $data['msg']);
                 exit();
             //}
         //}

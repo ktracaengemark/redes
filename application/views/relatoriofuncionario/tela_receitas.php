@@ -250,9 +250,11 @@
 								</div>
 							</div>																				
 						</div>
+						
 						</form>
 
 						<?php echo (isset($list)) ? $list : FALSE ?>
+						
 					</div>
 				
 				</div>				
