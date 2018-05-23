@@ -2893,8 +2893,8 @@ $(document).ready(function () {
                             </div>\
                         </div>\
 						<div class="row">\
-						<div class="col-md-1"></div>\
-						<div class="col-md-7">\
+							<div class="col-md-1"></div>\
+							<div class="col-md-7">\
 								<label for="ObsProduto'+pc+'">Obs:</label><br>\
 								<input type="text" class="form-control" id="ObsProduto'+pc+'" maxlength="250"\
 									   name="ObsProduto'+pc+'" value="">\
@@ -3068,7 +3068,7 @@ $(document).ready(function () {
                                         name="QtdCompraProduto'+pc+'" value="">\
                                 </div>\
                             </div>\
-                            <div class="col-md-4">\
+                            <div class="col-md-7">\
                                 <label for="idTab_Produto">Produto:</label><br>\
                                 <select class="form-control Chosen" id="listadinamicab'+pc+'" onchange="buscaValorCompra(this.value,this.name,\'Produto\','+pc+')" name="idTab_Produto'+pc+'">\
                                     <option value="">-- Selecione uma opção --</option>\
@@ -3091,6 +3091,14 @@ $(document).ready(function () {
                                            name="SubtotalProduto'+pc+'" value="">\
                                 </div>\
                             </div>\
+						</div>\
+						<div class="row">\
+							<div class="col-md-1"></div>\
+							<div class="col-md-7">\
+								<label for="ObsProduto'+pc+'">Obs:</label><br>\
+								<input type="text" class="form-control" id="ObsProduto'+pc+'" maxlength="250"\
+									   name="ObsProduto'+pc+'" value="">\
+							</div>\
 							<div class="col-md-2">\
 								<label for="DataValidadeProduto'+pc+'">Val. do Produto:</label>\
 								<div class="input-group DatePicker">\
@@ -3113,7 +3121,10 @@ $(document).ready(function () {
             </div>'
         ); //add input box
 
-        //get a reference to the select element
+        //habilita o botão de calendário após a geração dos campos dinâmicos
+		$('.DatePicker').datetimepicker(dateTimePickerOptions);
+		
+		//get a reference to the select element
         $select = $('#listadinamicab'+pc);
 
         //request the JSON data and parse into the select element

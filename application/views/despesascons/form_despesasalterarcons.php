@@ -254,16 +254,20 @@
 									?>
 									</div>
 									
-									<div class="form-group">
-										<div class="row">
-											<div class="col-md-4">
-												<a class="add_field_button22 btn btn-danger">
-													<span class="glyphicon glyphicon-plus"></span> Ad. Parcelas Extras
-												</a>
-											</div>
+									<div class="panel panel-danger">
+										<div class="panel-heading">										
+											<div class="form-group">	
+												<div class="row">	
+													<div class="col-md-2 text-left">
+														<button class="btn btn-warning" type="button" data-toggle="collapse" onclick="adicionaParcelasPagaveis()"
+																data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
+															<span class="glyphicon glyphicon-plus"></span> Adicionar Parcelas
+														</button>
+													</div>
+												</div>
+											</div>	
 										</div>
 									</div>
-									
 								</div>
 							</div>
 						</div>

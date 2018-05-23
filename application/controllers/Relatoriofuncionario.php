@@ -292,7 +292,7 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
-	public function despesas1() {
+	public function despesas() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -2187,7 +2187,7 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
-	public function despesas() {
+	public function despesas2() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);

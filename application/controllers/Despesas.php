@@ -72,7 +72,7 @@ class Despesas extends CI_Controller {
             'ObsDespesas',
 			'TipoProduto',
 			'ModalidadeDespesas',
-			'AVAPDespesas',
+			#'AVAPDespesas',
         ), TRUE));
 
         //Dá pra melhorar/encurtar esse trecho (que vai daqui até onde estiver
@@ -144,7 +144,7 @@ class Despesas extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Despesas ####
-        #$this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
+        $this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
         #$this->form_validation->set_rules('Despesa', 'Despesa', 'required|trim');
         #$this->form_validation->set_rules('TipoDespesa', 'Tipo de Despesa', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalDespesas', 'Profissional', 'required|trim');		
@@ -214,13 +214,6 @@ class Despesas extends CI_Controller {
         ($data['despesas']['QuitadoDespesas'] == 'S') ?
             $data['div']['QuitadoDespesas'] = '' : $data['div']['QuitadoDespesas'] = 'style="display: none;"';
 
-			
-		(!$data['despesas']['AVAPDespesas']) ? $data['despesas']['AVAPDespesas'] = 'S' : FALSE;
-        $data['radio'] = array(
-            'AVAPDespesas' => $this->basico->radio_checked($data['despesas']['AVAPDespesas'], 'À Vista/À Prazo', 'NS'),
-        );
-        ($data['despesas']['AVAPDespesas'] == 'N') ?
-            $data['div']['AVAPDespesas'] = '' : $data['div']['AVAPDespesas'] = 'style="display: none;"';	
 
 
         $data['sidebar'] = 'col-sm-3 col-md-2';
@@ -340,7 +333,7 @@ class Despesas extends CI_Controller {
                 $data['msg'] = '?m=1';
 
                 #redirect(base_url() . 'relatorio/despesas/'  . $data['msg']);
-				redirect(base_url() . 'relatorio/despesaspag/'  . $data['msg']);
+				redirect(base_url() . 'relatoriofuncionario/despesaspag/'  . $data['msg']);
                 exit();
             }
         }
@@ -381,7 +374,7 @@ class Despesas extends CI_Controller {
             'QtdParcelasDespesas',
             'DataVencimentoDespesas',
             'ObsDespesas',
-			'AVAPDespesas',
+			#'AVAPDespesas',
 			#'TipoProduto',
         ), TRUE));
 
@@ -518,7 +511,7 @@ class Despesas extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Despesas ####
-        #$this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
+        $this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
         #$this->form_validation->set_rules('Despesa', 'Despesa', 'required|trim');
         #$this->form_validation->set_rules('TipoDespesa', 'Tipo de Despesa', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalDespesas', 'Profissional', 'required|trim');
@@ -534,7 +527,7 @@ class Despesas extends CI_Controller {
         $data['select']['ConcluidoServico'] = $this->Basico_model->select_status_sn();
         $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
 		$data['select']['ModalidadeDespesas'] = $this->Basico_model->select_modalidade();
-		$data['select']['AVAPDespesas'] = $this->Basico_model->select_avap();
+		#$data['select']['AVAPDespesas'] = $this->Basico_model->select_avap();
 		$data['select']['QuitadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoPagaveis'] = $this->Basico_model->select_status_sn();
 		$data['select']['Profissional'] = $this->Profissional_model->select_profissional();
@@ -585,13 +578,6 @@ class Despesas extends CI_Controller {
         ($data['despesas']['QuitadoDespesas'] == 'S') ?
             $data['div']['QuitadoDespesas'] = '' : $data['div']['QuitadoDespesas'] = 'style="display: none;"';
 
-
-		(!$data['despesas']['AVAPDespesas']) ? $data['despesas']['AVAPDespesas'] = 'S' : FALSE;
-        $data['radio'] = array(
-            'AVAPDespesas' => $this->basico->radio_checked($data['despesas']['AVAPDespesas'], 'À Vista/À Prazo', 'NS'),
-        );
-        ($data['despesas']['AVAPDespesas'] == 'N') ?
-            $data['div']['AVAPDespesas'] = '' : $data['div']['AVAPDespesas'] = 'style="display: none;"';	
 			
         $data['sidebar'] = 'col-sm-3 col-md-2';
         $data['main'] = 'col-sm-7 col-md-8';
@@ -789,7 +775,7 @@ class Despesas extends CI_Controller {
                 $data['msg'] = '?m=1';
 
                 #redirect(base_url() . 'relatorio/despesas/' . $data['msg']);
-				redirect(base_url() . 'relatorio/despesaspag/'  . $data['msg']);
+				redirect(base_url() . 'relatoriofuncionario/despesaspag/'  . $data['msg']);
                 exit();
             }
         }

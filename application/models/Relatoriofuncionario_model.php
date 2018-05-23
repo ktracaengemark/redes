@@ -300,7 +300,7 @@ class Relatoriofuncionario_model extends CI_Model {
 
     }
 
-	public function list_despesas1($data, $completo) {
+	public function list_despesas($data, $completo) {
 
         if ($data['DataFim']) {
             $consulta =
@@ -2900,7 +2900,7 @@ exit();*/
 
     }
 
-	public function list_despesas($data, $completo) {
+	public function list_despesas2($data, $completo) {
 
         if ($data['DataFim']) {
             $consulta =
