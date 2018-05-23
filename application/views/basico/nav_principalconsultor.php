@@ -74,7 +74,7 @@
 									<span class="glyphicon glyphicon-pencil"></span> Cadastrar <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">							
-									<li><a href="<?php echo base_url() ?>orcatrata/cadastrar2"><span class="glyphicon glyphicon-usd"></span> Vendas & Receitas</a></li>
+									<li><a href="<?php echo base_url() ?>orcatratacons/cadastrar2"><span class="glyphicon glyphicon-usd"></span> Vendas & Receitas</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosconsultor"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
 									<li role="separator" class="divider"></li>
