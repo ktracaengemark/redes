@@ -89,7 +89,7 @@
 													</a>
 													
 														
-													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataconsPrint/imprimir/' . $row['idApp_OrcaTrataCons']; ?>" role="button">
+													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrataCons']; ?>" role="button">
 														<span class="glyphicon glyphicon-print"></span> Versão para Impressão
 													</a>
 													
@@ -154,7 +154,7 @@
 														<span class="glyphicon glyphicon-edit"></span> Editar Dados
 													</a>
 													
-													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataconsPrint/imprimir/' . $row['idApp_OrcaTrataCons']; ?>" role="button">
+													<a class="btn btn-md btn-info" target="_blank" href="<?php echo base_url() . 'OrcatrataPrintcons/imprimir/' . $row['idApp_OrcaTrataCons']; ?>" role="button">
 														<span class="glyphicon glyphicon-print"></span> Versão para Impressão
 													</a>
 

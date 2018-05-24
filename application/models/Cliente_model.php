@@ -39,11 +39,8 @@ class Cliente_model extends CI_Model {
 	
 	public function get_cliente($data) {
         $query = $this->db->query('
-		SELECT 
-			C.idApp_Cliente,
-			C.NomeCliente,
-			C.idApp_Consultor,
-			CO.NomeConsultor
+		SELECT *
+
 		FROM 
 			App_Cliente AS C 
 				LEFT JOIN App_Consultor AS CO ON CO.idApp_Consultor = C.idApp_Consultor
