@@ -22,7 +22,7 @@
 							<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
 								<span class="glyphicon glyphicon-filter"></span> Filtros
 							</button>										
-							<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatorioconsultor/clientesusuario" role="button"> 
+							<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatorioconsultor/clientes" role="button"> 
 								<span class="glyphicon glyphicon-plus"></span> Nova Venda
 							</a>
 						</div>

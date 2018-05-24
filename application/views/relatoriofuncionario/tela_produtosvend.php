@@ -59,7 +59,7 @@
 														<div class="form-group btn-block">
 															<div class="row">
 																<div class="col-md-8">
-																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen " onchange="this.form.submit()"
+																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen " 
 																			id="Campo" name="Campo">
 																		<?php
 																		foreach ($select['Campo'] as $key => $row) {
@@ -74,7 +74,7 @@
 																</div>
 
 																<div class="col-md-4">
-																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen " onchange="this.form.submit()"
+																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen " 
 																			id="Ordenamento" name="Ordenamento">
 																		<?php
 																		foreach ($select['Ordenamento'] as $key => $row) {
@@ -94,7 +94,7 @@
 												<div class="row">
 													<div class="col-md-6">
 														<label for="Ordenamento">Produtos</label>
-														<select data-placeholder="Selecione uma op??o..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+														<select data-placeholder="Selecione uma op??o..." class="form-control Chosen btn-block" 
 																id="Produtos" name="Produtos">
 															<?php
 															foreach ($select['Produtos'] as $key => $row) {

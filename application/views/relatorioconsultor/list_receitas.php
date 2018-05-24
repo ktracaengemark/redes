@@ -56,16 +56,16 @@
                     <?php
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar2/' . $row['idApp_OrcaTrata'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratacons/alterar2/' . $row['idApp_OrcaTrataCons'] . '">';
                             #echo '<td>' . $row['QuitadoRecebiveis'] . '</td>';
 							echo '<td>' . $row['ParcelaRecebiveis'] . '</td>';
 							echo '<td>' . $row['DataVencimentoRecebiveis'] . '</td>';
-                            echo '<td class="text-right">R$ ' . $row['ValorParcelaRecebiveis'] . '</td>';
+                            echo '<td class="text-left">R$ ' . $row['ValorParcelaRecebiveis'] . '</td>';
 							echo '<td>' . $row['NomeCliente'] . '</td>';
                             echo '<td>' . $row['DataPagoRecebiveis'] . '</td>';
-                            echo '<td class="text-right">R$ ' . $row['ValorPagoRecebiveis'] . '</td>';
+                            echo '<td class="text-left">R$ ' . $row['ValorPagoRecebiveis'] . '</td>';
                             #echo '<td>' . $row['DataOrca'] . '</td>';
-							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';
+							echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
 							echo '<td>' . $row['ServicoConcluido'] . '</td>';						
                         echo '</tr>';
                     }

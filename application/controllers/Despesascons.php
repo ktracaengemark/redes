@@ -50,8 +50,8 @@ class Despesascons extends CI_Controller {
         $data['despesas'] = quotes_to_entities($this->input->post(array(
             #### App_Despesascons ####
             'idApp_Despesascons',
-			'idApp_Cliente',
-			'idApp_OrcaTrata',
+			#'idApp_Cliente',
+			#'idApp_OrcaTrata',
             'Despesa',			
             'DataDespesas',
 			'TipoDespesa',
@@ -161,8 +161,8 @@ class Despesascons extends CI_Controller {
 		$data['select']['QuitadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoPagaveis'] = $this->Basico_model->select_status_sn();
 		$data['select']['Profissional'] = $this->Profissional_model->select_profissional();
-		$data['select']['idApp_Cliente'] = $this->Cliente_model->select_cliente();
-		$data['select']['idApp_OrcaTrata'] = $this->Basico_model->select_orcatrata();
+		#$data['select']['idApp_Cliente'] = $this->Cliente_model->select_cliente();
+		#$data['select']['idApp_OrcaTrata'] = $this->Basico_model->select_orcatrata();
 		$data['select']['Servico'] = $this->Servico_model->select_servico();
         $data['select']['Produto'] = $this->Produtos_model->select_produtos();		
 		#$data['select']['Servico'] = $this->ServicoBase_model->select_servicobase();
@@ -239,7 +239,7 @@ class Despesascons extends CI_Controller {
             $data['despesas']['DataDespesas'] = $this->basico->mascara_data($data['despesas']['DataDespesas'], 'mysql');
 			$data['despesas']['Despesa'] = $data['despesas']['Despesa'];
 			$data['despesas']['TipoDespesa'] = $data['despesas']['TipoDespesa'];
-			$data['despesas']['idApp_OrcaTrata'] = $data['despesas']['idApp_OrcaTrata'];
+			#$data['despesas']['idApp_OrcaTrata'] = $data['despesas']['idApp_OrcaTrata'];
 			$data['despesas']['DataConclusaoDespesas'] = $this->basico->mascara_data($data['despesas']['DataConclusaoDespesas'], 'mysql');
             $data['despesas']['DataRetornoDespesas'] = $this->basico->mascara_data($data['despesas']['DataRetornoDespesas'], 'mysql');
             $data['despesas']['DataQuitadoDespesas'] = $this->basico->mascara_data($data['despesas']['DataQuitadoDespesas'], 'mysql');
@@ -353,8 +353,8 @@ class Despesascons extends CI_Controller {
         $data['despesas'] = quotes_to_entities($this->input->post(array(
             #### App_Despesascons ####
             'idApp_Despesascons',
-            'idApp_Cliente',
-			'idApp_OrcaTrata',
+            #'idApp_Cliente',
+			#'idApp_OrcaTrata',
             'DataDespesas',
 			'Despesa',
 			'TipoDespesa',
@@ -450,7 +450,7 @@ class Despesascons extends CI_Controller {
             $data['despesas']['DataDespesas'] = $this->basico->mascara_data($data['despesas']['DataDespesas'], 'barras');
 			$data['despesas']['Despesa'] = $data['despesas']['Despesa'];
 			$data['despesas']['TipoDespesa'] = $data['despesas']['TipoDespesa'];			
-			$data['despesas']['idApp_OrcaTrata'] = $data['despesas']['idApp_OrcaTrata'];
+			#$data['despesas']['idApp_OrcaTrata'] = $data['despesas']['idApp_OrcaTrata'];
 			$data['despesas']['DataConclusaoDespesas'] = $this->basico->mascara_data($data['despesas']['DataConclusaoDespesas'], 'barras');
             $data['despesas']['DataRetornoDespesas'] = $this->basico->mascara_data($data['despesas']['DataRetornoDespesas'], 'barras');
             $data['despesas']['DataQuitadoDespesas'] = $this->basico->mascara_data($data['despesas']['DataQuitadoDespesas'], 'barras');
@@ -529,8 +529,8 @@ class Despesascons extends CI_Controller {
 		$data['select']['QuitadoDespesas'] = $this->Basico_model->select_status_sn();
         $data['select']['QuitadoPagaveis'] = $this->Basico_model->select_status_sn();
 		$data['select']['Profissional'] = $this->Profissional_model->select_profissional();
-		$data['select']['idApp_Cliente'] = $this->Cliente_model->select_cliente();
-		$data['select']['idApp_OrcaTrata'] = $this->Basico_model->select_orcatrata();
+		#$data['select']['idApp_Cliente'] = $this->Cliente_model->select_cliente();
+		#$data['select']['idApp_OrcaTrata'] = $this->Basico_model->select_orcatrata();
 		$data['select']['Servico'] = $this->Servico_model->select_servico();
         $data['select']['Produto'] = $this->Produtos_model->select_produtos();		
 		#$data['select']['Servico'] = $this->ServicoBase_model->select_servicobase();
@@ -605,7 +605,7 @@ class Despesascons extends CI_Controller {
             $data['despesas']['DataDespesas'] = $this->basico->mascara_data($data['despesas']['DataDespesas'], 'mysql');
 			$data['despesas']['Despesa'] = $data['despesas']['Despesa'];
 			$data['despesas']['TipoDespesa'] = $data['despesas']['TipoDespesa'];			
-			$data['despesas']['idApp_OrcaTrata'] = $data['despesas']['idApp_OrcaTrata'];
+			#$data['despesas']['idApp_OrcaTrata'] = $data['despesas']['idApp_OrcaTrata'];
 			$data['despesas']['DataConclusaoDespesas'] = $this->basico->mascara_data($data['despesas']['DataConclusaoDespesas'], 'mysql');
             $data['despesas']['DataRetornoDespesas'] = $this->basico->mascara_data($data['despesas']['DataRetornoDespesas'], 'mysql');
             $data['despesas']['DataQuitadoDespesas'] = $this->basico->mascara_data($data['despesas']['DataQuitadoDespesas'], 'mysql');

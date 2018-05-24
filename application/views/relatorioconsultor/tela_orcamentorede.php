@@ -76,7 +76,7 @@
 												</div>
 												<div class="col-md-3">
 													<label for="ServicoConcluido">Concluído?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 															id="ServicoConcluido" name="ServicoConcluido">
 														<?php
 														foreach ($select['ServicoConcluido'] as $key => $row) {
@@ -91,7 +91,7 @@
 												</div>	
 												<div class="col-md-3">
 													<label for="QuitadoOrca">Quitado?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 															id="QuitadoOrca" name="QuitadoOrca">
 														<?php
 														foreach ($select['QuitadoOrca'] as $key => $row) {

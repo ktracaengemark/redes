@@ -224,7 +224,7 @@ class Relatoriofuncionario extends CI_Controller {
 			'PR.DataPagoRecebiveis' => 'Data do Pagam.',
 			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
 			'C.NomeConsultor' => 'Nome do Consultor',
-            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
             'OT.ValorOrca' => 'Valor do Orçamento',
@@ -1206,7 +1206,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeConsultor' => 'Nome do Consultor',
-			'OT.idApp_OrcaTrataCons' => 'Id Orçam.',
+			'OT.idApp_OrcaTrata' => 'Id Orçam.',
             'APV.DataValidadeProduto' => 'Data da Entrega.',			
 			'TPV.CodProd' => 'Código',
 			'TPV.Produtos' => 'Produto',
@@ -1311,7 +1311,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeConsultor' => 'Nome do Consultor',
-			'OT.idApp_OrcaTrataCons' => 'NºOrç.',
+			'OT.idApp_OrcaTrata' => 'NºOrç.',
             'OT.DataOrca' => 'Dt.Orç.',
 			'APV.DataValidadeServico' => 'Dt.Dev.',
 

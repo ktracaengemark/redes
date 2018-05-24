@@ -230,7 +230,7 @@ class Relatorioconsultor extends CI_Controller {
 			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
 			'C.NomeCliente' => 'Nome do Cliente',
 			'TR.TipoReceita' => 'Tipo de Receita',
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
             'OT.ValorOrca' => 'Valor do Orçamento',
@@ -365,7 +365,7 @@ class Relatorioconsultor extends CI_Controller {
         $data['select']['Campo'] = array(
 
 
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
 			'OT.DataEntradaOrca' => 'Validade do Orçamento',
@@ -577,7 +577,7 @@ class Relatorioconsultor extends CI_Controller {
 
         $data['select']['Campo'] = array(
 
-            'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
+            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
 			'OT.ServicoConcluido' => 'Orçam. Concluído?',
             'OT.DataOrca' => 'Data do Orçamento',
@@ -1555,7 +1555,7 @@ class Relatorioconsultor extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
-			'OT.idApp_OrcaTrata' => 'Id Orçam.',
+			'OT.idApp_OrcaTrataCons' => 'Id Orçam.',
 			'OT.AprovadoOrca' => 'Orç. Aprov./Fechado?',
             'OT.DataOrca' => 'Data do Orçam.',
 			'TPV.CodProd' => 'Código',
@@ -2139,7 +2139,6 @@ class Relatorioconsultor extends CI_Controller {
         $this->load->view('basico/footer');
 
     }
-
 
     public function devolucaorede() {
 

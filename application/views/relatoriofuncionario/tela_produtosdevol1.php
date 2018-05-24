@@ -98,7 +98,7 @@
 											<div class="row">
 												<div class="col-md-6">
 													<label for="Ordenamento">Produtos</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 															id="Produtos" name="Produtos">
 														<?php
 														foreach ($select['Produtos'] as $key => $row) {

@@ -60,9 +60,9 @@
                     <?php
                     foreach ($report->result_array() as $row) {
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratacons/alterar/' . $row['idApp_OrcaTrataCons'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatrata/alterar/' . $row['idApp_OrcaTrata'] . '">';
                             echo '<td>' . $row['NomeConsultor'] . '</td>';
-							echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';                                                       
+							echo '<td>' . $row['idApp_OrcaTrata'] . '</td>';                                                       
                             echo '<td>' . $row['DataOrca'] . '</td>';
                            # echo '<td>' . $row['DataEntradaOrca'] . '</td>';
                            # echo '<td class="text-right">R$ ' . $row['ValorEntradaOrca'] . '</td>';
