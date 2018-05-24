@@ -76,7 +76,7 @@
                             #echo '<td>' . $row['FormaPag'] . '</td>';                            							
                             #echo '</div>';
                             echo '<td class="notclickable">
-                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataConsPrint/imprimir/' . $row['idApp_OrcaTrataCons'] . '">
+                                    <a class="btn btn-md btn-info notclickable" target="_blank" href="' . base_url() . 'OrcatrataPrintCons/imprimir/' . $row['idApp_OrcaTrataCons'] . '">
                                         <span class="glyphicon glyphicon-print notclickable"></span>
                                     </a>
                                 </td>';

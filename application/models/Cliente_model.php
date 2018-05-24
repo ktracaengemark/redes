@@ -29,14 +29,32 @@ class Cliente_model extends CI_Model {
         }
     }
 
-    public function get_cliente($data) {
+    public function get_cliente1($data) {
         $query = $this->db->query('SELECT * FROM App_Cliente WHERE idApp_Cliente = ' . $data);
 
         $query = $query->result_array();
 
         return $query[0];
     }
+	
+	public function get_cliente($data) {
+        $query = $this->db->query('
+		SELECT 
+			C.idApp_Cliente,
+			C.NomeCliente,
+			C.idApp_Consultor,
+			CO.NomeConsultor
+		FROM 
+			App_Cliente AS C 
+				LEFT JOIN App_Consultor AS CO ON CO.idApp_Consultor = C.idApp_Consultor
+		WHERE 
+			C.idApp_Cliente = ' . $data);
 
+        $query = $query->result_array();
+
+        return $query[0];
+    }
+	
     public function update_cliente($data, $id) {
 
         unset($data['Id']);
