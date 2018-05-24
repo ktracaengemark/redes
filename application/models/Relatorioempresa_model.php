@@ -870,8 +870,8 @@ class Relatorioempresa_model extends CI_Model {
             'SELECT
                 ' . $somareceitas . '
             FROM
-                App_OrcaTrataCons AS OT
-                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
+                App_OrcaTrata AS OT
+                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
                 OT.Empresa = ' . $_SESSION['log']['id'] . ' AND
                 OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
@@ -898,8 +898,8 @@ class Relatorioempresa_model extends CI_Model {
             'SELECT
                 ' . $somadevolucoes . '
             FROM
-                App_OrcaTrataCons AS OT
-                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
+                App_OrcaTrata AS OT
+                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
                 OT.Empresa = ' . $_SESSION['log']['id'] . ' AND
                 OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
