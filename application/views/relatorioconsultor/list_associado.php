@@ -34,7 +34,7 @@
                         #echo '<tr class="clickable-row" data-href="' . base_url() . 'associado/prontuario/' . $row['idSis_Usuario'] . '">';
                             #echo '<td>' . $row['Associado'] . '</td>';
 							#echo '<td>' . $row['idSis_Usuario'] . '</td>';
-                            echo '<td>' . $row['Nome'] . '</td>';
+                            echo '<td>' . $row['NomeConsultor'] . '</td>';
                             echo '<td>' . $row['Sexo'] . '</td>';							
                             echo '<td>' . $row['Celular'] . '</td>';
 							echo '<td>' . $row['DataNascimento'] . '</td>';

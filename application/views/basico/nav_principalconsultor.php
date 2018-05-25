@@ -8,7 +8,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
 						<span class="sr-only">MENU</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand"> <?php echo $_SESSION['log']['NomeEmpresa2']; ?></a>
+					<a href="<?php echo base_url() ?>acessoconsultor/index" class="navbar-brand"> <?php echo $_SESSION['log']['NomeEmpresa2']; ?> / <?php echo $_SESSION['log']['NomeConsultor2']; ?></a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar1">
 
@@ -27,8 +27,9 @@
 							</form>
 						</li>
 						-->
+						<!--
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
-							<!--
+							
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>agenda">
 									<button type="button" class="btn btn-md btn-warning ">
@@ -37,6 +38,7 @@
 								</a>
 							</div>
 							-->
+							<!--
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['NomeConsultor2']; ?> <span class="caret"></span>
@@ -44,18 +46,18 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url() ?>acessoconsultor/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['NomeConsultor2']; ?></a></li>
 									<li role="separator" class="divider"></li>
-									<!--<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/empresaassociado"><span class="glyphicon glyphicon-pencil"></span> Cad - Associados</a></li>
-									<li role="separator" class="divider"></li>-->
+									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url(); ?>loginconsultor/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 								</ul>
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						
+						-->
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" aria-label="...">
 								<!--<a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario">-->
@@ -114,12 +116,10 @@
 									-->
 								</ul>
 							</div>
-
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						<!--
 						<li class="btn-toolbar navbar-form navbar-right" role="toolbar" aria-label="...">
-
+							<!--
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>relatorio/sistema">
 									<button type="button" class="btn btn-md btn-primary ">
@@ -127,7 +127,14 @@
 									</button>
 								</a>
 							</div>
-
+							-->
+							<div class="btn-group" role="group" aria-label="...">
+								<a href="<?php echo base_url() ?>relatorioconsultor/sistema">
+									<button type="button" class="btn btn-md active " id="countdowndiv">
+										<span class="glyphicon glyphicon-hourglass" id="clock"></span>
+									</button>
+								</a>
+							</div>
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>loginconsultor/sair">
 									<button type="button" class="btn btn-md btn-danger ">
@@ -138,7 +145,7 @@
 
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						-->
+						
 					</ul>
 
 				</div>

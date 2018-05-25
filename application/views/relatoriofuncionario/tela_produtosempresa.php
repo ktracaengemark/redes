@@ -20,7 +20,7 @@
 								
 								<div class="col-md-7">
 									<label for="Ordenamento">Desccrição</label>
-									<select data-placeholder="Selecione uma opção..." class="form-control Chosen"
+									<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
 											id="Produtos" name="Produtos">
 										<?php
 										foreach ($select['Produtos'] as $key => $row) {

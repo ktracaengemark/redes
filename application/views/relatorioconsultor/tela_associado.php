@@ -18,10 +18,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <select data-placeholder="Selecione uma opção..." class="form-control Chosen"
-                                                    id="Nome" autofocus name="Nome">
+                                                    id="NomeConsultor" autofocus name="NomeConsultor">
                                                 <?php
-                                                foreach ($select['Nome'] as $key => $row) {
-                                                    if ($query['Nome'] == $key) {
+                                                foreach ($select['NomeConsultor'] as $key => $row) {
+                                                    if ($query['NomeConsultor'] == $key) {
                                                         echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
                                                     } else {
                                                         echo '<option value="' . $key . '">' . $row . '</option>';
@@ -76,14 +76,19 @@
 					<div class="col-md-10" >
 						<div class="form-group">
 							<div class="row">
-								<div class="col-md-6 text-left">
-									<button class="btn btn-lg btn-primary" name="pesquisar" value="0" type="submit">
+								<div class="col-md-4 text-left">
+									<button class="btn btn-md btn-primary" name="pesquisar" value="0" type="submit">
 										<span class="glyphicon glyphicon-search"></span> Pesquisar
 									</button>
 								</div>
-								<div class="col-md-6 text-right">											
-									<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>loginassociado/registrar" role="button"> 
-										<span class="glyphicon glyphicon-plus"></span> Novo Associado
+								<div class="col-md-4 text-left">											
+									<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatorioconsultor/associadopag" role="button"> 
+										<span class="glyphicon glyphicon-plus"></span> Pag. dos Indicados
+									</a>
+								</div>
+								<div class="col-md-4 text-left">											
+									<a class="btn btn-md btn-danger" href="<?php echo base_url() ?>consultorassociado/cadastrar" role="button"> 
+										<span class="glyphicon glyphicon-plus"></span> Cadastrar Indicação
 									</a>
 								</div>
 							</div>

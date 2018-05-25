@@ -116,7 +116,7 @@ class Logincliente extends CI_Controller {
 				$_SESSION['log']['idSis_EmpresaMatriz'] = $query['idSis_EmpresaMatriz'];
 				$_SESSION['log']['Empresa'] = $query['Empresa'];
 				$_SESSION['log']['Nivel'] = $query['Nivel'];				
-				$_SESSION['log']['NomeEmpresa2'] = (strlen($query['NomeEmpresa']) > 18) ? substr($query['NomeEmpresa'], 0, 18) : $query['NomeEmpresa'];
+				$_SESSION['log']['NomeEmpresa2'] = (strlen($query['NomeEmpresa']) > 12) ? substr($query['NomeEmpresa'], 0, 12) : $query['NomeEmpresa'];
 				$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
 				$_SESSION['log']['Funcao'] = $query['Funcao'];
 				$_SESSION['log']['Permissao'] = $query['Permissao'];

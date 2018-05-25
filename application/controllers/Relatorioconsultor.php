@@ -2905,7 +2905,7 @@ class Relatorioconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'Nome',
+            'NomeConsultor',
 
             'Ordenamento',
             'Campo',
@@ -2917,7 +2917,7 @@ class Relatorioconsultor extends CI_Controller {
 
 
 		$data['select']['Campo'] = array(
-            'C.Nome' => 'Nome do Associado',
+            'C.NomeConsultor' => 'Nome do Associado',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
             'C.Email' => 'E-mail',
@@ -2928,14 +2928,14 @@ class Relatorioconsultor extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['Nome'] = $this->Relatorioconsultor_model->select_associado();
+        $data['select']['NomeConsultor'] = $this->Relatorioconsultor_model->select_associado();
 
         $data['titulo'] = 'Relatório de Associados';
 
         #run form validation
         if ($this->form_validation->run() !== TRUE) {
 
-            $data['bd']['Nome'] = $data['query']['Nome'];
+            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
 
@@ -2956,8 +2956,8 @@ class Relatorioconsultor extends CI_Controller {
         $this->load->view('basico/footer');
 
     }
-
-	public function empresaassociado() {
+	
+	public function associadopag() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -2967,19 +2967,79 @@ class Relatorioconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeEmpresa',
-            'Ordenamento',
+            'NomeConsultor',
+            'DataInicio',
+            'DataFim',
+			'DataInicio2',
+            'DataFim2',
+			'DataInicio3',
+            'DataFim3',
+			'Ordenamento',
             'Campo',
+            'AprovadoOrca',
+            'QuitadoOrca',
+			'ServicoConcluido',
+			'QuitadoRecebiveis',
         ), TRUE));
+
+		/*
+        if (!$data['query']['DataInicio'])
+           $data['query']['DataInicio'] = '01/01/2017';
+
+		if (!$data['query']['DataInicio2'])
+           $data['query']['DataInicio2'] = '01/01/2017';
+		*/
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+        $this->form_validation->set_rules('DataInicio', 'Data Início do Vencimento', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim', 'Data Fim do Vencimento', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio2', 'Data Início do Pagamento', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim2', 'Data Fim do Pagamento', 'trim|valid_date');
+		$this->form_validation->set_rules('DataInicio3', 'Data Início do Orçamento', 'trim|valid_date');
+        $this->form_validation->set_rules('DataFim3', 'Data Fim do Orçamento', 'trim|valid_date');
+
+        $data['select']['AprovadoOrca'] = array(
+            'S' => 'Sim',
+			'N' => 'Não',
+			'#' => 'TODOS',
+        );
+
+        $data['select']['QuitadoOrca'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+		$data['select']['ServicoConcluido'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+		$data['select']['QuitadoRecebiveis'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+        $data['select']['Campo'] = array(
+            'PR.DataVencimentoRecebiveis' => 'Data do Venc.',
+			'PR.DataPagoRecebiveis' => 'Data do Pagam.',
+			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
+			'C.NomeConsultor' => 'Nome do Consultor',
+            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
+            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
+            'OT.DataOrca' => 'Data do Orçamento',
+            'OT.ValorOrca' => 'Valor do Orçamento',
+            'OT.ServicoConcluido' => 'Serviço Concluído?',
+            'OT.QuitadoOrca' => 'Orçamento Quitado?',
+            'OT.DataConclusao' => 'Data de Conclusão',
+			'OT.DataQuitado' => 'Data de Quitado',
+            'OT.DataRetorno' => 'Data de Retorno',
+			'OT.ProfissionalOrca' => 'Profissional',
 
 
-
-		$data['select']['Campo'] = array(
-            'C.NomeEmpresa' => 'Empresa',
-            'C.Email' => 'E-mail',
         );
 
         $data['select']['Ordenamento'] = array(
@@ -2987,18 +3047,37 @@ class Relatorioconsultor extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['NomeEmpresa'] = $this->Relatorioconsultor_model->select_empresaassociado();
+		$data['select']['NomeConsultor'] = $this->Relatorioconsultor_model->select_consultorassociado();
 
-        $data['titulo'] = 'Relatório de Indicações';
+		/*
+        $data['select']['Pesquisa'] = array(
+            'DataEntradaOrca' => 'Data de Entrada',
+            'DataVencimentoRecebiveis' => 'Data de Vencimento da Parcela',
+        );
+        */
+
+
+        $data['titulo'] = 'Relatório de Pagamento da Manutenção dos Indicados';
 
         #run form validation
-        if ($this->form_validation->run() !== TRUE) {
+        if ($this->form_validation->run() !== FALSE) {
 
-            $data['bd']['NomeEmpresa'] = $data['query']['NomeEmpresa'];
+            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
+            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
+            $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
+			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
+            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
+			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
+            $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
+            $data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
+            $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
+			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
+			$data['bd']['QuitadoRecebiveis'] = $data['query']['QuitadoRecebiveis'];
 
-            $data['report'] = $this->Relatorioconsultor_model->list_empresaassociado($data['bd'],TRUE);
+            $data['report'] = $this->Relatorioconsultor_model->list_associadopag($data['bd'],TRUE);
 
             /*
               echo "<pre>";
@@ -3007,10 +3086,11 @@ class Relatorioconsultor extends CI_Controller {
               exit();
               */
 
-            $data['list'] = $this->load->view('relatorioconsultor/list_empresaassociado', $data, TRUE);
+            $data['list'] = $this->load->view('relatorioconsultor/list_associadopag', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
         }
 
-        $this->load->view('relatorioconsultor/tela_empresaassociado', $data);
+        $this->load->view('relatorioconsultor/tela_associadopag', $data);
 
         $this->load->view('basico/footer');
 
@@ -3927,5 +4007,5 @@ class Relatorioconsultor extends CI_Controller {
 
 
     }
-
+	
 }

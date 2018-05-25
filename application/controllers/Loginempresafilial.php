@@ -115,7 +115,7 @@ class Loginempresafilial extends CI_Controller {
 				$_SESSION['log']['idSis_EmpresaFilial'] = $query['idSis_EmpresaFilial'];
 				$_SESSION['log']['idSis_EmpresaMatriz'] = 2;
 				$_SESSION['log']['Empresa'] = $query['Empresa'];
-				$_SESSION['log']['NomeEmpresa2'] = (strlen($query['NomeEmpresa']) > 18) ? substr($query['NomeEmpresa'], 0, 18) : $query['NomeEmpresa'];
+				$_SESSION['log']['NomeEmpresa2'] = (strlen($query['NomeEmpresa']) > 12) ? substr($query['NomeEmpresa'], 0, 12) : $query['NomeEmpresa'];
 				$_SESSION['log']['NomeEmpresa'] = $query['NomeEmpresa'];				
 				$_SESSION['log']['Funcao'] = $query['Funcao'];
 				#$_SESSION['log']['Permissao'] = $query['Permissao'];
