@@ -369,6 +369,22 @@
 																</div>
 																-->
 																<div class="col-md-2">
+																	<label for="idApp_Cliente">Cliente *</label>
+																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
+																			id="idApp_Cliente" autofocus name="idApp_Cliente">
+																		<option value="">-- Sel. um Cliente --</option>
+																		<?php
+																		foreach ($select['idApp_Cliente'] as $key => $row) {
+																			if ($orcatrata['idApp_Cliente'] == $key) {
+																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																			} else {
+																				echo '<option value="' . $key . '">' . $row . '</option>';
+																			}
+																		}
+																		?>
+																	</select>
+																</div>
+																<div class="col-md-2">
 																	<label for="TipoReceita">Tipo de Receita</label>
 																	<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
 																			id="TipoReceita" name="TipoReceita">
@@ -385,22 +401,7 @@
 																		?>
 																	</select>
 																</div>
-																<div class="col-md-3">
-																	<label for="idApp_Cliente">Cliente *</label>
-																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
-																			id="idApp_Cliente" autofocus name="idApp_Cliente">
-																		<option value="">-- Sel. um Cliente --</option>
-																		<?php
-																		foreach ($select['idApp_Cliente'] as $key => $row) {
-																			if ($orcatrata['idApp_Cliente'] == $key) {
-																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																			} else {
-																				echo '<option value="' . $key . '">' . $row . '</option>';
-																			}
-																		}
-																		?>
-																	</select>
-																</div>
+
 																<div class="col-md-2">
 																	<label for="Receitas">Receita</label><br>
 																	<input type="text" class="form-control" maxlength="200"
