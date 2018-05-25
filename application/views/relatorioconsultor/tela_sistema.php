@@ -61,11 +61,12 @@
 								<div class="row">														
 									<div class="col-md-1"></div>
 									<div class="col-md-10 text-center">
+										<!--
 										<div class="form-group">
 											<div class="text-center t">
 												<h3><?php echo '<small></small><strong> PagSeguro </strong><small></small>'  ?></h3>
 											</div>		
-											<!--
+											
 											<strong>R$ 50,00</strong><br>(2 Usuários/ loja)
 											
 											<form action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post" onsubmit="PagSeguroLightbox(this); return false;">
@@ -86,7 +87,7 @@
 											<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
 											
 											<br>
-											-->
+											
 											<strong>R$ 15,00</strong><br>
 											
 											<form action="https://pagseguro.uol.com.br/checkout/v2/cart.html?action=add" method="post" onsubmit="PagSeguroLightbox(this); return false;">
@@ -97,12 +98,13 @@
 											<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
 												
 										</div>
+										-->
 										<div class="form-group">
 											<div class="row">																				
 												<div class="text-center t">
 													<h3><?php echo '<small></small><strong> Depósito em Conta </strong><small></small>'  ?></h3>
 												</div>													
-												<a class="btn btn-md btn-danger active" > 
+												<a class="btn btn-md btn-danger btn-block" > 
 													<strong>Banco do Brasil</strong><br><strong>Ag.XXXX</strong><br><strong>Cc.:XXXX</strong>
 													<br><strong>Fav.:Marcio R. Dias</strong><br><strong>Cpf.:015146927-08</strong>
 												</a>
