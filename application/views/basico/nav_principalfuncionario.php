@@ -8,7 +8,7 @@
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
 						<span class="sr-only">MENU</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand"> <?php echo $_SESSION['log']['NomeEmpresa2']; ?></a>
+					<a class="navbar-brand" href="<?php echo base_url() ?>acessofuncionario/index"> <?php echo $_SESSION['log']['NomeEmpresa2']; ?> / <?php echo $_SESSION['log']['Nome2']; ?></a>
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar1">
 
@@ -27,8 +27,9 @@
 							</form>
 						</li>
 						-->
+						<!--
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
-							<!--
+							
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>agenda">
 									<button type="button" class="btn btn-md btn-warning ">
@@ -37,6 +38,7 @@
 								</a>
 							</div>
 							-->
+							<!--
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Nome2']; ?> <span class="caret"></span>
@@ -44,7 +46,7 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url() ?>acessofuncionario/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['Nome2']; ?></a></li>
 									<li role="separator" class="divider"></li>
-									<!--
+									
 									<li><a href="<?php echo base_url(); ?>agendafuncionario"><span class="glyphicon glyphicon-calendar"></span> Agendas</a></li>
 									<li role="separator" class="divider"></li>
 									
@@ -56,10 +58,11 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorio/empresaassociado"><span class="glyphicon glyphicon-pencil"></span> Cad - Associados</a></li>
 									<li role="separator" class="divider"></li>
-									-->
+									
 									<li><a href="<?php echo base_url(); ?>loginfuncionario/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
 								</ul>
 							</div>
+							-->
 							<!--
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown">
@@ -86,10 +89,10 @@
 									<li><a href="<?php echo base_url() ?>relatorio/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
 								</ul>
 							</div>
-							-->
+							
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						
+						-->
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>relatoriofuncionario/consultores">
@@ -161,16 +164,8 @@
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>						
-						<!--
-						<li class="btn-toolbar navbar-form navbar-right" role="toolbar" aria-label="...">
 
-							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url(); ?>relatorio/sistema">
-									<button type="button" class="btn btn-md btn-primary ">
-										<span class="glyphicon glyphicon-cog"></span> Indicar
-									</button>
-								</a>
-							</div>
+						<li class="btn-toolbar navbar-form navbar-right" role="toolbar" aria-label="...">
 
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>login/sair">
@@ -182,7 +177,7 @@
 
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						-->
+
 					</ul>
 
 				</div>
