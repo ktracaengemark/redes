@@ -92,19 +92,22 @@ class Loginconsultor_model extends CI_Model {
 				return 2;
 			}
 			else   
-				if ($query[0]['Nivel'] != 3) {
-					if ($query[0]['Nivel'] != 4) {
-					return 3;
-					}
-				}											
+				if ($query[0]['Empresa'] != 2) {
+					return 4;
+				}
 				else   
-					if ($query[0]['Empresa'] != 2) {
-						return 4;
-					}
+					if ($query[0]['Nivel'] != 3) {
+						if ($query[0]['Nivel'] != 4) {
+						return 3;
+						}
+					}											
+				
 					else 
 					return FALSE;			
         }
 
+		/* !!!!  Ainda não sei porque, mas se o nível do consultor for 4, ele consegue furar a barreira da empresa nas outras redes!!!!!*/
+		
         #$query = $this->db->get_where('App_Consultor', $data);
         /*
           echo $this->db->last_query();
@@ -115,7 +118,7 @@ class Loginconsultor_model extends CI_Model {
          */
 
     }
-	
+
 	public function check_nomeempresa($data) {
 
         $query = $this->db->query('SELECT * FROM App_Consultor WHERE NomeEmpresa = "' . $data . '"');

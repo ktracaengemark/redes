@@ -552,7 +552,10 @@ class Loginfuncionario extends CI_Controller {
             return FALSE;
         } else if ($this->Loginfuncionario_model->check_usuario($data) == 3) {
             $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> Acesso Errado! Entre pelo Acesso Correto!');
-            return FALSE;		
+            return FALSE;
+        } else if ($this->Loginfuncionario_model->check_usuario($data) == 4) {
+            $this->form_validation->set_message('valid_usuario', '<strong>%s</strong> Rede Errada! Entre pela Rede Correta!');
+            return FALSE;			
 		} else {
             return TRUE;
         }

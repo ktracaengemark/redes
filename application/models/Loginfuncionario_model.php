@@ -92,11 +92,15 @@ class Loginfuncionario_model extends CI_Model {
                 return 2;
             }
 			else  
-                if ($query[0]['Nivel'] != 6) {
-                return 3;
+                if ($query[0]['Empresa'] != 2) {
+                return 4;
 				}
-				else
-				return FALSE;
+				else  
+					if ($query[0]['Nivel'] != 6) {
+					return 3;
+					}
+					else
+					return FALSE;
         }
 
         #$query = $this->db->get_where('Sis_Usuario', $data);
