@@ -97,8 +97,12 @@ class Loginconsultor_model extends CI_Model {
 					return 3;
 					}
 				}											
-				else 
-				return FALSE;			
+				else   
+					if ($query[0]['Empresa'] != 2) {
+						return 4;
+					}
+					else 
+					return FALSE;			
         }
 
         #$query = $this->db->get_where('App_Consultor', $data);
