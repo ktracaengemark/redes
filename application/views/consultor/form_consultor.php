@@ -69,13 +69,14 @@
 															<input type="text" class="form-control" id="Bairro" maxlength="100" <?php echo $readonly; ?>
 																   name="Email" value="<?php echo $query['Email']; ?>">
 														</div>
+														<!--
 														<div class="col-md-2">
 															<label for="Inativo">Ativo?</label><br>
 															<div class="form-group">
 																<div class="btn-group" data-toggle="buttons">
 																	<?php
 																	foreach ($select['Inativo'] as $key => $row) {
-																		(!$query['Inativo']) ? $query['Inativo'] = 'S' : FALSE;
+																		(!$query['Inativo']) ? $query['Inativo'] = '0' : FALSE;
 
 																		if ($query['Inativo'] == $key) {
 																			echo ''
@@ -96,7 +97,8 @@
 																	?>
 																</div>
 															</div>
-														</div>																					
+														</div>
+														-->
 													</div>
 												</div>
 												<div class="form-group">
