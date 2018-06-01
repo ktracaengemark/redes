@@ -16,13 +16,13 @@
 					<?php echo form_open('relatorioconsultor/despesas', 'role="form"'); ?>
 					
 						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
-							<span class="glyphicon glyphicon-search"></span> Pesquisar
+							<span class="glyphicon glyphicon-search"></span>Pesquise
 						</button>
 						<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
-							<span class="glyphicon glyphicon-filter"></span> Filtros
+							<span class="glyphicon glyphicon-filter"></span>Filtro
 						</button>											
 						<button  class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal-sm">
-							<span class="glyphicon glyphicon-plus"></span> Nova Desp.
+							<span class="glyphicon glyphicon-plus"></span>Despesa
 						</button>	
 					
 					</div>
@@ -60,14 +60,14 @@
 											<div class="form-group col-md-3 text-left">
 												<div class="form-footer">
 													<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
-														<span class="glyphicon glyphicon-search"></span> Pesquisar
+														<span class="glyphicon glyphicon-search"></span> Pesquise
 													</button>
 												</div>
 											</div>
 											<div class="form-group col-md-3 text-left">
 												<div class="form-footer">		
 													<a class="btn btn-danger btn-block " href="<?php echo base_url() ?>despesascons/cadastrar" role="button">
-														<span class="glyphicon glyphicon-plus"></span> Nova Desp.
+														<span class="glyphicon glyphicon-plus"></span> Despesa
 													</a>
 												</div>
 											</div>	
