@@ -22,15 +22,50 @@
 						<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
 							<span class="glyphicon glyphicon-filter"></span> Filtros
 						</button>											
-						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>orcatratacons/cadastrar2" role="button"> 
-							<span class="glyphicon glyphicon-plus"></span> Novo Orçam.
-						</a>					
+						<button  class="btn btn-sm btn-danger" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal-sm">
+							<span class="glyphicon glyphicon-plus"></span> Nova Rec.
+						</button>					
 										
 					</div>
 					<div class="panel-body">
 						
 						<div class="form-group">
-																						
+							
+							<div class="modal fade bs-excluir-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header bg-danger">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title">Antes de cadastrar uma<br>
+																	Nova Receita, "Pesquise"<br>
+																	as Receitas Cadastradas!</h4>
+										</div>
+										<!--
+										<div class="modal-body">
+											<p>Ao confirmar esta operação todos os dados serão excluídos permanentemente do sistema. 
+												Esta operação é irreversível.</p>
+										</div>
+										-->
+										<div class="modal-footer">
+											<div class="form-group col-md-3 text-left">
+												<div class="form-footer">
+													<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
+														<span class="glyphicon glyphicon-search"></span> Pesquisar
+													</button>
+												</div>
+											</div>
+											<div class="form-group col-md-3 text-left">
+												<div class="form-footer">		
+													<a class="btn btn-danger btn-block" href="<?php echo base_url() ?>orcatratacons/cadastrar2" role="button">
+														<span class="glyphicon glyphicon-plus"></span> Nova Rec.
+													</a>
+												</div>	
+											</div>		
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<div class="modal fade bs-excluir-modal2-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
 								<div class="modal-dialog modal-lg" role="document">
 									<div class="modal-content">
@@ -231,13 +266,17 @@
 								</div>
 							</div>																				
 						</div>
+						
 						</form>
 
 						<?php echo (isset($list)) ? $list : FALSE ?>
+						
 					</div>
 
-				</div>				
+				</div>
+				
 			</div>
+			
 		</div>		
 	</div>
 	<div class="col-md-1"></div>	

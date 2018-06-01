@@ -409,7 +409,7 @@ class Orcatratacons extends CI_Controller {
             'ProfissionalOrca',
             'AprovadoOrca',
             'ServicoConcluido',
-            #'QuitadoOrca',
+            'QuitadoOrca',
             'DataConclusao',
             'DataRetorno',
 			'DataQuitado',
@@ -715,7 +715,7 @@ class Orcatratacons extends CI_Controller {
                 $data['msg'] = '?m=1';
 
                 #redirect(base_url() . 'orcatrata2/listar/' . $data['msg']);
-				redirect(base_url() . 'relatorioconsultor/orcamento/' . $data['msg']);
+				redirect(base_url() . 'relatorioconsultor/receitas/' . $data['msg']);
                 exit();
             }
         }
@@ -1751,7 +1751,7 @@ class Orcatratacons extends CI_Controller {
                 $data['msg'] = '?m=1';
 
                 #redirect(base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
-				redirect(base_url() . 'relatorioconsultor/orcamento/' . $data['msg']);
+				redirect(base_url() . 'relatorioconsultor/receitas/' . $data['msg']);
 
 				exit();
             }
@@ -1799,7 +1799,7 @@ class Orcatratacons extends CI_Controller {
                 $data['msg'] = '?m=1';
 
 				#redirect(base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
-				redirect(base_url() . 'relatorioconsultor/orcamento/' . $data['msg']);
+				redirect(base_url() . 'relatorioconsultor/receitas/' . $data['msg']);
                 exit();
             //}
         //}

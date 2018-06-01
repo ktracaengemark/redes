@@ -19,7 +19,7 @@
                         <th class="active">Telefone</th>
 						<!--<th class="active">Telefone2</th>
 						<th class="active">Telefone3</th>-->
-						<th class="active">Nascimento</th>
+						<th class="active">Aniv.</th>
                         <!--<th class="active">Endereço</th>
                         <th class="active">Bairro</th>
                         <th class="active">Município</th>

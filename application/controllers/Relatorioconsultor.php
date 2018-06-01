@@ -260,7 +260,7 @@ class Relatorioconsultor extends CI_Controller {
         */
 
 
-        $data['titulo'] = 'Vendas & Receitas';
+        $data['titulo'] = 'Receitas & Pagamentos';
 
         #run form validation
         if ($this->form_validation->run() !== FALSE) {
@@ -734,7 +734,7 @@ class Relatorioconsultor extends CI_Controller {
 
 		$data['select']['TipoDespesa'] = $this->Relatorioconsultor_model->select_tipodespesa();
 
-        $data['titulo'] = 'Relatório de Despesas & Saídas';
+        $data['titulo'] = 'Despesas & Pagamentos';
 
         #run form validation
         if ($this->form_validation->run() !== FALSE) {
