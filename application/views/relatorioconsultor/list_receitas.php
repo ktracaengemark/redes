@@ -41,15 +41,16 @@
                 <thead>
                     <tr>
                         <!--<th class="active">Parc. Quit.?</th>-->
-						<th class="active">Parc.</th>
-						<th class="active">Data do Venc.</th>
-                        <th class="active">Valor À Receber</th>
-						<th class="active">Cliente/ Rec.</th>	
-                        <th class="active">Data do Pagam.</th>
-                        <th class="active">Valor Recebido</th>
-                        <!--<th class="active">Data do Orç.</th>-->
+						<th class="active">Cli/ Rec</th>	
+						<th class="active">Parc</th>
+						<th class="active">Venc</th>
+                        <!--<th class="active">Valor À Receber</th>-->
+						
+                        <th class="active">Pago</th>
+                        <!--<th class="active">Valor Recebido</th>
+                        <th class="active">Data do Orç.</th>
 						<th class="active">Orç.</th>
-						<th class="active">Prod. Entr.?</th>						
+						<th class="active">Prod. Entr.?</th>-->						
                     </tr>
                 </thead>
                 <tbody>
@@ -58,15 +59,16 @@
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratacons/alterar2/' . $row['idApp_OrcaTrataCons'] . '">';
                             #echo '<td>' . $row['QuitadoRecebiveis'] . '</td>';
+							echo '<td>' . $row['idApp_OrcaTrataCons'] . ' / ' . $row['NomeCliente'] . '</td>';
 							echo '<td>' . $row['ParcelaRecebiveis'] . '</td>';
-							echo '<td>' . $row['DataVencimentoRecebiveis'] . '</td>';
-                            echo '<td class="text-left">R$ ' . $row['ValorParcelaRecebiveis'] . '</td>';
-							echo '<td>' . $row['NomeCliente'] . '</td>';
-                            echo '<td>' . $row['DataPagoRecebiveis'] . '</td>';
-                            echo '<td class="text-left">R$ ' . $row['ValorPagoRecebiveis'] . '</td>';
+							echo '<td>' . $row['DataVencimentoRecebiveis'] . ' R$' . $row['ValorParcelaRecebiveis'] . '</td>';
+                            #echo '<td class="text-left">R$ ' . $row['ValorParcelaRecebiveis'] . '</td>';
+							
+                            echo '<td>' . $row['DataPagoRecebiveis'] . ' R$' . $row['ValorPagoRecebiveis'] . '</td>';
+                            #echo '<td class="text-left">R$ ' . $row['ValorPagoRecebiveis'] . '</td>';
                             #echo '<td>' . $row['DataOrca'] . '</td>';
-							echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
-							echo '<td>' . $row['ServicoConcluido'] . '</td>';						
+							#echo '<td>' . $row['idApp_OrcaTrataCons'] . '</td>';
+							#echo '<td>' . $row['ServicoConcluido'] . '</td>';						
                         echo '</tr>';
                     }
                     ?>

@@ -278,6 +278,7 @@
 					</form>
 					
 					<?php echo (isset($list)) ? $list : FALSE ?>
+					
 				</div>
 
 			</div>

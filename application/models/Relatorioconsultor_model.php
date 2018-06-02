@@ -212,7 +212,7 @@ class Relatorioconsultor_model extends CI_Model {
                 PR.ValorPagoRecebiveis,
 				PR.ValorPagoPagaveis,
                 PR.QuitadoRecebiveis,
-				CONCAT(IFNULL(OT.Modalidade,""), " / ", IFNULL(PR.QuitadoRecebiveis,""), " - ", IFNULL(PR.ParcelaRecebiveis,"")) AS ParcelaRecebiveis
+				CONCAT(PR.ParcelaRecebiveis," ", OT.Modalidade,"/",PR.QuitadoRecebiveis) AS ParcelaRecebiveis
             FROM
 
                 App_OrcaTrataCons AS OT
