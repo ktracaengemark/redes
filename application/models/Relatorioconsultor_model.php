@@ -702,6 +702,7 @@ class Relatorioconsultor_model extends CI_Model {
             SELECT
                 DS.idApp_Despesascons,
 				DS.Despesa,
+				CONCAT(IFNULL(TD.TipoDespesa,""), " / ", IFNULL(DS.Despesa,"")) AS Despesa,
 				TD.TipoDespesa,
 				DS.TipoProduto,
                 DS.DataDespesas,
@@ -711,6 +712,7 @@ class Relatorioconsultor_model extends CI_Model {
 				DS.ServicoConcluidoDespesas,
 				DS.QuitadoDespesas,
                 PP.ParcelaPagaveis,
+				CONCAT(PP.ParcelaPagaveis," ", DS.ModalidadeDespesas,"/",PP.QuitadoPagaveis) AS ParcelaPagaveis,
                 PP.DataVencimentoPagaveis,
                 PP.ValorParcelaPagaveis,
                 PP.DataPagoPagaveis,
@@ -724,12 +726,8 @@ class Relatorioconsultor_model extends CI_Model {
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				DS.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-				' . $filtro3 . '
-				' . $filtro4 . '
-				(' . $consulta . ') AND
-				(' . $consulta2 . ') 
-				' . $data['TipoDespesa'] . ' AND
-				(DS.TipoProduto = "D" OR DS.TipoProduto = "E")
+				((' . $filtro4 . ' (' . $consulta . ')) OR (' . $consulta2 . ')) 
+				' . $data['TipoDespesa'] . ' AND (DS.TipoProduto = "D" OR DS.TipoProduto = "E")
             ORDER BY
 				' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');

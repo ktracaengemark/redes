@@ -41,7 +41,7 @@
                 <thead>
                     <tr>
                         <!--<th class="active">Parc. Quit.?</th>-->
-						<th class="active">Parcela</th>
+						<th class="active">Parc.</th>
 						<th class="active">Data do Venc.</th>
                         <th class="active">Valor À Receber</th>
 						<th class="active">Cliente/ Rec.</th>	

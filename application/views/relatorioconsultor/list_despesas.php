@@ -51,22 +51,22 @@
 
                 <thead>
                     <tr>
-                        <th class="active">Tipo</th>
-						<th class="active">Id Despesa</th>
+                        <!--<th class="active">Tipo</th>
+						<th class="active">Nº</th>-->
 						<th class="active">Despesa</th>
-						<th class="active">Tipo de Desp.</th>
+						<!--<th class="active">Tipo de Desp.</th>
                         <th class="active">Data da Despesa</th>
-                        <!--<th class="active">Data Entrada</th>
+                        <th class="active">Data Entrada</th>
                         <th class="active">Valor Entrada</th>
 						<th class="active">Desp. Aprov.?</th>
-						<th class="active">Desp. Concl.?</th>-->
-						<th class="active">Desp. Concl.</th>						
-                        <th class="active">Parcela</th>
-                        <th class="active">Data do Venc.</th>
-                        <th class="active">Valor À Pagar</th>
-                        <th class="active">Data do Pagam.</th>
-                        <th class="active">Valor Pago</th>
-                        <th class="active">Parc. Quit.</th>
+						<th class="active">Desp. Concl.?</th>
+						<th class="active">Desp. Concl.</th>-->						
+                        <th class="active">Parc</th>
+                        <th class="active">Venc</th>
+                        <!--<th class="active">Valor À Pagar</th>-->
+                        <th class="active">Pago</th>
+                        <!--<th class="active">Valor Pago</th>
+                        <th class="active">Parc. Quit.</th>-->
                     </tr>
                 </thead>
 
@@ -77,22 +77,22 @@
 
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'despesascons/alterar/' . $row['idApp_Despesascons'] . '">';
-                            echo '<td>' . $row['TipoProduto'] . '</td>';
-							echo '<td>' . $row['idApp_Despesascons'] . '</td>';							
-							echo '<td>' . $row['Despesa'] . '</td>';
-							echo '<td>' . $row['TipoDespesa'] . '</td>';
-                            echo '<td>' . $row['DataDespesas'] . '</td>';
+                            #echo '<td>' . $row['TipoProduto'] . '</td>';
+							#echo '<td>' . $row['idApp_Despesascons'] . '</td>';							
+							echo '<td>' . $row['idApp_Despesascons'] . ' / ' . $row['Despesa'] . '</td>';
+							#echo '<td>' . $row['TipoDespesa'] . '</td>';
+                            #echo '<td>' . $row['DataDespesas'] . '</td>';
                             #echo '<td>' . $row['DataEntradaOrca'] . '</td>';
                             #echo '<td class="text-right">R$ ' . $row['ValorEntradaOrca'] . '</td>';
 							#echo '<td>' . $row['AprovadoDespesas'] . '</td>';
 							#echo '<td>' . $row['ServicoConcluidoDespesas'] . '</td>';
-							echo '<td>' . $row['ServicoConcluidoDespesas'] . '</td>';							
+							#echo '<td>' . $row['ServicoConcluidoDespesas'] . '</td>';							
                             echo '<td>' . $row['ParcelaPagaveis'] . '</td>';
-                            echo '<td>' . $row['DataVencimentoPagaveis'] . '</td>';
-                            echo '<td class="text-left">R$ ' . $row['ValorParcelaPagaveis'] . '</td>';
-                            echo '<td>' . $row['DataPagoPagaveis'] . '</td>';
-                            echo '<td class="text-left">R$ ' . $row['ValorPagoPagaveis'] . '</td>';
-                            echo '<td>' . $row['QuitadoPagaveis'] . '</td>';
+                            echo '<td>' . $row['DataVencimentoPagaveis'] . ' R$' . $row['ValorParcelaPagaveis'] . '</td>';
+                            #echo '<td class="text-left">R$ ' . $row['ValorParcelaPagaveis'] . '</td>';
+                            echo '<td>' . $row['DataPagoPagaveis'] . ' R$' . $row['ValorPagoPagaveis'] . '</td>';
+                            #echo '<td class="text-left">R$ ' . $row['ValorPagoPagaveis'] . '</td>';
+                            #echo '<td>' . $row['QuitadoPagaveis'] . '</td>';
                         echo '</tr>';
                     }
                     ?>
