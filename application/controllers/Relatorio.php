@@ -817,6 +817,9 @@ class Relatorio extends CI_Controller {
             'Ano',
         ), TRUE));
 
+		if (!$data['query']['Ano'])
+           $data['query']['Ano'] = '2018';		
+		
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
         $this->form_validation->set_rules('Ano', 'Ano', 'required|trim|integer|greater_than[1900]');

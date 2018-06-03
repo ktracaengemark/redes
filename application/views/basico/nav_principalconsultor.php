@@ -83,8 +83,8 @@
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/receitas"><span class="glyphicon glyphicon-pencil"></span> Receitas</a></li>							
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesas"><span class="glyphicon glyphicon-pencil"></span> Despesas</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
+									
+									
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>consumocons/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
 									<li role="separator" class="divider"></li>
@@ -96,7 +96,7 @@
 						</li>
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
+								<button type="button" class="btn btn-md btn-warning  dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
@@ -108,7 +108,9 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosconsultor"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
 									<li role="separator" class="divider"></li>
-									<!--<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
+									<!--<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/consumo"><span class="glyphicon glyphicon-list"></span> Consumos</a></li>
 									<li role="separator" class="divider"></li>
