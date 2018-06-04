@@ -143,7 +143,7 @@ class Despesascons extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Despesascons ####
-        #$this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
+        $this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
         #$this->form_validation->set_rules('Despesa', 'Despesa', 'required|trim');
         #$this->form_validation->set_rules('TipoDespesa', 'Tipo de Despesa', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalDespesas', 'Profissional', 'required|trim');
@@ -511,7 +511,7 @@ class Despesascons extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Despesascons ####
-        #$this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'required|trim|valid_date');
+        $this->form_validation->set_rules('DataDespesas', 'Data da Despesa', 'trim|valid_date');
         #$this->form_validation->set_rules('Despesa', 'Despesa', 'required|trim');
         #$this->form_validation->set_rules('TipoDespesa', 'Tipo de Despesa', 'required|trim');
         #$this->form_validation->set_rules('ProfissionalDespesas', 'Profissional', 'required|trim');

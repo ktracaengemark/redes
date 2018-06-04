@@ -18,7 +18,7 @@
 
 				<h3 class="text-center">Produtos Entregues </h3>
 
-				<table class="table table-bordered">
+				<table class="table table-bordered table-condensed table-striped">
 					<thead>
 						<tr>
 							<!--<th scope="col">Nº</th>-->
@@ -78,7 +78,7 @@
 				
 				<h3 class="text-center">Produtos Devolvidos  </h3>
 
-				<table class="table table-bordered">
+				<table class="table table-bordered table-condensed table-striped">
 					<thead>
 						<tr>
 							<!--<th scope="col">Nº</th>-->
@@ -138,7 +138,7 @@
 				<hr />
 				<h3 class="text-center">Orçamento, Devolução & Forma de Pagam.</h3>
 
-				<table class="table table-bordered">
+				<table class="table table-bordered table-condensed table-striped">
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Orçamento</th>
@@ -153,9 +153,7 @@
 							<td><?php echo number_format($orcatrata['ValorRestanteOrca'], 2, ',', '.') ?></td>
 						</tr>
 					</tbody>
-				</table>
 
-				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Qtd Parc.</th>
@@ -175,15 +173,15 @@
 				<hr />
 				<h3 class="text-center">Parcelas</h3>
 
-				<table class="table table-bordered">
+				<table class="table table-bordered table-condensed table-striped">
 					<thead>
 						<tr>
 							<th class="col-md-2" scope="col">Parcela</th>
-							<th class="col-md-2" scope="col">Valor Parcela</th>
-							<th class="col-md-2" scope="col">Data Venc. Parc</th>
-							<th class="col-md-2" scope="col">Valor Pago</th>
-							<th class="col-md-2" scope="col">Data Pag</th>
-							<th class="col-md-2" scope="col">Quitado?</th>
+							<th class="col-md-2" scope="col">Venc</th>
+							<!--<th class="col-md-2" scope="col">Data Venc. Parc</th>-->
+							<th class="col-md-2" scope="col">Pago</th>
+							<!--<th class="col-md-2" scope="col">Data Pag</th>
+							<th class="col-md-2" scope="col">Quitado?</th>-->
 						</tr>
 					</thead>
 
@@ -195,12 +193,12 @@
 						?>
 
 						<tr>
-							<td><?php echo $parcelasrec[$i]['ParcelaRecebiveis'] ?></td>
-							<td><?php echo number_format($parcelasrec[$i]['ValorParcelaRecebiveis'], 2, ',', '.') ?></td>
-							<td><?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?></td>
-							<td><?php echo number_format($parcelasrec[$i]['ValorPagoRecebiveis'], 2, ',', '.') ?></td>
-							<td><?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?></td>
-							<td><?php echo $this->basico->mascara_palavra_completa($parcelasrec[$i]['QuitadoRecebiveis'], 'NS') ?></td>
+							<td><?php echo $parcelasrec[$i]['ParcelaRecebiveis'] ?> Qt.<?php echo $this->basico->mascara_palavra_completa($parcelasrec[$i]['QuitadoRecebiveis'], 'NS') ?></td>
+							<td><?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?> R$<?php echo number_format($parcelasrec[$i]['ValorParcelaRecebiveis'], 2, ',', '.') ?></td>
+							<!--<td><?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?></td>-->
+							<td><?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?> R$<?php echo number_format($parcelasrec[$i]['ValorPagoRecebiveis'], 2, ',', '.') ?></td>
+							<!--<td><?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?></td>
+							<td><?php echo $this->basico->mascara_palavra_completa($parcelasrec[$i]['QuitadoRecebiveis'], 'NS') ?></td>-->
 						</tr>
 
 						<?php
@@ -213,7 +211,7 @@
 				<hr />
 				<h3 class="text-center">Status do Orçamento</h3>
 				
-				<table class="table table-bordered">
+				<table class="table table-bordered table-condensed table-striped">
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Aprovado?</th>
@@ -228,9 +226,7 @@
 							<td><?php echo $this->basico->mascara_palavra_completa($orcatrata['QuitadoOrca'], 'NS') ?></td>
 						</tr>
 					</tbody>
-				</table>
 
-				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="col-md-4" scope="col">Data do Orçamento</th>
@@ -247,7 +243,7 @@
 					</tbody>
 				</table>
 
-				<table class="table table-bordered">
+				<table class="table table-bordered table-condensed table-striped">
 					<thead>
 						<tr>
 							<th class="col-md-8" scope="col">Observações</th>
