@@ -218,7 +218,7 @@
                                 </button>
                             </div>
 							<div class="col-md-4 text-center">											
-									<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>tarefa/cadastrar" role="button"> 
+									<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>tarefacons/cadastrar" role="button"> 
 										<span class="glyphicon glyphicon-plus"></span> Nova Tarefa
 									</a>
 							</div>		

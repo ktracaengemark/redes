@@ -38,10 +38,10 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'tarefa/alterar/' . $row['idApp_Tarefa'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'tarefacons/alterar/' . $row['idApp_Tarefacons'] . '">';
                            
 							#echo '<td>' . $row['NomeProfissional'] . '</td>';
-							echo '<td>' . $row['idApp_Tarefa'] . '</td>';
+							echo '<td>' . $row['idApp_Tarefacons'] . '</td>';
 							echo '<td>' . $row['ObsTarefa'] . '</td>'; //  = Tarefa
 							echo '<td>' . $row['DataTarefa'] . '</td>';
 							echo '<td>' . $row['DataPrazoTarefa'] . '</td>';

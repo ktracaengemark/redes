@@ -7,11 +7,6 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10 ">
 
-
-
-
-
-
 					<nav class="navbar navbar-inverse">
 					  <div class="container-fluid">
 						<div class="navbar-header">
@@ -852,13 +847,6 @@
 																				</div>
 																			</div>
 																		</div>
-																		<!--
-																		<div class="col-md-4">
-																			<label for="ObsOrca">OBS:</label>
-																			<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
-																					  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
-																		</div>
-																		-->
 																		<div class="col-md-3">
 																			<label for="DataOrca">Dt. do Orçam.:</label>
 																			<div class="input-group <?php echo $datepicker; ?>">
@@ -880,7 +868,12 @@
 																					   name="DataRetorno" value="<?php echo $orcatrata['DataRetorno']; ?>">
 																				
 																			</div>
-																		</div>																		
+																		</div>
+																		<div class="col-md-4">
+																			<label for="ObsOrca">OBS:</label>
+																			<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
+																					  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
+																		</div>
 																	</div>
 																</div>												
 															</div>

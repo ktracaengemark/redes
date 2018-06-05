@@ -3767,7 +3767,7 @@ class Relatorioconsultor extends CI_Controller {
 			'TF.DataPrazoTarefa' => 'Prazo da Tarefa',
 			'TF.DataTarefa' => 'Data do Tarefa',
 			#'TF.ProfissionalTarefa' => 'Responsável',
-			'TF.idApp_Tarefa' => 'Número do Tarefas',
+			'TF.idApp_Tarefacons' => 'Número do Tarefas',
 			'TF.ObsTarefa' => 'Tarefa',
 			'TF.Rotina' => 'Rotina',
 			'TF.Prioridade' => 'Prioridade',
@@ -3780,8 +3780,8 @@ class Relatorioconsultor extends CI_Controller {
 			'ASC' => 'Crescente',
         );
 
-        $data['select']['NomeProfissional'] = $this->Relatorioconsultor_model->select_profissional3();
-		$data['select']['Profissional'] = $this->Relatorioconsultor_model->select_profissional2();
+        #$data['select']['NomeProfissional'] = $this->Relatorioconsultor_model->select_profissional3();
+		#$data['select']['Profissional'] = $this->Relatorioconsultor_model->select_profissional2();
 		$data['select']['ObsTarefa'] = $this->Relatorioconsultor_model->select_obstarefa();
 		$data['select']['Procedtarefa'] = $this->Relatorioconsultor_model->select_procedtarefa();
 

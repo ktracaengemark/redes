@@ -163,7 +163,7 @@
 										<?php } ?>
 										
 										<div class="form-group" id="22div<?php echo $i ?>">
-											<div class="panel panel-danger">
+											<div class="panel panel-warning">
 												<div class="panel-heading">
 													<div class="row">
 														<div class="col-md-1">
@@ -254,7 +254,7 @@
 									?>
 									</div>
 									
-									<div class="panel panel-danger">
+									<div class="panel panel-warning">
 										<div class="panel-heading">										
 											<div class="form-group">	
 												<div class="row">	

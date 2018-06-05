@@ -27,9 +27,9 @@
 							</form>
 						</li>
 						-->
-						<!--
+						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
-							
+							<!--
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>agenda">
 									<button type="button" class="btn btn-md btn-warning ">
@@ -38,29 +38,23 @@
 								</a>
 							</div>
 							-->
-							<!--
 							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['NomeConsultor2']; ?> <span class="caret"></span>
+								<button type="button" class="btn btn-md btn-info dropdown-toggle" data-toggle="dropdown">
+									<span class="glyphicon glyphicon-book"></span> Agenda<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url() ?>acessoconsultor/index"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['log']['NomeConsultor2']; ?></a></li>
+									<li><a href="<?php echo base_url() ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Calendário</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Tarefas</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/empresaassociado"><span class="glyphicon glyphicon-pencil"></span> Cad - Associados</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url(); ?>loginconsultor/sair"><span class="glyphicon glyphicon-log-out"></span> Sair</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
+									<!--<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>-->
 								</ul>
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						-->
+						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" aria-label="...">
-								<!--<a href="<?php echo base_url(); ?>relatorioconsultor/clientesusuario">-->
 								<a href="<?php echo base_url(); ?>relatorioconsultor/clientes">
 									<button type="button" class="btn btn-md btn-success ">
 										<span class="glyphicon glyphicon-user"></span> Clientes
@@ -72,23 +66,17 @@
 						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown">
+								<button type="button" class="btn btn-md btn-warning dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-usd"></span> Transações <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">							
-									<!--<li><a href="<?php echo base_url() ?>orcatratacons/cadastrar2"><span class="glyphicon glyphicon-usd"></span> Receitas</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>despesascons/cadastrar"><span class="glyphicon glyphicon-usd"></span> Despesas</a></li>
-									<li role="separator" class="divider"></li>-->
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/receitas"><span class="glyphicon glyphicon-pencil"></span> Receitas</a></li>							
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesas"><span class="glyphicon glyphicon-pencil"></span> Despesas</a></li>
-									
-									
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>consumocons/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Consumos</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorio/admin"><span class="glyphicon glyphicon-pencil"></span> Outros</a></li>
 									<li role="separator" class="divider"></li>-->
 								</ul>
 							</div>
@@ -96,7 +84,7 @@
 						</li>
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-warning  dropdown-toggle" data-toggle="dropdown">
+								<button type="button" class="btn btn-md btn-primary  dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
@@ -107,8 +95,6 @@
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamentorede"><span class="glyphicon glyphicon-list"></span> Orçam. Rede</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosconsultor"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/balanco"><span class="glyphicon glyphicon-usd"></span> Balanço</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>
 									<li role="separator" class="divider"></li>

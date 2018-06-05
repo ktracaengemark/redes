@@ -43,7 +43,7 @@
 					</li>
 					<li class="btn-toolbar navbar-form navbar-left" role="toolbar" aria-label="...">
 						<div class="btn-group">
-							<button type="button" class="btn btn-md btn-warning dropdown-toggle" data-toggle="dropdown">
+							<button type="button" class="btn btn-md btn-primary dropdown-toggle" data-toggle="dropdown">
 								<span class="glyphicon glyphicon-list"></span> Relatórios <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" role="menu">

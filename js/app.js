@@ -619,7 +619,7 @@ function calculaParcelasPagaveis() {
 
         $(".input_fields_parcelas2").append('\
 			<div class="form-group">\
-				<div class="panel panel-danger">\
+				<div class="panel panel-warning">\
 					<div class="panel-heading">\
 						<div class="row">\
 							<div class="col-md-1">\
@@ -745,7 +745,7 @@ function calculaParcelasPagaveisMensais() {
 
         $(".input_fields_parcelas2").append('\
 			<div class="form-group">\
-				<div class="panel panel-danger">\
+				<div class="panel panel-warning">\
 					<div class="panel-heading">\
 						<div class="row">\
 							<div class="col-md-1">\
@@ -2230,7 +2230,7 @@ function adicionaParcelasPagaveis() {
 
 	$(".input_fields_wrap22").append('\
 		<div class="form-group" id="22div'+pc+'">\
-			<div class="panel panel-danger">\
+			<div class="panel panel-warning">\
 				<div class="panel-heading">\
 					<div class="row">\
 						<div class="col-md-1">\
@@ -3057,7 +3057,7 @@ $(document).ready(function () {
 
 		$(".input_fields_wrap6").append('\
             <div class="form-group" id="6div'+pc+'">\
-                <div class="panel panel-danger">\
+                <div class="panel panel-success">\
                     <div class="panel-heading">\
                         <div class="row">\
                             <div class="col-md-1">\
