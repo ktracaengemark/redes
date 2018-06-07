@@ -90,7 +90,7 @@ class Loginconsultor extends CI_Controller {
               exit();
              */
             $query = $this->Loginconsultor_model->check_dados_usuario($senha, $usuario, TRUE);
-            #$_SESSION['log']['Agenda'] = $this->Loginconsultor_model->get_agenda_padrao($query['idApp_Consultor']);
+            $_SESSION['log']['Agenda'] = $this->Loginconsultor_model->get_agenda_consultor($query['idApp_Consultor']);
 
             #echo "<pre>".print_r($query)."</pre>";
             #exit();

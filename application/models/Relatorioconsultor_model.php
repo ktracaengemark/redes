@@ -1220,10 +1220,10 @@ class Relatorioconsultor_model extends CI_Model {
     public function list_balanco($data) {
 
         ####################################################################
-        #SOMATÓRIO DAS RECEITASPago DO ANO
+        #SOMATÓRIO DAS RECEITAS Pagas DO ANO
         $somareceitas='';
         for ($i=1;$i<=12;$i++){
-            $somareceitas .= 'SUM(IF(PR.DataPagoRecebiveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
+            $somareceitas .= 'SUM(IF(PR.DataVencimentoRecebiveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
                 LAST_DAY("' . $data['Ano'] . '-' . $i . '-1"), PR.ValorPagoRecebiveis, 0)) AS M' . $i . ', ';
         }
         $somareceitas = substr($somareceitas, 0 ,-2);
@@ -1242,15 +1242,15 @@ class Relatorioconsultor_model extends CI_Model {
 				OT.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
 
 				OT.TipoRD = "R" AND
-            	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
+            	YEAR(PR.DataVencimentoRecebiveis) = ' . $data['Ano']
         );
 
         #$query['RecPago'] = $query['RecPago']->result_array();
         $query['RecPago'] = $query['RecPago']->result();
-        $query['RecPago'][0]->Balanco = 'RecPago';
+        $query['RecPago'][0]->Balanco = 'Recebido';
 
         ####################################################################
-        #SOMATÓRIO DAS RECEITASVenc. DO ANO
+        #SOMATÓRIO DAS RECEITAS Venc. DO ANO
         $somareceitasvenc='';
         for ($i=1;$i<=12;$i++){
             $somareceitasvenc .= 'SUM(IF(PR.DataVencimentoRecebiveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
@@ -1277,7 +1277,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         #$query['RecVenc'] = $query['RecVenc']->result_array();
         $query['RecVenc'] = $query['RecVenc']->result();
-        $query['RecVenc'][0]->Balancovenc = 'RecVenc';
+        $query['RecVenc'][0]->Balancovenc = 'ÀReceber';
 
 
 		####################################################################
@@ -1310,10 +1310,10 @@ class Relatorioconsultor_model extends CI_Model {
 
 
         ####################################################################
-        #SOMATÓRIO DAS DESPESAS DO ANO
+        #SOMATÓRIO DAS DESPESAS Pagas DO ANO
         $somadespesas='';
         for ($i=1;$i<=12;$i++){
-            $somadespesas .= 'SUM(IF(PP.DataPagoPagaveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
+            $somadespesas .= 'SUM(IF(PP.DataVencimentoPagaveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
                 LAST_DAY("' . $data['Ano'] . '-' . $i . '-1"), PP.ValorPagoPagaveis, 0)) AS M' . $i . ', ';
         }
         $somadespesas = substr($somadespesas, 0 ,-2);
@@ -1331,15 +1331,15 @@ class Relatorioconsultor_model extends CI_Model {
                 DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				DS.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
                 (DS.TipoProduto = "D") AND
-            	YEAR(PP.DataPagoPagaveis) = ' . $data['Ano']
+            	YEAR(PP.DataVencimentoPagaveis) = ' . $data['Ano']
         );
 
         #$query['DesPago'] = $query['DesPago']->result_array();
         $query['DesPago'] = $query['DesPago']->result();
-        $query['DesPago'][0]->Balanco = 'DesPago';
+        $query['DesPago'][0]->Balanco = 'Pago';
 
         ####################################################################
-        #SOMATÓRIO DAS DESPESASVenc DO ANO
+        #SOMATÓRIO DAS DESPESAS Venc DO ANO
         $somadespesasvenc='';
         for ($i=1;$i<=12;$i++){
             $somadespesasvenc .= 'SUM(IF(PP.DataVencimentoPagaveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
@@ -1365,7 +1365,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         #$query['DesVenc'] = $query['DesVenc']->result_array();
         $query['DesVenc'] = $query['DesVenc']->result();
-        $query['DesVenc'][0]->Balancovenc = 'DesVenc';
+        $query['DesVenc'][0]->Balancovenc = 'À Papar';
 		
         /*
         echo $this->db->last_query();
@@ -1380,9 +1380,9 @@ class Relatorioconsultor_model extends CI_Model {
         $query['TotalVenc'] = new stdClass();
         $query['TotalGeralvenc'] = new stdClass();		
 
-        $query['TotalPago']->Balanco = 'TotalPago';
+        $query['TotalPago']->Balanco = 'Bal.Real';
         $query['TotalGeral']->RecPago = $query['TotalGeral']->Devolucoes = $query['TotalGeral']->DesPago = $query['TotalGeral']->BalancoGeral = 0;
-        $query['TotalVenc']->Balancovenc = 'TotalVenc';
+        $query['TotalVenc']->Balancovenc = 'Bal.Esp.';
         $query['TotalGeralvenc']->RecVenc = $query['TotalGeralvenc']->DesVenc = $query['TotalGeralvenc']->BalancoGeralvenc = 0;
 		
         for ($i=1;$i<=12;$i++) {
@@ -5497,7 +5497,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
 				P.idApp_Consultor,
-				CONCAT(IFNULL(F.Abrev,""), " --- ", IFNULL(P.Nome,"")) AS NomeUsuario
+				CONCAT(IFNULL(F.Abrev,""), " --- ", IFNULL(P.NomeConsultor,"")) AS NomeUsuario
             FROM
                 App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao

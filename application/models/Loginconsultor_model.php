@@ -259,7 +259,7 @@ class Loginconsultor_model extends CI_Model {
 
     }
 
-    public function get_agenda_padrao($data) {
+    public function get_agenda_consultor($data) {
 
         $query = $this->db->query('SELECT idApp_Agenda FROM App_Agenda WHERE idApp_Consultor = ' . $data . ' ORDER BY idApp_Agenda ASC LIMIT 1');
         $query = $query->result_array();

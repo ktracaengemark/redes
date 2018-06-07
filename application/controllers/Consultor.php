@@ -162,9 +162,9 @@ class Consultor extends CI_Controller {
                 $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_Consultor'], FALSE);
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consultor', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
-				/*
+
 				$data['agenda'] = array(
-                    'NomeAgenda' => 'Padrão',
+                    'NomeAgenda' => 'Consultor',
 					'Empresa' => $_SESSION['log']['Empresa'],
                     'idApp_Consultor' => $data['idApp_Consultor']
                 );
@@ -173,7 +173,7 @@ class Consultor extends CI_Controller {
                 $data['idApp_Agenda'] = $this->Consultor_model->set_agenda($data['agenda']);
 				$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['agenda'], $data['campos'], $data['idApp_Consultor']);
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Agenda', 'CREATE', $data['auditoriaitem'], $data['idApp_Consultor']);
-				*/
+
 				redirect(base_url() . 'consultor/prontuario/' . $data['idApp_Consultor'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/consultor/' .  $data['msg']);
                 exit();
