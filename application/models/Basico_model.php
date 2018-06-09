@@ -1417,6 +1417,54 @@ class Basico_model extends CI_Model {
         return $array;
     }
 
+	public function select_agendaconsultor($data = FALSE) {
+
+        $q = ($_SESSION['log']['Permissao'] > 2) ?
+            ' U.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
+
+        if ($data === TRUE) {
+            $array = $this->db->query('
+                SELECT
+                    A.idApp_Agenda,
+                    A.idApp_Consultor,
+					U.NomeConsultor
+				FROM
+                    App_Agenda AS A
+						LEFT JOIN App_Consultor AS U ON U.idApp_Consultor = A.idApp_Consultor
+				WHERE
+                    ' . $q . '
+					A.Empresa = ' . $_SESSION['log']['Empresa'] . '
+				ORDER BY
+					U.NomeConsultor ASC
+			');
+
+        } else {
+            $query = $this->db->query('
+				SELECT
+                    A.idApp_Agenda,
+                    A.idApp_Consultor,
+					CONCAT(IFNULL(F.Abrev,""), " --- ", IFNULL(U.NomeConsultor,"")) AS NomeConsultor
+
+				FROM
+                    App_Agenda AS A
+						LEFT JOIN App_Consultor AS U ON U.idApp_Consultor = A.idApp_Consultor
+						LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = U.Funcao
+				WHERE
+                    ' . $q . '
+					A.Empresa = ' . $_SESSION['log']['Empresa'] . '
+				ORDER BY
+					F.Abrev ASC
+			');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idApp_Agenda] = $row->NomeConsultor;
+            }
+        }
+
+        return $array;
+    }
+
 	public function select_tipoprofissional($data = FALSE) {
 
         if ($data === TRUE) {

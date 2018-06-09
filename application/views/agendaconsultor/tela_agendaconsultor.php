@@ -11,7 +11,7 @@
 		<div class="panel-body">
 			<div class="form-group">
 				<div class="row">
-					<div id="calendar" class="col-md-12"></div>
+					<div id="calendarconsultor" class="col-md-12"></div>
 				</div>
 			</div>
 		</div>
@@ -26,18 +26,19 @@
 					<div class="form-group">
 						<div class="row">
 							<div class="col-md-12 col-lg-12">
-								<label for="">Agendamento:</label>
+								<!--<label for="">Agendamento:</label>-->
 								<div class="form-group">
 									<div class="row">
-										<button type="button" id="MarcarConsulta" onclick="redirecionar(2)" class="btn btn-primary"> Com Cliente
+										<button type="button" id="MarcarConsulta" onclick="redirecionar(2)" class="btn btn-primary"> Agendamento
 										</button>
 									</div>
+									<!--
 									<br>
 									<div class="row">
 										<button type="button" id="AgendarEvento" onclick="redirecionar(1)" class="btn btn-info">Outro Evento
 										</button>
 									</div>
-									<!--
+									
 									<br>
 									<div class="row">
 										<button type="button" id="AgendarEvento" onclick="redirecionar2(3)" class="btn btn-danger">Evento Particular
@@ -66,7 +67,7 @@
 					<div class="col-md-12">
 
 						<?php if ($_SESSION['log']['Permissao'] == 1 || $_SESSION['log']['Permissao'] == 2) { ?>
-						<?php echo form_open('agenda', 'role="form"'); ?>
+						<?php echo form_open('agendaconsultor', 'role="form"'); ?>
 							<div class="col-md-12">
 								<label for="Ordenamento">Agenda por Prof.:</label>
 								<div class="form-group">
@@ -107,7 +108,7 @@
 							</div>
 						</div>
 						-->
-						<div id="datepickerinline" class="col-md-12"></div>
+						<div id="datepickerinline2" class="col-md-12"></div>
 
 
 						<!--

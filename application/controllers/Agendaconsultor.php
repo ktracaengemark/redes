@@ -48,7 +48,7 @@ class Agendaconsultor extends CI_Controller {
         #$data['query']['profissional_aniversariantes'] = $this->Agendaconsultor_model->profissional_aniversariantes($_SESSION['log']['id']);
 		#$data['query']['contatoprof_aniversariantes'] = $this->Agendaconsultor_model->contatoprof_aniversariantes($_SESSION['log']['id']);
 		
-		$this->load->view('agenda/tela_agenda', $data);
+		$this->load->view('agendaconsultor/tela_agendaconsultor', $data);
 
         #load footer view
         $this->load->view('basico/footer');
