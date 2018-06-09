@@ -36,16 +36,6 @@
                     </tr>
                     <tr>
                         <?php
-                        echo '<td><b>' . $report['DesVenc'][0]->Balancovenc . '</b></td>';
-                        for($i=1;$i<=12;$i++) {
-							echo '<td class="text-left">' . $report['DesVenc'][0]->{'M'.$i} . '</td>';
-                        }
-                        echo '<td class="text-left">' . $report['TotalGeralvenc']->DesVenc . '</td>';
-                        ?>
-                    </tr>
-					
-					<tr>
-                        <?php
                         echo '<td><b>' . $report['RecPago'][0]->Balanco . '</b></td>';
                         for($i=1;$i<=12;$i++) {
                             echo '<td class="text-left">' . $report['RecPago'][0]->{'M'.$i} . '</td>';
@@ -53,7 +43,17 @@
                         echo '<td class="text-left">' . $report['TotalGeral']->RecPago . '</td>';
                         ?>
                     </tr>
-                    <tr>
+					
+					<tr>
+                        <?php
+                        echo '<td><b>' . $report['DesVenc'][0]->Balancovenc . '</b></td>';
+                        for($i=1;$i<=12;$i++) {
+							echo '<td class="text-left">' . $report['DesVenc'][0]->{'M'.$i} . '</td>';
+                        }
+                        echo '<td class="text-left">' . $report['TotalGeralvenc']->DesVenc . '</td>';
+                        ?>
+                    </tr>
+					<tr>
                         <?php
                         echo '<td><b>' . $report['DesPago'][0]->Balanco . '</b></td>';
                         for($i=1;$i<=12;$i++) {
@@ -62,7 +62,26 @@
                         echo '<td class="text-left">' . $report['TotalGeral']->DesPago . '</td>';
                         ?>
                     </tr>
-
+					<!--
+					<tr>
+                        <?php
+                        echo '<td><b>' . $report['DesVencCalisi'][0]->Balancovenc . '</b></td>';
+                        for($i=1;$i<=12;$i++) {
+							echo '<td class="text-left">' . $report['DesVencCalisi'][0]->{'M'.$i} . '</td>';
+                        }
+                        echo '<td class="text-left">' . $report['TotalGeralvenc']->DesVencCalisi . '</td>';
+                        ?>
+                    </tr>
+					<tr>
+                        <?php
+                        echo '<td><b>' . $report['DesPagoCalisi'][0]->Balanco . '</b></td>';
+                        for($i=1;$i<=12;$i++) {
+							echo '<td class="text-left">' . $report['DesPagoCalisi'][0]->{'M'.$i} . '</td>';
+                        }
+                        echo '<td class="text-left">' . $report['TotalGeral']->DesPagoCalisi . '</td>';
+                        ?>
+                    </tr>
+					-->
                     <tr>
                         <?php
                         echo '<td><b>' . $report['TotalVenc']->Balancovenc . '</b></td>';

@@ -90,11 +90,11 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamento"><span class="glyphicon glyphicon-list"></span> Orçamentos</a></li>
 									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamentorede"><span class="glyphicon glyphicon-list"></span> Orçam.Calisi</a></li>
+									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosvend"><span class="glyphicon glyphicon-list"></span> Prd. X Ent.</a></li>
 									<li role="separator" class="divider"></li>																		
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/produtosconsultor"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
-									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/orcamentorede"><span class="glyphicon glyphicon-list"></span> Orçam. Rede</a></li>
 									<!--<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/despesaspag"><span class="glyphicon glyphicon-list"></span> Despesas X Pag.</a></li>
 									<li role="separator" class="divider"></li>

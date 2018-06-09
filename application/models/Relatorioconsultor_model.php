@@ -1247,7 +1247,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         #$query['RecPago'] = $query['RecPago']->result_array();
         $query['RecPago'] = $query['RecPago']->result();
-        $query['RecPago'][0]->Balanco = 'Recebido';
+        $query['RecPago'][0]->Balanco = 'Rec.Real';
 
         ####################################################################
         #SOMATÓRIO DAS RECEITAS Venc. DO ANO
@@ -1277,36 +1277,64 @@ class Relatorioconsultor_model extends CI_Model {
 
         #$query['RecVenc'] = $query['RecVenc']->result_array();
         $query['RecVenc'] = $query['RecVenc']->result();
-        $query['RecVenc'][0]->Balancovenc = 'ÀReceber';
-
+        $query['RecVenc'][0]->Balancovenc = 'Rec.Esp.';
 
 		####################################################################
-        #SOMATÓRIO DAS DEVOLUÇÕES DO ANO
-        $somadevolucoes='';
+        #SOMATÓRIO DAS DESPESAS PAGA NA CALISI DO ANO
+        $somadespesaspagacalisi='';
         for ($i=1;$i<=12;$i++){
-            $somadevolucoes .= 'SUM(IF(PR.DataPagoRecebiveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
+            $somadespesaspagacalisi .= 'SUM(IF(PR.DataVencimentoRecebiveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
                 LAST_DAY("' . $data['Ano'] . '-' . $i . '-1"), PR.ValorPagoRecebiveis, 0)) AS M' . $i . ', ';
         }
-        $somadevolucoes = substr($somadevolucoes, 0 ,-2);
+        $somadespesaspagacalisi = substr($somadespesaspagacalisi, 0 ,-2);
 
-        $query['Devolucoes'] = $this->db->query(
+        $query['DesPagoCalisi'] = $this->db->query(
         #$devolucoes = $this->db->query(
             'SELECT
-                ' . $somadevolucoes . '
+                ' . $somadespesaspagacalisi . '
             FROM
-                App_OrcaTrataCons AS OT
-                    LEFT JOIN App_ParcelasRecebiveisCons AS PR ON OT.idApp_OrcaTrataCons = PR.idApp_OrcaTrataCons
+                App_OrcaTrata AS OT
+                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
             WHERE
                 OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
                 OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-				OT.TipoRD = "D" AND
-            	YEAR(PR.DataPagoRecebiveis) = ' . $data['Ano']
+				OT.TipoRD = "R" AND
+            	YEAR(PR.DataVencimentoRecebiveis) = ' . $data['Ano']
         );
 
-        #$query['Devolucoes'] = $query['Devolucoes']->result_array();
-        $query['Devolucoes'] = $query['Devolucoes']->result();
-        $query['Devolucoes'][0]->Balanco = 'Devolucoes';
+        #$query['DesPagoCalisi'] = $query['DesPagoCalisi']->result_array();
+        $query['DesPagoCalisi'] = $query['DesPagoCalisi']->result();
+        $query['DesPagoCalisi'][0]->Balanco = 'Cal.Real';
+		
+		
+		####################################################################
+        #SOMATÓRIO DAS DESPESAS VENC NA CALISI DO ANO
+        $somadespesasvenccalisi='';
+        for ($i=1;$i<=12;$i++){
+            $somadespesasvenccalisi .= 'SUM(IF(PR.DataVencimentoRecebiveis BETWEEN "' . $data['Ano'] . '-' . $i . '-1" AND
+                LAST_DAY("' . $data['Ano'] . '-' . $i . '-1"), PR.ValorParcelaRecebiveis, 0)) AS M' . $i . ', ';
+        }
+        $somadespesasvenccalisi = substr($somadespesasvenccalisi, 0 ,-2);
+
+        $query['DesVencCalisi'] = $this->db->query(
+        #$devolucoes = $this->db->query(
+            'SELECT
+                ' . $somadespesasvenccalisi . '
+            FROM
+                App_OrcaTrata AS OT
+                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+            WHERE
+                OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+                OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				OT.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
+				OT.TipoRD = "R" AND
+            	YEAR(PR.DataVencimentoRecebiveis) = ' . $data['Ano']
+        );
+
+        #$query['DesVencCalisi'] = $query['DesVencCalisi']->result_array();
+        $query['DesVencCalisi'] = $query['DesVencCalisi']->result();
+        $query['DesVencCalisi'][0]->Balancovenc = 'Cal.Esp.';
 
 
         ####################################################################
@@ -1336,7 +1364,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         #$query['DesPago'] = $query['DesPago']->result_array();
         $query['DesPago'] = $query['DesPago']->result();
-        $query['DesPago'][0]->Balanco = 'Pago';
+        $query['DesPago'][0]->Balanco = 'Desp.Real';
 
         ####################################################################
         #SOMATÓRIO DAS DESPESAS Venc DO ANO
@@ -1365,7 +1393,7 @@ class Relatorioconsultor_model extends CI_Model {
 
         #$query['DesVenc'] = $query['DesVenc']->result_array();
         $query['DesVenc'] = $query['DesVenc']->result();
-        $query['DesVenc'][0]->Balancovenc = 'À Papar';
+        $query['DesVenc'][0]->Balancovenc = 'Desp.Esp.';
 		
         /*
         echo $this->db->last_query();
@@ -1381,42 +1409,47 @@ class Relatorioconsultor_model extends CI_Model {
         $query['TotalGeralvenc'] = new stdClass();		
 
         $query['TotalPago']->Balanco = 'Bal.Real';
-        $query['TotalGeral']->RecPago = $query['TotalGeral']->Devolucoes = $query['TotalGeral']->DesPago = $query['TotalGeral']->BalancoGeral = 0;
-        $query['TotalVenc']->Balancovenc = 'Bal.Esp.';
-        $query['TotalGeralvenc']->RecVenc = $query['TotalGeralvenc']->DesVenc = $query['TotalGeralvenc']->BalancoGeralvenc = 0;
+        $query['TotalGeral']->RecPago = $query['TotalGeral']->DesPagoCalisi = $query['TotalGeral']->DesPago = $query['TotalGeral']->BalancoGeral = 0;
+        $query['TotalVenc']->Balancovenc = 'Bal.Esp';
+        $query['TotalGeralvenc']->RecVenc = $query['TotalGeralvenc']->DesVencCalisi = $query['TotalGeralvenc']->DesVenc = $query['TotalGeralvenc']->BalancoGeralvenc = 0;
 		
         for ($i=1;$i<=12;$i++) {
-            $query['TotalPago']->{'M'.$i} = $query['RecPago'][0]->{'M'.$i} - $query['Devolucoes'][0]->{'M'.$i} - $query['DesPago'][0]->{'M'.$i};
-
+            #$query['TotalPago']->{'M'.$i} = $query['RecPago'][0]->{'M'.$i} - $query['DesPagoCalisi'][0]->{'M'.$i} - $query['DesPago'][0]->{'M'.$i};
+			$query['TotalPago']->{'M'.$i} = $query['RecPago'][0]->{'M'.$i} - $query['DesPago'][0]->{'M'.$i};
+			
             $query['TotalGeral']->RecPago += $query['RecPago'][0]->{'M'.$i};
-			$query['TotalGeral']->Devolucoes += $query['Devolucoes'][0]->{'M'.$i};
+			$query['TotalGeral']->DesPagoCalisi += $query['DesPagoCalisi'][0]->{'M'.$i};
             $query['TotalGeral']->DesPago += $query['DesPago'][0]->{'M'.$i};
 
             $query['RecPago'][0]->{'M'.$i} = number_format($query['RecPago'][0]->{'M'.$i}, 2, ',', '.');
-            $query['Devolucoes'][0]->{'M'.$i} = number_format($query['Devolucoes'][0]->{'M'.$i}, 2, ',', '.');
+            $query['DesPagoCalisi'][0]->{'M'.$i} = number_format($query['DesPagoCalisi'][0]->{'M'.$i}, 2, ',', '.');
 			$query['DesPago'][0]->{'M'.$i} = number_format($query['DesPago'][0]->{'M'.$i}, 2, ',', '.');
             $query['TotalPago']->{'M'.$i} = number_format($query['TotalPago']->{'M'.$i}, 2, ',', '.');
         }		
-        $query['TotalGeral']->BalancoGeral = $query['TotalGeral']->RecPago - $query['TotalGeral']->Devolucoes - $query['TotalGeral']->DesPago;
+        $query['TotalGeral']->BalancoGeral = $query['TotalGeral']->RecPago - $query['TotalGeral']->DesPagoCalisi - $query['TotalGeral']->DesPago;
 
         $query['TotalGeral']->RecPago = number_format($query['TotalGeral']->RecPago, 2, ',', '.');
-        $query['TotalGeral']->Devolucoes = number_format($query['TotalGeral']->Devolucoes, 2, ',', '.');
+        $query['TotalGeral']->DesPagoCalisi = number_format($query['TotalGeral']->DesPagoCalisi, 2, ',', '.');
 		$query['TotalGeral']->DesPago = number_format($query['TotalGeral']->DesPago, 2, ',', '.');
         $query['TotalGeral']->BalancoGeral = number_format($query['TotalGeral']->BalancoGeral, 2, ',', '.');
 
         for ($i=1;$i<=12;$i++) {
+            #$query['TotalVenc']->{'M'.$i} = $query['RecVenc'][0]->{'M'.$i} - $query['DesVencCalisi'][0]->{'M'.$i} - $query['DesVenc'][0]->{'M'.$i};
             $query['TotalVenc']->{'M'.$i} = $query['RecVenc'][0]->{'M'.$i} - $query['DesVenc'][0]->{'M'.$i};
-
+			
             $query['TotalGeralvenc']->RecVenc += $query['RecVenc'][0]->{'M'.$i};
+			$query['TotalGeralvenc']->DesVencCalisi += $query['DesVencCalisi'][0]->{'M'.$i};
             $query['TotalGeralvenc']->DesVenc += $query['DesVenc'][0]->{'M'.$i};
 
             $query['RecVenc'][0]->{'M'.$i} = number_format($query['RecVenc'][0]->{'M'.$i}, 2, ',', '.');
+			$query['DesVencCalisi'][0]->{'M'.$i} = number_format($query['DesVencCalisi'][0]->{'M'.$i}, 2, ',', '.');
 			$query['DesVenc'][0]->{'M'.$i} = number_format($query['DesVenc'][0]->{'M'.$i}, 2, ',', '.');
             $query['TotalVenc']->{'M'.$i} = number_format($query['TotalVenc']->{'M'.$i}, 2, ',', '.');
         }		
-        $query['TotalGeralvenc']->BalancoGeralvenc = $query['TotalGeralvenc']->RecVenc - $query['TotalGeralvenc']->DesVenc;
+        $query['TotalGeralvenc']->BalancoGeralvenc = $query['TotalGeralvenc']->RecVenc - $query['TotalGeralvenc']->DesVencCalisi - $query['TotalGeralvenc']->DesVenc;
 
         $query['TotalGeralvenc']->RecVenc = number_format($query['TotalGeralvenc']->RecVenc, 2, ',', '.');
+		$query['TotalGeralvenc']->DesVencCalisi = number_format($query['TotalGeralvenc']->DesVencCalisi, 2, ',', '.');
 		$query['TotalGeralvenc']->DesVenc = number_format($query['TotalGeralvenc']->DesVenc, 2, ',', '.');
         $query['TotalGeralvenc']->BalancoGeralvenc = number_format($query['TotalGeralvenc']->BalancoGeralvenc, 2, ',', '.');		
         /*
