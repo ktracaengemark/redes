@@ -18,7 +18,7 @@ if (!$db) {
 
 //Acho que as próximas linhas são redundantes, verificar
 $query = ($_SESSION['log']['NomeUsuario'] && isset($_SESSION['log']['NomeUsuario'])) ?
-    #'P.idSis_Usuario = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
+    #'P.idApp_Consultor = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
 	'A.idApp_Consultor = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
 
 $permissao = ($_SESSION['log']['Permissao'] > 2) ?
@@ -42,7 +42,6 @@ $result = mysql_query(
             C.Paciente,
             C.Obs,
             C.idTab_Status,
-			ST.Status,
             TC.TipoConsulta,
             C.Evento
         FROM
@@ -53,14 +52,14 @@ $result = mysql_query(
                 LEFT JOIN App_ContatoCliente AS D ON D.idApp_ContatoCliente = C.idApp_ContatoCliente
                 LEFT JOIN App_Consultor AS P ON P.idApp_Consultor = C.idApp_Consultor
                 LEFT JOIN Tab_TipoConsulta AS TC ON TC.idTab_TipoConsulta = C.idTab_TipoConsulta
-				LEFT JOIN Tab_Status AS ST ON ST.idTab_Status = C.idTab_Status
-		WHERE						
+
+        WHERE
 			C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 			C.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
            	C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 			' . $query . '
             ' . $permissao . '
-            A.idApp_Agenda = C.idApp_Agenda			
+            A.idApp_Agenda = C.idApp_Agenda
         ORDER BY C.DataInicio ASC'
 );
 
@@ -72,7 +71,7 @@ while ($row = mysql_fetch_assoc($result)) {
         //(strlen(utf8_encode($row['Obs'])) > 20) ? $title = substr(utf8_encode($row['Obs']), 0, 20).'...' : $title = utf8_encode($row['Obs']);
         $title = mb_convert_encoding($row['Obs'], "UTF-8", "ISO-8859-1");
 		#$title = utf8_encode($row['NomeUsuario']);
-		#$title = utf8_encode($row['idSis_Usuario']);
+		#$title = utf8_encode($row['idApp_Consultor']);
 		$subtitle = mb_convert_encoding($row['NomeUsuario'], "UTF-8", "ISO-8859-1");
 
 		#$profissional = utf8_encode($row['NomeUsuario']);
@@ -97,7 +96,7 @@ while ($row = mysql_fetch_assoc($result)) {
         else {
 
             #$title = utf8_encode($row['NomeCliente']);
-            $title = mb_convert_encoding($row['Obs'], "UTF-8", "ISO-8859-1");
+            $title = mb_convert_encoding($row['NomeCliente'], "UTF-8", "ISO-8859-1");
             #$title = $row['NomeCliente'];
             #'name' => mb_convert_encoding($row['NomeProduto'], "UTF-8", "ISO-8859-1"),
 
@@ -107,7 +106,7 @@ while ($row = mysql_fetch_assoc($result)) {
 
 			#$profissional = utf8_encode($row['NomeUsuario']);
 			#$profissional = utf8_encode($row['idApp_Agenda']);
-			#$profissional = utf8_encode($row['idSis_Usuario']);
+			#$profissional = utf8_encode($row['idApp_Consultor']);
             $profissional = mb_convert_encoding($row['NomeProfissional'], "UTF-8", "ISO-8859-1");
 
 			#$telefone1 = utf8_encode($row['Telefone1']);
@@ -159,7 +158,7 @@ while ($row = mysql_fetch_assoc($result)) {
     $event_array[] = array(
         'id' => $row['idApp_Consulta'],
         'title' => $title,
-        #'subtitle' => $subtitle,
+        'subtitle' => $subtitle,
         'start' => str_replace('', 'T', $row['DataInicio']),
         'end' => str_replace('', 'T', $row['DataFim']),
         'allDay' => false,
@@ -167,7 +166,6 @@ while ($row = mysql_fetch_assoc($result)) {
         'color' => $status,
         'textColor' => $textColor,
         'TipoConsulta' => mb_convert_encoding($row['TipoConsulta'], "UTF-8", "ISO-8859-1"),
-		'Status' => mb_convert_encoding($row['Status'], "UTF-8", "ISO-8859-1"),
         'Procedimento' => mb_convert_encoding($row['Procedimento'], "UTF-8", "ISO-8859-1"),
 		'Telefone1' => mb_convert_encoding($row['Telefone1'], "UTF-8", "ISO-8859-1"),
         'Obs' => mb_convert_encoding($row['Obs'], "UTF-8", "ISO-8859-1"),

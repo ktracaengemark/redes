@@ -164,6 +164,9 @@ class Relatorioconsultor extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
             'NomeCliente',
+			'Ano',
+			'Mesvenc',
+			'Mespag',			
 			'TipoReceita',
             'DataInicio',
             'DataFim',
@@ -177,8 +180,9 @@ class Relatorioconsultor extends CI_Controller {
             'QuitadoOrca',
 			'ServicoConcluido',
 			'QuitadoRecebiveis',
+			'Modalidade',
         ), TRUE));
-
+/*
 		if (!$data['query']['DataInicio2'])
            $data['query']['DataInicio2'] = date("d/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));
 		
@@ -191,9 +195,22 @@ class Relatorioconsultor extends CI_Controller {
 		if (!$data['query']['DataFim'])
            $data['query']['DataFim'] = date("t/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));
 
+	   
+		if (!$data['query']['Mesvenc'])
+           $data['query']['Mesvenc'] = date('m', time());
+	   
+	   if (!$data['query']['Mespag'])
+           $data['query']['Mespag'] = date('m', time());
+*/
+		if (!$data['query']['Ano'])
+           $data['query']['Ano'] = date('Y', time());
+	   
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início do Vencimento', 'trim|valid_date');
+		#$this->form_validation->set_rules('Mesvenc', 'Mês do Vencimento', 'required|trim');
+		#$this->form_validation->set_rules('Mespag', 'Mês do Pagamento', 'required|trim');
+		#$this->form_validation->set_rules('Ano', 'Ano', 'required|trim');        
+		$this->form_validation->set_rules('DataInicio', 'Data Início do Vencimento', 'trim|valid_date');
         $this->form_validation->set_rules('DataFim', 'Data Fim do Vencimento', 'trim|valid_date');
 		$this->form_validation->set_rules('DataInicio2', 'Data Início do Pagamento', 'trim|valid_date');
         $this->form_validation->set_rules('DataFim2', 'Data Fim do Pagamento', 'trim|valid_date');
@@ -219,28 +236,30 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['QuitadoRecebiveis'] = array(
-            'N' => 'Não',
+            '#' => 'TODOS',
+			'N' => 'Não',
             'S' => 'Sim',
-			'#' => 'TODOS',
         );
 
+		$data['select']['Modalidade'] = array(
+            '#' => 'TODOS',
+            'P' => 'Parcelas',
+            'M' => 'Mensal',
+        );
+		
         $data['select']['Campo'] = array(
             'PR.DataVencimentoRecebiveis' => 'Data do Venc.',
 			'PR.DataPagoRecebiveis' => 'Data do Pagam.',
 			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
 			'C.NomeCliente' => 'Nome do Cliente',
 			'TR.TipoReceita' => 'Tipo de Receita',
+			'OT.Modalidade' => 'Modalidade',
             'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
-            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
             'OT.ValorOrca' => 'Valor do Orçamento',
             'OT.ServicoConcluido' => 'Serviço Concluído?',
             'OT.QuitadoOrca' => 'Orçamento Quitado?',
-            'OT.DataConclusao' => 'Data de Conclusão',
-			'OT.DataQuitado' => 'Data de Quitado',
             'OT.DataRetorno' => 'Data de Retorno',
-			'OT.ProfissionalOrca' => 'Profissional',
-
 
         );
 
@@ -251,7 +270,8 @@ class Relatorioconsultor extends CI_Controller {
 
 		$data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
 		$data['select']['TipoReceita'] = $this->Relatorioconsultor_model->select_tiporeceita();
-
+		$data['select']['Mesvenc'] = $this->Relatorioconsultor_model->select_mes();
+		$data['select']['Mespag'] = $this->Relatorioconsultor_model->select_mes();
 		/*
         $data['select']['Pesquisa'] = array(
             'DataEntradaOrca' => 'Data de Entrada',
@@ -268,6 +288,9 @@ class Relatorioconsultor extends CI_Controller {
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
             $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
             $data['bd']['TipoReceita'] = $data['query']['TipoReceita'];
+			$data['bd']['Ano'] = $data['query']['Ano'];
+			$data['bd']['Mesvenc'] = $data['query']['Mesvenc'];
+			$data['bd']['Mespag'] = $data['query']['Mespag'];			
 			$data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
 			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
@@ -280,7 +303,7 @@ class Relatorioconsultor extends CI_Controller {
             $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
 			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
 			$data['bd']['QuitadoRecebiveis'] = $data['query']['QuitadoRecebiveis'];
-
+			$data['bd']['Modalidade'] = $data['query']['Modalidade'];
             $data['report'] = $this->Relatorioconsultor_model->list_receitas($data['bd'],TRUE);
 
             /*
@@ -657,7 +680,10 @@ class Relatorioconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'TipoDespesa',
+			'Ano',
+			'Mesvenc',
+			'Mespag',
+			'TipoDespesa',
 			'TipoProduto',
             'DataInicio',
             'DataFim',
@@ -671,9 +697,10 @@ class Relatorioconsultor extends CI_Controller {
 			'ServicoConcluidoDespesas',
             'QuitadoDespesas',
 			'QuitadoPagaveis',
+			'ModalidadeDespesas',
 
         ), TRUE));
-
+/*
         if (!$data['query']['DataInicio2'])
            $data['query']['DataInicio2'] = date("d/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));
 		
@@ -685,10 +712,23 @@ class Relatorioconsultor extends CI_Controller {
 		
 		if (!$data['query']['DataFim'])
            $data['query']['DataFim'] = date("t/m/Y", mktime(0,0,0,date('m'),'01',date('Y')));		
-		
+
+	   
+		if (!$data['query']['Mesvenc'])
+           $data['query']['Mesvenc'] = date('m', time());
+	   
+	   if (!$data['query']['Mespag'])
+           $data['query']['Mespag'] = date('m', time());
+*/
+		if (!$data['query']['Ano'])
+           $data['query']['Ano'] = date('Y', time());
+	   
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início', 'trim|valid_date');
+        #$this->form_validation->set_rules('Mesvenc', 'Mês do Vencimento', 'required|trim');
+		#$this->form_validation->set_rules('Mespag', 'Mês do Pagamento', 'required|trim');
+		#$this->form_validation->set_rules('Ano', 'Ano', 'required|trim');        
+		$this->form_validation->set_rules('DataInicio', 'Data Início', 'trim|valid_date');
         $this->form_validation->set_rules('DataFim', 'Data Fim', 'trim|valid_date');
 		$this->form_validation->set_rules('DataInicio2', 'Data Início', 'trim|valid_date');
         $this->form_validation->set_rules('DataFim2', 'Data Fim', 'trim|valid_date');
@@ -714,11 +754,17 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['QuitadoPagaveis'] = array(
-            'N' => 'Não',
+			'#' => 'TODOS',            
+			'N' => 'Não',
             'S' => 'Sim',
-			'#' => 'TODOS',
         );
 
+		$data['select']['ModalidadeDespesas'] = array(
+            '#' => 'TODOS',
+            'P' => 'Parcelas',
+            'M' => 'Mensal',
+        );
+		
         $data['select']['Campo'] = array(
 
             'PP.DataVencimentoPagaveis' => 'Data do Venc.',
@@ -730,7 +776,7 @@ class Relatorioconsultor extends CI_Controller {
 			'DS.Despesa' => 'Despesa',
 			'DS.TipoDespesa' => 'Tipo de Despesa',
             'DS.QuitadoDespesas' => 'Despesa Quitada?',
-
+			'DS.ModalidadeDespesas' => 'Modalidade',
         );
 
         $data['select']['Ordenamento'] = array(
@@ -739,7 +785,9 @@ class Relatorioconsultor extends CI_Controller {
         );
 
 		$data['select']['TipoDespesa'] = $this->Relatorioconsultor_model->select_tipodespesa();
-
+		$data['select']['Mesvenc'] = $this->Relatorioconsultor_model->select_mes();
+		$data['select']['Mespag'] = $this->Relatorioconsultor_model->select_mes();
+		
         $data['titulo'] = 'Despesas & Pagamentos';
 
         #run form validation
@@ -753,6 +801,9 @@ class Relatorioconsultor extends CI_Controller {
             $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
 			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
             $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
+			$data['bd']['Ano'] = $data['query']['Ano'];
+			$data['bd']['Mesvenc'] = $data['query']['Mesvenc'];
+			$data['bd']['Mespag'] = $data['query']['Mespag'];			
 			$data['bd']['TipoDespesa'] = $data['query']['TipoDespesa'];
 			$data['bd']['TipoProduto'] = $data['query']['TipoProduto'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
@@ -761,7 +812,7 @@ class Relatorioconsultor extends CI_Controller {
 			$data['bd']['ServicoConcluidoDespesas'] = $data['query']['ServicoConcluidoDespesas'];
             $data['bd']['QuitadoDespesas'] = $data['query']['QuitadoDespesas'];
 			$data['bd']['QuitadoPagaveis'] = $data['query']['QuitadoPagaveis'];
-
+			$data['bd']['ModalidadeDespesas'] = $data['query']['ModalidadeDespesas'];
             $data['report'] = $this->Relatorioconsultor_model->list_despesas($data['bd'],TRUE);
 
             /*

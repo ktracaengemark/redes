@@ -181,6 +181,9 @@ class Relatorioconsultor_model extends CI_Model {
         }
 
 		$data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
+		$data['Mesvenc'] = ($data['Mesvenc']) ? ' AND MONTH(PR.DataVencimentoRecebiveis) = ' . $data['Mesvenc'] : FALSE;
+		$data['Mespag'] = ($data['Mespag']) ? ' AND MONTH(PR.DataPagoRecebiveis) = ' . $data['Mespag'] : FALSE;
+		$data['Ano'] = ($data['Ano']) ? ' AND YEAR(PR.DataVencimentoRecebiveis) = ' . $data['Ano'] : FALSE;
 		$data['TipoReceita'] = ($data['TipoReceita']) ? ' AND OT.TipoReceita = ' . $data['TipoReceita'] : FALSE;
         $data['Campo'] = (!$data['Campo']) ? 'PR.DataVencimentoRecebiveis' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];		
@@ -188,11 +191,12 @@ class Relatorioconsultor_model extends CI_Model {
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
 		$filtro4 = ($data['QuitadoRecebiveis'] != '#') ? 'PR.QuitadoRecebiveis = "' . $data['QuitadoRecebiveis'] . '" AND ' : FALSE;
-
+		$filtro5 = ($data['Modalidade'] != '#') ? 'OT.Modalidade = "' . $data['Modalidade'] . '" AND ' : FALSE;
+		
         $query = $this->db->query('
             SELECT
                 C.NomeCliente,
-                CONCAT(IFNULL(C.NomeCliente,""), " / ", IFNULL(TR.TipoReceita,""), " / ", IFNULL(OT.Receitas,"")) AS NomeCliente,
+                CONCAT(IFNULL(C.NomeCliente,""), " / ", IFNULL(OT.Receitas,""), " / ", IFNULL(TR.TipoReceita,"")) AS NomeCliente,
 				TR.TipoReceita,
 				OT.idApp_OrcaTrataCons,
 				OT.idApp_Consultor,
@@ -223,8 +227,15 @@ class Relatorioconsultor_model extends CI_Model {
                 OT.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				OT.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				OT.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-                ((' . $filtro4 . ' (' . $consulta . ')) OR (' . $consulta2 . ')) 
-				' . $data['NomeCliente'] . ' 
+				' . $filtro2 . '
+				' . $filtro3 . '
+				' . $filtro4 . ' 
+				' . $filtro5 . '
+				OT.TipoRD = "R"
+				' . $data['NomeCliente'] . '
+				' . $data['Mesvenc'] . ' 
+				' . $data['Mespag'] . '
+				' . $data['Ano'] . ' 
 				' . $data['TipoReceita'] . ' 
 
             ORDER BY
@@ -690,6 +701,9 @@ class Relatorioconsultor_model extends CI_Model {
                 '(DS.DataDespesas >= "' . $data['DataInicio3'] . '")';
         }
 
+		$data['Mesvenc'] = ($data['Mesvenc']) ? ' AND MONTH(PP.DataVencimentoPagaveis) = ' . $data['Mesvenc'] : FALSE;
+		$data['Mespag'] = ($data['Mespag']) ? ' AND MONTH(PP.DataPagoPagaveis) = ' . $data['Mespag'] : FALSE;
+		$data['Ano'] = ($data['Ano']) ? ' AND YEAR(PP.DataVencimentoPagaveis) = ' . $data['Ano'] : FALSE;		
 		$data['Campo'] = (!$data['Campo']) ? 'PP.DataVencimentoPagaveis' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$data['TipoDespesa'] = ($data['TipoDespesa']) ? ' AND TD.idTab_TipoDespesa = ' . $data['TipoDespesa'] : FALSE;
@@ -697,12 +711,13 @@ class Relatorioconsultor_model extends CI_Model {
 		$filtro3 = ($data['ServicoConcluidoDespesas'] != '#') ? 'DS.ServicoConcluidoDespesas = "' . $data['ServicoConcluidoDespesas'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoDespesas'] != '#') ? 'DS.QuitadoDespesas = "' . $data['QuitadoDespesas'] . '" AND ' : FALSE;
 		$filtro4 = ($data['QuitadoPagaveis'] != '#') ? 'PP.QuitadoPagaveis = "' . $data['QuitadoPagaveis'] . '" AND ' : FALSE;
-
+		$filtro5 = ($data['ModalidadeDespesas'] != '#') ? 'DS.ModalidadeDespesas = "' . $data['ModalidadeDespesas'] . '" AND ' : FALSE;
+		
         $query = $this->db->query('
             SELECT
                 DS.idApp_Despesascons,
 				DS.Despesa,
-				CONCAT(IFNULL(TD.TipoDespesa,""), " / ", IFNULL(DS.Despesa,"")) AS Despesa,
+				CONCAT(IFNULL(DS.Despesa,""), " / ", IFNULL(TD.TipoDespesa,"")) AS Despesa,
 				TD.TipoDespesa,
 				DS.TipoProduto,
                 DS.DataDespesas,
@@ -711,6 +726,7 @@ class Relatorioconsultor_model extends CI_Model {
 				DS.AprovadoDespesas,
 				DS.ServicoConcluidoDespesas,
 				DS.QuitadoDespesas,
+				DS.ModalidadeDespesas,
                 PP.ParcelaPagaveis,
 				CONCAT(PP.ParcelaPagaveis," ", DS.ModalidadeDespesas,"/",PP.QuitadoPagaveis) AS ParcelaPagaveis,
                 PP.DataVencimentoPagaveis,
@@ -726,8 +742,16 @@ class Relatorioconsultor_model extends CI_Model {
                 DS.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				DS.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				DS.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND
-				((' . $filtro4 . ' (' . $consulta . ')) OR (' . $consulta2 . ')) 
-				' . $data['TipoDespesa'] . ' AND (DS.TipoProduto = "D" OR DS.TipoProduto = "E")
+				' . $filtro2 . '
+				' . $filtro3 . '
+				' . $filtro4 . '
+				' . $filtro5 . ' 
+				(DS.TipoProduto = "D" OR DS.TipoProduto = "E")
+				' . $data['Mesvenc'] . ' 
+				' . $data['Mespag'] . '
+				' . $data['Ano'] . ' 
+				' . $data['TipoDespesa'] . ' 
+				 
             ORDER BY
 				' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
@@ -4955,7 +4979,7 @@ exit();*/
         ');
 
         $array = array();
-        $array[0] = ':: Todos ::';
+        $array[0] = 'TODOS';
         foreach ($query->result() as $row) {
 			$array[$row->idApp_Cliente] = $row->NomeCliente;
         }
@@ -5219,7 +5243,7 @@ exit();*/
         ');
 
         $array = array();
-        $array[0] = ':: Todos ::';
+        $array[0] = 'TODOS';
         foreach ($query->result() as $row) {
             $array[$row->idTab_TipoDespesa] = $row->TipoDespesa;
         }
@@ -5227,6 +5251,29 @@ exit();*/
         return $array;
     }
 
+	public function select_mes() {
+
+        $query = $this->db->query('
+            SELECT
+				M.idTab_Mes,
+				M.Mesdesc,
+				CONCAT(M.Mes, " / ", M.Mesdesc) AS Mes
+			FROM
+				Tab_Mes AS M
+
+			ORDER BY
+				M.Mes
+        ');
+
+        $array = array();
+        $array[0] = 'TODOS';
+        foreach ($query->result() as $row) {
+            $array[$row->idTab_Mes] = $row->Mes;
+        }
+
+        return $array;
+    }	
+	
 	public function select_tiporeceita() {
 
         $query = $this->db->query('
@@ -5242,7 +5289,7 @@ exit();*/
         ');
 
         $array = array();
-        $array[0] = ':: Todos ::';
+        $array[0] = 'TODOS';
         foreach ($query->result() as $row) {
             $array[$row->idTab_TipoReceita] = $row->TipoReceita;
         }

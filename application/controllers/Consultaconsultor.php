@@ -377,7 +377,7 @@ class Consultaconsultor extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = $this->input->post(array(
-            'idSis_Usuario',
+            'idApp_Consultor',
 			'idApp_Consulta',
             'idApp_Agenda',
             #'idApp_Cliente',
@@ -477,8 +477,8 @@ class Consultaconsultor extends CI_Controller {
 
         //echo '<br><br><br><br>================================== '.$data['query']['idTab_Status'];
 
-        $data['titulo'] = 'Agendamento C/ Cliente';
-        $data['form_open_path'] = 'consulta/alterar';
+        $data['titulo'] = 'Agendamento';
+        $data['form_open_path'] = 'consultaconsultor/alterar';
         #$data['readonly'] = '';
         #$data['disabled'] = '';
         $data['panel'] = 'primary';
@@ -488,7 +488,7 @@ class Consultaconsultor extends CI_Controller {
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('consulta/form_consulta', $data);
+            $this->load->view('consultaconsultor/form_consultaconsultor', $data);
         } else {
 
             #echo '<br><br><br><br>================================== '.$data['query']['idTab_Status'];
@@ -497,7 +497,7 @@ class Consultaconsultor extends CI_Controller {
             $data['query']['Tipo'] = 2;
 			$data['query']['DataInicio'] = $this->basico->mascara_data($data['query']['Data'], 'mysql') . ' ' . $data['query']['HoraInicio'];
             $data['query']['DataFim'] = $this->basico->mascara_data($data['query']['Data2'], 'mysql') . ' ' . $data['query']['HoraFim'];
-			$data['query']['idSis_Usuario'] = $_SESSION['log']['id'];
+			$data['query']['idApp_Consultor'] = $_SESSION['log']['id'];
             $data['redirect'] = '&gtd=' . $this->basico->mascara_data($data['query']['Data'], 'mysql');
             //exit();
 
@@ -513,7 +513,7 @@ class Consultaconsultor extends CI_Controller {
             if ($data['auditoriaitem'] && $this->Consultaconsultor_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
                 $data['msg'] = '?m=1';
                 #redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consulta'] . $data['msg']);
-				redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
+				redirect(base_url() . 'agendaconsultor' . $data['msg'] . $data['redirect']);
                 exit();
             } else {
 
@@ -525,7 +525,7 @@ class Consultaconsultor extends CI_Controller {
                 }
 
                 //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
-                redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
+                redirect(base_url() . 'agendaconsultor' . $data['msg'] . $data['redirect']);
                 exit();
             }
         }

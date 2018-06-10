@@ -27,17 +27,9 @@
 							</form>
 						</li>
 						-->
-						
+						<!--
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
-							<!--
-							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url(); ?>agenda">
-									<button type="button" class="btn btn-md btn-warning ">
-										<span class="glyphicon glyphicon-calendar"></span>Agenda
-									</button>
-								</a>
-							</div>
-							-->
+							
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-info dropdown-toggle" data-toggle="dropdown">
 									<span class="glyphicon glyphicon-book"></span> Agenda<span class="caret"></span>
@@ -47,12 +39,13 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
 									<!--<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>-->
+									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>
 								</ul>
 							</div>
+							
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						
+						-->
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>relatorioconsultor/clientes">
@@ -63,7 +56,6 @@
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-warning dropdown-toggle" data-toggle="dropdown">
@@ -106,6 +98,7 @@
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
+
 						<li class="btn-toolbar navbar-form navbar-right" role="toolbar" aria-label="...">
 						
 							<div class="btn-group" role="group" aria-label="...">

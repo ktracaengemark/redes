@@ -59,7 +59,7 @@
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'orcatratacons/alterar2/' . $row['idApp_OrcaTrataCons'] . '">';
                             #echo '<td>' . $row['QuitadoRecebiveis'] . '</td>';
-							echo '<td>' . $row['idApp_OrcaTrataCons'] . ' / ' . $row['NomeCliente'] . '</td>';
+							echo '<td>' . $row['idApp_OrcaTrataCons'] . ' / ' . $row['NomeCliente'] . ' / Quit-' . $row['QuitadoOrca'] . '</td>';
 							echo '<td>' . $row['ParcelaRecebiveis'] . '</td>';
 							echo '<td>' . $row['DataVencimentoRecebiveis'] . ' R$' . $row['ValorParcelaRecebiveis'] . '</td>';
                             #echo '<td class="text-left">R$ ' . $row['ValorParcelaRecebiveis'] . '</td>';

@@ -1,8 +1,8 @@
 <?php if ($msg) echo $msg; ?>
 
 
-	<div class="col-md-1"></div>
-	<div class="col-md-10 ">		
+	<div class="col-md-3"></div>
+	<div class="col-md-6 ">		
 		
 		<div class="row">
 
@@ -72,11 +72,67 @@
 										<h4 class="modal-title"><span class="glyphicon glyphicon-filter"></span> Filtros</h4>
 									</div>
 									<div class="modal-footer">
-										<div class="form-group text-left">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-4 text-left" >
+													<label for="Ordenamento">Mês do Vencimento:</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+															id="Mesvenc" name="Mesvenc">
+														<?php
+														foreach ($select['Mesvenc'] as $key => $row) {
+															if ($query['Mesvenc'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+												<div class="col-md-4 text-left" >
+													<label for="Ordenamento">Ano:</label>
+													<div>
+														<input type="text" class="form-control Numero" maxlength="4" placeholder="AAAA"
+															   autofocus name="Ano" value="<?php echo set_value('Ano', $query['Ano']); ?>">
+													</div>
+												</div>
+												<div class="col-md-4 text-left">
+													<label for="QuitadoRecebiveis">Parc. Quit.?</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+															id="QuitadoRecebiveis" name="QuitadoRecebiveis">
+														<?php
+														foreach ($select['QuitadoRecebiveis'] as $key => $row) {
+															if ($query['QuitadoRecebiveis'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+											</div>
+											<div class="row">
+												<br>
+												<div class="form-group col-md-4 text-left">
+													<div class="form-footer ">
+														<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
+															<span class="glyphicon glyphicon-search"></span> Pesquisar
+														</button>
+													</div>
+												</div>
+												<div class="form-group col-md-4 text-left">
+													<div class="form-footer ">
+														<button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+															<span class="glyphicon glyphicon-remove"> Fechar
+														</button>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-md-4 text-left">
 													<label for="Ordenamento">Nome do Cliente:</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
 															id="NomeCliente" name="NomeCliente">
 														<?php
 														foreach ($select['NomeCliente'] as $key => $row) {
@@ -88,13 +144,92 @@
 														}
 														?>
 													</select>
-												</div>	
-												<div class="col-md-6 text-left">
+												</div>
+												<div class="col-md-4 text-left">
+													<label for="Ordenamento">Tipo de Receita:</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+															id="TipoReceita" name="TipoReceita">
+														<?php
+														foreach ($select['TipoReceita'] as $key => $row) {
+															if ($query['TipoReceita'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+												<div class="col-md-4 text-left">
+													<label for="Modalidade">Modalidade</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " 
+															id="Modalidade" name="Modalidade">
+														<?php
+														foreach ($select['Modalidade'] as $key => $row) {
+															if ($query['Modalidade'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+											</div>
+											<div class="row">	
+												<div class="col-md-4 text-left" >
+													<label for="Ordenamento">Mês do Pagamento:</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+															id="Mespag" name="Mespag">
+														<?php
+														foreach ($select['Mespag'] as $key => $row) {
+															if ($query['Mespag'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+												<div class="col-md-4 text-left">
+													<label for="ServicoConcluido">Prod.Entr.?</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+															id="ServicoConcluido" name="ServicoConcluido">
+														<?php
+														foreach ($select['ServicoConcluido'] as $key => $row) {
+															if ($query['ServicoConcluido'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+												<div class="col-md-4 text-left">
+													<label for="QuitadoOrca">Receita Quit?</label>
+													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block " 
+															id="QuitadoOrca" name="QuitadoOrca">
+														<?php
+														foreach ($select['QuitadoOrca'] as $key => $row) {
+															if ($query['QuitadoOrca'] == $key) {
+																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+															} else {
+																echo '<option value="' . $key . '">' . $row . '</option>';
+															}
+														}
+														?>
+													</select>
+												</div>
+											</div>
+											<div class="row">	
+												<div class="col-md-8 text-left">
 													<label for="Ordenamento">Ordenamento:</label>
-													<div class="form-group btn-block">
+													<div class="form-group">
 														<div class="row">
-															<div class="col-md-9">
-																<select data-placeholder="Selecione uma opção..." class="form-control Chosen " 
+															<div class="col-md-6">
+																<select data-placeholder="Selecione uma opção..." class="form-control btn-block Chosen " 
 																		id="Campo" name="Campo">
 																	<?php
 																	foreach ($select['Campo'] as $key => $row) {
@@ -108,8 +243,8 @@
 																</select>
 															</div>
 
-															<div class="col-md-3">
-																<select data-placeholder="Selecione uma opção..." class="form-control Chosen" 
+															<div class="col-md-6">
+																<select data-placeholder="Selecione uma opção..." class="form-control btn-block Chosen" 
 																		id="Ordenamento" name="Ordenamento">
 																	<?php
 																	foreach ($select['Ordenamento'] as $key => $row) {
@@ -127,56 +262,25 @@
 												</div>
 											</div>
 											<div class="row">	
-												<div class="col-md-6">
-													<label for="Ordenamento">Tipo de Receita:</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
-															id="TipoReceita" name="TipoReceita">
-														<?php
-														foreach ($select['TipoReceita'] as $key => $row) {
-															if ($query['TipoReceita'] == $key) {
-																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-															} else {
-																echo '<option value="' . $key . '">' . $row . '</option>';
-															}
-														}
-														?>
-													</select>
-												</div>
 												
-												<div class="col-md-3">
-													<label for="ServicoConcluido">Serv. Concl.?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
-															id="ServicoConcluido" name="ServicoConcluido">
-														<?php
-														foreach ($select['ServicoConcluido'] as $key => $row) {
-															if ($query['ServicoConcluido'] == $key) {
-																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-															} else {
-																echo '<option value="' . $key . '">' . $row . '</option>';
-															}
-														}
-														?>
-													</select>
+												<div class="form-group col-md-4 text-left">
+													<div class="form-footer ">
+														<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
+															<span class="glyphicon glyphicon-search"></span> Pesquisar
+														</button>
+													</div>
 												</div>
-												
-												<div class="col-md-3">
-													<label for="QuitadoRecebiveis">Parc. Quit.?</label>
-													<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
-															id="QuitadoRecebiveis" name="QuitadoRecebiveis">
-														<?php
-														foreach ($select['QuitadoRecebiveis'] as $key => $row) {
-															if ($query['QuitadoRecebiveis'] == $key) {
-																echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-															} else {
-																echo '<option value="' . $key . '">' . $row . '</option>';
-															}
-														}
-														?>
-													</select>
+												<div class="form-group col-md-4 text-left">
+													<div class="form-footer ">
+														<button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+															<span class="glyphicon glyphicon-remove"> Fechar
+														</button>
+													</div>
 												</div>
 											</div>
+											<!--
 											<div class="row">
-												<!--
+												
 												<div class="col-md-3">
 													<label for="DataInicio3">Orç.- Data Inc.</label>
 													<div class="input-group DatePicker btn-block">
@@ -199,7 +303,7 @@
 														
 													</div>
 												</div>
-												-->
+												
 												<div class="col-md-3">
 													<label for="DataInicio">Venc Dt Inc</label>
 													<div class="input-group DatePicker btn-block">
@@ -245,22 +349,7 @@
 													</div>
 												</div>
 											</div>
-											<div class="row">
-												<br>
-												<div class="col-md-3 text-left">
-													<div class="form-footer btn-block">
-														<button class="btn btn-primary" name="pesquisar" value="0" type="submit">
-														<span class="glyphicon glyphicon-search"></span> Pesquisar</button>
-													</div>
-												</div>
-												<div class="col-md-2 text-left">
-													<div class="form-footer btn-block">
-														<button type="button" class="btn btn-default " data-dismiss="modal">
-														<span class="glyphicon glyphicon-remove"> Fechar</button>
-													</div>
-												</div>
-											</div>
-										</div>	
+											-->
 									</div>									
 								</div>								
 							</div>
@@ -278,5 +367,5 @@
 			
 		</div>		
 	</div>
-	<div class="col-md-1"></div>	
+	<div class="col-md-3"></div>	
 
