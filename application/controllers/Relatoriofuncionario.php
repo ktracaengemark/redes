@@ -2547,6 +2547,93 @@ class Relatoriofuncionario extends CI_Controller {
 
 
     }
+
+	public function aniversariantes() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+			'Dia',
+			'Mes',
+			'Ano',
+			'NomeConsultor',
+			'Inativo',
+            'Ordenamento',
+            'Campo',
+        ), TRUE));
+
+/*		
+		if (!$data['query']['Dia'])
+           $data['query']['Dia'] = date('d', time());
+*/	   
+		if (!$data['query']['Mes'])
+           $data['query']['Mes'] = date('m', time());
+	   
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+
+        $data['select']['Inativo'] = array(
+            '#' => 'TODOS',
+            '1' => 'Não',
+            '0' => 'Sim',
+        );
+
+		$data['select']['Campo'] = array(
+            'C.idApp_Consultor' => 'nº Consultor',
+			'C.NomeConsultor' => 'Nome do Consultor',
+			'C.Inativo' => 'Ativo',
+            'C.DataNascimento' => 'Data de Nascimento',
+            'C.Sexo' => 'Sexo',
+            'C.Email' => 'E-mail',
+        );
+
+        $data['select']['Ordenamento'] = array(
+            'ASC' => 'Crescente',
+            'DESC' => 'Decrescente',
+        );
+
+        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+		$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
+		$data['select']['Dia'] = $this->Relatoriofuncionario_model->select_dia();
+		$data['select']['Mes'] = $this->Relatoriofuncionario_model->select_mes();
+        $data['titulo'] = 'Relatório de Consultores';
+
+        #run form validation
+        if ($this->form_validation->run() !== TRUE) {
+
+            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+			$data['bd']['Dia'] = $data['query']['Dia'];
+			$data['bd']['Mes'] = $data['query']['Mes'];
+			$data['bd']['Ano'] = $data['query']['Ano'];			
+			$data['bd']['Inativo'] = $data['query']['Inativo'];
+			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
+            $data['bd']['Campo'] = $data['query']['Campo'];
+
+            $data['report'] = $this->Relatoriofuncionario_model->list_aniversariantes($data['bd'],TRUE);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatoriofuncionario/list_aniversariantes', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatoriofuncionario/tela_aniversariantes', $data);
+
+        $this->load->view('basico/footer');
+
+
+
+    }
 	
 	public function associado() {
 

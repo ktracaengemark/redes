@@ -717,7 +717,7 @@ class Relatorioconsultor extends CI_Controller {
 		if (!$data['query']['Mesvenc'])
            $data['query']['Mesvenc'] = date('m', time());
 	   
-	   if (!$data['query']['Mespag'])
+		if (!$data['query']['Mespag'])
            $data['query']['Mespag'] = date('m', time());
 */
 		if (!$data['query']['Ano'])
@@ -2805,6 +2805,92 @@ class Relatorioconsultor extends CI_Controller {
 
     }
 
+    public function aniversariantes() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+            'Dia',
+			'Mes',
+			'Ano',
+			'NomeCliente',
+			'Ativo',
+            'Ordenamento',
+            'Campo',
+        ), TRUE));
+
+/*		
+		if (!$data['query']['Dia'])
+           $data['query']['Dia'] = date('d', time());
+*/	   
+		if (!$data['query']['Mes'])
+           $data['query']['Mes'] = date('m', time());
+	   
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+
+        $data['select']['Ativo'] = array(
+            '#' => 'TODOS',
+            'N' => 'Não',
+            'S' => 'Sim',
+        );
+
+		$data['select']['Campo'] = array(
+            'C.NomeCliente' => 'Nome do Cliente',
+			'C.idApp_Cliente' => 'Nº do Cliente',
+			'C.Ativo' => 'Ativo',
+            'C.DataNascimento' => 'Data de Nascimento',
+            'C.Sexo' => 'Sexo',
+        );
+
+        $data['select']['Ordenamento'] = array(
+            'ASC' => 'Crescente',
+            'DESC' => 'Decrescente',
+        );
+
+        $data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
+		$data['select']['Dia'] = $this->Relatorioconsultor_model->select_dia();
+		$data['select']['Mes'] = $this->Relatorioconsultor_model->select_mes();
+		
+        $data['titulo'] = 'Aniversário dos Clientes';
+
+        #run form validation
+        if ($this->form_validation->run() !== TRUE) {
+
+            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
+			$data['bd']['Ativo'] = $data['query']['Ativo'];
+			$data['bd']['Dia'] = $data['query']['Dia'];
+			$data['bd']['Mes'] = $data['query']['Mes'];
+			$data['bd']['Ano'] = $data['query']['Ano'];
+			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
+            $data['bd']['Campo'] = $data['query']['Campo'];
+
+            $data['report'] = $this->Relatorioconsultor_model->list_aniversariantes($data['bd'],TRUE);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatorioconsultor/list_aniversariantes', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatorioconsultor/tela_aniversariantes', $data);
+
+        $this->load->view('basico/footer');
+
+
+
+    }
+	
     public function clientesusuario() {
 
         if ($this->input->get('m') == 1)

@@ -47,12 +47,15 @@
 						</li>
 						-->
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
-							<div class="btn-group" role="group" aria-label="...">
-								<a href="<?php echo base_url(); ?>relatorioconsultor/clientes">
-									<button type="button" class="btn btn-md btn-success ">
-										<span class="glyphicon glyphicon-user"></span> Clientes
-									</button>
-								</a>
+							<div class="btn-group">
+								<button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown">
+									<span class="glyphicon glyphicon-user"></span> Clientes <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">							
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/clientes"><span class="glyphicon glyphicon-user"></span> Clientes</a></li>							
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/aniversariantes"><span class="glyphicon glyphicon-gift"></span> Aniversariantes</a></li>
+								</ul>
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>

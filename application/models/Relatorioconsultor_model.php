@@ -3758,6 +3758,79 @@ exit();*/
 
     }
 
+	public function list_aniversariantes($data, $completo) {
+
+        $data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
+		$data['Dia'] = ($data['Dia']) ? ' AND DAY(C.DataNascimento) = ' . $data['Dia'] : FALSE;
+		$data['Mes'] = ($data['Mes']) ? ' AND MONTH(C.DataNascimento) = ' . $data['Mes'] : FALSE;
+		$data['Ano'] = ($data['Ano']) ? ' AND YEAR(C.DataNascimento) = ' . $data['Ano'] : FALSE;
+		$data['Campo'] = (!$data['Campo']) ? 'C.NomeCliente' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
+		$filtro10 = ($data['Ativo'] != '#') ? 'C.Ativo = "' . $data['Ativo'] . '" AND ' : FALSE;
+        $query = $this->db->query('
+            SELECT
+				C.idApp_Cliente,
+                C.NomeCliente,
+				C.Ativo,
+                C.DataNascimento,
+                C.Telefone1,
+                C.Telefone2,
+                C.Telefone3,
+                C.Sexo,
+                C.Endereco,
+                C.Bairro,				
+                C.Municipio,
+				C.Estado,
+                C.Email
+
+            FROM
+				App_Cliente AS C
+            WHERE
+                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				C.idApp_Consultor = ' . $_SESSION['log']['id'] . '
+				' . $data['Dia'] . '
+				' . $data['Mes'] . '
+				' . $data['Ano'] . '
+            ORDER BY
+                ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
+        ');
+        /*
+
+        #AND
+        #C.idApp_Cliente = OT.idApp_Cliente
+
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+        */
+
+        if ($completo === FALSE) {
+            return TRUE;
+        } else {
+
+            foreach ($query->result() as $row) {
+				$row->DataNascimento = $this->basico->mascara_data($row->DataNascimento, 'barras');
+				$row->Ativo = $this->basico->mascara_palavra_completa($row->Ativo, 'NS');
+                #$row->Sexo = $this->basico->get_sexo($row->Sexo);
+                #$row->Sexo = ($row->Sexo == 2) ? 'F' : 'M';
+
+                $row->Telefone1 = ($row->Telefone1) ? $row->Telefone1 : FALSE;
+				$row->Telefone2 = ($row->Telefone2) ? $row->Telefone2 : FALSE;
+				$row->Telefone3 = ($row->Telefone3) ? $row->Telefone3 : FALSE;
+
+                #$row->Telefone .= ($row->Telefone2) ? ' / ' . $row->Telefone2 : FALSE;
+                #$row->Telefone .= ($row->Telefone3) ? ' / ' . $row->Telefone3 : FALSE;
+
+            }
+
+            return $query;
+        }
+
+    }
+	
 	public function list_clientesusuario($data, $completo) {
 
         $data['Nome'] = ($data['Nome']) ? ' AND C.idApp_Consultor = ' . $data['Nome'] : FALSE;
@@ -5251,13 +5324,34 @@ exit();*/
         return $array;
     }
 
+	public function select_dia() {
+
+        $query = $this->db->query('
+            SELECT
+				D.idTab_Dia,
+				D.Dia				
+			FROM
+				Tab_Dia AS D
+			ORDER BY
+				D.Dia
+        ');
+
+        $array = array();
+        $array[0] = 'TODOS';
+        foreach ($query->result() as $row) {
+            $array[$row->idTab_Dia] = $row->Dia;
+        }
+
+        return $array;
+    }	
+	
 	public function select_mes() {
 
         $query = $this->db->query('
             SELECT
 				M.idTab_Mes,
 				M.Mesdesc,
-				CONCAT(M.Mes, " / ", M.Mesdesc) AS Mes
+				CONCAT(M.Mes, " - ", M.Mesdesc) AS Mes
 			FROM
 				Tab_Mes AS M
 
