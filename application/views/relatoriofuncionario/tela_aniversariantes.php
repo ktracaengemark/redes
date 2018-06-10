@@ -1,7 +1,7 @@
 <?php if ($msg) echo $msg; ?>
 
-	<div class="col-md-1"></div>
-	<div class="col-md-10">		
+	<div class="col-md-3"></div>
+	<div class="col-md-6">		
 		<div class="row">
 			<div class="main">
 				<?php echo validation_errors(); ?>
@@ -93,6 +93,7 @@
 														</div>
 														-->
 													</div>
+													
 													<div class="row">
 														<br>
 														<div class="form-group col-md-4 text-left">
@@ -110,6 +111,7 @@
 															</div>
 														</div>
 													</div>
+													
 													<div class="row">
 														<div class="col-md-4 text-left">
 															<label for="Inativo">Ativo?</label>
@@ -131,7 +133,7 @@
 															<div class="form-group btn-block">
 																<div class="row">
 																	<div class="col-md-8">
-																		<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
+																		<select data-placeholder="Selecione uma opção..." class="form-control Chosen" 
 																				id="Campo" name="Campo">
 																			<?php
 																			foreach ($select['Campo'] as $key => $row) {
@@ -145,7 +147,7 @@
 																		</select>
 																	</div>
 																	<div class="col-md-4">
-																		<select data-placeholder="Selecione uma opção..." class="form-control Chosen" onchange="this.form.submit()"
+																		<select data-placeholder="Selecione uma opção..." class="form-control Chosen" 
 																				id="Ordenamento" name="Ordenamento">
 																			<?php
 																			foreach ($select['Ordenamento'] as $key => $row) {
@@ -161,7 +163,24 @@
 																</div>
 															</div>
 														</div>
-													</div>	
+													</div>
+													<div class="row">
+														<br>
+														<div class="form-group col-md-4 text-left">
+															<div class="form-footer">
+																<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
+																	<span class="glyphicon glyphicon-search"></span> Pesquisar
+																</button>
+															</div>
+														</div>
+														<div class="form-group col-md-4 text-left">
+															<div class="form-footer ">
+																<button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+																	<span class="glyphicon glyphicon-remove"> Fechar
+																</button>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -178,5 +197,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-1"></div>	
+	<div class="col-md-3"></div>	
 

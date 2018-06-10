@@ -42,7 +42,7 @@
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'cliente/prontuario/' . $row['idApp_Cliente'] . '">';
                             #echo '<td>' . $row['idApp_Cliente'] . '</td>';
 
-                            echo '<td>' . $row['NomeCliente'] . ' - ' . $row['Sexo'] . ' - ' . $row['idApp_Cliente'] . '</td>';
+                            echo '<td>' . $row['NomeCliente'] . ' - ' . $row['Sexo'] . ' - ' . $row['idApp_Cliente'] . ' - Atv-' . $row['Ativo'] . '</td>';
                             #echo '<td>' . $row['Sexo'] . '</td>';
 							
                             echo '<td>' . $row['Telefone1'] . '</td>';

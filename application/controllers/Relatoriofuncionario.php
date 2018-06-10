@@ -2493,20 +2493,17 @@ class Relatoriofuncionario extends CI_Controller {
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
 
         $data['select']['Inativo'] = array(
-            '#' => 'TODOS',
             '1' => 'Não',
             '0' => 'Sim',
+			'#' => 'TODOS',
         );
 
 		$data['select']['Campo'] = array(
-            'C.idApp_Consultor' => 'nº Consultor',
-			'C.NomeConsultor' => 'Nome do Consultor',
+            'C.NomeConsultor' => 'Nome do Consultor',
+			'C.idApp_Consultor' => 'nº Consultor',
 			'C.Inativo' => 'Ativo',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
-            'C.Email' => 'E-mail',
-
-
         );
 
         $data['select']['Ordenamento'] = array(
@@ -2515,7 +2512,7 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
-		$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
+		#$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
 
         $data['titulo'] = 'Relatório de Consultores';
 
@@ -2543,8 +2540,6 @@ class Relatoriofuncionario extends CI_Controller {
         $this->load->view('relatoriofuncionario/tela_consultores', $data);
 
         $this->load->view('basico/footer');
-
-
 
     }
 
@@ -2578,14 +2573,14 @@ class Relatoriofuncionario extends CI_Controller {
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
 
         $data['select']['Inativo'] = array(
-            '#' => 'TODOS',
             '1' => 'Não',
             '0' => 'Sim',
+			'#' => 'TODOS',
         );
 
 		$data['select']['Campo'] = array(
-            'C.idApp_Consultor' => 'nº Consultor',
-			'C.NomeConsultor' => 'Nome do Consultor',
+            'C.NomeConsultor' => 'Nome do Consultor',
+			'C.idApp_Consultor' => 'nº Consultor',
 			'C.Inativo' => 'Ativo',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
@@ -2598,10 +2593,11 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
-		$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
+		#$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
 		$data['select']['Dia'] = $this->Relatoriofuncionario_model->select_dia();
 		$data['select']['Mes'] = $this->Relatoriofuncionario_model->select_mes();
-        $data['titulo'] = 'Relatório de Consultores';
+        
+		$data['titulo'] = 'Aniversário dos Consultores';
 
         #run form validation
         if ($this->form_validation->run() !== TRUE) {

@@ -93,24 +93,8 @@
 													</div>
 													-->
 												</div>
-												<div class="row">
-													<br>
-													<div class="form-group col-md-4 text-left">
-														<div class="form-footer">
-															<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
-																<span class="glyphicon glyphicon-search"></span> Pesquisar
-															</button>
-														</div>
-													</div>
-													<div class="form-group col-md-4 text-left">
-														<div class="form-footer ">
-															<button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
-																<span class="glyphicon glyphicon-remove"> Fechar
-															</button>
-														</div>
-													</div>
-												</div>
 												<div class="row">	
+													<!--
 													<div class="col-md-4 text-left">
 														<label for="Ativo">Ativo</label>
 														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block"
@@ -126,6 +110,9 @@
 															?>
 														</select>
 													</div>
+													-->
+												</div>
+												<div class="row">	
 													<div class="col-md-8 text-left">
 														<label for="Ordenamento">Ordenamento:</label>
 														<div class="form-group btn-block">
@@ -161,7 +148,23 @@
 															</div>
 														</div>
 													</div>
-												</div>	
+												</div>
+												<div class="row">
+													<div class="form-group col-md-4 text-left">
+														<div class="form-footer">
+															<button class="btn btn-info btn-block" name="pesquisar" value="0" type="submit">
+																<span class="glyphicon glyphicon-search"></span> Pesquisar
+															</button>
+														</div>
+													</div>
+													<div class="form-group col-md-4 text-left">
+														<div class="form-footer ">
+															<button type="button" class="btn btn-primary btn-block" data-dismiss="modal">
+																<span class="glyphicon glyphicon-remove"> Fechar
+															</button>
+														</div>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>

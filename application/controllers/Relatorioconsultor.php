@@ -2737,34 +2737,26 @@ class Relatorioconsultor extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
             'NomeCliente',
-			'Ativo',
+			#'Ativo',
             'Ordenamento',
             'Campo',
         ), TRUE));
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-
+/*
         $data['select']['Ativo'] = array(
-            '#' => 'TODOS',
             'N' => 'Não',
             'S' => 'Sim',
+			'#' => 'TODOS',
         );
-
+*/
 		$data['select']['Campo'] = array(
-            'C.idApp_Cliente' => 'nº Cliente',
-			'C.NomeCliente' => 'Nome do Cliente',
+            'C.NomeCliente' => 'Nome do Cliente',
 			'C.Ativo' => 'Ativo',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
-            'C.Bairro' => 'Bairro',
-            'C.Municipio' => 'Município',
-            'C.Email' => 'E-mail',
-			'CC.NomeContatoCliente' => 'Contato do Cliente',
-			'TCC.RelaPes' => 'Rel. Pes.',
-			'TCC.RelaCom' => 'Rel. Com.',
-			'CC.Sexo' => 'Sexo',
-
+			'C.idApp_Cliente' => 'nº Cliente',
         );
 
         $data['select']['Ordenamento'] = array(
@@ -2780,7 +2772,7 @@ class Relatorioconsultor extends CI_Controller {
         if ($this->form_validation->run() !== TRUE) {
 
             $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
-			$data['bd']['Ativo'] = $data['query']['Ativo'];
+			#$data['bd']['Ativo'] = $data['query']['Ativo'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
 
@@ -2833,13 +2825,13 @@ class Relatorioconsultor extends CI_Controller {
 	   
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-
+/*
         $data['select']['Ativo'] = array(
             '#' => 'TODOS',
             'N' => 'Não',
             'S' => 'Sim',
         );
-
+*/
 		$data['select']['Campo'] = array(
             'C.NomeCliente' => 'Nome do Cliente',
 			'C.idApp_Cliente' => 'Nº do Cliente',
@@ -2863,7 +2855,7 @@ class Relatorioconsultor extends CI_Controller {
         if ($this->form_validation->run() !== TRUE) {
 
             $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
-			$data['bd']['Ativo'] = $data['query']['Ativo'];
+			#$data['bd']['Ativo'] = $data['query']['Ativo'];
 			$data['bd']['Dia'] = $data['query']['Dia'];
 			$data['bd']['Mes'] = $data['query']['Mes'];
 			$data['bd']['Ano'] = $data['query']['Ano'];

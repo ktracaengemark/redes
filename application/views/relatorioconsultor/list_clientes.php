@@ -12,7 +12,7 @@
             <table class="table table-bordered table-condensed table-striped">								
                 <thead>
                     <tr>
-                        <th class="active">id</th>
+                        <!--<th class="active">id</th>-->
                         <th class="active">Cliente</th>
                         <!--<th class="active">Sexo</th>-->
 						
@@ -24,8 +24,8 @@
                         <th class="active">Bairro</th>
                         <th class="active">Município</th>
                         <th class="active">E-mail</th>
-						<th class="active">Ativo?</th>
-						<th class="active">Contato</th>
+						<th class="active">Ativo?</th>-->
+						<!--<th class="active">Contato</th>
 						<th class="active">Sexo</th>
 						<th class="active">Rel. Com.</th>
 						<th class="active">Rel. Pes.</th>-->
@@ -40,9 +40,9 @@
 
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'cliente/prontuario/' . $row['idApp_Cliente'] . '">';
-                            echo '<td>' . $row['idApp_Cliente'] . '</td>';
+                            #echo '<td>' . $row['idApp_Cliente'] . '</td>';
 
-                            echo '<td>' . $row['NomeCliente'] . '</td>';
+                            echo '<td>' . $row['NomeCliente'] . ' - ' . $row['Sexo'] . ' - ' . $row['idApp_Cliente'] . ' - Atv-' . $row['Ativo'] . '</td>';
                             #echo '<td>' . $row['Sexo'] . '</td>';
 							
                             echo '<td>' . $row['Telefone1'] . '</td>';

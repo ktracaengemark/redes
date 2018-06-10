@@ -3364,8 +3364,8 @@ exit();*/
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				6 = ' . $_SESSION['log']['Nivel'] . ' AND
-				(C.Nivel = 3 OR 
-				C.Nivel = 4) 
+				' . $filtro1 . '
+				(C.Nivel = 3 OR C.Nivel = 4) 
 				' . $data['NomeConsultor'] . ' 
 
             ORDER BY
@@ -3437,11 +3437,11 @@ exit();*/
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				6 = ' . $_SESSION['log']['Nivel'] . ' AND
+				' . $filtro1 . '
 				(C.Nivel = 3 OR C.Nivel = 4) 
 				' . $data['Dia'] . '
 				' . $data['Mes'] . '
-				' . $data['Ano'] . ' 
-
+				' . $data['Ano'] . '
             ORDER BY
                 ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
         ');
@@ -5089,7 +5089,7 @@ exit();*/
         return $array;
     }
 
-	public function select_inativo($data = FALSE) {
+	public function select_inativo1($data = FALSE) {
 
         if ($data === TRUE) {
             $array = $this->db->query('SELECT * FROM Tab_StatusInativo');
@@ -5098,10 +5098,32 @@ exit();*/
 
             $array = array();
             foreach ($query->result() as $row) {
-                $array[$row->Abrev] = $row->StatusInativo;
+                $array[$row->idTab_StatusInativo] = $row->StatusInativo;
             }
         }
 
         return $array;
     }
+
+	public function select_inativo() {
+
+        $query = $this->db->query('
+            SELECT
+				D.Inativo,
+				D.StatusInativo
+			FROM
+				Tab_StatusInativo AS D
+			ORDER BY
+				D.StatusInativo
+        ');
+
+        $array = array();
+        $array[3] = 'TODOS';
+        foreach ($query->result() as $row) {
+            $array[$row->Inativo] = $row->StatusInativo;
+        }
+
+        return $array;
+    }
+	
 }
