@@ -56,10 +56,8 @@
 
 									<?php echo form_open_multipart($form_open_path); ?>
 
-									<!--<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading collapsed" role="tab" id="heading1" data-toggle="collapse" data-parent="#accordion1" data-target="#collapse1" aria-expanded="false">								<h4 class="panel-title">
 													<a class="accordion-toggle">
 														<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -67,21 +65,12 @@
 													</a>
 												</h4>
 											</div>
+
 											<div id="collapse1" class="panel-collapse " role="tabpanel" aria-labelledby="heading1" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Produtos" aria-expanded="false" aria-controls="Produtos">
-													<span class="glyphicon glyphicon-menu-down"></span> Produtos & Serviços
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Produtos">
 												<div class="panel-body">
-																											
-													<!--<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">-->
-													<div class="panel-group">
+													<!--#######################################-->														
+													<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
 														<div class="panel panel-success">
-															<!--
 															<div class="panel-heading collapsed" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion5" data-target="#collapse5" aria-expanded="false">								
 																<h4 class="panel-title">
 																	<a class="accordion-toggle">
@@ -92,14 +81,6 @@
 															</div>
 
 															<div id="collapse5" class="panel-collapse " role="tabpanel" aria-labelledby="heading5" aria-expanded="false">
-															-->
-															<div class="panel-heading text-left">
-																<a class="btn btn-success" type="button" data-toggle="collapse" data-target="#Entregues" aria-expanded="false" aria-controls="Entregues">
-																	<span class="glyphicon glyphicon-menu-down"></span> Entregues
-																</a>
-															</div>
-															
-															<div <?php echo $collapse; ?> id="Entregues">	
 																<div class="panel-body">
 																	<input type="hidden" name="PCount" id="PCount" value="<?php echo $count['PCount']; ?>"/>
 
@@ -222,15 +203,10 @@
 																						<b>Prod. Entregues: <span id="QtdSoma"><?php echo $QtdSoma ?></span></b>
 																					</div>
 																					<div class="col-md-3 text-left">																							
-																						<!--
 																						<a class="accordion-toggle btn btn-heading  collapsed" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion5" data-target="#collapse5" aria-expanded="false">
 																							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
 																							Entregues
-																						</a>
-																						-->
-																						<a class="btn btn-success" type="button" data-toggle="collapse" data-target="#Entregues" aria-expanded="false" aria-controls="Entregues">
-																							<span class="glyphicon glyphicon-menu-up"></span> Entregues
-																						</a>
+																						</a>																							
 																					</div>
 																				</div>
 																			</div>																
@@ -242,10 +218,8 @@
 														</div>
 													</div>	
 													
-													<!--<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">-->
-													<div class="panel-group">	
+													<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">
 														<div class="panel panel-danger">
-															<!--
 															<div class="panel-heading collapsed" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion6" data-target="#collapse6" aria-expanded="false">
 																<h4 class="panel-title">
 																	<a class="accordion-toggle">
@@ -256,14 +230,6 @@
 															</div>
 
 															<div id="collapse6" class="panel-collapse " role="tabpanel" aria-labelledby="heading6" aria-expanded="false">
-															-->
-															<div class="panel-heading text-left">
-																<a class="btn btn-danger" type="button" data-toggle="collapse" data-target="#Devolvidos" aria-expanded="false" aria-controls="Devolvidos">
-																	<span class="glyphicon glyphicon-menu-down"></span> Devolvidos
-																</a>
-															</div>
-															
-															<div <?php echo $collapse; ?> id="Devolvidos">	
 																<div class="panel-body">
 																															
 																	<input type="hidden" name="SCount" id="SCount" value="<?php echo $count['SCount']; ?>"/>
@@ -415,15 +381,10 @@
 																						<b>Prod. Devolvidos = <span id="QtdSomaDev"><?php echo $QtdSomaDev ?></span></b>
 																					</div>
 																					<div class="col-md-3 text-left">																							
-																						<!--
 																						<a class="accordion-toggle btn btn-heading  collapsed" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion6" data-target="#collapse6" aria-expanded="false">
 																							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
 																							Devolvidos
-																						</a>
-																						-->
-																						<a class="btn btn-danger" type="button" data-toggle="collapse" data-target="#Devolvidos" aria-expanded="false" aria-controls="Devolvidos">
-																							<span class="glyphicon glyphicon-menu-up"></span> Devolvidos
-																						</a>
+																						</a>																							
 																					</div>
 																				</div>
 																			</div>
@@ -439,11 +400,9 @@
 											</div>
 										</div>
 									</div>
-									
-									<!--<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+							<!--#######################################-->
+									<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading collapsed" role="tab" id="heading4" data-toggle="collapse" data-parent="#accordion4" data-target="#collapse4" aria-expanded="false">								<h4 class="panel-title">
 													<a class="accordion-toggle">
 														<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -453,14 +412,6 @@
 											</div>
 
 											<div id="collapse4" class="panel-collapse" role="tabpanel" aria-labelledby="heading4" aria-expanded="false">
-											-->	
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Orcamento" aria-expanded="false" aria-controls="Orcamento">
-													<span class="glyphicon glyphicon-menu-down"></span> Orçam. & Forma de Pagam.
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Orcamento">	
 												<div class="panel-body">
 													<div class="panel panel-info">
 														<div class="panel-heading">														
@@ -581,10 +532,8 @@
 										</div>
 									</div>
 
-									<!--<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading" role="tab" id="heading2" data-toggle="collapse" data-parent="#accordion2" data-target="#collapse2">
 												<h4 class="panel-title">
 													<a class="accordion-toggle">
@@ -594,14 +543,7 @@
 												</h4>
 											</div>
 											<div id="collapse2" class="panel-collapse" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
-													<span class="glyphicon glyphicon-menu-down"></span> Parcelas
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Parcelas">	
+												
 												<div class="panel-body">
 													
 													<input type="hidden" name="PRCount" id="PRCount" value="<?php echo $count['PRCount']; ?>"/>
@@ -733,10 +675,8 @@
 										</div>
 									</div>
 
-									<!--<div class="panel-group" id="accordion8" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion8" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading collapsed" role="tab" id="heading8" data-toggle="collapse" data-parent="#accordion8" data-target="#collapse8" aria-expanded="false">								<h4 class="panel-title">
 													<a class="accordion-toggle">
 														<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -746,14 +686,6 @@
 											</div>
 
 											<div id="collapse8" class="panel-collapse" role="tabpanel" aria-labelledby="heading8" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Statusorca" aria-expanded="false" aria-controls="Statusorca">
-													<span class="glyphicon glyphicon-menu-down"></span> Status do Orçam.
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Statusorca">	
 												<div class="panel-body">
 													<div class="form-group">
 														<div class="panel panel-info">
@@ -953,10 +885,8 @@
 										</div>
 									</div>
 									
-									<!--<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											 <!--
 											 <div class="panel-heading" role="tab" id="heading3" data-toggle="collapse" data-parent="#accordion3" data-target="#collapse3">
 												<h4 class="panel-title">
 													<a class="accordion-toggle">
@@ -967,14 +897,6 @@
 											</div>
 
 											<div id="collapse3" class="panel-collapse" role="tabpanel" aria-labelledby="heading3" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
-													<span class="glyphicon glyphicon-menu-down"></span> Procedimentos
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Procedimentos">
 												<div class="panel-body">
 
 													<input type="hidden" name="PMCount" id="PMCount" value="<?php echo $count['PMCount']; ?>"/>

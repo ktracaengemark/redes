@@ -218,6 +218,19 @@ class Orcatrata extends CI_Controller {
         else
             $data['tratamentosin'] = '';
 
+/*		
+        if ($data['produto']['QtdVendaProduto'] || $data['query']['Endereco'] || $data['query']['Bairro'] ||
+			$data['query']['Municipio'] || $data['query']['Estado'] || $data['query']['Obs'] || $data['query']['Email'] || 
+			$data['query']['Cep'] || $data['query']['Cpf'] || $data['query']['Rg']  || $data['query']['OrgaoExp'] || 
+			$data['query']['EstadoExp']  || $data['query']['DataExp'])
+            $data['collapse'] = '';
+        else
+            $data['collapse'] = 'class="collapse"';		
+*/		
+        if ($data['produto']['QtdVendaProduto'])
+            $data['collapse'] = '';
+        else
+            $data['collapse'] = 'class="collapse"';		
 
         #Ver uma solução melhor para este campo
         (!$data['orcatrata']['Modalidade']) ? $data['orcatrata']['Modalidade'] = 'P' : FALSE;
@@ -628,7 +641,23 @@ class Orcatrata extends CI_Controller {
         else
             $data['tratamentosin'] = '';
 
-
+        if ($data['produto'][$j]['idTab_Produto'] || 
+			$data['produto'][$j]['ValorVendaProduto'] ||
+			$data['produto'][$j]['QtdVendaProduto'] ||
+			$data['produto'][$j]['SubtotalProduto'] ||
+			$data['produto'][$j]['ObsProduto'] ||
+			$data['produto'][$j]['DataValidadeProduto'] ||
+			$data['servico'][$j]['idTab_Servico'] ||
+			$data['servico'][$j]['ValorVendaServico'] ||
+			$data['servico'][$j]['QtdVendaServico'] ||
+			$data['servico'][$j]['SubtotalServico'] ||
+			$data['servico'][$j]['ObsServico'] ||
+			$data['servico'][$j]['DataValidadeServico'] ||
+			$data['servico'][$j]['ConcluidoServico'])
+            $data['collapse'] = 'class="collapse"';
+        else
+            $data['collapse'] = '';	
+		
         #Ver uma solução melhor para este campo
         (!$data['orcatrata']['AprovadoOrca']) ? $data['orcatrata']['AprovadoOrca'] = 'N' : FALSE;
 
