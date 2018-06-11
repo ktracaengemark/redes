@@ -38,7 +38,7 @@
 									</a>
 								</li>
 							</ul>
-							
+
 						</div>
 					  </div>
 					</nav>
@@ -56,10 +56,8 @@
 
 									<?php echo form_open_multipart($form_open_path); ?>
 
-									<!--<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading collapsed" role="tab" id="heading1" data-toggle="collapse" data-parent="#accordion1" data-target="#collapse1" aria-expanded="false">								<h4 class="panel-title">
 													<a class="accordion-toggle">
 														<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -67,21 +65,12 @@
 													</a>
 												</h4>
 											</div>
+
 											<div id="collapse1" class="panel-collapse " role="tabpanel" aria-labelledby="heading1" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Produtos" aria-expanded="false" aria-controls="Produtos">
-													<span class="glyphicon glyphicon-menu-down"></span> Produtos & Serviços
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Produtos">
 												<div class="panel-body">
-																											
-													<!--<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">-->
-													<div class="panel-group">
+													<!--#######################################-->														
+													<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
 														<div class="panel panel-success">
-															<!--
 															<div class="panel-heading collapsed" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion5" data-target="#collapse5" aria-expanded="false">								
 																<h4 class="panel-title">
 																	<a class="accordion-toggle">
@@ -92,14 +81,6 @@
 															</div>
 
 															<div id="collapse5" class="panel-collapse " role="tabpanel" aria-labelledby="heading5" aria-expanded="false">
-															-->
-															<div class="panel-heading text-left">
-																<a class="btn btn-success" type="button" data-toggle="collapse" data-target="#Entregues" aria-expanded="false" aria-controls="Entregues">
-																	<span class="glyphicon glyphicon-menu-down"></span> Entregues
-																</a>
-															</div>
-															
-															<div <?php echo $collapse; ?> id="Entregues">	
 																<div class="panel-body">
 																	<input type="hidden" name="PCount" id="PCount" value="<?php echo $count['PCount']; ?>"/>
 
@@ -117,7 +98,7 @@
 																	<input type="hidden" name="ProdutoHidden" id="ProdutoHidden<?php echo $i ?>" value="<?php echo $i ?>">
 
 																	<div class="form-group" id="9div<?php echo $i ?>">
-																		<div class="panel panel-success">
+																		<div class="panel panel-info">
 																			<div class="panel-heading">
 																				<div class="row">
 																					<div class="col-md-1">
@@ -222,15 +203,10 @@
 																						<b>Prod. Entregues: <span id="QtdSoma"><?php echo $QtdSoma ?></span></b>
 																					</div>
 																					<div class="col-md-3 text-left">																							
-																						<!--
 																						<a class="accordion-toggle btn btn-heading  collapsed" role="tab" id="heading5" data-toggle="collapse" data-parent="#accordion5" data-target="#collapse5" aria-expanded="false">
 																							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
 																							Entregues
-																						</a>
-																						-->
-																						<a class="btn btn-success" type="button" data-toggle="collapse" data-target="#Entregues" aria-expanded="false" aria-controls="Entregues">
-																							<span class="glyphicon glyphicon-menu-up"></span> Entregues
-																						</a>
+																						</a>																							
 																					</div>
 																				</div>
 																			</div>																
@@ -241,11 +217,8 @@
 															</div>
 														</div>
 													</div>	
-													
-													<!--<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">-->
-													<div class="panel-group">	
+													<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">
 														<div class="panel panel-danger">
-															<!--
 															<div class="panel-heading collapsed" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion6" data-target="#collapse6" aria-expanded="false">
 																<h4 class="panel-title">
 																	<a class="accordion-toggle">
@@ -256,14 +229,6 @@
 															</div>
 
 															<div id="collapse6" class="panel-collapse " role="tabpanel" aria-labelledby="heading6" aria-expanded="false">
-															-->
-															<div class="panel-heading text-left">
-																<a class="btn btn-danger" type="button" data-toggle="collapse" data-target="#Devolvidos" aria-expanded="false" aria-controls="Devolvidos">
-																	<span class="glyphicon glyphicon-menu-down"></span> Devolvidos
-																</a>
-															</div>
-															
-															<div <?php echo $collapse; ?> id="Devolvidos">	
 																<div class="panel-body">
 																															
 																	<input type="hidden" name="SCount" id="SCount" value="<?php echo $count['SCount']; ?>"/>
@@ -405,25 +370,20 @@
 																					<div class="col-md-3 text-left">
 																						<a class="add_field_button10  btn btn-danger" 
 																								onclick="calculaQtdSomaDev('QtdVendaServico','QtdSomaDev','ServicoSoma',0,0,'CountMax2',1,0)">
-																							<span class="glyphicon glyphicon-minus"></span> Adc. Prod. Devolvidos
+																							<span class="glyphicon glyphicon-minus"></span> Retr. Prod. Devolvidos
 																						</a>
 																					</div>
 																					<div class="col-md-2">	
-																						<b>Linhas = <span id="ServicoSoma"><?php echo $ServicoSoma ?></span></b><br />
+																						<b>Linhas: <span id="ServicoSoma"><?php echo $ServicoSoma ?></span></b><br />
 																					</div>
 																					<div class="col-md-3">	
-																						<b>Prod. Devolvidos = <span id="QtdSomaDev"><?php echo $QtdSomaDev ?></span></b>
+																						<b>Prod. Devolvidos: <span id="QtdSomaDev"><?php echo $QtdSomaDev ?></span></b>
 																					</div>
 																					<div class="col-md-3 text-left">																							
-																						<!--
 																						<a class="accordion-toggle btn btn-heading  collapsed" role="tab" id="heading6" data-toggle="collapse" data-parent="#accordion6" data-target="#collapse6" aria-expanded="false">
 																							<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
 																							Devolvidos
-																						</a>
-																						-->
-																						<a class="btn btn-danger" type="button" data-toggle="collapse" data-target="#Devolvidos" aria-expanded="false" aria-controls="Devolvidos">
-																							<span class="glyphicon glyphicon-menu-up"></span> Devolvidos
-																						</a>
+																						</a>																							
 																					</div>
 																				</div>
 																			</div>
@@ -439,11 +399,9 @@
 											</div>
 										</div>
 									</div>
-									
-									<!--<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+							<!--#######################################-->
+									<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading collapsed" role="tab" id="heading4" data-toggle="collapse" data-parent="#accordion4" data-target="#collapse4" aria-expanded="false">								<h4 class="panel-title">
 													<a class="accordion-toggle">
 														<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -453,19 +411,11 @@
 											</div>
 
 											<div id="collapse4" class="panel-collapse" role="tabpanel" aria-labelledby="heading4" aria-expanded="false">
-											-->	
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Orcamento" aria-expanded="false" aria-controls="Orcamento">
-													<span class="glyphicon glyphicon-menu-down"></span> Orçam. & Forma de Pagam.
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Orcamento">	
-												<div class="panel-body">
+												<div class="panel-body">													
 													<div class="panel panel-info">
-														<div class="panel-heading">														
+														<div class="panel-heading">
 															<div class="col-md-1"></div>
-															<div class="form-group">	
+															<div class="form-group">
 																<div class="row">
 																	<div class="col-md-2">
 																		<label for="ValorOrca">Orçamento:</label><br>
@@ -500,6 +450,8 @@
 																		<div class="input-group" id="txtHint">
 																			<span class="input-group-addon" id="basic-addon1">R$</span>
 																			<input type="text" class="form-control Valor" id="ValorRestanteOrca" maxlength="10" placeholder="0,00" readonly=""
+																				   data-toggle="collapse" onkeyup="calculaParcelas()"
+																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																				   name="ValorRestanteOrca" value="<?php echo $orcatrata['ValorRestanteOrca'] ?>">
 																		</div>
 																	</div>																		
@@ -507,7 +459,7 @@
 															</div>
 															<div class="col-md-1"></div>
 															<div class="form-group">
-																<div class="row">																	
+																<div class="row">
 																	<div class="col-md-2">
 																		<label for="FormaPagamento">Forma de Pagam.:</label>
 																		<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -523,7 +475,7 @@
 																			}
 																			?>
 																		</select>
-																	</div>
+																	</div>	
 																	<div class="col-md-2">
 																		<label for="DataVencimentoOrca">1º Venc.</label>
 																		<div class="input-group <?php echo $datepicker; ?>">
@@ -531,17 +483,16 @@
 																				<span class="glyphicon glyphicon-calendar"></span>
 																			</span>
 																			<input type="text" class="form-control Date" id="DataVencimentoOrca" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																				   name="DataVencimentoOrca" value="<?php echo $orcatrata['DataVencimentoOrca']; ?>">
-																			
+																				   name="DataVencimentoOrca" value="<?php echo $orcatrata['DataVencimentoOrca']; ?>">																			
 																		</div>
 																	</div>
 																	<div class="col-md-2">
-																		<label for="QtdParcelasOrca">Qtd.Parc.</label><br>
+																		<label for="QtdParcelasOrca">Qtd. Parc.:</label><br>
 																		<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"
 																			   data-toggle="collapse" onkeyup="calculaParcelas()"
 																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																			   name="QtdParcelasOrca" value="<?php echo $orcatrata['QtdParcelasOrca'] ?>">
-																	</div>																	
+																	</div>																																			
 																	<div class="col-md-3">
 																		<label for="Modalidade">Modalidade</label><br>
 																		<div class="form-group">
@@ -554,7 +505,7 @@
 																						echo ''
 																						. '<label class="btn btn-warning active" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
 																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
-																						
+																						. 'onchange="calculaParcelas()" '
 																						. 'autocomplete="off" value="' . $key . '" checked>' . $row
 																						. '</label>'
 																						;
@@ -562,7 +513,7 @@
 																						echo ''
 																						. '<label class="btn btn-default" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
 																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
-																						
+																						. 'onchange="calculaParcelasMensais()" '
 																						. 'autocomplete="off" value="' . $key . '" >' . $row
 																						. '</label>'
 																						;
@@ -572,6 +523,17 @@
 																			</div>
 																		</div>
 																	</div>
+																	<!--
+																	<br>
+																	<div class="form-group">
+																		<div class="col-md-2 text-left">
+																			<button class="btn btn-danger" type="button" data-toggle="collapse" onclick="calculaParcelas()"
+																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
+																				<span class="glyphicon glyphicon-menu-down"></span> Gerar Parcelas
+																			</button>
+																		</div>
+																	</div>
+																	-->
 																</div>
 															</div>
 														</div>
@@ -581,10 +543,8 @@
 										</div>
 									</div>
 
-									<!--<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading" role="tab" id="heading2" data-toggle="collapse" data-parent="#accordion2" data-target="#collapse2">
 												<h4 class="panel-title">
 													<a class="accordion-toggle">
@@ -594,35 +554,26 @@
 												</h4>
 											</div>
 											<div id="collapse2" class="panel-collapse" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Parcelas1" aria-expanded="false" aria-controls="Parcelas1">
-													<span class="glyphicon glyphicon-menu-down"></span> Parcelas
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Parcelas1">	
 												<div class="panel-body">
-													
-													<input type="hidden" name="PRCount" id="PRCount" value="<?php echo $count['PRCount']; ?>"/>
-
-													<div class="input_fields_wrap21">
+													<!--App_parcelasRec-->
+													<div class="input_fields_parcelas">
 
 													<?php
-													for ($i=1; $i <= $count['PRCount']; $i++) {
+													for ($i=1; $i <= $orcatrata['QtdParcelasOrca']; $i++) {
 													?>
 
 														<?php if ($metodo > 1) { ?>
 														<input type="hidden" name="idApp_ParcelasRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['idApp_ParcelasRecebiveis']; ?>"/>
 														<?php } ?>
 
-														<div class="form-group" id="21div<?php echo $i ?>">
-															<div class="panel panel-warning">
+
+														<div class="form-group">
+															<div class="panel panel-info">
 																<div class="panel-heading">
 																	<div class="row">
-																		<div class="col-md-1">
+																		<div class="col-md-2">
 																			<label for="ParcelaRecebiveis">Parcela:</label><br>
-																			<input type="text" class="form-control" maxlength="6" 
+																			<input type="text" class="form-control" maxlength="6" readonly=""
 																				   name="ParcelaRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['ParcelaRecebiveis'] ?>">
 																		</div>
 																		<div class="col-md-2">
@@ -636,12 +587,11 @@
 																		<div class="col-md-2">
 																			<label for="DataVencimentoRecebiveis">Data Venc. Parc.</label>
 																			<div class="input-group DatePicker">
+																				<input type="text" class="form-control Date" id="DataVencimentoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataVencimentoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
-																				<input type="text" class="form-control Date" id="DataVencimentoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataVencimentoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?>">
-																				
 																			</div>
 																		</div>
 																		<div class="col-md-2">
@@ -655,12 +605,11 @@
 																		<div class="col-md-2">
 																			<label for="DataPagoRecebiveis">Data Pag.</label>
 																			<div class="input-group DatePicker">
+																				<input type="text" class="form-control Date" id="DataPagoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataPagoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
-																				<input type="text" class="form-control Date" id="DataPagoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataPagoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?>">
-																				
 																			</div>
 																		</div>
 																		<div class="col-md-2">
@@ -693,13 +642,9 @@
 																				</div>
 																			</div>
 																		</div>
-																		<div class="col-md-1">
-																			<label><br></label><br>
-																			<button type="button" id="<?php echo $i ?>" class="remove_field21 btn btn-danger">
-																				<span class="glyphicon glyphicon-trash"></span>
-																			</button>
-																		</div>																	
 																	</div>
+
+
 																</div>
 															</div>
 														</div>
@@ -708,35 +653,14 @@
 													}
 													?>
 													</div>
-													<!--
-													<div class="form-group">
-														<div class="row">
-															<div class="col-md-4">
-																<a class="add_field_button21 btn btn-danger">
-																	<span class="glyphicon glyphicon-plus"></span> Ad. Parcelas Extras
-																</a>
-															</div>
-														</div>
-													</div>
-													-->
-													<br>
-													<div class="form-group">
-														<div class="col-md-2 text-left">
-															<button class="btn btn-warning" type="button" data-toggle="collapse" onclick="adicionaParcelasRecebiveis()"
-																	data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
-																<span class="glyphicon glyphicon-menu-down"></span> Adicionar Parcelas
-															</button>
-														</div>
-													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
 
-									<!--<div class="panel-group" id="accordion8" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion8" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											<!--
 											<div class="panel-heading collapsed" role="tab" id="heading8" data-toggle="collapse" data-parent="#accordion8" data-target="#collapse8" aria-expanded="false">								<h4 class="panel-title">
 													<a class="accordion-toggle">
 														<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -746,14 +670,6 @@
 											</div>
 
 											<div id="collapse8" class="panel-collapse" role="tabpanel" aria-labelledby="heading8" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Statusorca" aria-expanded="false" aria-controls="Statusorca">
-													<span class="glyphicon glyphicon-menu-down"></span> Status do Orçam.
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Statusorca">	
 												<div class="panel-body">
 													<div class="form-group">
 														<div class="panel panel-info">
@@ -862,7 +778,6 @@
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																						name="DataOrca" value="<?php echo $orcatrata['DataOrca']; ?>">
-																				
 																			</div>
 																		</div>
 																		<div class="col-md-3">
@@ -873,7 +788,6 @@
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																					   name="DataConclusao" value="<?php echo $orcatrata['DataConclusao']; ?>">
-																				
 																			</div>
 																		</div>
 																		<div class="col-md-3">
@@ -883,8 +797,7 @@
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataQuitado" value="<?php echo $orcatrata['DataQuitado']; ?>">
-																				
+																					   name="DataQuitado" value="<?php echo $orcatrata['DataQuitado']; ?>">																				
 																			</div>
 																		</div>
 
@@ -940,7 +853,6 @@
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																					   name="DataRetorno" value="<?php echo $orcatrata['DataRetorno']; ?>">
-																				
 																			</div>
 																		</div>
 																	</div>
@@ -953,10 +865,8 @@
 										</div>
 									</div>
 									
-									<!--<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">-->
-									<div class="panel-group">	
+									<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
 										<div class="panel panel-primary">
-											 <!--
 											 <div class="panel-heading" role="tab" id="heading3" data-toggle="collapse" data-parent="#accordion3" data-target="#collapse3">
 												<h4 class="panel-title">
 													<a class="accordion-toggle">
@@ -967,14 +877,6 @@
 											</div>
 
 											<div id="collapse3" class="panel-collapse" role="tabpanel" aria-labelledby="heading3" aria-expanded="false">
-											-->
-											<div class="panel-heading text-left">
-												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
-													<span class="glyphicon glyphicon-menu-down"></span> Procedimentos
-												</a>
-											</div>
-											
-											<div <?php echo $collapse; ?> id="Procedimentos">
 												<div class="panel-body">
 
 													<input type="hidden" name="PMCount" id="PMCount" value="<?php echo $count['PMCount']; ?>"/>
