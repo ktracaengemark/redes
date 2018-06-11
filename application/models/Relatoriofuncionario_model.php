@@ -1914,6 +1914,149 @@ exit();*/
 
     }
 
+	public function list_procedimento($data, $completo) {
+
+
+        if ($data['DataFim']) {
+            $consulta =
+                '(PR.DataVencimentoRecebiveis >= "' . $data['DataInicio'] . '" AND PR.DataVencimentoRecebiveis <= "' . $data['DataFim'] . '")';
+        }
+        else {
+            $consulta =
+                '(PR.DataVencimentoRecebiveis >= "' . $data['DataInicio'] . '")';
+        }
+
+        if ($data['DataFim2']) {
+            $consulta2 =
+                '(PR.DataPagoRecebiveis >= "' . $data['DataInicio2'] . '" AND PR.DataPagoRecebiveis <= "' . $data['DataFim2'] . '")';
+        }
+        else {
+            $consulta2 =
+                '(PR.DataPagoRecebiveis >= "' . $data['DataInicio2'] . '")';
+        }
+
+        if ($data['DataFim3']) {
+            $consulta3 =
+                '(OT.DataOrca >= "' . $data['DataInicio3'] . '" AND OT.DataOrca <= "' . $data['DataFim3'] . '")';
+        }
+        else {
+            $consulta3 =
+                '(OT.DataOrca >= "' . $data['DataInicio3'] . '")';
+        }
+
+		$data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
+		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
+        $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
+		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
+
+        $query = $this->db->query(
+            'SELECT
+                C.NomeConsultor,
+                OT.idApp_OrcaTrata,
+				OT.TipoRD,
+                OT.AprovadoOrca,
+                OT.DataOrca,
+                OT.DataEntradaOrca,
+                OT.ValorEntradaOrca,
+				OT.QuitadoOrca,
+				OT.ServicoConcluido,
+                PR.Procedimento,
+                PR.DataProcedimento,
+                PR.ConcluidoProcedimento
+            FROM
+                App_Consultor AS C,
+                App_OrcaTrata AS OT
+                    LEFT JOIN App_ParcelasRecebiveis AS PR ON OT.idApp_OrcaTrata = PR.idApp_OrcaTrata
+            WHERE
+                C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				(C.Nivel = "3" OR C.Nivel = "4") AND
+                (' . $consulta . ') AND
+				(' . $consulta2 . ') AND
+				(' . $consulta3 . ') AND
+                ' . $filtro1 . '
+                ' . $filtro2 . '
+                ' . $filtro3 . '
+                C.idApp_Consultor = OT.idApp_Consultor
+                ' . $data['NomeConsultor'] . ' AND
+				OT.TipoRD = "R"
+
+            ORDER BY
+                C.NomeConsultor,
+				OT.AprovadoOrca DESC,
+				PR.DataVencimentoRecebiveis'
+            );
+
+        /*
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+          */
+
+        if ($completo === FALSE) {
+            return TRUE;
+        } else {
+
+            $somapago=$somapagar=$somaentrada=$somareceber=$somarecebido=$somapago=$somapagar=$somareal=$balanco=$ant=0;
+            foreach ($query->result() as $row) {
+				$row->DataOrca = $this->basico->mascara_data($row->DataOrca, 'barras');
+                $row->DataEntradaOrca = $this->basico->mascara_data($row->DataEntradaOrca, 'barras');
+                $row->DataVencimentoRecebiveis = $this->basico->mascara_data($row->DataVencimentoRecebiveis, 'barras');
+                $row->DataPagoRecebiveis = $this->basico->mascara_data($row->DataPagoRecebiveis, 'barras');
+
+                $row->AprovadoOrca = $this->basico->mascara_palavra_completa($row->AprovadoOrca, 'NS');
+				$row->QuitadoOrca = $this->basico->mascara_palavra_completa($row->QuitadoOrca, 'NS');
+				$row->ServicoConcluido = $this->basico->mascara_palavra_completa($row->ServicoConcluido, 'NS');
+                $row->QuitadoRecebiveis = $this->basico->mascara_palavra_completa($row->QuitadoRecebiveis, 'NS');
+
+                #esse trecho pode ser melhorado, serve para somar apenas uma vez
+                #o valor da entrada que pode aparecer mais de uma vez
+                if ($ant != $row->idApp_OrcaTrata) {
+                    $ant = $row->idApp_OrcaTrata;
+                    $somaentrada += $row->ValorEntradaOrca;
+                }
+                else {
+                    $row->ValorEntradaOrca = FALSE;
+                    $row->DataEntradaOrca = FALSE;
+                }
+
+                $somarecebido += $row->ValorPagoRecebiveis;
+                $somareceber += $row->ValorParcelaRecebiveis;
+				$somapago += $row->ValorPagoPagaveis;
+				$somapagar += $row->ValorParcelaPagaveis;
+
+                $row->ValorEntradaOrca = number_format($row->ValorEntradaOrca, 2, ',', '.');
+                $row->ValorParcelaRecebiveis = number_format($row->ValorParcelaRecebiveis, 2, ',', '.');
+                $row->ValorPagoRecebiveis = number_format($row->ValorPagoRecebiveis, 2, ',', '.');
+				$row->ValorParcelaPagaveis = number_format($row->ValorParcelaPagaveis, 2, ',', '.');
+				$row->ValorPagoPagaveis = number_format($row->ValorPagoPagaveis, 2, ',', '.');
+            }
+            $somareceber -= $somarecebido;
+            $somareal = $somarecebido;
+            $balanco = $somarecebido + $somareceber;
+
+			$somapagar -= $somapago;
+			$somareal2 = $somapago;
+			$balanco2 = $somapago + $somapagar;
+
+            $query->soma = new stdClass();
+            $query->soma->somareceber = number_format($somareceber, 2, ',', '.');
+            $query->soma->somarecebido = number_format($somarecebido, 2, ',', '.');
+            $query->soma->somareal = number_format($somareal, 2, ',', '.');
+            $query->soma->somaentrada = number_format($somaentrada, 2, ',', '.');
+            $query->soma->balanco = number_format($balanco, 2, ',', '.');
+			$query->soma->somapagar = number_format($somapagar, 2, ',', '.');
+            $query->soma->somapago = number_format($somapago, 2, ',', '.');
+            $query->soma->somareal2 = number_format($somareal2, 2, ',', '.');
+            $query->soma->balanco2 = number_format($balanco2, 2, ',', '.');
+
+            return $query;
+        }
+
+    }
+	
 	public function list_produtosvend($data, $completo) {
 
         if ($data['DataFim']) {
@@ -4080,48 +4223,52 @@ exit();*/
                 '(OT.DataOrca >= "' . $data['DataInicio'] . '")';
         }
 
-        $data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
-		$data['NomeProfissional'] = ($data['NomeProfissional']) ? ' AND PR.idApp_Profissional = ' . $data['NomeProfissional'] : FALSE;
+        $data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
+		$data['Nome'] = ($data['Nome']) ? ' AND PC.idSis_Usuario = ' . $data['Nome'] : FALSE;
         $filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
-        #$filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
+        $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
 		$filtro4 = ($data['ConcluidoProcedimento'] != '#') ? 'PC.ConcluidoProcedimento = "' . $data['ConcluidoProcedimento'] . '" AND ' : FALSE;
 
 
         $query = $this->db->query('
             SELECT
-                C.NomeCliente,
-                OT.idApp_OrcaTrataCons,
+                C.NomeConsultor,
+                OT.idApp_OrcaTrata,
                 OT.AprovadoOrca,
                 OT.DataOrca,
 				OT.DataPrazo,
                 OT.ValorOrca,
                 OT.ServicoConcluido,
+				OT.QuitadoOrca,
                 OT.DataConclusao,
-				TPD.NomeProduto,
+				OT.DataRetorno,
+				PC.idSis_Usuario,
+				U.Nome,
+				PC.idApp_Procedimento,
 				PC.DataProcedimento,
-				PR.NomeProfissional,
 				PC.Procedimento,
 				PC.ConcluidoProcedimento
 			FROM
-                App_Cliente AS C,
-                App_OrcaTrataCons AS OT
-					LEFT JOIN App_ProdutoVendaCons AS PD ON OT.idApp_OrcaTrataCons = PD.idApp_OrcaTrataCons
-					LEFT JOIN Tab_Produto AS TPD ON TPD.idTab_Produto = PD.idTab_Produto
-					LEFT JOIN App_ProcedimentoCons AS PC ON OT.idApp_OrcaTrataCons = PC.idApp_OrcaTrataCons
-					LEFT JOIN App_Profissional AS PR ON PR.idApp_Profissional = PC.Profissional
+                App_Consultor AS C,
+                App_OrcaTrata AS OT
+					LEFT JOIN App_Procedimento AS PC ON OT.idApp_OrcaTrata = PC.idApp_OrcaTrata
+					LEFT JOIN Sis_Usuario AS U ON U.idSis_Usuario = PC.idSis_Usuario
 			WHERE
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 (' . $consulta . ') AND
                 ' . $filtro1 . '
+				' . $filtro2 . '
 				' . $filtro3 . '
 				' . $filtro4 . '
-                C.idApp_Cliente = OT.idApp_Cliente
-                ' . $data['NomeCliente'] . '
-				' . $data['NomeProfissional'] . '
+                C.idApp_Consultor = OT.idApp_Consultor
+				' . $data['Nome'] . '
+                ' . $data['NomeConsultor'] . ' AND
+				PC.idApp_Procedimento != "0"
+
             ORDER BY
-                C.NomeCliente ASC,
+                C.NomeConsultor ASC,
 				OT.AprovadoOrca DESC,
 				OT.ServicoConcluido,
 				PC.DataProcedimento,
@@ -4149,7 +4296,7 @@ exit();*/
 
                 $row->AprovadoOrca = $this->basico->mascara_palavra_completa($row->AprovadoOrca, 'NS');
                 $row->ServicoConcluido = $this->basico->mascara_palavra_completa($row->ServicoConcluido, 'NS');
-                #$row->QuitadoOrca = $this->basico->mascara_palavra_completa($row->QuitadoOrca, 'NS');
+                $row->QuitadoOrca = $this->basico->mascara_palavra_completa($row->QuitadoOrca, 'NS');
 
 				$row->DataProcedimento = $this->basico->mascara_data($row->DataProcedimento, 'barras');
 				$row->ConcluidoProcedimento = $this->basico->mascara_palavra_completa($row->ConcluidoProcedimento, 'NS');
