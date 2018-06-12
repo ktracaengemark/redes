@@ -4082,7 +4082,9 @@ exit();*/
 
         $data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
 		$data['Nome'] = ($data['Nome']) ? ' AND PC.idSis_Usuario = ' . $data['Nome'] : FALSE;
-        $filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
+        $data['Campo'] = (!$data['Campo']) ? 'OT.DataProcedimento' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
+		$filtro1 = ($data['AprovadoOrca'] != '#') ? 'OT.AprovadoOrca = "' . $data['AprovadoOrca'] . '" AND ' : FALSE;
         $filtro2 = ($data['QuitadoOrca'] != '#') ? 'OT.QuitadoOrca = "' . $data['QuitadoOrca'] . '" AND ' : FALSE;
 		$filtro3 = ($data['ServicoConcluido'] != '#') ? 'OT.ServicoConcluido = "' . $data['ServicoConcluido'] . '" AND ' : FALSE;
 		$filtro4 = ($data['ConcluidoProcedimento'] != '#') ? 'PC.ConcluidoProcedimento = "' . $data['ConcluidoProcedimento'] . '" AND ' : FALSE;
@@ -4125,11 +4127,8 @@ exit();*/
 				PC.idApp_Procedimento != "0"
 
             ORDER BY
-                C.NomeConsultor ASC,
-				OT.AprovadoOrca DESC,
-				OT.ServicoConcluido,
-				PC.DataProcedimento,
-				PC.ConcluidoProcedimento
+                ' . $data['Campo'] . '
+				' . $data['Ordenamento'] . '
         ');
 
         /*

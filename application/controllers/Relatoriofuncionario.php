@@ -3288,20 +3288,17 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['Campo'] = array(
             'C.NomeConsultor' => 'Nome do Consultor',
-			'OT.idApp_OrcaTrataCons' => 'Número do Orçamento',
+			'OT.idApp_OrcaTrata' => 'Número do Orçamento',
 			'OT.DataOrca' => 'Data do Orçamento',
-            'OT.DataPrazo' => 'Data Prazo',
-			'OT.AprovadoOrca' => 'Orçamento Aprovado?',
-			'OT.ValorOrca' => 'Valor do Orçamento',
-            'OT.QuitadoOrca' => 'Orçamento Quitado?',
-			'OT.ServicoConcluido' => 'Serviço Concluído?',
-            'OT.DataConclusao' => 'Data de Conclusão',
-            'OT.DataRetorno' => 'Renovação',
+			'OT.DataRetorno' => 'Retorno',
 			'PC.DataProcedimento' => 'Data do Procedimento',
+			'OT.AprovadoOrca' => 'Orçamento Aprovado?',
+            'OT.QuitadoOrca' => 'Quitado?',
+			'OT.ServicoConcluido' => 'Concluído?',
+            'OT.DataConclusao' => 'Data de Conclusão',
 			'PC.idSis_Usuario' => 'Profissional',
 			'PC.Procedimento' => 'Procedimento',
 			'PC.ConcluidoProcedimento' => 'Proc. Concl.?',
-			'PC.DataProcedimentoLimite' => 'Data Limite',
 
         );
 
@@ -3330,9 +3327,6 @@ class Relatoriofuncionario extends CI_Controller {
 			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
             $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];			
 			$data['bd']['ConcluidoProcedimento'] = $data['query']['ConcluidoProcedimento'];
-
-			#$data['bd']['DataProcedimento'] = $this->basico->mascara_data($data['query']['DataProcedimento'], 'mysql');
-
 
             $data['report'] = $this->Relatoriofuncionario_model->list_procedimento($data['bd'],TRUE);
 

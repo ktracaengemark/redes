@@ -632,7 +632,7 @@ class Orcatrata extends CI_Controller {
             $data['tratamentosin'] = '';
 
 
-		$data['collapse'] = 'class="collapse"';
+		$data['collapse'] = '';
 	
 		
         #Ver uma solução melhor para este campo
