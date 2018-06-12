@@ -87,7 +87,7 @@
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosdevol1"><span class="glyphicon glyphicon-list"></span> Prd. X Dev.</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/orcamentopc"><span class="glyphicon glyphicon-pencil"></span> Procedimentos</a></li>
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/procedimento"><span class="glyphicon glyphicon-pencil"></span> Procedimentos</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/produtosempresa"><span class="glyphicon glyphicon-pencil"></span> Produtos</a></li>
 									<!--<li role="separator" class="divider"></li>

@@ -1158,125 +1158,6 @@ class Relatoriofuncionario extends CI_Controller {
         $this->load->view('basico/footer');
 
     }
-
-	public function procedimento() {
-
-        if ($this->input->get('m') == 1)
-            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
-        elseif ($this->input->get('m') == 2)
-            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
-        else
-            $data['msg'] = '';
-
-        $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
-            'DataInicio',
-            'DataFim',
-			'DataInicio2',
-            'DataFim2',
-			'DataInicio3',
-            'DataFim3',
-			'Ordenamento',
-            'Campo',
-            'AprovadoOrca',
-            'QuitadoOrca',
-			'ServicoConcluido',
-        ), TRUE));
-
-		/*
-        if (!$data['query']['DataInicio'])
-           $data['query']['DataInicio'] = '01/01/2017';
-
-		if (!$data['query']['DataInicio2'])
-           $data['query']['DataInicio2'] = '01/01/2017';
-		*/
-
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
-        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
-        $this->form_validation->set_rules('DataInicio', 'Data Início do Vencimento', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim', 'Data Fim do Vencimento', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio2', 'Data Início do Pagamento', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim2', 'Data Fim do Pagamento', 'trim|valid_date');
-		$this->form_validation->set_rules('DataInicio3', 'Data Início do Orçamento', 'trim|valid_date');
-        $this->form_validation->set_rules('DataFim3', 'Data Fim do Orçamento', 'trim|valid_date');
-
-        $data['select']['AprovadoOrca'] = array(
-            '#' => 'TODOS',
-			'S' => 'Sim',
-			'N' => 'Não',
-        );
-
-        $data['select']['QuitadoOrca'] = array(
-            '#' => 'TODOS',
-            'S' => 'Sim',
-			'N' => 'Não',
-        );
-
-		$data['select']['ServicoConcluido'] = array(
-            '#' => 'TODOS',
-            'S' => 'Sim',
-			'N' => 'Não',
-        );
-
-        $data['select']['Campo'] = array(
-            'PR.DataProcedimento' => 'Data do Proced.',
-			'PR.ConcluidoProcedimento' => 'Data do Pagam.',
-			'PR.Procedimento' => 'Quit.Parc.',
-			'C.NomeConsultor' => 'Nome do Consultor',
-            'OT.idApp_OrcaTrata' => 'Número do Orçamento',
-            'OT.AprovadoOrca' => 'Orçamento Aprovado?',
-            'OT.DataOrca' => 'Data do Orçamento',
-            'OT.ServicoConcluido' => 'Serviço Concluído?',
-            'OT.QuitadoOrca' => 'Orçamento Quitado?',
-            'OT.DataConclusao' => 'Data de Conclusão',
-			'OT.DataQuitado' => 'Data de Quitado',
-            'OT.DataRetorno' => 'Data de Retorno',
-        );
-
-        $data['select']['Ordenamento'] = array(
-            'ASC' => 'Crescente',
-            'DESC' => 'Decrescente',
-        );
-
-		$data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
-
-        $data['titulo'] = 'Procedimentos';
-
-        #run form validation
-        if ($this->form_validation->run() !== FALSE) {
-
-            #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
-            $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
-            $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
-			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
-            $data['bd']['DataFim2'] = $this->basico->mascara_data($data['query']['DataFim2'], 'mysql');
-			$data['bd']['DataInicio3'] = $this->basico->mascara_data($data['query']['DataInicio3'], 'mysql');
-            $data['bd']['DataFim3'] = $this->basico->mascara_data($data['query']['DataFim3'], 'mysql');
-			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
-            $data['bd']['Campo'] = $data['query']['Campo'];
-            $data['bd']['AprovadoOrca'] = $data['query']['AprovadoOrca'];
-            $data['bd']['QuitadoOrca'] = $data['query']['QuitadoOrca'];
-			$data['bd']['ServicoConcluido'] = $data['query']['ServicoConcluido'];
-
-            $data['report'] = $this->Relatoriofuncionario_model->list_procedimento($data['bd'],TRUE);
-
-            /*
-              echo "<pre>";
-              print_r($data['report']);
-              echo "</pre>";
-              exit();
-              */
-
-            $data['list'] = $this->load->view('relatoriofuncionario/list_procedimento', $data, TRUE);
-            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
-        }
-
-        $this->load->view('relatoriofuncionario/tela_procedimento', $data);
-
-        $this->load->view('basico/footer');
-
-    }
 	
 	public function produtosvend() {
 
@@ -3350,7 +3231,7 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
-	public function orcamentopc() {
+	public function procedimento() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -3453,7 +3334,7 @@ class Relatoriofuncionario extends CI_Controller {
 			#$data['bd']['DataProcedimento'] = $this->basico->mascara_data($data['query']['DataProcedimento'], 'mysql');
 
 
-            $data['report'] = $this->Relatoriofuncionario_model->list_orcamentopc($data['bd'],TRUE);
+            $data['report'] = $this->Relatoriofuncionario_model->list_procedimento($data['bd'],TRUE);
 
             /*
               echo "<pre>";
@@ -3462,11 +3343,11 @@ class Relatoriofuncionario extends CI_Controller {
               exit();
               */
 
-            $data['list'] = $this->load->view('relatoriofuncionario/list_orcamentopc', $data, TRUE);
+            $data['list'] = $this->load->view('relatoriofuncionario/list_procedimento', $data, TRUE);
             //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
         }
 
-        $this->load->view('relatoriofuncionario/tela_orcamentopc', $data);
+        $this->load->view('relatoriofuncionario/tela_procedimento', $data);
 
         $this->load->view('basico/footer');
 
