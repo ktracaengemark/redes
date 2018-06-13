@@ -452,7 +452,8 @@ class Orcatratacons extends CI_Controller {
                 $data['servico'][$j]['QtdVendaServico'] = $this->input->post('QtdVendaServico' . $i);
                 $data['servico'][$j]['SubtotalServico'] = $this->input->post('SubtotalServico' . $i);
                 $data['servico'][$j]['ObsServico'] = $this->input->post('ObsServico' . $i);
-                $data['servico'][$j]['ConcluidoServico'] = $this->input->post('ConcluidoServico' . $i);
+                $data['servico'][$j]['DataValidadeServico'] = $this->input->post('DataValidadeServico' . $i);
+				$data['servico'][$j]['ConcluidoServico'] = $this->input->post('ConcluidoServico' . $i);
                 $j++;
             }
 
@@ -482,7 +483,7 @@ class Orcatratacons extends CI_Controller {
             if ($this->input->post('DataProcedimento' . $i) || $this->input->post('Profissional' . $i) ||
                     $this->input->post('Procedimento' . $i) || $this->input->post('ConcluidoProcedimento' . $i)) {
                 $data['procedimento'][$j]['DataProcedimento'] = $this->input->post('DataProcedimento' . $i);
-                $data['procedimento'][$j]['Profissional'] = $this->input->post('Profissional' . $i);
+                #$data['procedimento'][$j]['Profissional'] = $this->input->post('Profissional' . $i);
                 $data['procedimento'][$j]['Procedimento'] = $this->input->post('Procedimento' . $i);
 				$data['procedimento'][$j]['ConcluidoProcedimento'] = $this->input->post('ConcluidoProcedimento' . $i);
 				
@@ -635,7 +636,7 @@ class Orcatratacons extends CI_Controller {
 					#$data['servico'][$j]['OrigemOrca'] = 'U/C';
 					$data['servico'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['servico'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
-
+					$data['servico'][$j]['DataValidadeServico'] = $this->basico->mascara_data($data['servico'][$j]['DataValidadeServico'], 'mysql');
                     $data['servico'][$j]['ValorVendaServico'] = str_replace(',', '.', str_replace('.', '', $data['servico'][$j]['ValorVendaServico']));
                     unset($data['servico'][$j]['SubtotalServico']);
                 }
@@ -686,7 +687,6 @@ class Orcatratacons extends CI_Controller {
 					#$data['procedimento'][$j]['OrigemOrca'] = 'U/C';
 					$data['procedimento'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['procedimento'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
-
                     $data['procedimento'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['procedimento'][$j]['DataProcedimento'], 'mysql');
 					
 
@@ -1187,7 +1187,6 @@ class Orcatratacons extends CI_Controller {
 					$data['update']['procedimento']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['update']['procedimento']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['procedimento']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
-
                     $data['update']['procedimento']['inserir'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['update']['procedimento']['inserir'][$j]['DataProcedimento'], 'mysql');
 
                 }
@@ -1580,7 +1579,8 @@ class Orcatratacons extends CI_Controller {
                 for($j=0;$j<$max;$j++) {
 
                     $data['update']['servico']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['servico']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['servico']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['servico']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['servico']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['update']['servico']['inserir'][$j]['DataValidadeServico'] = $this->basico->mascara_data($data['update']['servico']['inserir'][$j]['DataValidadeServico'], 'mysql');
                     $data['update']['servico']['inserir'][$j]['ValorVendaServico'] = str_replace(',', '.', str_replace('.', '', $data['update']['servico']['inserir'][$j]['ValorVendaServico']));
@@ -1619,7 +1619,8 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['update']['produto']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['produto']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['produto']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['produto']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['produto']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['produto']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
 					$data['update']['produto']['inserir'][$j]['DataValidadeProduto'] = $this->basico->mascara_data($data['update']['produto']['inserir'][$j]['DataValidadeProduto'], 'mysql');
                     $data['update']['produto']['inserir'][$j]['ValorVendaProduto'] = str_replace(',', '.', str_replace('.', '', $data['update']['produto']['inserir'][$j]['ValorVendaProduto']));
@@ -1659,9 +1660,9 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['update']['parcelasrec']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['parcelasrec']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['parcelasrec']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['parcelasrec']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['parcelasrec']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['parcelasrec']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
-
                     $data['update']['parcelasrec']['inserir'][$j]['ValorParcelaRecebiveis'] = str_replace(',', '.', str_replace('.', '', $data['update']['parcelasrec']['inserir'][$j]['ValorParcelaRecebiveis']));
                     $data['update']['parcelasrec']['inserir'][$j]['DataVencimentoRecebiveis'] = $this->basico->mascara_data($data['update']['parcelasrec']['inserir'][$j]['DataVencimentoRecebiveis'], 'mysql');
                     $data['update']['parcelasrec']['inserir'][$j]['ValorPagoRecebiveis'] = str_replace(',', '.', str_replace('.', '', $data['update']['parcelasrec']['inserir'][$j]['ValorPagoRecebiveis']));
@@ -1703,9 +1704,9 @@ class Orcatratacons extends CI_Controller {
                 $max = count($data['update']['procedimento']['inserir']);
                 for($j=0;$j<$max;$j++) {
                     $data['update']['procedimento']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['procedimento']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['procedimento']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
+					$data['update']['procedimento']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
                     $data['update']['procedimento']['inserir'][$j]['idApp_OrcaTrataCons'] = $data['orcatrata']['idApp_OrcaTrataCons'];
-
                     $data['update']['procedimento']['inserir'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['update']['procedimento']['inserir'][$j]['DataProcedimento'], 'mysql');
 
                 }
