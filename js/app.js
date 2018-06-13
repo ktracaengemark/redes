@@ -2584,7 +2584,7 @@ $(document).ready(function () {
 							</div>\
 							<div class="col-md-7">\
 								<label for="idTab_Servico">Produto:</label><br>\
-								<select class="form-control Chosen" id="listadinamica'+ps+'" onchange="buscaValor2Tabelas(this.value,this.name,\'Valor\','+ps+',\'Produto\')" name="idTab_Servico'+ps+'">\
+								<select class="form-control Chosen" id="listadinamica'+ps+'" onchange="buscaValorDevTabelas(this.value,this.name,\'Valor\','+ps+',\'Produto\')" name="idTab_Servico'+ps+'">\
 									<option value="">-- Selecione uma opção --</option>\
 								</select>\
 							</div>\
