@@ -205,6 +205,9 @@ class Orcatratacons extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 1;
 
+		$data['collapse'] = '';	
+		$data['collapse1'] = 'class="collapse"';		
+		
         if ($data['orcatrata']['ValorOrca'] || $data['orcatrata']['ValorDev'] || $data['orcatrata']['ValorEntradaOrca'] || $data['orcatrata']['ValorRestanteOrca'])
             $data['orcamentoin'] = 'in';
         else
@@ -546,6 +549,9 @@ class Orcatratacons extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 1;
 
+		$data['collapse'] = '';	
+		$data['collapse1'] = 'class="collapse"';		
+		
         if ($data['orcatrata']['ValorOrca'] || $data['orcatrata']['ValorDev'] || $data['orcatrata']['ValorEntradaOrca'] || $data['orcatrata']['ValorRestanteOrca'])
             $data['orcamentoin'] = 'in';
         else
@@ -575,6 +581,15 @@ class Orcatratacons extends CI_Controller {
         ($data['orcatrata']['AprovadoOrca'] == 'S') ?
             $data['div']['AprovadoOrca'] = '' : $data['div']['AprovadoOrca'] = 'style="display: none;"';
 
+			
+        #Ver uma solução melhor para este campo
+        #(!$data['orcatrata']['TipoReceita']) ? $data['orcatrata']['TipoReceita'] = '1' : FALSE;
+
+        $data['radio'] = array(
+            'TipoReceita' => $this->basico->radio_checked($data['orcatrata']['TipoReceita'], 'Tarefa Aprovado', 'NS'),
+        );
+
+        ($data['orcatrata']['TipoReceita'] == '1') ? $data['div']['TipoReceita'] = '' : $data['div']['TipoReceita'] = 'style="display: none;"';			
 
         $data['sidebar'] = 'col-sm-3 col-md-2';
         $data['main'] = 'col-sm-7 col-md-8';
@@ -964,6 +979,9 @@ class Orcatratacons extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 2;
 
+		$data['collapse'] = '';	
+		$data['collapse1'] = 'class="collapse"';		
+		
         //if ($data['orcatrata']['ValorOrca'] || $data['orcatrata']['ValorEntradaOrca'] || $data['orcatrata']['ValorRestanteOrca'])
         if ($data['count']['SCount'] > 0 || $data['count']['PCount'] > 0)
             $data['orcamentoin'] = 'in';
@@ -1484,6 +1502,9 @@ class Orcatratacons extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 2;
 
+		$data['collapse'] = '';	
+		$data['collapse1'] = 'class="collapse"';		
+		
         //if ($data['orcatrata']['ValorOrca'] || $data['orcatrata']['ValorEntradaOrca'] || $data['orcatrata']['ValorRestanteOrca'])
         if ($data['count']['SCount'] > 0 || $data['count']['PCount'] > 0)
             $data['orcamentoin'] = 'in';

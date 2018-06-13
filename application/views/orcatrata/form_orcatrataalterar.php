@@ -99,7 +99,7 @@
 																</a>
 															</div>
 															
-															<div <?php echo $collapse; ?> id="Entregues">	
+															<div <?php echo $collapse1; ?> id="Entregues">	
 																<div class="panel-body">
 																	<input type="hidden" name="PCount" id="PCount" value="<?php echo $count['PCount']; ?>"/>
 
@@ -263,7 +263,7 @@
 																</a>
 															</div>
 															
-															<div <?php echo $collapse; ?> id="Devolvidos">	
+															<div <?php echo $collapse1; ?> id="Devolvidos">	
 																<div class="panel-body">
 																															
 																	<input type="hidden" name="SCount" id="SCount" value="<?php echo $count['SCount']; ?>"/>

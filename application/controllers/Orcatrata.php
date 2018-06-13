@@ -219,7 +219,9 @@ class Orcatrata extends CI_Controller {
             $data['tratamentosin'] = '';
 
 		
-		$data['collapse'] = '';		
+		$data['collapse'] = '';	
+
+		$data['collapse1'] = 'class="collapse"';	
 		
 	
         #Ver uma solução melhor para este campo
@@ -634,6 +636,7 @@ class Orcatrata extends CI_Controller {
 
 		$data['collapse'] = '';
 	
+		$data['collapse1'] = 'class="collapse"';
 		
         #Ver uma solução melhor para este campo
         (!$data['orcatrata']['AprovadoOrca']) ? $data['orcatrata']['AprovadoOrca'] = 'N' : FALSE;

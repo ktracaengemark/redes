@@ -17,8 +17,10 @@
 						<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 						<div class="panel-body">
 
-							<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+							<!--<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">-->
+							<div class="panel-group">	
 								<div class="panel panel-primary">
+									<!--
 									<div class="panel-heading collapsed" role="tab" id="heading1" data-toggle="collapse" data-parent="#accordion1" data-target="#collapse1" aria-expanded="false">								<h4 class="panel-title">
 											<a class="accordion-toggle">
 												<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -26,8 +28,15 @@
 											</a>
 										</h4>
 									</div>
-
 									<div id="collapse1" class="panel-collapse " role="tabpanel" aria-labelledby="heading1" aria-expanded="false">
+									-->
+									<div class="panel-heading text-left">
+										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Produtos" aria-expanded="false" aria-controls="Produtos">
+											<span class="glyphicon glyphicon-menu-down"></span> Produtos & Serviços
+										</a>
+									</div>
+									
+									<div <?php echo $collapse1; ?> id="Produtos">
 										<div class="panel-body">
 											<!--
 											<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">
@@ -321,8 +330,10 @@
 								</div>
 							</div>
 
-							<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">
+							<!--<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">-->
+							<div class="panel-group">	
 								<div class="panel panel-primary">
+									<!--
 									<div class="panel-heading collapsed" role="tab" id="heading4" data-toggle="collapse" data-parent="#accordion4" data-target="#collapse4" aria-expanded="false">								<h4 class="panel-title">
 											<a class="accordion-toggle">
 												<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -332,6 +343,14 @@
 									</div>
 
 									<div id="collapse4" class="panel-collapse" role="tabpanel" aria-labelledby="heading4" aria-expanded="false">
+									-->	
+									<div class="panel-heading text-left">
+										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Orcamento" aria-expanded="false" aria-controls="Orcamento">
+											<span class="glyphicon glyphicon-menu-down"></span> Orçam. & Forma de Pagam.
+										</a>
+									</div>
+									
+									<div <?php echo $collapse; ?> id="Orcamento">
 										<div class="panel-body">
 											
 												<div class="panel panel-info">
@@ -368,6 +387,68 @@
 																</div>
 																-->
 																<div class="col-md-2">
+																	<label for="TipoReceita">Tipo de Receita</label>
+																	<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
+																			name="TipoReceita">
+																		<!--<option value="">-- Selecione uma opção --</option>-->
+																		<?php
+																		foreach ($select['TipoReceita'] as $key => $row) {
+																			
+																			(!$orcatrata['TipoReceita']) ? $orcatrata['TipoReceita'] = '1' : FALSE;
+																			
+																			if ($orcatrata['TipoReceita'] == $key) {
+																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																			} else {
+																				echo '<option value="' . $key . '">' . $row . '</option>';
+																			}
+																			
+																			/*
+																			#if (!$orcatrata['TipoReceita']) $orcatrata['TipoReceita'] = '1';
+																			
+																			($key == '1') ? $hideshow = 'showradio' : $hideshow = 'hideradio';
+
+																			if ($orcatrata['TipoReceita'] == $key) {
+																				echo ''
+																				
+																				. '<option type="radio" name="TipoReceita" id="' . $hideshow . '" '
+																				. 'autocomplete="off" value="' . $key . '" checked>' . $row
+																				. '</option>'
+																				;
+																			} else {
+																				echo ''
+																				
+																				. '<option type="radio" name="TipoReceita" id="' . $hideshow . '" '
+																				. 'autocomplete="off" value="' . $key . '" >' . $row
+																				. '</option>'
+																				;
+																			}
+																			*/
+																			
+																		}
+																		?>
+																	</select>
+																</div>
+																<!--
+																<div id="TipoReceita" <?php echo $div['TipoReceita']; ?>>
+																	<div class="col-md-2">
+																		<label for="idApp_Cliente">Cliente *</label>
+																		<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
+																				id="idApp_Cliente" autofocus name="idApp_Cliente">
+																			<option value="">-- Sel. um Cliente --</option>
+																			<?php
+																			foreach ($select['idApp_Cliente'] as $key => $row) {
+																				if ($orcatrata['idApp_Cliente'] == $key) {
+																					echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																				} else {
+																					echo '<option value="' . $key . '">' . $row . '</option>';
+																				}
+																			}
+																			?>
+																		</select>
+																	</div>
+																</div>
+																-->
+																<div class="col-md-2">
 																	<label for="idApp_Cliente">Cliente *</label>
 																	<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
 																			id="idApp_Cliente" autofocus name="idApp_Cliente">
@@ -375,23 +456,6 @@
 																		<?php
 																		foreach ($select['idApp_Cliente'] as $key => $row) {
 																			if ($orcatrata['idApp_Cliente'] == $key) {
-																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																			} else {
-																				echo '<option value="' . $key . '">' . $row . '</option>';
-																			}
-																		}
-																		?>
-																	</select>
-																</div>
-																<div class="col-md-2">
-																	<label for="TipoReceita">Tipo de Receita</label>
-																	<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
-																			id="TipoReceita" name="TipoReceita">
-																		<!--<option value="">-- Selecione uma opção --</option>-->
-																		<?php
-																		foreach ($select['TipoReceita'] as $key => $row) {
-																			(!$orcatrata['TipoReceita']) ? $orcatrata['TipoReceita'] = '1' : FALSE;
-																			if ($orcatrata['TipoReceita'] == $key) {
 																				echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																			} else {
 																				echo '<option value="' . $key . '">' . $row . '</option>';
@@ -504,8 +568,10 @@
 								</div>
 							</div>
 
-							<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+							<!--<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">-->
+							<div class="panel-group">	
 								<div class="panel panel-primary">
+									<!--
 									<div class="panel-heading" role="tab" id="heading2" data-toggle="collapse" data-parent="#accordion2" data-target="#collapse2">
 										<h4 class="panel-title">
 											<a class="accordion-toggle">
@@ -515,6 +581,14 @@
 										</h4>
 									</div>
 									<div id="collapse2" class="panel-collapse" role="tabpanel" aria-labelledby="heading2" aria-expanded="false">
+									-->
+									<div class="panel-heading text-left">
+										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Parcelas1" aria-expanded="false" aria-controls="Parcelas1">
+											<span class="glyphicon glyphicon-menu-down"></span> Parcelas
+										</a>
+									</div>
+									
+									<div <?php echo $collapse; ?> id="Parcelas1">
 										<div class="panel-body">
 											<!--App_parcelasRec-->
 											<div class="input_fields_parcelas">
@@ -620,8 +694,10 @@
 								</div>
 							</div>
 
-							<div class="panel-group" id="accordion8" role="tablist" aria-multiselectable="true">
+							<!--<div class="panel-group" id="accordion8" role="tablist" aria-multiselectable="true">-->
+							<div class="panel-group">	
 								<div class="panel panel-primary">
+									<!--
 									<div class="panel-heading collapsed" role="tab" id="heading8" data-toggle="collapse" data-parent="#accordion8" data-target="#collapse8" aria-expanded="false">								<h4 class="panel-title">
 											<a class="accordion-toggle">
 												<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
@@ -631,6 +707,14 @@
 									</div>
 
 									<div id="collapse8" class="panel-collapse" role="tabpanel" aria-labelledby="heading8" aria-expanded="false">
+									-->
+									<div class="panel-heading text-left">
+										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Statusorca" aria-expanded="false" aria-controls="Statusorca">
+											<span class="glyphicon glyphicon-menu-down"></span> Status do Orçam.
+										</a>
+									</div>
+									
+									<div <?php echo $collapse; ?> id="Statusorca">
 										<div class="panel-body">
 											<div class="panel panel-info">
 												<div class="panel-heading">												
@@ -703,6 +787,7 @@
 																	
 																</div>
 															</div>														
+															<!--
 															<div class="col-md-2">
 																<label for="DataRetorno">Retornar</label>
 																<div class="input-group <?php echo $datepicker; ?>">
@@ -714,11 +799,13 @@
 																	
 																</div>
 															</div>
+															
 															<div class="col-md-4">
 																<label for="ObsOrca">OBS:</label>
 																<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
 																		  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
 															</div>
+															-->
 														</div>
 													</div>												
 												</div>
@@ -728,8 +815,10 @@
 								</div>
 							</div>
 
-							<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
+							<!--<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">-->
+							<div class="panel-group">	
 								<div class="panel panel-primary">
+									 <!--
 									 <div class="panel-heading" role="tab" id="heading3" data-toggle="collapse" data-parent="#accordion3" data-target="#collapse3">
 										<h4 class="panel-title">
 											<a class="accordion-toggle">
@@ -740,6 +829,14 @@
 									</div>
 
 									<div id="collapse3" class="panel-collapse" role="tabpanel" aria-labelledby="heading3" aria-expanded="false">
+									-->
+									<div class="panel-heading text-left">
+										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
+											<span class="glyphicon glyphicon-menu-down"></span> Procedimentos
+										</a>
+									</div>
+									
+									<div <?php echo $collapse; ?> id="Procedimentos">
 										<div class="panel-body">
 
 											<input type="hidden" name="PMCount" id="PMCount" value="<?php echo $count['PMCount']; ?>"/>
