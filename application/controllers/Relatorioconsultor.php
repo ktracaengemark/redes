@@ -3195,7 +3195,7 @@ class Relatorioconsultor extends CI_Controller {
         */
 
 
-        $data['titulo'] = 'Relatório de Pagamento da Manutenção dos Indicados';
+        $data['titulo'] = 'Pagamento dos Indicados';
 
         #run form validation
         if ($this->form_validation->run() !== FALSE) {

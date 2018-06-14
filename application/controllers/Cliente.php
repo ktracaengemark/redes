@@ -71,13 +71,18 @@ class Cliente extends CI_Controller {
 			'Estado',
             'Obs',
 			'Email',
-
+			'Aux1Cli',
+			'Aux2Cli',
+			'Aux3Cli',
+			'Aux4Cli',
+			'Aux5Cli',
             'RegistroFicha',
 			'Associado',
         ), TRUE));
 
        
 		(!$data['query']['DataCadastroCliente']) ? $data['query']['DataCadastroCliente'] = date('d/m/Y', time()) : FALSE;
+		(!$data['query']['Aux5Cli']) ? $data['query']['Aux5Cli'] = '0' : FALSE;
 		
 	   $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
@@ -93,6 +98,10 @@ class Cliente extends CI_Controller {
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		$data['select']['Associado'] = $this->Basico_model->select_status_sn();
 		$data['select']['Ativo'] = $this->Basico_model->select_status_sn();
+		$data['select']['Aux1Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux2Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux3Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux4Cli'] = $this->Basico_model->select_statusaux();
 		
         $data['titulo'] = 'Cadastrar Cliente';
         $data['form_open_path'] = 'cliente/cadastrar';
@@ -101,6 +110,9 @@ class Cliente extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 1;
 
+		$data['collapse1'] = 'class="collapse"';
+		$data['collapse2'] = 'class="collapse"';
+		
         if ($data['query']['Sexo'] || $data['query']['Endereco'] || $data['query']['Bairro'] ||
 			$data['query']['Municipio'] || $data['query']['Estado'] || $data['query']['Obs'] || $data['query']['Email'] || 
 			$data['query']['RegistroFicha'] || $data['query']['Cep'] || $data['query']['Cpf'] || 
@@ -112,7 +124,9 @@ class Cliente extends CI_Controller {
         $data['sidebar'] = 'col-sm-3 col-md-2';
         $data['main'] = 'col-sm-7 col-md-8';
 
-        $data['tela'] = $this->load->view('cliente/form_cliente', $data, TRUE);
+				
+       
+		$data['tela'] = $this->load->view('cliente/form_cliente', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -185,10 +199,17 @@ class Cliente extends CI_Controller {
             'Obs',
             #'idSis_Usuario',
             'Email',
+			'Aux1Cli',
+			'Aux2Cli',
+			'Aux3Cli',
+			'Aux4Cli',
+			'Aux5Cli',
             'RegistroFicha',
 			'Associado',
         ), TRUE);
 
+		(!$data['query']['Aux5Cli']) ? $data['query']['Aux5Cli'] = '0' : FALSE;
+		
         if ($id) {
             $data['query'] = $this->Cliente_model->get_cliente($id);
             $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'barras');
@@ -209,6 +230,10 @@ class Cliente extends CI_Controller {
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		$data['select']['Associado'] = $this->Basico_model->select_status_sn();
 		$data['select']['Ativo'] = $this->Basico_model->select_status_sn();
+		$data['select']['Aux1Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux2Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux3Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux4Cli'] = $this->Basico_model->select_statusaux();
 		
         $data['titulo'] = 'Editar Dados';
         $data['form_open_path'] = 'cliente/alterar';
@@ -217,6 +242,9 @@ class Cliente extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 2;
 
+		$data['collapse1'] = 'class="collapse"';
+		$data['collapse2'] = 'class="collapse"';
+		
         if ($data['query']['Sexo'] || $data['query']['Endereco'] || $data['query']['Bairro'] ||
 			$data['query']['Municipio'] || $data['query']['Estado'] || $data['query']['Obs'] || $data['query']['Email'] || 
 			$data['query']['RegistroFicha'] || $data['query']['Cep'] || $data['query']['Cpf'] || 

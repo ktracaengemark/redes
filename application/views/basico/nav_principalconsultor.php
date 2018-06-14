@@ -106,12 +106,24 @@
 						
 							<div class="btn-group" role="group" aria-label="...">
 								<!--<a href="<?php echo base_url() ?>relatorioconsultor/sistema">-->
-								<a >
+								<a>
 									<button type="button" class="btn btn-md " id="countdowndiv">
 										<span class="glyphicon glyphicon-hourglass" id="clock"></span>
 									</button>
 								</a>
 							</div>
+							
+							<div class="btn-group">
+								<button type="button" class="btn btn-md dropdown-toggle" id="countdowndiv" data-toggle="dropdown" >
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">							
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/sistema"><span class="glyphicon glyphicon-user"></span> Indicações</a></li>							
+									<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/associadopag"><span class="glyphicon glyphicon-usd"></span> Comissões</a></li>
+								</ul>
+							</div>
+							
 							<div class="btn-group" role="group" aria-label="...">
 								<a href="<?php echo base_url(); ?>loginconsultor/sair">
 									<button type="button" class="btn btn-md btn-danger ">

@@ -1218,6 +1218,22 @@ class Basico_model extends CI_Model {
 
         return $array;
     }
+	
+	public function select_statusaux($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query('SELECT * FROM Tab_StatusAux');
+        } else {
+            $query = $this->db->query('SELECT * FROM Tab_StatusAux');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->Aux] = $row->StatusAux;
+            }
+        }
+
+        return $array;
+    }
 
 	public function select_tipoproduto($data = FALSE) {
 
