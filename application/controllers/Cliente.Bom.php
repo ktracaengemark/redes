@@ -288,10 +288,9 @@ class Cliente extends CI_Controller {
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Cliente'], TRUE);
 
             if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
-                $data['msg'] = '?m=1';
-                #redirect(base_url() . 'cliente/form_clientealterar/' . $data['query']['idApp_Cliente'] . $data['msg']);
-                redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg']);
-				exit();
+                $data['msg'] = '?m=2';
+                redirect(base_url() . 'cliente/form_clientealterar/' . $data['query']['idApp_Cliente'] . $data['msg']);
+                exit();
             } else {
 
                 if ($data['auditoriaitem'] === FALSE) {
@@ -309,7 +308,7 @@ class Cliente extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function acomp($id = FALSE) {
+    public function acompan($id = FALSE) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -318,29 +317,11 @@ class Cliente extends CI_Controller {
         else
             $data['msg'] = '';
 
-        $data['query'] = $this->input->post(array(
-            'idApp_Cliente',
-            'NomeCliente',
-            'DataNascimento',
-			'DataCadastroCliente',
-			'Cpf',
-			'Rg',
-			'OrgaoExp',
-			'EstadoExp',
-			'DataEmissao',
-			'Cep',
-            'Telefone1',
-            'Telefone2',
-            'Telefone3',
-			'Ativo',
-            'Sexo',
-            'Endereco',
-            'Bairro',
-            'Municipio',
-			'Estado',
-            'Obs',
-            #'idSis_Usuario',
-            'Email',
+        $data['orcatrata'] = quotes_to_entities($this->input->post(array(
+            #### App_Cliente ####
+            #'idApp_OrcaTrataCons',
+            #Não há a necessidade de atualizar o valor do campo a seguir
+            #'idApp_Cliente',
 			'Aux1Cli',
 			'Aux2Cli',
 			'Aux3Cli',
@@ -349,14 +330,15 @@ class Cliente extends CI_Controller {
 			'Aux6Cli',
 			'Aux7Cli',
 			'Aux8Cli',
-            'RegistroFicha',
 			'Associado',
-        ), TRUE);
+        ), TRUE));
 
-		(!$data['query']['Aux5Cli']) ? $data['query']['Aux5Cli'] = '0' : FALSE;
-		
+        //Dá pra melhorar/encurtar esse trecho (que vai daqui até onde estiver
+        //comentado fim) mas por enquanto, se está funcionando, vou deixar assim.
+
         (!$this->input->post('PMCount')) ? $data['count']['PMCount'] = 0 : $data['count']['PMCount'] = $this->input->post('PMCount');
-		
+
+
         $j = 1;
         for ($i = 1; $i <= $data['count']['PMCount']; $i++) {
 
@@ -374,17 +356,19 @@ class Cliente extends CI_Controller {
         }
         $data['count']['PMCount'] = $j - 1;
 
+
+        //Fim do trecho de código que dá pra melhorar
+
         if ($id) {
-            $data['query'] = $this->Cliente_model->get_cliente($id);
-            $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'barras');
-			$data['query']['DataEmissao'] = $this->basico->mascara_data($data['query']['DataEmissao'], 'barras');
-			$data['query']['DataCadastroCliente'] = $this->basico->mascara_data($data['query']['DataCadastroCliente'], 'barras');
-			
+            #### App_Cliente ####
+            $data['orcatrata'] = $this->Cliente_model->get_cliente($id);
+            #$data['orcatrata']['TipoReceita'] = $data['orcatrata']['TipoReceita'];
+
+
             #### Carrega os dados do cliente nas variáves de sessão ####
             $this->load->model('Cliente_model');
-            $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($data['query']['idApp_Cliente'], TRUE);
+            $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($data['orcatrata']['idApp_Cliente'], TRUE);
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Cliente']['idApp_Cliente'];
-
 
             #### App_ProcedimentoCons ####
             $data['procedimento'] = $this->Cliente_model->get_procedimento($id);
@@ -399,23 +383,16 @@ class Cliente extends CI_Controller {
 
 					}
                 }
-            }			
-			
+            }
+
         }
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
-        #$this->form_validation->set_rules('NomeCliente', 'Nome do Responsável', 'required|trim|is_unique_duplo[App_Cliente.NomeCliente.DataNascimento.' . $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql') . ']');
-        $this->form_validation->set_rules('NomeCliente', 'Nome do Responsável', 'required|trim');
-        $this->form_validation->set_rules('DataNascimento', 'Data de Nascimento', 'trim|valid_date');
-		$this->form_validation->set_rules('DataEmissao', 'Data de Emissão', 'trim|valid_date');
-        $this->form_validation->set_rules('Telefone1', 'Telefone1', 'required|trim');
-        $this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email');
+        #### App_Cliente ####
+        $this->form_validation->set_rules('Associado', 'Associado', 'required|trim');
 
-        #$data['select']['Municipio'] = $this->Basico_model->select_municipio();
-        $data['select']['Sexo'] = $this->Basico_model->select_sexo();
-		$data['select']['Associado'] = $this->Basico_model->select_associado();
-		$data['select']['Ativo'] = $this->Basico_model->select_status_sn();
+        $data['select']['Associado'] = $this->Basico_model->select_associado();
 		$data['select']['Aux1Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux2Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux3Cli'] = $this->Basico_model->select_statusaux();
@@ -423,49 +400,64 @@ class Cliente extends CI_Controller {
 		$data['select']['Aux6Cli'] = $this->Basico_model->select_status_sn();
 		$data['select']['Aux7Cli'] = $this->Basico_model->select_status_sn();
 		$data['select']['Aux8Cli'] = $this->Basico_model->select_status_sn();
-        $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();		
-		
-        $data['titulo'] = 'Editar Dados';
-        $data['form_open_path'] = 'cliente/acomp';
+		$data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
+
+        $data['titulo'] = 'Acompanhamento';
+        $data['form_open_path'] = 'cliente/acompan';
         $data['readonly'] = '';
         $data['disabled'] = '';
         $data['panel'] = 'primary';
         $data['metodo'] = 2;
 
-		$data['collapse1'] = 'class="collapse"';
-		$data['collapse2'] = 'class="collapse"';
+		$data['collapse'] = '';	
+		$data['collapse1'] = 'class="collapse"';		
 		
-        if ($data['query']['Sexo'] || $data['query']['Endereco'] || $data['query']['Bairro'] ||
-			$data['query']['Municipio'] || $data['query']['Estado'] || $data['query']['Obs'] || $data['query']['Email'] || 
-			$data['query']['RegistroFicha'] || $data['query']['Cep'] || $data['query']['Cpf'] || 
-			$data['query']['Rg']  || $data['query']['OrgaoExp'] || $data['query']['EstadoExp']  || $data['query']['DataEmissao'])
-            $data['collapse'] = 'class="collapse"';
+
+        //if (isset($data['procedimento']) && ($data['procedimento'][0]['DataProcedimento'] || $data['procedimento'][0]['Profissional']))
+        if ($data['count']['PMCount'] > 0)
+            $data['tratamentosin'] = 'in';
         else
-            $data['collapse'] = 'class="collapse"';
+            $data['tratamentosin'] = '';
+
+
+        $data['sidebar'] = 'col-sm-3 col-md-2';
+        $data['main'] = 'col-sm-7 col-md-8';
+
+        $data['datepicker'] = 'DatePicker';
+        $data['timepicker'] = 'TimePicker';
 
         $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
 
-        $data['sidebar'] = 'col-sm-3 col-md-2 sidebar';
-        $data['main'] = 'col-sm-7 col-sm-offset-3 col-md-8 col-md-offset-2 main';
-		
-        $data['datepicker'] = 'DatePicker';
-        $data['timepicker'] = 'TimePicker';		
+        /*
+          echo '<br>';
+          echo "<pre>";
+          print_r($data);
+          echo "</pre>";
+          exit ();
+        */
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('cliente/form_acomp', $data);
+            $this->load->view('cliente/form_acompan', $data);
         } else {
 
-            $data['query']['NomeCliente'] = trim(mb_strtoupper($data['query']['NomeCliente'], 'ISO-8859-1'));
-            $data['query']['DataNascimento'] = $this->basico->mascara_data($data['query']['DataNascimento'], 'mysql');
-			$data['query']['DataEmissao'] = $this->basico->mascara_data($data['query']['DataEmissao'], 'mysql');
-            $data['query']['DataCadastroCliente'] = $this->basico->mascara_data($data['query']['DataCadastroCliente'], 'mysql');
-			$data['query']['Obs'] = nl2br($data['query']['Obs']);
-			$data['query']['Empresa'] = $_SESSION['log']['Empresa'];
-			#$data['query']['idSis_Usuario'] = $_SESSION['log']['id'];
+            ////////////////////////////////Preparar Dados para Inserção Ex. Datas "mysql" //////////////////////////////////////////////
+            #### App_Cliente ####
+            #$data['orcatrata']['TipoReceita'] = $data['orcatrata']['TipoReceita'];
+			
+            $data['update']['orcatrata']['anterior'] = $this->Cliente_model->get_cliente($data['orcatrata']['idApp_Cliente']);
+            $data['update']['orcatrata']['campos'] = array_keys($data['orcatrata']);
+            $data['update']['orcatrata']['auditoriaitem'] = $this->basico->set_log(
+                $data['update']['orcatrata']['anterior'],
+                $data['orcatrata'],
+                $data['update']['orcatrata']['campos'],
+                $data['orcatrata']['idApp_Cliente'], TRUE);
+			
+            $data['update']['orcatrata']['bd'] = $this->Cliente_model->update_cliente($data['orcatrata'], $data['orcatrata']['idApp_Cliente']);
+	
 			
             #### App_ProcedimentoCons ####
-            $data['update']['procedimento']['anterior'] = $this->Cliente_model->get_procedimento($data['query']['idApp_Cliente']);
+            $data['update']['procedimento']['anterior'] = $this->Cliente_model->get_procedimento($data['orcatrata']['idApp_Cliente']);
             if (isset($data['procedimento']) || (!isset($data['procedimento']) && isset($data['update']['procedimento']['anterior']) ) ) {
 
                 if (isset($data['procedimento']))
@@ -481,7 +473,7 @@ class Cliente extends CI_Controller {
                     $data['update']['procedimento']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
 					$data['update']['procedimento']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
                     $data['update']['procedimento']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-                    $data['update']['procedimento']['inserir'][$j]['idApp_Cliente'] = $data['query']['idApp_Cliente'];
+                    $data['update']['procedimento']['inserir'][$j]['idApp_Cliente'] = $data['orcatrata']['idApp_Cliente'];
                     $data['update']['procedimento']['inserir'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['update']['procedimento']['inserir'][$j]['DataProcedimento'], 'mysql');
 
                 }
@@ -502,51 +494,30 @@ class Cliente extends CI_Controller {
                     $data['update']['procedimento']['bd']['excluir'] = $this->Cliente_model->delete_procedimento($data['update']['procedimento']['excluir']);
 
             }
-			
-            $data['anterior'] = $this->Cliente_model->get_cliente($data['query']['idApp_Cliente']);
-            $data['campos'] = array_keys($data['query']);
 
-            $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Cliente'], TRUE);
 
-            if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
-                $data['msg'] = '?m=1';
-                #redirect(base_url() . 'cliente/form_clientealterar/' . $data['query']['idApp_Cliente'] . $data['msg']);
-				redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg']);
-                exit();
-            } else {
-
-                if ($data['auditoriaitem'] === FALSE) {
-                    $data['msg'] = '';
-                } else {
-                    $data['auditoria'] = $this->Basico_model->set_auditoriaconsultor($data['auditoriaitem'], 'App_Cliente', 'UPDATE', $data['auditoriaitem']);
-                    $data['msg'] = '?m=1';
-                }
-
-                redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg']);
-                exit();
-            }
-			
-/*
-            if ($data['auditoriaitem'] && !$data['update']['query']['bd']) {
+            //if ($data['idApp_Cliente'] === FALSE) {
+            //if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
+            if ($data['auditoriaitem'] && !$data['update']['orcatrata']['bd']) {
                 $data['msg'] = '?m=2';
-                redirect(base_url() . 'cliente/form_acomp/' . $data['query']['idApp_Cliente'] . $data['msg']);
-				
-                exit();
+                $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
+
+                $this->basico->erro($msg);
+                $this->load->view('cliente/form_acompan', $data);
             } else {
 
-                //$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_OrcaTrataCons'], FALSE);
-                //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrataCons', 'CREATE', $data['auditoriaitem']);
+                //$data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['idApp_Cliente'], FALSE);
+                //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Cliente', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg']);
-
+                #redirect(base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
+				redirect(base_url() . 'cliente/prontuario/' . $data['idApp_Cliente'] . $data['msg']);
 				exit();
             }
-*/			
-			
         }
 
         $this->load->view('basico/footer');
+
     }
 	
     public function excluir($id = FALSE) {

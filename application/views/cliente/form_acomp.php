@@ -1,5 +1,5 @@
 <?php if (isset($msg)) echo $msg; ?>
-
+<?php if ( !isset($evento) && isset($_SESSION['Cliente'])) { ?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -7,13 +7,64 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8 ">
 
+			<nav class="navbar navbar-inverse">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				  </button>
+				  <a class="navbar-brand" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+					<?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?>
+				  </a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+
+					<ul class="nav navbar-nav navbar-center">
+						<li>
+							<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+								<span class="glyphicon glyphicon-edit"></span> Editar Cliente
+							</a>
+						</li>
+						
+						<li>
+							<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+								<span class="glyphicon glyphicon-pencil"></span> Acompanhamento
+							</a>
+						</li>
+
+						<li>
+							<a href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+								<span class="glyphicon glyphicon-usd"></span> Ver Orçams.
+							</a>
+						</li>
+
+						<li>
+							<a href="<?php echo base_url() . 'orcatratacons/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+								<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
+							</a>
+						</li>
+					</ul>
+					<!--
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					</ul>
+					-->
+				</div>
+			  </div>
+			</nav>
+		
+			<?php } ?>
+			
 			<div class="row">
 				<div class="col-md-12 col-lg-12">	
 					
 					<?php echo validation_errors(); ?>
 
 					<div class="panel panel-<?php echo $panel; ?>">
-			
+					
 						<div class="panel-heading"><strong>Cliente</strong></div>
 						<div class="panel-body">
 
@@ -357,8 +408,8 @@
 												<div class="panel-heading">	
 													<div <?php echo $collapse2; ?> id="Acompanhamento">
 														<div class="form-group">
-															<div class="row">	
-																<div class="col-md-3">
+															<div class="row">
+																<div class="col-md-3">	
 																	<label for="Associado">Cliente ou Associado?</label><br>
 																	<div class="form-group">
 																		<div class="btn-group" data-toggle="buttons">
@@ -385,8 +436,8 @@
 																			?>
 																		</div>
 																	</div>
-																</div>
-																<div class="col-md-3">
+																</div>	
+																<div class="col-md-3">	
 																	<label for="Aux6Cli">1ªPasso - Concl.?</label><br>
 																	<div class="form-group">
 																		<div class="btn-group" data-toggle="buttons">
@@ -471,19 +522,21 @@
 																	</div>
 																</div>
 															</div>	
-														</div>	
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>									
+									</div>
 									<div class="panel-group">	
 										<div class="panel panel-primary">
+
 											<div class="panel-heading text-left">
 												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
 													<span class="glyphicon glyphicon-menu-down"></span> Procedimentos
 												</a>
 											</div>
+											
 											<div <?php echo $collapse; ?> id="Procedimentos">
 												<div class="panel-body">
 
@@ -661,12 +714,11 @@
 									</div>
 								</div>		
 							</div>
-							</form>
+						</form>
 						</div>
 					</div>							
 				</div>
 			</div>
-					
 		</div>
 		<div class="col-md-2"></div>
 	</div>	

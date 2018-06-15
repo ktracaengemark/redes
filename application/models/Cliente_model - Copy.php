@@ -99,7 +99,6 @@ class Cliente_model extends CI_Model {
 
         #$this->db->delete('App_Consulta', array('idApp_Cliente' => $data));
         $this->db->delete('App_ContatoCliente', array('idApp_Cliente' => $data));
-		$this->db->delete('App_ProcedimentoCons', array('idApp_Cliente' => $data));
 
         foreach ($query as $key) {
             $query = $this->db->delete('App_ProdutoVendaCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
@@ -194,42 +193,4 @@ class Cliente_model extends CI_Model {
         return $array;
     }	
 
-    public function set_procedimento($data) {
-
-        $query = $this->db->insert_batch('App_ProcedimentoCons', $data);
-
-        if ($this->db->affected_rows() === 0) {
-            return FALSE;
-        } else {
-            #return TRUE;
-            return $this->db->insert_id();
-        }
-    }	
-	
-    public function get_procedimento($data) {
-		$query = $this->db->query('SELECT * FROM App_ProcedimentoCons WHERE idApp_Cliente = ' . $data);
-        $query = $query->result_array();
-
-        return $query;
-    }	
-
-    public function update_procedimento($data) {
-
-        $query = $this->db->update_batch('App_ProcedimentoCons', $data, 'idApp_ProcedimentoCons');
-        return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
-
-    }
-
-    public function delete_procedimento($data) {
-
-        $this->db->where_in('idApp_ProcedimentoCons', $data);
-        $this->db->delete('App_ProcedimentoCons');
-
-        if ($this->db->affected_rows() === 0) {
-            return FALSE;
-        } else {
-            return TRUE;
-        }
-    }
-		
 }
