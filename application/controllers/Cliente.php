@@ -76,6 +76,9 @@ class Cliente extends CI_Controller {
 			'Aux3Cli',
 			'Aux4Cli',
 			'Aux5Cli',
+			'Aux6Cli',
+			'Aux7Cli',
+			'Aux8Cli',
             'RegistroFicha',
 			'Associado',
         ), TRUE));
@@ -96,13 +99,15 @@ class Cliente extends CI_Controller {
 		
         #$data['select']['Municipio'] = $this->Basico_model->select_municipio();
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
-		$data['select']['Associado'] = $this->Basico_model->select_status_sn();
+		$data['select']['Associado'] = $this->Basico_model->select_associado();
 		$data['select']['Ativo'] = $this->Basico_model->select_status_sn();
 		$data['select']['Aux1Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux2Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux3Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux4Cli'] = $this->Basico_model->select_statusaux();
-		
+		$data['select']['Aux6Cli'] = $this->Basico_model->select_status_sn();
+		$data['select']['Aux7Cli'] = $this->Basico_model->select_status_sn();
+		$data['select']['Aux8Cli'] = $this->Basico_model->select_status_sn();		
         $data['titulo'] = 'Cadastrar Cliente';
         $data['form_open_path'] = 'cliente/cadastrar';
         $data['readonly'] = '';
@@ -204,6 +209,9 @@ class Cliente extends CI_Controller {
 			'Aux3Cli',
 			'Aux4Cli',
 			'Aux5Cli',
+			'Aux6Cli',
+			'Aux7Cli',
+			'Aux8Cli',
             'RegistroFicha',
 			'Associado',
         ), TRUE);
@@ -228,12 +236,15 @@ class Cliente extends CI_Controller {
 
         #$data['select']['Municipio'] = $this->Basico_model->select_municipio();
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
-		$data['select']['Associado'] = $this->Basico_model->select_status_sn();
+		$data['select']['Associado'] = $this->Basico_model->select_associado();
 		$data['select']['Ativo'] = $this->Basico_model->select_status_sn();
 		$data['select']['Aux1Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux2Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux3Cli'] = $this->Basico_model->select_statusaux();
 		$data['select']['Aux4Cli'] = $this->Basico_model->select_statusaux();
+		$data['select']['Aux6Cli'] = $this->Basico_model->select_status_sn();
+		$data['select']['Aux7Cli'] = $this->Basico_model->select_status_sn();
+		$data['select']['Aux8Cli'] = $this->Basico_model->select_status_sn();
 		
         $data['titulo'] = 'Editar Dados';
         $data['form_open_path'] = 'cliente/alterar';
@@ -249,7 +260,7 @@ class Cliente extends CI_Controller {
 			$data['query']['Municipio'] || $data['query']['Estado'] || $data['query']['Obs'] || $data['query']['Email'] || 
 			$data['query']['RegistroFicha'] || $data['query']['Cep'] || $data['query']['Cpf'] || 
 			$data['query']['Rg']  || $data['query']['OrgaoExp'] || $data['query']['EstadoExp']  || $data['query']['DataEmissao'])
-            $data['collapse'] = '';
+            $data['collapse'] = 'class="collapse"';
         else
             $data['collapse'] = 'class="collapse"';
 

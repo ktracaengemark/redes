@@ -1203,6 +1203,22 @@ class Basico_model extends CI_Model {
         return $array;
     }
 
+	public function select_associado($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query('SELECT * FROM Tab_StatusSN');
+        } else {
+            $query = $this->db->query('SELECT * FROM Tab_StatusSN');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->Abrev] = $row->Associado;
+            }
+        }
+
+        return $array;
+    }
+	
 	public function select_inativo($data = FALSE) {
 
         if ($data === TRUE) {
