@@ -197,6 +197,7 @@
 											</div>
 										</div>
 									</div>
+									<!--
 									<div class="panel-group">	
 										<div class="panel panel-primary">
 											<div class="panel-heading text-left">
@@ -477,6 +478,7 @@
 											</div>
 										</div>
 									</div>									
+									
 									<div class="panel-group">	
 										<div class="panel panel-primary">
 											<div class="panel-heading text-left">
@@ -596,7 +598,7 @@
 											</div>
 										</div>
 									</div>
-
+									-->
 									<div class="form-group">
 										<div class="row">
 											<input type="hidden" name="idApp_Cliente" value="<?php echo $query['idApp_Cliente']; ?>">

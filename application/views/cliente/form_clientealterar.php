@@ -27,6 +27,12 @@
 								<span class="glyphicon glyphicon-edit"></span> Editar Cliente
 							</a>
 						</li>
+						
+						<li>
+							<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+								<span class="glyphicon glyphicon-pencil"></span> Acompanhamento
+							</a>
+						</li>
 
 						<li>
 							<a href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
@@ -242,6 +248,7 @@
 											</div>
 										</div>
 									</div>
+									<!--
 									<div class="panel-group">	
 										<div class="panel panel-primary">
 											<div class="panel-heading text-left">
@@ -522,6 +529,7 @@
 											</div>
 										</div>
 									</div>
+									-->
 									<div class="form-group">
 										<div class="row">
 											<input type="hidden" name="idApp_Cliente" value="<?php echo $query['idApp_Cliente']; ?>">
