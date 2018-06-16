@@ -38,7 +38,7 @@
 					<?php echo form_open_multipart($form_open_path); ?>
 
 					<!--App_Tarefacons-->
-
+<!--
 					<div class="form-group">
 						<div class="panel panel-info">
 							<div class="panel-heading">	
@@ -48,7 +48,7 @@
 										<textarea class="form-control" id="ObsTarefa" <?php echo $readonly; ?>
 											autofocus name="ObsTarefa"><?php echo $tarefa['ObsTarefa']; ?></textarea>
 									</div>								
-									<!--
+									
 									<div class="col-md-3">
 										<label for="ProfissionalTarefa">Responsável da Tarefa:</label>
 										<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -65,7 +65,7 @@
 											?>
 										</select>
 									</div>
-									-->
+									
 									<div class="col-md-8" >
 										<div class="form-group">
 											<div class="row">
@@ -99,14 +99,14 @@
 
 						<hr>
 						
-					
+-->					
 					<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-primary">
 							 <div class="panel-heading" role="tab" id="heading3" data-toggle="collapse" data-parent="#accordion3" data-target="#collapse3">
 								<h4 class="panel-title">
 									<a class="accordion-toggle">
 										<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-										Ações
+										Anotaões
 									</a>
 								</h4>
 							</div>
@@ -213,8 +213,8 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-4">
-												<a class="add_field_button3 btn btn-xs btn-warning" onclick="adicionaProcedimento()">
-													<span class="glyphicon glyphicon-plus"></span> Adicionar Ação
+												<a class="add_field_button3 btn btn-md btn-info" onclick="adicionaProcedimento()">
+													<span class="glyphicon glyphicon-plus"></span> Ad. Anotação
 												</a>
 											</div>
 										</div>
@@ -224,7 +224,7 @@
 							</div>
 						</div>
 					</div>
-
+<!--
 					<hr>
 
 					<div class="form-group">
@@ -346,7 +346,7 @@
 					</div>
 
 					<hr>
-
+-->
 					<div class="form-group">
 						<div class="row">
 							<!--<input type="hidden" name="idApp_Cliente" value="<?php echo $_SESSION['Cliente']['idApp_Cliente']; ?>">-->

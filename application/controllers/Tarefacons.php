@@ -92,8 +92,8 @@ class Tarefacons extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Tarefacons ####
-        $this->form_validation->set_rules('DataTarefa', 'Tarefa Criada em', 'required|trim|valid_date');
-        $this->form_validation->set_rules('DataPrazoTarefa', 'Prazo para Conclusão', 'required|trim');
+        $this->form_validation->set_rules('DataTarefa', 'Tarefa Criada em', 'trim|valid_date');
+        $this->form_validation->set_rules('DataPrazoTarefa', 'Prazo para Conclusão', 'trim');
         #$this->form_validation->set_rules('ProfissionalTarefa', 'Profissional', 'required|trim');
 
         $data['select']['TarefaConcluida'] = $this->Basico_model->select_status_sn();
@@ -294,8 +294,8 @@ class Tarefacons extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
 
         #### App_Tarefacons ####
-        $this->form_validation->set_rules('DataTarefa', 'Tarefa Criada em', 'required|trim|valid_date');        
-		$this->form_validation->set_rules('DataPrazoTarefa', 'Prazo para Conclusão', 'required|trim');      
+        $this->form_validation->set_rules('DataTarefa', 'Tarefa Criada em', 'trim|valid_date');        
+		$this->form_validation->set_rules('DataPrazoTarefa', 'Prazo para Conclusão', 'trim');      
         #$this->form_validation->set_rules('ProfissionalTarefa', 'Profissional', 'required|trim');
 
         $data['select']['TarefaConcluida'] = $this->Basico_model->select_status_sn();        

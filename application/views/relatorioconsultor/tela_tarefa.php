@@ -50,6 +50,7 @@
                                 </select>
                             </div>
 							-->
+							<!--
 							<div class="col-md-2">
                                 <label for="TarefaConcluida">Trf. Concl.?</label>
                                 <select data-placeholder="Selecione uma opção..." class="form-control Chosen"
@@ -65,7 +66,7 @@
                                     ?>
                                 </select>
                             </div>
-							<!--
+							
 							<div class="col-md-2">
                                 <label for="Ordenamento">Profissional:</label>
                                 <select data-placeholder="Selecione uma opção..." class="form-control Chosen"
@@ -97,14 +98,14 @@
                                     ?>
                                 </select>
                             </div>
-							
+							-->
 							<div class="col-md-2">
-                                <label for="ConcluidoProcedtarefa">Ação Concl.?</label>
+                                <label for="ConcluidoProcedimento">Ação Concl.?</label>
                                 <select data-placeholder="Selecione uma opção..." class="form-control Chosen"
-                                        id="ConcluidoProcedtarefa" name="ConcluidoProcedtarefa">
+                                        id="ConcluidoProcedimento" name="ConcluidoProcedimento">
                                     <?php
-                                    foreach ($select['ConcluidoProcedtarefa'] as $key => $row) {
-                                        if ($query['ConcluidoProcedtarefa'] == $key) {
+                                    foreach ($select['ConcluidoProcedimento'] as $key => $row) {
+                                        if ($query['ConcluidoProcedimento'] == $key) {
                                             echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
                                         } else {
                                             echo '<option value="' . $key . '">' . $row . '</option>';
@@ -113,7 +114,7 @@
                                     ?>
                                 </select>
                             </div>
-																					                           						                            							
+							<!--														                           						                            							
 							<div class="col-md-2">
                                 <label for="Rotina">Rotina</label>
                                 <select data-placeholder="Selecione uma opção..." class="form-control Chosen"

@@ -3868,9 +3868,9 @@ class Relatorioconsultor extends CI_Controller {
         $this->form_validation->set_rules('DataFim', 'Data Fim', 'trim|valid_date');
 
         $data['select']['TarefaConcluida'] = array(
-            'N' => 'Não',
-			'#' => 'TODOS',
-            'S' => 'Sim',
+            '#' => 'TODOS',
+			'S' => 'Sim',
+			'N' => 'Não',
         );
 /*
         $data['select']['Prioridade'] = array(
@@ -3884,13 +3884,13 @@ class Relatorioconsultor extends CI_Controller {
             'N' => 'Não',
             'S' => 'Sim',
         );
-
-		$data['select']['ConcluidoProcedtarefa'] = array(
+*/
+		$data['select']['ConcluidoProcedimento'] = array(
             '#' => 'TODOS',
             'N' => 'Não',
             'S' => 'Sim',
         );
-*/
+
         $data['select']['Campo'] = array(
            # 'C.NomeCliente' => 'Nome do Cliente',
 			'TF.DataPrazoTarefa' => 'Prazo da Tarefa',

@@ -38,7 +38,7 @@
 					<?php echo form_open_multipart($form_open_path); ?>
 
 					<!--App_Tarefa-->
-
+					<!--
 					<div class="form-group">
 						<div class="panel panel-info">
 							<div class="panel-heading">	
@@ -48,7 +48,7 @@
 										<textarea class="form-control" id="ObsTarefa" <?php echo $readonly; ?>
 											autofocus name="ObsTarefa"><?php echo $tarefa['ObsTarefa']; ?></textarea>
 									</div>								
-									<!--
+									
 									<div class="col-md-3">
 										<label for="ProfissionalTarefa">Responsável da Tarefa:</label>
 										<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -65,7 +65,7 @@
 											?>
 										</select>
 									</div>
-									-->
+									
 									<div class="col-md-8" >
 										<div class="form-group">
 											<div class="row">
@@ -96,9 +96,9 @@
 							</div>	
 						</div>		
 					</div>
-
+					
 						<hr>
-						
+					-->	
 					
 					<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-primary">
@@ -106,7 +106,7 @@
 								<h4 class="panel-title">
 									<a class="accordion-toggle">
 										<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-										Ações
+										Anotações
 									</a>
 								</h4>
 							</div>
@@ -224,7 +224,7 @@
 							</div>
 						</div>
 					</div>
-
+<!--
 					<hr>
 
 					<div class="form-group">
@@ -344,7 +344,7 @@
 							</div>
 						</div>					
 					</div>
-
+-->
 					<hr>
 
 					<div class="form-group">
