@@ -3853,9 +3853,9 @@ class Relatorioconsultor extends CI_Controller {
             'TarefaConcluida',
             'Prioridade',
 			'Rotina',
-			'ConcluidoProcedtarefa',
+			'ConcluidoProcedimento',
 			'ObsTarefa',
-			'Procedtarefa',
+			'Procedimento',
 
         ), TRUE));
 		/*
@@ -3912,7 +3912,8 @@ class Relatorioconsultor extends CI_Controller {
         #$data['select']['NomeProfissional'] = $this->Relatorioconsultor_model->select_profissional3();
 		#$data['select']['Profissional'] = $this->Relatorioconsultor_model->select_profissional2();
 		$data['select']['ObsTarefa'] = $this->Relatorioconsultor_model->select_obstarefa();
-		$data['select']['Procedtarefa'] = $this->Relatorioconsultor_model->select_procedtarefa();
+		#$data['select']['Procedtarefa'] = $this->Relatorioconsultor_model->select_procedtarefa();
+		$data['select']['Procedimento'] = $this->Relatorioconsultor_model->select_procedtarefa();
 
         $data['titulo'] = 'Funcionários & Tarefas';
 
@@ -3929,9 +3930,9 @@ class Relatorioconsultor extends CI_Controller {
             $data['bd']['TarefaConcluida'] = $data['query']['TarefaConcluida'];
             $data['bd']['Prioridade'] = $data['query']['Prioridade'];
 			$data['bd']['Rotina'] = $data['query']['Rotina'];
-			$data['bd']['ConcluidoProcedtarefa'] = $data['query']['ConcluidoProcedtarefa'];
+			$data['bd']['ConcluidoProcedimento'] = $data['query']['ConcluidoProcedimento'];
 			$data['bd']['ObsTarefa'] = $data['query']['ObsTarefa'];
-			$data['bd']['Procedtarefa'] = $data['query']['Procedtarefa'];
+			$data['bd']['Procedimento'] = $data['query']['Procedimento'];
 
 
             $data['report'] = $this->Relatorioconsultor_model->list_tarefa($data['bd'],TRUE);

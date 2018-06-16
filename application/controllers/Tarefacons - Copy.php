@@ -65,7 +65,7 @@ class Tarefacons extends CI_Controller {
         //comentado fim) mas por enquanto, se está funcionando, vou deixar assim.
 
        
-        (!$this->input->post('PMCount')) ? $data['count']['PMCount'] = 0 : $data['count']['PMCount'] = $this->input->post('PMCount');
+        (!$this->input->post('PTCount')) ? $data['count']['PTCount'] = 0 : $data['count']['PTCount'] = $this->input->post('PTCount');
 
         //Data de hoje como default
         (!$data['tarefa']['DataTarefa']) ? $data['tarefa']['DataTarefa'] = date('d/m/Y', time()) : FALSE;
@@ -73,19 +73,19 @@ class Tarefacons extends CI_Controller {
 		
 		
         $j = 1;
-        for ($i = 1; $i <= $data['count']['PMCount']; $i++) {
+        for ($i = 1; $i <= $data['count']['PTCount']; $i++) {
 
-            if ($this->input->post('DataProcedimento' . $i) || $this->input->post('Profissional' . $i) ||
-                    $this->input->post('Procedimento' . $i) || $this->input->post('ConcluidoProcedimento' . $i)) {
-                $data['procedimento'][$j]['DataProcedimento'] = $this->input->post('DataProcedimento' . $i);
-                $data['procedimento'][$j]['Profissional'] = $this->input->post('Profissional' . $i);
-                $data['procedimento'][$j]['Procedimento'] = $this->input->post('Procedimento' . $i);
-				$data['procedimento'][$j]['ConcluidoProcedimento'] = $this->input->post('ConcluidoProcedimento' . $i);
+            if ($this->input->post('DataProcedtarefa' . $i) || $this->input->post('Profissional' . $i) ||
+                    $this->input->post('Procedtarefa' . $i) || $this->input->post('ConcluidoProcedtarefa' . $i)) {
+                $data['procedtarefa'][$j]['DataProcedtarefa'] = $this->input->post('DataProcedtarefa' . $i);
+                $data['procedtarefa'][$j]['Profissional'] = $this->input->post('Profissional' . $i);
+                $data['procedtarefa'][$j]['Procedtarefa'] = $this->input->post('Procedtarefa' . $i);
+				$data['procedtarefa'][$j]['ConcluidoProcedtarefa'] = $this->input->post('ConcluidoProcedtarefa' . $i);
                 $j++;
             }
 
         }
-        $data['count']['PMCount'] = $j - 1;
+        $data['count']['PTCount'] = $j - 1;
 
         //Fim do trecho de código que dá pra melhorar
 
@@ -98,7 +98,7 @@ class Tarefacons extends CI_Controller {
 
         $data['select']['TarefaConcluida'] = $this->Basico_model->select_status_sn();
         $data['select']['Rotina'] = $this->Basico_model->select_status_sn();
-        $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
+        $data['select']['ConcluidoProcedtarefa'] = $this->Basico_model->select_status_sn();
 		$data['select']['Prioridade'] = $this->Basico_model->select_status_sn();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
 
@@ -109,8 +109,8 @@ class Tarefacons extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 1;
 	
-		//if ($data['procedimento'][0]['DataProcedimento'] || $data['procedimento'][0]['Profissional'])
-        if (isset($data['procedimento']))
+		//if ($data['procedtarefa'][0]['DataProcedtarefa'] || $data['procedtarefa'][0]['Profissional'])
+        if (isset($data['procedtarefa']))
             $data['tratamentosin'] = 'in';
         else
             $data['tratamentosin'] = '';
@@ -167,20 +167,19 @@ class Tarefacons extends CI_Controller {
             exit ();
             */
 
-            #### App_ProcedimentoCons ####
-            if (isset($data['procedimento'])) {
-                $max = count($data['procedimento']);
+            #### App_Procedtarefacons ####
+            if (isset($data['procedtarefa'])) {
+                $max = count($data['procedtarefa']);
                 for($j=1;$j<=$max;$j++) {
-                    $data['procedimento'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['procedimento'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
-					$data['procedimento'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-                    $data['procedimento'][$j]['idApp_Tarefacons'] = $data['tarefa']['idApp_Tarefacons'];
+                    $data['procedtarefa'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
+                    $data['procedtarefa'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['procedtarefa'][$j]['idApp_Tarefacons'] = $data['tarefa']['idApp_Tarefacons'];
 
-                    $data['procedimento'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['procedimento'][$j]['DataProcedimento'], 'mysql');
+                    $data['procedtarefa'][$j]['DataProcedtarefa'] = $this->basico->mascara_data($data['procedtarefa'][$j]['DataProcedtarefa'], 'mysql');
 					
 
                 }
-                $data['procedimento']['idApp_ProcedimentoCons'] = $this->Tarefacons_model->set_procedimento($data['procedimento']);
+                $data['procedtarefa']['idApp_Procedtarefacons'] = $this->Tarefacons_model->set_procedtarefa($data['procedtarefa']);
             }
 
 /*
@@ -240,23 +239,23 @@ class Tarefacons extends CI_Controller {
         //comentado fim) mas por enquanto, se está funcionando, vou deixar assim.
 
         
-        (!$this->input->post('PMCount')) ? $data['count']['PMCount'] = 0 : $data['count']['PMCount'] = $this->input->post('PMCount');
+        (!$this->input->post('PTCount')) ? $data['count']['PTCount'] = 0 : $data['count']['PTCount'] = $this->input->post('PTCount');
 
         $j = 1;
-        for ($i = 1; $i <= $data['count']['PMCount']; $i++) {
+        for ($i = 1; $i <= $data['count']['PTCount']; $i++) {
 
-            if ($this->input->post('DataProcedimento' . $i) || $this->input->post('Profissional' . $i) ||
-                    $this->input->post('Procedimento' . $i) || $this->input->post('ConcluidoProcedimento' . $i)) {
-                $data['procedimento'][$j]['idApp_ProcedimentoCons'] = $this->input->post('idApp_ProcedimentoCons' . $i);
-                $data['procedimento'][$j]['DataProcedimento'] = $this->input->post('DataProcedimento' . $i);
-                $data['procedimento'][$j]['Profissional'] = $this->input->post('Profissional' . $i);
-                $data['procedimento'][$j]['Procedimento'] = $this->input->post('Procedimento' . $i);
-				$data['procedimento'][$j]['ConcluidoProcedimento'] = $this->input->post('ConcluidoProcedimento' . $i);
+            if ($this->input->post('DataProcedtarefa' . $i) || $this->input->post('Profissional' . $i) ||
+                    $this->input->post('Procedtarefa' . $i) || $this->input->post('ConcluidoProcedtarefa' . $i)) {
+                $data['procedtarefa'][$j]['idApp_Procedtarefacons'] = $this->input->post('idApp_Procedtarefacons' . $i);
+                $data['procedtarefa'][$j]['DataProcedtarefa'] = $this->input->post('DataProcedtarefa' . $i);
+                $data['procedtarefa'][$j]['Profissional'] = $this->input->post('Profissional' . $i);
+                $data['procedtarefa'][$j]['Procedtarefa'] = $this->input->post('Procedtarefa' . $i);
+				$data['procedtarefa'][$j]['ConcluidoProcedtarefa'] = $this->input->post('ConcluidoProcedtarefa' . $i);
                 $j++;
             }
 
         }
-        $data['count']['PMCount'] = $j - 1;
+        $data['count']['PTCount'] = $j - 1;
 
         //Fim do trecho de código que dá pra melhorar
 
@@ -274,16 +273,16 @@ class Tarefacons extends CI_Controller {
             #$_SESSION['Cliente'] = $this->Cliente_model->get_cliente($data['tarefa']['idApp_Cliente'], TRUE);
             #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Cliente']['idApp_Cliente'];
 
-            #### App_ProcedimentoCons ####
-            $data['procedimento'] = $this->Tarefacons_model->get_procedimento($id);
-            if (count($data['procedimento']) > 0) {
-                $data['procedimento'] = array_combine(range(1, count($data['procedimento'])), array_values($data['procedimento']));
-                $data['count']['PMCount'] = count($data['procedimento']);
+            #### App_Procedtarefacons ####
+            $data['procedtarefa'] = $this->Tarefacons_model->get_procedtarefa($id);
+            if (count($data['procedtarefa']) > 0) {
+                $data['procedtarefa'] = array_combine(range(1, count($data['procedtarefa'])), array_values($data['procedtarefa']));
+                $data['count']['PTCount'] = count($data['procedtarefa']);
 
-                if (isset($data['procedimento'])) {
+                if (isset($data['procedtarefa'])) {
 
-                    for($j=1; $j <= $data['count']['PMCount']; $j++)
-                        $data['procedimento'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['procedimento'][$j]['DataProcedimento'], 'barras');
+                    for($j=1; $j <= $data['count']['PTCount']; $j++)
+                        $data['procedtarefa'][$j]['DataProcedtarefa'] = $this->basico->mascara_data($data['procedtarefa'][$j]['DataProcedtarefa'], 'barras');
 						
 
                 }
@@ -300,7 +299,7 @@ class Tarefacons extends CI_Controller {
 
         $data['select']['TarefaConcluida'] = $this->Basico_model->select_status_sn();        
         $data['select']['Rotina'] = $this->Basico_model->select_status_sn();        
-        $data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
+        $data['select']['ConcluidoProcedtarefa'] = $this->Basico_model->select_status_sn();
 		$data['select']['Prioridade'] = $this->Basico_model->select_status_sn();       
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
         
@@ -312,8 +311,8 @@ class Tarefacons extends CI_Controller {
         $data['panel'] = 'primary';
         $data['metodo'] = 2;
 
-        //if (isset($data['procedimento']) && ($data['procedimento'][0]['DataProcedimento'] || $data['procedimento'][0]['Profissional']))
-        if ($data['count']['PMCount'] > 0)
+        //if (isset($data['procedtarefa']) && ($data['procedtarefa'][0]['DataProcedtarefa'] || $data['procedtarefa'][0]['Profissional']))
+        if ($data['count']['PTCount'] > 0)
             $data['tratamentosin'] = 'in';
         else
             $data['tratamentosin'] = '';
@@ -370,43 +369,42 @@ class Tarefacons extends CI_Controller {
                 $data['tarefa']['idApp_Tarefacons'], TRUE);
             $data['update']['tarefa']['bd'] = $this->Tarefacons_model->update_tarefa($data['tarefa'], $data['tarefa']['idApp_Tarefacons']);
 
-            #### App_ProcedimentoCons ####
-            $data['update']['procedimento']['anterior'] = $this->Tarefacons_model->get_procedimento($data['tarefa']['idApp_Tarefacons']);
-            if (isset($data['procedimento']) || (!isset($data['procedimento']) && isset($data['update']['procedimento']['anterior']) ) ) {
+            #### App_Procedtarefacons ####
+            $data['update']['procedtarefa']['anterior'] = $this->Tarefacons_model->get_procedtarefa($data['tarefa']['idApp_Tarefacons']);
+            if (isset($data['procedtarefa']) || (!isset($data['procedtarefa']) && isset($data['update']['procedtarefa']['anterior']) ) ) {
 
-                if (isset($data['procedimento']))
-                    $data['procedimento'] = array_values($data['procedimento']);
+                if (isset($data['procedtarefa']))
+                    $data['procedtarefa'] = array_values($data['procedtarefa']);
                 else
-                    $data['procedimento'] = array();
+                    $data['procedtarefa'] = array();
 
                 //faz o tratamento da variável multidimensional, que ira separar o que deve ser inserido, alterado e excluído
-                $data['update']['procedimento'] = $this->basico->tratamento_array_multidimensional($data['procedimento'], $data['update']['procedimento']['anterior'], 'idApp_ProcedimentoCons');
+                $data['update']['procedtarefa'] = $this->basico->tratamento_array_multidimensional($data['procedtarefa'], $data['update']['procedtarefa']['anterior'], 'idApp_Procedtarefacons');
 
-                $max = count($data['update']['procedimento']['inserir']);
+                $max = count($data['update']['procedtarefa']['inserir']);
                 for($j=0;$j<$max;$j++) {
-                    $data['update']['procedimento']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
-                    $data['update']['procedimento']['inserir'][$j]['Empresa'] = $_SESSION['log']['Empresa'];
-					$data['update']['procedimento']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
-                    $data['update']['procedimento']['inserir'][$j]['idApp_Tarefacons'] = $data['tarefa']['idApp_Tarefacons'];
+                    $data['update']['procedtarefa']['inserir'][$j]['idApp_Consultor'] = $_SESSION['log']['id'];
+                    $data['update']['procedtarefa']['inserir'][$j]['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
+                    $data['update']['procedtarefa']['inserir'][$j]['idApp_Tarefacons'] = $data['tarefa']['idApp_Tarefacons'];
 
-                    $data['update']['procedimento']['inserir'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['update']['procedimento']['inserir'][$j]['DataProcedimento'], 'mysql');
+                    $data['update']['procedtarefa']['inserir'][$j]['DataProcedtarefa'] = $this->basico->mascara_data($data['update']['procedtarefa']['inserir'][$j]['DataProcedtarefa'], 'mysql');
 					
                 }
 
-                $max = count($data['update']['procedimento']['alterar']);
+                $max = count($data['update']['procedtarefa']['alterar']);
                 for($j=0;$j<$max;$j++) {
-                    $data['update']['procedimento']['alterar'][$j]['DataProcedimento'] = $this->basico->mascara_data($data['update']['procedimento']['alterar'][$j]['DataProcedimento'], 'mysql');
+                    $data['update']['procedtarefa']['alterar'][$j]['DataProcedtarefa'] = $this->basico->mascara_data($data['update']['procedtarefa']['alterar'][$j]['DataProcedtarefa'], 'mysql');
 
                 }
 
-                if (count($data['update']['procedimento']['inserir']))
-                    $data['update']['procedimento']['bd']['inserir'] = $this->Tarefacons_model->set_procedimento($data['update']['procedimento']['inserir']);
+                if (count($data['update']['procedtarefa']['inserir']))
+                    $data['update']['procedtarefa']['bd']['inserir'] = $this->Tarefacons_model->set_procedtarefa($data['update']['procedtarefa']['inserir']);
 
-                if (count($data['update']['procedimento']['alterar']))
-                    $data['update']['procedimento']['bd']['alterar'] =  $this->Tarefacons_model->update_procedimento($data['update']['procedimento']['alterar']);
+                if (count($data['update']['procedtarefa']['alterar']))
+                    $data['update']['procedtarefa']['bd']['alterar'] =  $this->Tarefacons_model->update_procedtarefa($data['update']['procedtarefa']['alterar']);
 
-                if (count($data['update']['procedimento']['excluir']))
-                    $data['update']['procedimento']['bd']['excluir'] = $this->Tarefacons_model->delete_procedimento($data['update']['procedimento']['excluir']);
+                if (count($data['update']['procedtarefa']['excluir']))
+                    $data['update']['procedtarefa']['bd']['excluir'] = $this->Tarefacons_model->delete_procedtarefa($data['update']['procedtarefa']['excluir']);
 
             }
 

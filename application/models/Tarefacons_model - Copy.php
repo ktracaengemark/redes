@@ -70,9 +70,9 @@ class Tarefacons_model extends CI_Model {
         }
     }
 
-    public function set_procedimento($data) {
+    public function set_procedtarefa($data) {
 
-        $query = $this->db->insert_batch('App_ProcedimentoCons', $data);
+        $query = $this->db->insert_batch('App_Procedtarefacons', $data);
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -119,8 +119,8 @@ class Tarefacons_model extends CI_Model {
         return $query;
     }
 
-    public function get_procedimento($data) {
-		$query = $this->db->query('SELECT * FROM App_ProcedimentoCons WHERE idApp_Tarefacons = ' . $data);
+    public function get_procedtarefa($data) {
+		$query = $this->db->query('SELECT * FROM App_Procedtarefacons WHERE idApp_Tarefacons = ' . $data);
         $query = $query->result_array();
 
         return $query;
@@ -246,9 +246,9 @@ class Tarefacons_model extends CI_Model {
 
     }
 
-    public function update_procedimento($data) {
+    public function update_procedtarefa($data) {
 
-        $query = $this->db->update_batch('App_ProcedimentoCons', $data, 'idApp_ProcedimentoCons');
+        $query = $this->db->update_batch('App_Procedtarefacons', $data, 'idApp_Procedtarefacons');
         return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
 
     }
@@ -291,10 +291,10 @@ class Tarefacons_model extends CI_Model {
         }
     }
 
-    public function delete_procedimento($data) {
+    public function delete_procedtarefa($data) {
 
-        $this->db->where_in('idApp_ProcedimentoCons', $data);
-        $this->db->delete('App_ProcedimentoCons');
+        $this->db->where_in('idApp_Procedtarefacons', $data);
+        $this->db->delete('App_Procedtarefacons');
 
         if ($this->db->affected_rows() === 0) {
             return FALSE;
@@ -306,7 +306,7 @@ class Tarefacons_model extends CI_Model {
     public function delete_tarefa($id) {
 
         /*
-        $tables = array('App_ServicoVenda', 'App_ProdutoVenda', 'App_ParcelasRecebiveis', 'App_ProcedimentoCons', 'App_Tarefacons');
+        $tables = array('App_ServicoVenda', 'App_ProdutoVenda', 'App_ParcelasRecebiveis', 'App_Procedtarefacons', 'App_Tarefacons');
         $this->db->where('idApp_Tarefacons', $id);
         $this->db->delete($tables);
         */
@@ -314,7 +314,7 @@ class Tarefacons_model extends CI_Model {
         #$query = $this->db->delete('App_ServicoVenda', array('idApp_Tarefacons' => $id));
         #$query = $this->db->delete('App_ProdutoVenda', array('idApp_Tarefacons' => $id));
         #$query = $this->db->delete('App_ParcelasRecebiveis', array('idApp_Tarefacons' => $id));
-        $query = $this->db->delete('App_ProcedimentoCons', array('idApp_Tarefacons' => $id));
+        $query = $this->db->delete('App_Procedtarefacons', array('idApp_Tarefacons' => $id));
         $query = $this->db->delete('App_Tarefacons', array('idApp_Tarefacons' => $id));
 
         if ($this->db->affected_rows() === 0) {

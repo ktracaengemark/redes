@@ -44,7 +44,7 @@
 							<div class="panel-heading">	
 								<div class="row">
 									<div class="col-md-4">
-										<label for="ObsTarefa">Nova Tarefa:</label>
+										<label for="ObsTarefa">Nova Tarefa/ Missão:</label>
 										<textarea class="form-control" id="ObsTarefa" <?php echo $readonly; ?>
 											autofocus name="ObsTarefa"><?php echo $tarefa['ObsTarefa']; ?></textarea>
 									</div>								
@@ -114,16 +114,16 @@
 							<div id="collapse3" class="panel-collapse" role="tabpanel" aria-labelledby="heading3" aria-expanded="false">
 								<div class="panel-body">
 
-									<input type="hidden" name="PMCount" id="PMCount" value="<?php echo $count['PMCount']; ?>"/>
+									<input type="hidden" name="PTCount" id="PTCount" value="<?php echo $count['PTCount']; ?>"/>
 
 									<div class="input_fields_wrap3">
 
 									<?php
-									for ($i=1; $i <= $count['PMCount']; $i++) {
+									for ($i=1; $i <= $count['PTCount']; $i++) {
 									?>
 
 									<?php if ($metodo > 1) { ?>
-									<input type="hidden" name="idApp_ProcedimentoCons<?php echo $i ?>" value="<?php echo $procedimento[$i]['idApp_ProcedimentoCons']; ?>"/>
+									<input type="hidden" name="idApp_Procedtarefacons<?php echo $i ?>" value="<?php echo $procedtarefa[$i]['idApp_Procedtarefacons']; ?>"/>
 									<?php } ?>
 
 									<div class="form-group" id="3div<?php echo $i ?>">
@@ -140,7 +140,7 @@
 															<option value="">-- Selecione uma opção --</option>
 															<?php
 															foreach ($select['Profissional'] as $key => $row) {
-																if ($procedimento[$i]['Profissional'] == $key) {
+																if ($procedtarefa[$i]['Profissional'] == $key) {
 																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																} else {
 																	echo '<option value="' . $key . '">' . $row . '</option>';
@@ -151,39 +151,39 @@
 													</div>
 													-->
 													<div class="col-md-4">
-														<label for="Procedimento<?php echo $i ?>">Ação:</label>
-														<textarea class="form-control" id="Procedimento<?php echo $i ?>" <?php echo $readonly; ?>
-																  name="Procedimento<?php echo $i ?>"><?php echo $procedimento[$i]['Procedimento']; ?></textarea>
+														<label for="Procedtarefa<?php echo $i ?>">Ação:</label>
+														<textarea class="form-control" id="Procedtarefa<?php echo $i ?>" <?php echo $readonly; ?>
+																  name="Procedtarefa<?php echo $i ?>"><?php echo $procedtarefa[$i]['Procedtarefa']; ?></textarea>
 													</div>
 													<div class="col-md-3">
-														<label for="DataProcedimento<?php echo $i ?>">Data da Ação:</label>
+														<label for="DataProcedtarefa<?php echo $i ?>">Data da Ação:</label>
 														<div class="input-group <?php echo $datepicker; ?>">
 															<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																   name="DataProcedimento<?php echo $i ?>" value="<?php echo $procedimento[$i]['DataProcedimento']; ?>">
+																   name="DataProcedtarefa<?php echo $i ?>" value="<?php echo $procedtarefa[$i]['DataProcedtarefa']; ?>">
 															<span class="input-group-addon" disabled>
 																<span class="glyphicon glyphicon-calendar"></span>
 															</span>
 														</div>
 													</div>
 													<div class="col-md-3">
-														<label for="ConcluidoProcedimento">Ação. Concl.? </label><br>
+														<label for="ConcluidoProcedtarefa">Ação. Concl.? </label><br>
 														<div class="form-group">
 															<div class="btn-group" data-toggle="buttons">
 																<?php
-																foreach ($select['ConcluidoProcedimento'] as $key => $row) {
-																	(!$procedimento[$i]['ConcluidoProcedimento']) ? $procedimento[$i]['ConcluidoProcedimento'] = 'N' : FALSE;
+																foreach ($select['ConcluidoProcedtarefa'] as $key => $row) {
+																	(!$procedtarefa[$i]['ConcluidoProcedtarefa']) ? $procedtarefa[$i]['ConcluidoProcedtarefa'] = 'N' : FALSE;
 
-																	if ($procedimento[$i]['ConcluidoProcedimento'] == $key) {
+																	if ($procedtarefa[$i]['ConcluidoProcedtarefa'] == $key) {
 																		echo ''
-																		. '<label class="btn btn-warning active" name="radiobutton_ConcluidoProcedimento' . $i . '" id="radiobutton_ConcluidoProcedimento' . $i .  $key . '">'
-																		. '<input type="radio" name="ConcluidoProcedimento' . $i . '" id="radiobuttondinamico" '
+																		. '<label class="btn btn-warning active" name="radiobutton_ConcluidoProcedtarefa' . $i . '" id="radiobutton_ConcluidoProcedtarefa' . $i .  $key . '">'
+																		. '<input type="radio" name="ConcluidoProcedtarefa' . $i . '" id="radiobuttondinamico" '
 																		. 'autocomplete="off" value="' . $key . '" checked>' . $row
 																		. '</label>'
 																		;
 																	} else {
 																		echo ''
-																		. '<label class="btn btn-default" name="radiobutton_ConcluidoProcedimento' . $i . '" id="radiobutton_ConcluidoProcedimento' . $i .  $key . '">'
-																		. '<input type="radio" name="ConcluidoProcedimento' . $i . '" id="radiobuttondinamico" '
+																		. '<label class="btn btn-default" name="radiobutton_ConcluidoProcedtarefa' . $i . '" id="radiobutton_ConcluidoProcedtarefa' . $i .  $key . '">'
+																		. '<input type="radio" name="ConcluidoProcedtarefa' . $i . '" id="radiobuttondinamico" '
 																		. 'autocomplete="off" value="' . $key . '" >' . $row
 																		. '</label>'
 																		;
@@ -213,7 +213,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-md-4">
-												<a class="add_field_button3 btn btn-xs btn-warning" onclick="adicionaProcedimento()">
+												<a class="add_field_button3 btn btn-xs btn-warning" onclick="adicionaProcedtarefa()">
 													<span class="glyphicon glyphicon-plus"></span> Adicionar Ação
 												</a>
 											</div>
@@ -352,7 +352,7 @@
 							<!--<input type="hidden" name="idApp_Cliente" value="<?php echo $_SESSION['Cliente']['idApp_Cliente']; ?>">-->
 							<input type="hidden" name="idApp_Tarefacons" value="<?php echo $tarefa['idApp_Tarefacons']; ?>">
 							<?php if ($metodo > 1) { ?>
-							<!--<input type="hidden" name="idApp_ProcedimentoCons" value="<?php echo $procedimento['idApp_ProcedimentoCons']; ?>">
+							<!--<input type="hidden" name="idApp_Procedtarefacons" value="<?php echo $procedtarefa['idApp_Procedtarefacons']; ?>">
 							<input type="hidden" name="idApp_ParcelasRec" value="<?php echo $parcelasrec['idApp_ParcelasRec']; ?>">-->
 							<?php } ?>
 							<?php if ($metodo == 2) { ?>
