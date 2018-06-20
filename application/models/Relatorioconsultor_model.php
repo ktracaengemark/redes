@@ -4806,11 +4806,11 @@ exit();*/
 
         if ($data['DataFim']) {
             $consulta =
-                '(TF.DataTarefa >= "' . $data['DataInicio'] . '" AND TF.DataTarefa <= "' . $data['DataFim'] . '")';
+                '(PR.DataProcedimento >= "' . $data['DataInicio'] . '" AND PR.DataProcedimento <= "' . $data['DataFim'] . '")';
         }
         else {
             $consulta =
-                '(TF.DataTarefa >= "' . $data['DataInicio'] . '")';
+                '(PR.DataProcedimento >= "' . $data['DataInicio'] . '")';
         }
 
 		#$data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;

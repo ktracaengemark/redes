@@ -809,7 +809,7 @@
 									-->
 									<div class="panel-heading text-left">
 										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
-											<span class="glyphicon glyphicon-menu-down"></span> Procedimentos
+											<span class="glyphicon glyphicon-menu-down"></span> Ações
 										</a>
 									</div>
 									
@@ -833,12 +833,12 @@
 													<div class="panel-heading">
 														<div class="row">
 															<div class="col-md-4">
-																<label for="Procedimento<?php echo $i ?>">Procedimento:</label>
+																<label for="Procedimento<?php echo $i ?>">Ação:</label>
 																<textarea class="form-control" id="Procedimento<?php echo $i ?>" <?php echo $readonly; ?>
 																		  name="Procedimento<?php echo $i ?>"><?php echo $procedimento[$i]['Procedimento']; ?></textarea>
 															</div>
-															<div class="col-md-2">
-																<label for="DataProcedimento<?php echo $i ?>">Data do Proced.:</label>
+															<div class="col-md-3">
+																<label for="DataProcedimento<?php echo $i ?>">Data da Ação:</label>
 																<div class="input-group <?php echo $datepicker; ?>">
 																	<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																		   name="DataProcedimento<?php echo $i ?>" value="<?php echo $procedimento[$i]['DataProcedimento']; ?>">
@@ -848,8 +848,8 @@
 																</div>
 															</div>
 
-															<div class="col-md-2">
-																<label for="ConcluidoProcedimento">Proc. Concl.? </label><br>
+															<div class="col-md-3">
+																<label for="ConcluidoProcedimento">Ação Concl.? </label><br>
 																<div class="form-group">
 																	<div class="btn-group" data-toggle="buttons">
 																		<?php
@@ -876,12 +876,13 @@
 																	</div>
 																</div>
 															</div>
-															<div class="col-md-1">
+															<div class="col-md-2">
 																<label><br></label><br>
 																<button type="button" id="<?php echo $i ?>" class="remove_field3 btn btn-danger">
 																	<span class="glyphicon glyphicon-trash"></span>
 																</button>
 															</div>
+															<!--
 															<div class="col-md-3">
 																<label for="idApp_Consultor<?php echo $i ?>">Profissional:</label>
 																<?php if ($i == 1) { ?>
@@ -900,6 +901,7 @@
 																	?>
 																</select>
 															</div>
+															-->
 														</div>
 													</div>
 												</div>
@@ -915,7 +917,7 @@
 												<div class="row">
 													<div class="col-md-4">
 														<a class="add_field_button3 btn btn btn-warning" onclick="adicionaProcedimento()">
-															<span class="glyphicon glyphicon-plus"></span> Adic. Procedimento
+															<span class="glyphicon glyphicon-plus"></span> Ad. Ação
 														</a>
 													</div>
 												</div>
