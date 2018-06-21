@@ -3231,7 +3231,7 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
-	public function procedimento() {
+	public function procedimento1() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -3470,6 +3470,81 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
+    public function procedimento() {
+
+        if ($this->input->get('m') == 1)
+            $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
+        elseif ($this->input->get('m') == 2)
+            $data['msg'] = $this->basico->msg('<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>', 'erro', TRUE, TRUE, TRUE);
+        else
+            $data['msg'] = '';
+
+        $data['query'] = quotes_to_entities($this->input->post(array(
+			'Dia',
+			'Mesvenc',
+			'Ano',
+			'ConcluidoProcedimento',
+            'Ordenamento',
+            'Campo',
+			'NomeConsultor',
+        ), TRUE));
+
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
+        #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
+
+        $data['select']['ConcluidoProcedimento'] = array(
+            'N' => 'Não',
+            'S' => 'Sim',
+			'#' => 'TODOS',
+        );
+
+		$data['select']['Campo'] = array(
+			'C.DataProcedimento' => 'Data',
+			'C.ConcluidoProcedimento' => 'Concl.',
+            'C.idApp_Procedimento' => 'id',
+        );
+
+        $data['select']['Ordenamento'] = array(
+            'DESC' => 'Decrescente',
+			'ASC' => 'Crescente',
+        );
+
+        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+		$data['select']['Dia'] = $this->Relatoriofuncionario_model->select_dia();
+		$data['select']['Mesvenc'] = $this->Relatoriofuncionario_model->select_mes();
+		
+        $data['titulo'] = 'Procedimentos';
+
+        #run form validation
+        if ($this->form_validation->run() !== TRUE) {
+
+			$data['bd']['Dia'] = $data['query']['Dia'];
+			$data['bd']['Mesvenc'] = $data['query']['Mesvenc'];
+			$data['bd']['Ano'] = $data['query']['Ano'];
+			$data['bd']['ConcluidoProcedimento'] = $data['query']['ConcluidoProcedimento'];
+			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
+            $data['bd']['Campo'] = $data['query']['Campo'];
+			$data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+
+            $data['report'] = $this->Relatoriofuncionario_model->list_procedimento($data['bd'],TRUE);
+
+            /*
+              echo "<pre>";
+              print_r($data['report']);
+              echo "</pre>";
+              exit();
+              */
+
+            $data['list'] = $this->load->view('relatoriofuncionario/list_procedimento', $data, TRUE);
+            //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        }
+
+        $this->load->view('relatoriofuncionario/tela_procedimento', $data);
+
+        $this->load->view('basico/footer');
+
+    }
+	
 	public function clienteprod() {
 
         if ($this->input->get('m') == 1)

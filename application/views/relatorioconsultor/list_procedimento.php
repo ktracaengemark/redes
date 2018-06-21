@@ -12,11 +12,11 @@
             <table class="table table-bordered table-condensed table-striped">								
                 <thead>
                     <tr>
-                        <!--<th class="active">id</th>-->
+                        <th class="active">id</th>
                         <th class="active">Ação</th>
 						<th class="active">Data</th>
 						<th class="active">Concl.?</th>
-						<!--<th class="active">Consultor</th>-->
+
 
                     </tr>
                 </thead>
@@ -28,11 +28,11 @@
 
                         #echo '<tr>';
                         echo '<tr class="clickable-row" data-href="' . base_url() . 'procedimento/alterar/' . $row['idApp_Procedimento'] . '">';
-                            #echo '<td>' . $row['idApp_Procedimento'] . '</td>';
+                            echo '<td>' . $row['idApp_Procedimento'] . '</td>';
                             echo '<td>' . $row['Procedimento'] . '</td>';
-							echo '<td>' . $row['DataProcedimento'] . ' / ' . $row['NomeConsultor'] . '</td>';							
+							echo '<td>' . $row['DataProcedimento'] . '</td>';							
 							echo '<td>' . $row['ConcluidoProcedimento'] . '</td>';
-							#echo '<td>' . $row['NomeConsultor'] . '</td>';
+
                         echo '</tr>';
                     }
                     ?>

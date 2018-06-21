@@ -1587,5 +1587,46 @@ class Basico_model extends CI_Model {
 
         return $array;
     }
-		
+
+	public function select_consultor($data = FALSE) {
+
+        if ($data === TRUE) {
+            $array = $this->db->query(					
+				'SELECT
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
+            FROM
+                App_Consultor AS P
+					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+            WHERE
+                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				P.Nivel = "3"  
+			ORDER BY P.NomeConsultor ASC'
+    );
+					
+        } else {
+            $query = $this->db->query(
+                'SELECT
+				P.idApp_Consultor,
+				CONCAT(IFNULL(P.NomeConsultor,"")) AS NomeConsultor
+            FROM
+                App_Consultor AS P
+					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+            WHERE
+                P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+                P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				P.Nivel = "3"  
+			ORDER BY P.NomeConsultor ASC'
+    );
+            
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idApp_Consultor] = $row->NomeConsultor;
+            }
+        }
+
+        return $array;
+    }
+	
 }

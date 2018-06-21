@@ -4069,7 +4069,7 @@ exit();*/
 
     }
 
-	public function list_procedimento($data, $completo) {
+	public function list_procedimento1($data, $completo) {
 
         if ($data['DataFim']) {
             $consulta =
@@ -4246,6 +4246,68 @@ exit();*/
 
     }
 
+	public function list_procedimento($data, $completo) {
+
+		$data['Dia'] = ($data['Dia']) ? ' AND DAY(C.DataProcedimento) = ' . $data['Dia'] : FALSE;
+		$data['Mesvenc'] = ($data['Mesvenc']) ? ' AND MONTH(C.DataProcedimento) = ' . $data['Mesvenc'] : FALSE;
+		$data['Ano'] = ($data['Ano']) ? ' AND YEAR(C.DataProcedimento) = ' . $data['Ano'] : FALSE;
+        $data['Campo'] = (!$data['Campo']) ? 'C.DataProcedimento' : $data['Campo'];
+        $data['Ordenamento'] = (!$data['Ordenamento']) ? 'DESC' : $data['Ordenamento'];
+		$data['NomeConsultor'] = ($data['NomeConsultor']) ? ' AND C.idApp_Consultor = ' . $data['NomeConsultor'] : FALSE;
+		$filtro10 = ($data['ConcluidoProcedimento'] != '#') ? 'C.ConcluidoProcedimento = "' . $data['ConcluidoProcedimento'] . '" AND ' : FALSE;
+        
+		$query = $this->db->query('
+            SELECT
+				C.idApp_Procedimento,
+                C.Procedimento,
+				C.DataProcedimento,
+				C.ConcluidoProcedimento,
+				C.idApp_Consultor,
+				CO.NomeConsultor
+            FROM
+				App_Procedimento AS C
+					LEFT JOIN App_Consultor AS CO ON CO.idApp_Consultor = C.idApp_Consultor
+            WHERE
+                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				' . $filtro10 . '
+				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' 
+                ' . $data['Dia'] . ' 
+				' . $data['Mesvenc'] . ' 
+				' . $data['Ano'] . '
+				' . $data['NomeConsultor'] . '
+				
+            ORDER BY
+                ' . $data['Campo'] . ' 
+				' . $data['Ordenamento'] . '
+        ');
+        /*
+
+        #AND
+        #C.idApp_Cliente = OT.idApp_Cliente
+
+          echo $this->db->last_query();
+          echo "<pre>";
+          print_r($query);
+          echo "</pre>";
+          exit();
+        */
+
+        if ($completo === FALSE) {
+            return TRUE;
+        } else {
+
+            foreach ($query->result() as $row) {
+				$row->DataProcedimento = $this->basico->mascara_data($row->DataProcedimento, 'barras');
+				$row->ConcluidoProcedimento = $this->basico->mascara_palavra_completa($row->ConcluidoProcedimento, 'NS');
+
+            }
+
+            return $query;
+        }
+
+    }
+	
 	public function list_clienteprod($data, $completo) {
 
         $data['Campo'] = (!$data['Campo']) ? 'C.NomeCliente' : $data['Campo'];

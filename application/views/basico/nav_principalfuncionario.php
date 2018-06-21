@@ -27,21 +27,21 @@
 							</form>
 						</li>
 						-->
-						<!--
+						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
-								<button type="button" class="btn btn-md btn-warning dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-book"></span> Agendas <span class="caret"></span>
+								<button type="button" class="btn btn-md btn-info dropdown-toggle" data-toggle="dropdown">
+									<span class="glyphicon glyphicon-book"></span> Agenda <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url(); ?>agendafuncionario"><span class="glyphicon glyphicon-calendar"></span> Calendário</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/tarefa"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/procedimento"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
 								</ul>
 							</div>
 							<div class="btn-group" role="group" aria-label="..."> </div>
 						</li>
-						-->
+						
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown">

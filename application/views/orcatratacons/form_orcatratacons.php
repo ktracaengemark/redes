@@ -27,6 +27,12 @@
 								<span class="glyphicon glyphicon-edit"></span> Editar Cliente
 							</a>
 						</li>
+						
+						<li>
+							<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+								<span class="glyphicon glyphicon-pencil"></span> Acompanhamento
+							</a>
+						</li>
 
 						<li>
 							<a href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
@@ -849,11 +855,11 @@
 															<div class="col-md-3">
 																<label for="DataProcedimento<?php echo $i ?>">Data da Ação:</label>
 																<div class="input-group <?php echo $datepicker; ?>">
-																	<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																		   name="DataProcedimento<?php echo $i ?>" value="<?php echo $procedimento[$i]['DataProcedimento']; ?>">
 																	<span class="input-group-addon" disabled>
 																		<span class="glyphicon glyphicon-calendar"></span>
 																	</span>
+																	<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
+																		   name="DataProcedimento<?php echo $i ?>" value="<?php echo $procedimento[$i]['DataProcedimento']; ?>">
 																</div>
 															</div>
 

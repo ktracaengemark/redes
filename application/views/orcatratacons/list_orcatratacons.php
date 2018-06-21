@@ -32,6 +32,12 @@
 										<span class="glyphicon glyphicon-edit"></span> Editar Cliente
 									</a>
 								</li>
+								
+								<li>
+									<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-pencil"></span> Acompanhamento
+									</a>
+								</li>								
 
 								<li>
 									<a href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">

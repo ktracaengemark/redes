@@ -8,7 +8,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong>
 					
-						<?php echo form_open('relatoriofuncionario/procedimento', 'role="form"'); ?>
+						<?php echo form_open('relatorio/procedimento', 'role="form"'); ?>
 							
 						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
 							<span class="glyphicon glyphicon-search"></span> Pesq.
@@ -89,23 +89,6 @@
 															</select>
 														</div>
 													</div>
-													<div class="row">	
-														<div class="col-md-6 text-left">
-															<label for="Ordenamento">Nome do Consultor:</label>
-															<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
-																	id="NomeConsultor" autofocus name="NomeConsultor">
-																<?php
-																foreach ($select['NomeConsultor'] as $key => $row) {
-																	if ($query['NomeConsultor'] == $key) {
-																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																	} else {
-																		echo '<option value="' . $key . '">' . $row . '</option>';
-																	}
-																}
-																?>
-															</select>
-														</div>
-													</div>	
 													<div class="row">
 														<div class="col-md-3 text-left" >
 															<label for="Ordenamento">Dia:</label>
