@@ -3972,6 +3972,7 @@ class Relatorioconsultor extends CI_Controller {
 			'ConcluidoProcedimento',
             'Ordenamento',
             'Campo',
+			'NomeCliente',
         ), TRUE));
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
@@ -3994,11 +3995,11 @@ class Relatorioconsultor extends CI_Controller {
 			'ASC' => 'Crescente',
         );
 
-        #$data['select']['NomeCliente'] = $this->Relatorio_model->select_cliente();
-		$data['select']['Dia'] = $this->Relatorio_model->select_dia();
-		$data['select']['Mesvenc'] = $this->Relatorio_model->select_mes();
+        $data['select']['NomeCliente'] = $this->Relatorioconsultor_model->select_clientes();
+		$data['select']['Dia'] = $this->Relatorioconsultor_model->select_dia();
+		$data['select']['Mesvenc'] = $this->Relatorioconsultor_model->select_mes();
 		
-        $data['titulo'] = 'Procedimentos';
+        $data['titulo'] = 'Anotações';
 
         #run form validation
         if ($this->form_validation->run() !== TRUE) {
@@ -4009,8 +4010,9 @@ class Relatorioconsultor extends CI_Controller {
 			$data['bd']['ConcluidoProcedimento'] = $data['query']['ConcluidoProcedimento'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
-
-            $data['report'] = $this->Relatorio_model->list_procedimento($data['bd'],TRUE);
+			$data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
+	
+            $data['report'] = $this->Relatorioconsultor_model->list_procedimento($data['bd'],TRUE);
 
             /*
               echo "<pre>";
@@ -4019,11 +4021,11 @@ class Relatorioconsultor extends CI_Controller {
               exit();
               */
 
-            $data['list'] = $this->load->view('relatorio/list_procedimento', $data, TRUE);
+            $data['list'] = $this->load->view('relatorioconsultor/list_procedimento', $data, TRUE);
             //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
         }
 
-        $this->load->view('relatorio/tela_procedimento', $data);
+        $this->load->view('relatorioconsultor/tela_procedimento', $data);
 
         $this->load->view('basico/footer');
 

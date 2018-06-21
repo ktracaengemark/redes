@@ -8,7 +8,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong>
 					
-						<?php echo form_open('relatorio/procedimento', 'role="form"'); ?>
+						<?php echo form_open('relatorioconsultor/procedimento', 'role="form"'); ?>
 							
 						<button class="btn btn-sm btn-info" name="pesquisar" value="0" type="submit">
 							<span class="glyphicon glyphicon-search"></span> Pesq.
@@ -18,7 +18,7 @@
 							<span class="glyphicon glyphicon-filter"></span> Filtros
 						</button>
 																	
-						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>procedimento/cadastrar" role="button"> 
+						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>procedimentocons/cadastrar" role="button"> 
 							<span class="glyphicon glyphicon-plus"></span> Proced.
 						</a>
 					
@@ -33,7 +33,7 @@
 										<div class="modal-content">
 											<div class="modal-header bg-danger">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title"><span class="glyphicon glyphicon-filter"></span> Filtros</h4>
+												<h4 class="modal-title"><span class="glyphicon glyphicon-filter"></span> Filtros de Anotações</h4>
 											</div>
 											<div class="modal-footer">
 												<div class="form-group">	
@@ -80,6 +80,23 @@
 																<?php
 																foreach ($select['ConcluidoProcedimento'] as $key => $row) {
 																	if ($query['ConcluidoProcedimento'] == $key) {
+																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																	} else {
+																		echo '<option value="' . $key . '">' . $row . '</option>';
+																	}
+																}
+																?>
+															</select>
+														</div>
+													</div>
+													<div class="row">	
+														<div class="col-md-6 text-left">
+															<label for="Ordenamento">Nome do Cliente:</label>
+															<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" 
+																	id="NomeCliente" autofocus name="NomeCliente">
+																<?php
+																foreach ($select['NomeCliente'] as $key => $row) {
+																	if ($query['NomeCliente'] == $key) {
 																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																	} else {
 																		echo '<option value="' . $key . '">' . $row . '</option>';

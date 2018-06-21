@@ -815,21 +815,10 @@
 								</div>
 							</div>
 
-							<!--<div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">-->
+							<!--
 							<div class="panel-group">	
 								<div class="panel panel-primary">
-									 <!--
-									 <div class="panel-heading" role="tab" id="heading3" data-toggle="collapse" data-parent="#accordion3" data-target="#collapse3">
-										<h4 class="panel-title">
-											<a class="accordion-toggle">
-												<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-												Procedimentos
-											</a>
-										</h4>
-									</div>
 
-									<div id="collapse3" class="panel-collapse" role="tabpanel" aria-labelledby="heading3" aria-expanded="false">
-									-->
 									<div class="panel-heading text-left">
 										<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
 											<span class="glyphicon glyphicon-menu-down"></span> Ações
@@ -905,26 +894,6 @@
 																	<span class="glyphicon glyphicon-trash"></span>
 																</button>
 															</div>
-															<!--
-															<div class="col-md-3">
-																<label for="idApp_Consultor<?php echo $i ?>">Profissional:</label>
-																<?php if ($i == 1) { ?>
-																<?php } ?>
-																<select data-placeholder="Selecione uma opção..." class="form-control" readonly=""
-																		 id="listadinamicac<?php echo $i ?>" name="idApp_Consultor<?php echo $i ?> readonly="" "> 
-																	<option value="">-- Selecione uma opção --</option>
-																	<?php
-																	foreach ($select['idApp_Consultor'] as $key => $row) {
-																		if ($procedimento[$i]['idApp_Consultor'] == $key) {
-																			echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																		} else {
-																			echo '<option value="' . $key . '">' . $row . '</option>';
-																		}
-																	}
-																	?>
-																</select>
-															</div>
-															-->
 														</div>
 													</div>
 												</div>
@@ -950,7 +919,7 @@
 									</div>
 								</div>
 							</div>
-
+							-->
 							<div class="form-group">
 								<div class="row">
 									<!--<input type="hidden" name="idApp_Cliente" value="<?php echo $_SESSION['Cliente']['idApp_Cliente']; ?>">-->

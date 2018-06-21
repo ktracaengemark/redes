@@ -260,7 +260,7 @@
 											</div>
 											<div class="panel panel-warning">
 												<div class="panel-heading">
-													<div <?php echo $collapse1; ?> id="Classificacao">
+													<div <?php echo $collapse3; ?> id="Classificacao">
 													
 														<div class="form-group">
 															<div class="row">											
@@ -410,7 +410,7 @@
 											</div>
 											<div class="panel panel-warning">
 												<div class="panel-heading">	
-													<div <?php echo $collapse2; ?> id="Acompanhamento">
+													<div <?php echo $collapse3; ?> id="Acompanhamento">
 														<div class="form-group">
 															<div class="row">
 																<div class="col-md-2">	
@@ -536,7 +536,7 @@
 										<div class="panel panel-primary">
 											<div class="panel-heading text-left">
 												<a class="btn btn-primary" type="button" data-toggle="collapse" data-target="#Procedimentos" aria-expanded="false" aria-controls="Procedimentos">
-													<span class="glyphicon glyphicon-menu-down"></span> Ações
+													<span class="glyphicon glyphicon-menu-down"></span> Anotações
 												</a>
 											</div>
 											<div class="panel panel-warning">

@@ -37,8 +37,10 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo base_url() ?>agendaconsultor"><span class="glyphicon glyphicon-calendar"></span> Calendário</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/procedimento"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
 									<!--<li role="separator" class="divider"></li>
+									<li><a href="<?php echo base_url() ?>relatorioconsultor/tarefa"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
+									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>tipobanco/cadastrar"><span class="glyphicon glyphicon-pencil"></span> Cad - Conta Corrente</a></li>-->
 								</ul>
 							</div>

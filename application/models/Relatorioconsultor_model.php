@@ -4892,23 +4892,28 @@ exit();*/
         $data['Campo'] = (!$data['Campo']) ? 'C.DataProcedimento' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'DESC' : $data['Ordenamento'];
 		$filtro10 = ($data['ConcluidoProcedimento'] != '#') ? 'C.ConcluidoProcedimento = "' . $data['ConcluidoProcedimento'] . '" AND ' : FALSE;
+		$data['NomeCliente'] = ($data['NomeCliente']) ? ' AND C.idApp_Cliente = ' . $data['NomeCliente'] : FALSE;
         
 		$query = $this->db->query('
             SELECT
-				C.idApp_Procedimento,
+				C.idApp_ProcedimentoCons,
                 C.Procedimento,
 				C.DataProcedimento,
-				C.ConcluidoProcedimento
+				C.ConcluidoProcedimento,
+				C.idApp_Cliente,
+				CL.NomeCliente
             FROM
-				App_Procedimento AS C
+				App_ProcedimentoCons AS C
+				 LEFT JOIN App_Cliente AS CL ON CL.idApp_Cliente = C.idApp_Cliente
             WHERE
                 C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
 				C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				' . $filtro10 . '
-				C.idSis_Usuario = ' . $_SESSION['log']['id'] . ' 
+				C.idApp_Consultor = ' . $_SESSION['log']['id'] . ' 
                 ' . $data['Dia'] . ' 
 				' . $data['Mesvenc'] . ' 
-				' . $data['Ano'] . ' 
+				' . $data['Ano'] . '
+				' . $data['NomeCliente'] . ' 
 				
             ORDER BY
                 ' . $data['Campo'] . ' 

@@ -68,13 +68,13 @@
 										</div>	
 										<div class="row">
 											<div class="col-md-6">
-												<label for="idApp_Consultor">Consultor</label>
+												<label for="idApp_Cliente">Cliente</label>
 												<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
-														id="idApp_Consultor" autofocus name="idApp_Consultor">
+														id="idApp_Cliente" autofocus name="idApp_Cliente">
 													<option value="">-- Sel. um Cliente --</option>
 													<?php
-													foreach ($select['idApp_Consultor'] as $key => $row) {
-														if ($query['idApp_Consultor'] == $key) {
+													foreach ($select['idApp_Cliente'] as $key => $row) {
+														if ($query['idApp_Cliente'] == $key) {
 															echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 														} else {
 															echo '<option value="' . $key . '">' . $row . '</option>';
@@ -92,7 +92,7 @@
 
 							<div class="form-group">
 								<div class="row">
-									<input type="hidden" name="idApp_Procedimento" value="<?php echo $query['idApp_Procedimento']; ?>">
+									<input type="hidden" name="idApp_ProcedimentoCons" value="<?php echo $query['idApp_ProcedimentoCons']; ?>">
 									<?php if ($metodo == 2) { ?>
 
 										<div class="col-md-6">
@@ -124,7 +124,7 @@
 															</button>
 														</div>
 														<div class="col-md-6 text-right">
-															<a class="btn btn-danger" href="<?php echo base_url() . 'procedimento/excluir/' . $query['idApp_Procedimento'] ?>" role="button">
+															<a class="btn btn-danger" href="<?php echo base_url() . 'procedimento/excluir/' . $query['idApp_ProcedimentoCons'] ?>" role="button">
 																<span class="glyphicon glyphicon-trash"></span> Confirmar Exclusão
 															</a>
 														</div>

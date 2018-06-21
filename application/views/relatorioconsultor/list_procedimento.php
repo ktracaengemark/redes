@@ -12,10 +12,10 @@
             <table class="table table-bordered table-condensed table-striped">								
                 <thead>
                     <tr>
-                        <th class="active">id</th>
+                        <!--<th class="active">id</th>-->
                         <th class="active">Ação</th>
-						<th class="active">Data</th>
-						<th class="active">Concl.?</th>
+						<th class="active">Data/Concl.</th>
+						<th class="active">Contato</th>
 
 
                     </tr>
@@ -27,11 +27,11 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        echo '<tr class="clickable-row" data-href="' . base_url() . 'procedimento/alterar/' . $row['idApp_Procedimento'] . '">';
-                            echo '<td>' . $row['idApp_Procedimento'] . '</td>';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'procedimentocons/alterar/' . $row['idApp_ProcedimentoCons'] . '">';
+                            #echo '<td>' . $row['idApp_Procedimento'] . '</td>';
                             echo '<td>' . $row['Procedimento'] . '</td>';
-							echo '<td>' . $row['DataProcedimento'] . '</td>';							
-							echo '<td>' . $row['ConcluidoProcedimento'] . '</td>';
+							echo '<td>' . $row['DataProcedimento'] . ' * ' . $row['ConcluidoProcedimento'] . '</td>';							
+							echo '<td>' . $row['NomeCliente'] . '</td>';
 
                         echo '</tr>';
                     }

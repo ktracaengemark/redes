@@ -439,6 +439,7 @@ class Cliente extends CI_Controller {
 		$data['collapse'] = '';
 		$data['collapse1'] = '';
 		$data['collapse2'] = '';
+		$data['collapse3'] = 'class="collapse"';
 /*		
         if ($data['query']['Sexo'] || $data['query']['Endereco'] || $data['query']['Bairro'] ||
 			$data['query']['Municipio'] || $data['query']['Estado'] || $data['query']['Obs'] || $data['query']['Email'] || 

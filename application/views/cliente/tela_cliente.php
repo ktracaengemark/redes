@@ -35,7 +35,7 @@
 
 								<li>
 									<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-pencil"></span> Acompanhamento
+										<span class="glyphicon glyphicon-pencil"></span> Anotações
 									</a>
 								</li>
 								

@@ -520,7 +520,8 @@ class Basico_model extends CI_Model {
                 App_Cliente					
             WHERE
                 idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                Empresa = ' . $_SESSION['log']['Empresa'] . '
+                Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				idApp_Consultor = ' . $_SESSION['log']['id'] . '
 			ORDER BY 
 				NomeCliente ASC'
     );
@@ -534,7 +535,8 @@ class Basico_model extends CI_Model {
                 App_Cliente					
             WHERE
                 idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                Empresa = ' . $_SESSION['log']['Empresa'] . '
+                Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				idApp_Consultor = ' . $_SESSION['log']['id'] . '
 			ORDER BY 
 				NomeCliente ASC'
     );
