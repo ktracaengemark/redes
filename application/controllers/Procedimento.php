@@ -72,7 +72,7 @@ class Procedimento extends CI_Controller {
 		$data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
 		$data['select']['idApp_Consultor'] = $this->Basico_model->select_consultor();
 		
-        $data['titulo'] = 'Cadastrar Procedimento';
+        $data['titulo'] = 'Anotações';
         $data['form_open_path'] = 'procedimento/cadastrar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -161,7 +161,7 @@ class Procedimento extends CI_Controller {
 		$data['select']['ConcluidoProcedimento'] = $this->Basico_model->select_status_sn();
 		$data['select']['idApp_Consultor'] = $this->Basico_model->select_consultor();
 		
-        $data['titulo'] = 'Editar Dados';
+        $data['titulo'] = 'Editar Anotações';
         $data['form_open_path'] = 'procedimento/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';

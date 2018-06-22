@@ -14,7 +14,7 @@
 
 					<div class="panel panel-<?php echo $panel; ?>">
 
-						<div class="panel-heading"><strong>Procedimentos</strong></div>
+						<div class="panel-heading"><strong>Anotações</strong></div>
 						<div class="panel-body">
 
 							<?php echo form_open_multipart($form_open_path); ?>
