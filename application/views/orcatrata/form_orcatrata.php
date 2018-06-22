@@ -51,7 +51,7 @@
 
 							<div class="panel panel-<?php echo $panel; ?>">
 
-								<div class="panel-heading"><strong>Orçamentos</strong></div>
+								<div class="panel-heading"><strong>Orçamento - </strong><?php echo $orcatrata['idApp_OrcaTrata'] ?></div>
 								<div class="panel-body">
 
 									<?php echo form_open_multipart($form_open_path); ?>
@@ -910,11 +910,6 @@
 																<div class="col-md-1"></div>
 																<div class="form-group text-left">
 																	<div class="row">
-																		<div class="col-md-6">
-																			<label for="ObsOrca">OBS:</label>
-																			<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
-																					  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
-																		</div>
 																		<div class="col-md-3">
 																			<label for="DataRetorno">Retornar em:</label>
 																			<div class="input-group <?php echo $datepicker; ?>">
@@ -924,6 +919,11 @@
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																					   name="DataRetorno" value="<?php echo $orcatrata['DataRetorno']; ?>">
 																			</div>
+																		</div>
+																		<div class="col-md-6">
+																			<label for="ObsOrca">OBS:</label>
+																			<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
+																					  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
 																		</div>
 																	</div>
 																</div>

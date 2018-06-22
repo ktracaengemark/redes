@@ -92,26 +92,29 @@
 													<h4>
 														<span class="glyphicon glyphicon-tags"></span> <b>Nº Orç.:</b> <?php echo $row['idApp_OrcaTrata']; ?>
 													</h4>
-													<h5>
-														<span class="glyphicon glyphicon-calendar"></span> <b>Data do Orçamento:</b> <?php echo $row['DataOrca']; ?>
-													</h5>
-
+													<br>
 													<p>
 														<?php if ($row['ProfissionalOrca']) { ?>
 														<span class="glyphicon glyphicon-user"></span> <b>Profissional:</b> <?php echo $row['ProfissionalOrca']; ?> -
 														<?php } if ($row['AprovadoOrca']) { ?>
-														<span class="glyphicon glyphicon-thumbs-up"></span> <b>Orç. Aprovado?</b> <?php echo $row['AprovadoOrca']; ?>
+														<span class="glyphicon glyphicon-thumbs-up"></span> <b>Orç. Aprov.?</b> <?php echo $row['AprovadoOrca']; ?> -
+														<?php } if ($row['DataOrca']) { ?>
+														<span class="glyphicon glyphicon-calendar"></span> <b>Dt. Orç.</b> <?php echo $row['DataOrca']; ?>
 														<?php } ?>
 
 													</p>
 													<p>
 														<?php if ($row['ServicoConcluido']) { ?>
-														<span class="glyphicon glyphicon-ok"></span> <b>Orç. Concluído?</b> <?php echo $row['ServicoConcluido']; ?>
+														<span class="glyphicon glyphicon-ok"></span> <b>Orç. Concl.?</b> <?php echo $row['ServicoConcluido']; ?> -
+														<?php } if ($row['DataConclusao']) { ?>
+														<span class="glyphicon glyphicon-calendar"></span> <b>Dt. Concl.</b> <?php echo $row['DataConclusao']; ?>
 														<?php } ?>
 													</p>
 													<p>
 														<?php if ($row['QuitadoOrca']) { ?>
-														<span class="glyphicon glyphicon-usd"></span> <b>Orç. Quitado?</b> <?php echo $row['QuitadoOrca']; ?>
+														<span class="glyphicon glyphicon-usd"></span> <b>Orç. Quit.?</b> <?php echo $row['QuitadoOrca']; ?> -
+														<?php } if ($row['DataQuitado']) { ?>
+														<span class="glyphicon glyphicon-calendar"></span> <b>Dt. Quit.</b> <?php echo $row['DataQuitado']; ?>
 														<?php } ?>
 													</p>
 													<p>
@@ -153,25 +156,29 @@
 													<h4>
 														<span class="glyphicon glyphicon-tags"></span> <b>Nº Orç.:</b> <?php echo $row['idApp_OrcaTrata']; ?>
 													</h4>
-													<h5>
-														<span class="glyphicon glyphicon-calendar"></span> <b>Data do Orçamento:</b> <?php echo $row['DataOrca']; ?>
-													</h5>
-
+													<br>
 													<p>
 														<?php if ($row['ProfissionalOrca']) { ?>
 														<span class="glyphicon glyphicon-user"></span> <b>Profissional:</b> <?php echo $row['ProfissionalOrca']; ?> -
 														<?php } if ($row['AprovadoOrca']) { ?>
-														<span class="glyphicon glyphicon-thumbs-up"></span> <b>Orç. Aprovado?</b> <?php echo $row['AprovadoOrca']; ?>
+														<span class="glyphicon glyphicon-thumbs-up"></span> <b>Orç. Aprov.?</b> <?php echo $row['AprovadoOrca']; ?> -
+														<?php } if ($row['DataOrca']) { ?>
+														<span class="glyphicon glyphicon-calendar"></span> <b>Dt. Orç.</b> <?php echo $row['DataOrca']; ?>
 														<?php } ?>
+
 													</p>
 													<p>
 														<?php if ($row['ServicoConcluido']) { ?>
-														<span class="glyphicon glyphicon-ok"></span> <b>Orç. Concluído?</b> <?php echo $row['ServicoConcluido']; ?>
+														<span class="glyphicon glyphicon-ok"></span> <b>Orç. Concl.?</b> <?php echo $row['ServicoConcluido']; ?> -
+														<?php } if ($row['DataConclusao']) { ?>
+														<span class="glyphicon glyphicon-calendar"></span> <b>Dt. Concl.</b> <?php echo $row['DataConclusao']; ?>
 														<?php } ?>
 													</p>
 													<p>
 														<?php if ($row['QuitadoOrca']) { ?>
-														<span class="glyphicon glyphicon-usd"></span> <b>Orç. Quitado?</b> <?php echo $row['QuitadoOrca']; ?>
+														<span class="glyphicon glyphicon-usd"></span> <b>Orç. Quit.?</b> <?php echo $row['QuitadoOrca']; ?> -
+														<?php } if ($row['DataQuitado']) { ?>
+														<span class="glyphicon glyphicon-calendar"></span> <b>Dt. Quit.</b> <?php echo $row['DataQuitado']; ?>
 														<?php } ?>
 													</p>
 													<p>
