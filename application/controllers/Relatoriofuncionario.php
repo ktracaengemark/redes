@@ -2579,10 +2579,10 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
 		$data['select']['Campo'] = array(
-            'C.NomeConsultor' => 'Nome do Consultor',
+            'DAY(C.DataNascimento)' => 'Data de Nascimento',
+			'C.NomeConsultor' => 'Nome do Consultor',
 			'C.idApp_Consultor' => 'nº Consultor',
 			'C.Inativo' => 'Ativo',
-            'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
             'C.Email' => 'E-mail',
         );

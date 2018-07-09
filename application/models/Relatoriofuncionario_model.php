@@ -3356,6 +3356,11 @@ exit();*/
 				C.Nivel,
                 C.Sexo,
                 C.Email,
+				C.Endereco,
+				C.Bairro,
+				C.Municipio,
+				C.Estado,
+				C.Cep,
 				C.Nivel
             FROM
 				App_Consultor AS C
@@ -3413,7 +3418,7 @@ exit();*/
 		$data['Dia'] = ($data['Dia']) ? ' AND DAY(C.DataNascimento) = ' . $data['Dia'] : FALSE;
 		$data['Mes'] = ($data['Mes']) ? ' AND MONTH(C.DataNascimento) = ' . $data['Mes'] : FALSE;
 		$data['Ano'] = ($data['Ano']) ? ' AND YEAR(C.DataNascimento) = ' . $data['Ano'] : FALSE;
-		$data['Campo'] = (!$data['Campo']) ? 'C.NomeConsultor' : $data['Campo'];
+		$data['Campo'] = (!$data['Campo']) ? 'DAY(C.DataNascimento)' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$filtro1 = ($data['Inativo'] != '#') ? 'C.Inativo = "' . $data['Inativo'] . '" AND ' : FALSE;
         $query = $this->db->query('
@@ -3443,7 +3448,8 @@ exit();*/
 				' . $data['Mes'] . '
 				' . $data['Ano'] . '
             ORDER BY
-                ' . $data['Campo'] . ' ' . $data['Ordenamento'] . '
+				' . $data['Campo'] . '
+				' . $data['Ordenamento'] . '
         ');
         /*
 

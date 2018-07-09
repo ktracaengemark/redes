@@ -63,12 +63,12 @@
 
 											<?php
 
-											if ($query['Empresa']) {
+											if ($query['NomeConsultor']) {
 
 											echo '
 											<tr>
-												<td class="col-md-3 col-lg-3"><span class="glyphicon glyphicon-user"></span> Empresa:</td>
-												<td>' . $query['Empresa'] . '</td>
+												<td class="col-md-3 col-lg-3"><span class="glyphicon glyphicon-user"></span> Consultor:</td>
+												<td>' . $query['NomeConsultor'] . '</td>
 											</tr>
 											';
 
@@ -117,6 +117,61 @@
 											<tr>
 												<td><span class="glyphicon glyphicon-envelope"></span> E-mail:</td>
 												<td>' . $query['Email'] . '</td>
+											</tr>
+											';
+
+											}
+											
+											if ($query['Endereco']) {
+
+											echo '
+											<tr>
+												<td><span class="glyphicon glyphicon-home"></span> Endereço:</td>
+												<td>' . $query['Endereco'] . '</td>
+											</tr>
+											';
+
+											}
+											
+											if ($query['Bairro']) {
+
+											echo '
+											<tr>
+												<td><span class="glyphicon glyphicon-home"></span> Bairro:</td>
+												<td>' . $query['Bairro'] . '</td>
+											</tr>
+											';
+
+											}
+											
+											if ($query['Municipio']) {
+
+											echo '
+											<tr>
+												<td><span class="glyphicon glyphicon-home"></span> Município:</td>
+												<td>' . $query['Municipio'] . '</td>
+											</tr>
+											';
+
+											}
+											
+											if ($query['Estado']) {
+
+											echo '
+											<tr>
+												<td><span class="glyphicon glyphicon-home"></span> UF:</td>
+												<td>' . $query['Estado'] . '</td>
+											</tr>
+											';
+
+											}
+											
+											if ($query['Cep']) {
+
+											echo '
+											<tr>
+												<td><span class="glyphicon glyphicon-home"></span> Cep:</td>
+												<td>' . $query['Cep'] . '</td>
 											</tr>
 											';
 
