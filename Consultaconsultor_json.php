@@ -17,9 +17,9 @@ if (!$db) {
 #echo 'Conexão bem sucedida';
 
 //Acho que as próximas linhas são redundantes, verificar
-$query = ($_SESSION['log']['NomeUsuario'] && isset($_SESSION['log']['NomeUsuario'])) ?
+$query = ($_SESSION['log']['NomeConsultor'] && isset($_SESSION['log']['NomeConsultor'])) ?
     #'P.idSis_Usuario = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
-	'A.idApp_Consultor = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
+	'A.idApp_Consultor = ' . $_SESSION['log']['NomeConsultor'] . ' AND ' : FALSE;
 
 $permissao = ($_SESSION['log']['Permissao'] > 2) ?
 	'A.idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
@@ -34,7 +34,7 @@ $result = mysql_query(
             R.NomeCliente,
 			R.Telefone1,
             D.NomeContatoCliente,
-            P.NomeConsultor AS NomeUsuario,
+            P.NomeConsultor AS NomeConsultor,
 			P.Permissao,
             C.DataInicio,
             C.DataFim,
@@ -73,7 +73,7 @@ while ($row = mysql_fetch_assoc($result)) {
         $title = mb_convert_encoding($row['Obs'], "UTF-8", "ISO-8859-1");
 		#$title = utf8_encode($row['NomeUsuario']);
 		#$title = utf8_encode($row['idSis_Usuario']);
-		$subtitle = mb_convert_encoding($row['NomeUsuario'], "UTF-8", "ISO-8859-1");
+		$subtitle = mb_convert_encoding($row['NomeConsultor'], "UTF-8", "ISO-8859-1");
 
 		#$profissional = utf8_encode($row['NomeUsuario']);
 		#$profissional = utf8_encode($row['idApp_Agenda']);
@@ -103,7 +103,7 @@ while ($row = mysql_fetch_assoc($result)) {
 
 			#$title = utf8_encode($row['NomeUsuario']);
 			#$subtitle = utf8_encode($row['NomeUsuario']);
-            $subtitle = mb_convert_encoding($row['NomeUsuario'], "UTF-8", "ISO-8859-1");
+            $subtitle = mb_convert_encoding($row['NomeConsultor'], "UTF-8", "ISO-8859-1");
 
 			#$profissional = utf8_encode($row['NomeUsuario']);
 			#$profissional = utf8_encode($row['idApp_Agenda']);

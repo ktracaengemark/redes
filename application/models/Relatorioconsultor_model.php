@@ -5743,7 +5743,7 @@ exit();*/
         $query = $this->db->query('
             SELECT
 				P.idApp_Consultor,
-				CONCAT(IFNULL(F.Abrev,""), " --- ", IFNULL(P.NomeConsultor,"")) AS NomeUsuario
+				CONCAT(IFNULL(F.Abrev,""), " --- ", IFNULL(P.NomeConsultor,"")) AS NomeConsultor
             FROM
                 App_Consultor AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
@@ -5756,7 +5756,7 @@ exit();*/
         $array = array();
         $array[0] = ':: Todos ::';
         foreach ($query->result() as $row) {
-            $array[$row->idApp_Consultor] = $row->NomeUsuario;
+            $array[$row->idApp_Consultor] = $row->NomeConsultor;
         }
 
         return $array;

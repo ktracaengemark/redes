@@ -3536,6 +3536,11 @@ $("#datepickerinline2").on("dp.change", function (e) {
     var d = new Date(e.date);
     $('#calendarconsultor').fullCalendar('gotoDate', d);
 });
+
+$("#datepickerinline2").on("dp.change", function (e) {
+    var d = new Date(e.date);
+    $('#calendarfuncionario').fullCalendar('gotoDate', d);
+});
 /*
  * veio junto com o último datetimepicker, não parei pra analisar sua relevância
  * vou deixar aqui por enquanto
@@ -3781,9 +3786,11 @@ $('#calendar').fullCalendar({
         else {
 
             if (event.Paciente == 'D')
-                var title = "<b>" + event.title + "</b><br><b>Responsável:</b> " + event.subtitle + "<br><b>Tel.1:</b> " + event.Telefone1 + "<br>\n\<b>Profissional:</b> " + event.Profissional + "<br>\n\<b>Obs:</b> " + event.Obs + "<br>\n\<b>Tipo de Consulta:</b> " + event.TipoConsulta;
+                var title = "<b>" + event.title + "</b><br><b>Responsável:</b> " + event.subtitle + "<br><b>Tel.1:</b> " + event.Telefone1 + 
+							"<br>\n\<b>Profissional:</b> " + event.Profissional + "<br>\n\<b>Obs:</b> " + event.Obs + "<br>\n\<b>Tipo de Consulta:</b> " + event.TipoConsulta;
             else
-                var title = "<b>" + event.title + "<b> " + "<br><b>Tel.1:</b> " + event.Telefone1 + "<br>\n\<b>Profissional:</b> " + event.Profissional + "<br>\n\<b>Obs:</b> " + event.Obs + "<br>\n\<b>Tipo de Consulta:</b> " + event.TipoConsulta;
+                var title = "<b>" + event.title + "<b> " + "<br><b>Tel.1:</b> " + event.Telefone1 + 
+							"<br>\n\<b>Profissional:</b> " + event.Profissional + "<br>\n\<b>Obs:</b> " + event.Obs + "<br>\n\<b>Tipo de Consulta:</b> " + event.TipoConsulta;
         }
 
 
@@ -3895,12 +3902,85 @@ $('#calendarconsultor').fullCalendar({
     },
 });
 
+$('#calendarfuncionario').fullCalendar({
+    header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+    },
+    eventSources: [{
+            url: 'Consultaconsultor_json.php', // use the `url` property
+        }],
+    //allDayDefault: true,
+    defaultView: 'agendaWeek',
+    //contentHeight: 700,
+    height: 'auto',
+    //handleWindowResize: false,
+    //aspectRatio: 2,
+
+    firstDay: '1',
+	//minTime: '08:00',
+    //maxTime: '20:00',
+    minTime: '00:00',
+    maxTime: '24:00',
+    nowIndicator: true,
+    selectable: true,
+    //selectHelper: true,
+    editable: false,
+    timezone: "local",
+    lang: 'pt-br',
+    eventAfterRender: function (event, element) {
+
+        if (event.Evento == 1)
+            var title = "<b>Evento Agendado</b><br><br><b>Obs:</b> " + event.Obs + "<br>\n\<b>Profissional:</b> " + event.Profissional;
+        else {
+
+            if (event.Paciente == 'D')
+                var title = "<b>" + event.title + "</b><br><b>Responsável:</b> " + event.subtitle + "<br><b>Tel.1:</b> " + event.Telefone1 + "<br>\n\<b>Profissional:</b> " + event.Profissional + "<br>\n\<b>Obs:</b> " + event.Obs + "<br>\n\<b>Tipo de Consulta:</b> " + event.TipoConsulta;
+            else
+                var title = "<b>" + event.title + "<b> " + "<br><b>Tel.1:</b> " + event.Telefone1 + "<br>\n\<b>Profissional:</b> " + event.Profissional + "<br>\n\<b>Obs:</b> " + event.Obs + "<br>\n\<b>Tipo de Consulta:</b> " + event.TipoConsulta;
+        }
+
+
+        $(element).tooltip({
+            title: title,
+            container: 'body',
+            position: {my: "left bottom-3", at: "center top"},
+            placement: 'auto top',
+            html: true,
+            delay: {"show": 500, "hide": 100},
+            template: '<div class="tooltip" role="tooltip" ><div class="tooltip-inner" \n\
+                    style="color: #000; border-radius: 4px; text-align: left; border-width: thin; border-style: solid; \n\
+                    border-color: #000; background-color: #fff; white-space:pre-wrap;"></div></div>'
+        });
+    },
+    /*
+    selectConstraint: {
+        start: agora,
+        end: '2099-12-31T23:59:00'
+    },*/
+    select: function (start, end, jsEvent, view) {
+        //var re = new RegExp(/^.*\//);
+        //window.location = re.exec(window.location.href) + 'cliente/pesquisar?start=' + start + '&end=' + end;
+
+        //alert(start + ' :: ' + end);
+
+        //endtime = $.fullCalendar.formatDate(end, 'HH:mm');
+        //starttime = $.fullCalendar.formatDate(start, 'DD/MM/YYYY, HH:mm');
+        //var slot = 'start=' + start + '&end=' + end;
+
+        $('#fluxo #start').val(start);
+        $('#fluxo #end').val(end);
+        //$('#fluxo #slot').text(slot);
+        $('#fluxo').modal('show');
+    },
+});
 
 /*
  * Redireciona o usuário de acordo com a opção escolhida no modal da agenda,
  * que surge ao clicar em algum slot de tempo vazio.
  */
-function redirecionar1(x) {
+function redirecionar(x) {
 
     var re = new RegExp(/^.*\//);
     var start = moment($("#start").val());
@@ -3909,12 +3989,21 @@ function redirecionar1(x) {
     window.location = re.exec(window.location.href) + url + '?start=' + start + '&end=' + end
 }
 
-function redirecionar(x) {
+function redirecionar1(x) {
 
     var re = new RegExp(/^.*\//);
     var start = moment($("#start").val());
     var end = moment($("#end").val());
     (x == 1) ? url = 'consultaconsultor/cadastrar_evento' : url = 'consultaconsultor/cadastrar';
+    window.location = re.exec(window.location.href) + url + '?start=' + start + '&end=' + end
+}
+
+function redirecionar2(x) {
+
+    var re = new RegExp(/^.*\//);
+    var start = moment($("#start").val());
+    var end = moment($("#end").val());
+    (x == 1) ? url = 'consultafuncionario/cadastrar_evento' : url = 'consultafuncionario/cadastrar';
     window.location = re.exec(window.location.href) + url + '?start=' + start + '&end=' + end
 }
 
@@ -3946,5 +4035,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 var gtd = getUrlParameter('gtd');
 (gtd) ? $('#calendar').fullCalendar('gotoDate', gtd) : false;
-var gtd = getUrlParameter('gtd');
-(gtd) ? $('#calendarconsultor').fullCalendar('gotoDate', gtd) : false;
+var gtd2 = getUrlParameter('gtd2');
+(gtd2) ? $('#calendarconsultor').fullCalendar('gotoDate', gtd2) : false;
+var gtd3 = getUrlParameter('gtd3');
+(gtd3) ? $('#calendarfuncionario').fullCalendar('gotoDate', gtd3) : false;

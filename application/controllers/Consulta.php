@@ -18,8 +18,8 @@ class Consulta extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/header');
-        $this->load->view('basico/nav_principal');
+        $this->load->view('basico/headerfuncionario');
+        $this->load->view('basico/nav_principalfuncionario');
     }
 
     public function index() {

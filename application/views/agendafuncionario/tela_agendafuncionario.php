@@ -11,7 +11,7 @@
 		<div class="panel-body">
 			<div class="form-group">
 				<div class="row">
-					<div id="calendar" class="col-md-12"></div>
+					<div id="calendarfuncionario" class="col-md-12"></div>
 				</div>
 			</div>
 		</div>
@@ -29,12 +29,12 @@
 								<label for="">Agendamento:</label>
 								<div class="form-group">
 									<div class="row">
-										<button type="button" id="MarcarConsulta" onclick="redirecionar(2)" class="btn btn-primary"> Com Cliente
+										<button type="button" id="MarcarConsulta" onclick="redirecionar2(2)" class="btn btn-primary"> Com Consultor
 										</button>
 									</div>
 									<br>
 									<div class="row">
-										<button type="button" id="AgendarEvento" onclick="redirecionar(1)" class="btn btn-info">Outro Evento
+										<button type="button" id="AgendarEvento" onclick="redirecionar2(1)" class="btn btn-info">Outro Evento
 										</button>
 									</div>
 									<!--

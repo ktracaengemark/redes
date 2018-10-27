@@ -18,7 +18,7 @@ class Agenda extends CI_Controller {
 
         #load header view
         $this->load->view('basico/header');
-        $this->load->view('basico/nav_principalfuncionario');
+        $this->load->view('basico/nav_principal');
 
         unset($_SESSION['agenda']);
 

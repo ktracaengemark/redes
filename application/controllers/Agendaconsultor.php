@@ -33,14 +33,14 @@ class Agendaconsultor extends CI_Controller {
         else
             $data['msg'] = '';
 
-        $data['select']['NomeUsuario'] = $this->Relatorioconsultor_model->select_usuario();
+        $data['select']['NomeConsultor'] = $this->Relatorioconsultor_model->select_usuario();
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeUsuario',
+            'NomeConsultor',
         ), TRUE));
 
-        $_SESSION['log']['NomeUsuario'] = ($data['query']['NomeUsuario']) ?
-            $data['query']['NomeUsuario'] : FALSE;
+        $_SESSION['log']['NomeConsultor'] = ($data['query']['NomeConsultor']) ?
+            $data['query']['NomeConsultor'] : FALSE;
 
         $data['query']['estatisticas'] = $this->Agendaconsultor_model->resumo_estatisticas($_SESSION['log']['id']);
         $data['query']['cliente_aniversariantes'] = $this->Agendaconsultor_model->cliente_aniversariantes($_SESSION['log']['id']);

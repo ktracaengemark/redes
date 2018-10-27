@@ -34,7 +34,7 @@
 									<span class="glyphicon glyphicon-book"></span> Agenda <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo base_url(); ?>agendafuncionario"><span class="glyphicon glyphicon-calendar"></span> Calendário</a></li>
+									<li><a href="<?php echo base_url(); ?>agenda"><span class="glyphicon glyphicon-calendar"></span> Calendário</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/procedimento"><span class="glyphicon glyphicon-pencil"></span> Anotações</a></li>
 								</ul>
