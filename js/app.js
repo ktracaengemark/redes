@@ -3980,7 +3980,17 @@ $('#calendarfuncionario').fullCalendar({
  * Redireciona o usuário de acordo com a opção escolhida no modal da agenda,
  * que surge ao clicar em algum slot de tempo vazio.
  */
+
 function redirecionar(x) {
+
+    var re = new RegExp(/^.*\//);
+    var start = moment($("#start").val());
+    var end = moment($("#end").val());
+    (x == 1) ? url = 'consulta/cadastrar_evento' : url = 'consulta/cadastrar';
+    window.location = re.exec(window.location.href) + url + '?start=' + start + '&end=' + end
+}
+ 
+ function redirecionar4(x) {
 
     var re = new RegExp(/^.*\//);
     var start = moment($("#start").val());
