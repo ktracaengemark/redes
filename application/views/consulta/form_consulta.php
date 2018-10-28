@@ -40,7 +40,8 @@
 											<label for="idApp_Agenda">Profissional:*</label>
 											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
 													id="idApp_Agenda" name="idApp_Agenda">
-												<option value="">-- Selecione um Profissional --</option>												
+												<!--<option value="">-- Selecione um Profissional --</option>-->												
+												<?php echo $select['option']; ?>
 												<?php
 												foreach ($select['idApp_Agenda'] as $key => $row) {
 													if ($query['idApp_Agenda'] == $key) {
