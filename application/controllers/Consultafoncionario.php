@@ -14,7 +14,7 @@ class Consultafuncionario extends CI_Controller {
         #load libraries
         $this->load->helper(array('form', 'url', 'date', 'string'));
         $this->load->library(array('basico', 'form_validation'));
-        $this->load->model(array('Basico_model', 'Profissional_model', 'Consulta_model', 'Cliente_model'));
+        $this->load->model(array('Basico_model', 'Profissional_model', 'Consultafuncionario_model', 'Consultor_model'));
         $this->load->driver('session');
 
         #load header view
@@ -37,7 +37,7 @@ class Consultafuncionario extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function cadastrar($idApp_Cliente = NULL, $idApp_ContatoCliente = NULL) {
+    public function cadastrar($idApp_Consultor = NULL, $idApp_ContatoConsultor = NULL) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -50,26 +50,26 @@ class Consultafuncionario extends CI_Controller {
             'idSis_Usuario',
 			'idApp_Consulta',
             'idApp_Agenda',
-            'idApp_Cliente',
+            'idApp_Consultor',
             'Data',
             'HoraInicio',
             'HoraFim',
             'Paciente',
 			'idTab_Status',
             'idTab_TipoConsulta',
-            'idApp_ContatoCliente',
+            'idApp_ContatoConsultor',
             'idApp_Profissional',
             'Procedimento',
             'Obs',
                 ), TRUE));
 
-        if ($idApp_Cliente) {
-            $data['query']['idApp_Cliente'] = $idApp_Cliente;
-            $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($idApp_Cliente, TRUE);
+        if ($idApp_Consultor) {
+            $data['query']['idApp_Consultor'] = $idApp_Consultor;
+            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($idApp_Consultor, TRUE);
         }
 
-        if ($idApp_ContatoCliente) {
-            $data['query']['idApp_ContatoCliente'] = $idApp_ContatoCliente;
+        if ($idApp_ContatoConsultor) {
+            $data['query']['idApp_ContatoConsultor'] = $idApp_ContatoConsultor;
             $data['query']['Paciente'] = 'D';
         }
 
@@ -100,15 +100,15 @@ class Consultafuncionario extends CI_Controller {
 
 
         if ($data['query']['Paciente'] == 'D')
-            $this->form_validation->set_rules('idApp_ContatoCliente', 'ContatoCliente', 'required|trim');
+            $this->form_validation->set_rules('idApp_ContatoConsultor', 'ContatoConsultor', 'required|trim');
 
-        $data['resumo'] = $this->Cliente_model->get_cliente($data['query']['idApp_Cliente']);
+        $data['resumo'] = $this->Consultor_model->get_consultor($data['query']['idApp_Consultor']);
 
 		$data['select']['idApp_Agenda'] = $this->Basico_model->select_agenda();
 		$data['select']['Status'] = $this->Basico_model->select_status();
         $data['select']['TipoConsulta'] = $this->Basico_model->select_tipo_consulta();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
-        $data['select']['ContatoCliente'] = $this->Consulta_model->select_contatocliente_cliente($data['query']['idApp_Cliente']);
+        $data['select']['ContatoConsultor'] = $this->Consultafuncionario_model->select_contatoconsultor_consultor($data['query']['idApp_Consultor']);
 
         #echo $data['query']['idApp_Agenda'] . ' ' . $_SESSION['log']['id'];
         #$data['query']['idApp_Agenda'] = ($_SESSION['log']['Permissao'] > 2) ? $_SESSION['log']['id'] : FALSE;
@@ -126,10 +126,10 @@ class Consultafuncionario extends CI_Controller {
 
         $data['select']['Paciente'] = array (
             'R' => 'O Próprio',
-            'D' => 'ContatoCliente',
+            'D' => 'ContatoConsultor',
         );
 
-        $data['titulo'] = 'Agenda Empresa C/ Cliente';
+        $data['titulo'] = 'Agenda Empresa C/ Consultor';
         $data['form_open_path'] = 'consultafuncionario/cadastrar';
         $data['panel'] = 'primary';
         $data['readonly'] = '';
@@ -139,7 +139,7 @@ class Consultafuncionario extends CI_Controller {
         $data['datepicker'] = 'DatePicker';
         $data['timepicker'] = 'TimePicker';
 
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -161,7 +161,7 @@ class Consultafuncionario extends CI_Controller {
             $data['campos'] = array_keys($data['query']);
             $data['anterior'] = array();
 
-            $data['idApp_Consulta'] = $this->Consulta_model->set_consulta($data['query']);
+            $data['idApp_Consulta'] = $this->Consultafuncionario_model->set_consulta($data['query']);
 
             unset($_SESSION['Agenda']);
 
@@ -176,7 +176,7 @@ class Consultafuncionario extends CI_Controller {
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consulta', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                //redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
+                //redirect(base_url() . 'consultor/prontuario/' . $data['query']['idApp_Consultor'] . $data['msg'] . $data['redirect']);
                 redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
                 exit();
             }
@@ -185,7 +185,7 @@ class Consultafuncionario extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function alterar($idApp_Cliente = FALSE, $idApp_Consulta = FALSE) {
+    public function alterar($idApp_Consultor = FALSE, $idApp_Consulta = FALSE) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -198,27 +198,27 @@ class Consultafuncionario extends CI_Controller {
             'idSis_Usuario',
 			'idApp_Consulta',
             'idApp_Agenda',
-            'idApp_Cliente',
+            'idApp_Consultor',
             'Data',
             'HoraInicio',
             'HoraFim',
             'idTab_Status',
             'Paciente',
-            'idApp_ContatoCliente',
+            'idApp_ContatoConsultor',
             'idApp_Profissional',
             'Procedimento',
             'Obs',
 			'idTab_TipoConsulta',
                 ), TRUE);
 
-        if ($idApp_Cliente) {
-            $data['query']['idApp_Cliente'] = $idApp_Cliente;
-            $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($idApp_Cliente, TRUE);
+        if ($idApp_Consultor) {
+            $data['query']['idApp_Consultor'] = $idApp_Consultor;
+            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($idApp_Consultor, TRUE);
         }
 
         if ($idApp_Consulta) {
-            $data['query']['idApp_Cliente'] = $idApp_Cliente;
-            $data['query'] = $this->Consulta_model->get_consulta($idApp_Consulta);
+            $data['query']['idApp_Consultor'] = $idApp_Consultor;
+            $data['query'] = $this->Consultafuncionario_model->get_consulta($idApp_Consulta);
 
             $dataini = explode(' ', $data['query']['DataInicio']);
             $datafim = explode(' ', $data['query']['DataFim']);
@@ -269,31 +269,31 @@ class Consultafuncionario extends CI_Controller {
 
 
         if ($data['query']['Paciente'] == 'D')
-            $this->form_validation->set_rules('idApp_ContatoCliente', 'ContatoCliente', 'required|trim');
+            $this->form_validation->set_rules('idApp_ContatoConsultor', 'ContatoConsultor', 'required|trim');
 
 		$data['select']['idApp_Agenda'] = $this->Basico_model->select_agenda();
         $data['select']['Status'] = $this->Basico_model->select_status();
         $data['select']['TipoConsulta'] = $this->Basico_model->select_tipo_consulta();
         $data['select']['Profissional'] = $this->Profissional_model->select_profissional();
-        $data['select']['ContatoCliente'] = $this->Consulta_model->select_contatocliente_cliente($data['query']['idApp_Cliente']);
+        $data['select']['ContatoConsultor'] = $this->Consultafuncionario_model->select_contatoconsultor_consultor($data['query']['idApp_Consultor']);
 
         $data['select']['Paciente'] = array (
             'R' => 'O Próprio',
-            'D' => 'ContatoCliente',
+            'D' => 'ContatoConsultor',
         );
 
-        $data['resumo'] = $this->Cliente_model->get_cliente($data['query']['idApp_Cliente']);
+        $data['resumo'] = $this->Consultor_model->get_consultor($data['query']['idApp_Consultor']);
 
         //echo '<br><br><br><br>================================== '.$data['query']['idTab_Status'];
 
-        $data['titulo'] = 'Agenda Empresa C/ Cliente';
+        $data['titulo'] = 'Agenda Empresa C/ Consultor';
         $data['form_open_path'] = 'consulta/alterar';
         #$data['readonly'] = '';
         #$data['disabled'] = '';
         $data['panel'] = 'primary';
         $data['metodo'] = 2;
 
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -312,14 +312,14 @@ class Consultafuncionario extends CI_Controller {
 
             unset($data['query']['Data'], $data['query']['HoraInicio'], $data['query']['HoraFim']);
 
-            $data['anterior'] = $this->Consulta_model->get_consulta($data['query']['idApp_Consulta']);
+            $data['anterior'] = $this->Consultafuncionario_model->get_consulta($data['query']['idApp_Consulta']);
             $data['campos'] = array_keys($data['query']);
 
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Consulta'], TRUE);
 
             unset($_SESSION['Agenda']);
 
-            if ($data['auditoriaitem'] && $this->Consulta_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
+            if ($data['auditoriaitem'] && $this->Consultafuncionario_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
                 $data['msg'] = '?m=2';
                 redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consulta'] . $data['msg']);
                 exit();
@@ -332,7 +332,7 @@ class Consultafuncionario extends CI_Controller {
                     $data['msg'] = '?m=1';
                 }
 
-                //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
+                //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consultor'] . $data['msg'] . $data['redirect']);
                 redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
                 exit();
             }
@@ -341,7 +341,7 @@ class Consultafuncionario extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function listar($idApp_Cliente = NULL) {
+    public function listar($idApp_Consultor = NULL) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -350,9 +350,9 @@ class Consultafuncionario extends CI_Controller {
         else
             $data['msg'] = '';
 
-        if ($idApp_Cliente) {
-            $data['resumo'] = $this->Cliente_model->get_cliente($idApp_Cliente);
-            $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($idApp_Cliente, TRUE);
+        if ($idApp_Consultor) {
+            $data['resumo'] = $this->Consultor_model->get_consultor($idApp_Consultor);
+            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($idApp_Consultor, TRUE);
         }
 
         $data['titulo'] = 'Listar Consultas';
@@ -361,12 +361,12 @@ class Consultafuncionario extends CI_Controller {
         $data['metodo'] = 4;
 
         $data['query'] = array();
-        $data['proxima'] = $this->Consulta_model->lista_consulta_proxima($idApp_Cliente);
-        $data['anterior'] = $this->Consulta_model->lista_consulta_anterior($idApp_Cliente);
+        $data['proxima'] = $this->Consultafuncionario_model->lista_consulta_proxima($idApp_Consultor);
+        $data['anterior'] = $this->Consultafuncionario_model->lista_consulta_anterior($idApp_Consultor);
 
         #$data['tela'] = $this->load->view('consulta/list_consulta', $data, TRUE);
-        #$data['resumo'] = $this->Cliente_model->get_cliente($data['Cliente']['idApp_Cliente']);
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        #$data['resumo'] = $this->Consultor_model->get_consultor($data['Consultor']['idApp_Consultor']);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         $this->load->view('consulta/list_consulta', $data);
 
@@ -388,14 +388,14 @@ class Consultafuncionario extends CI_Controller {
             redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consulta'] . $data['msg']);
         } else {
 
-            $data['anterior'] = $this->Consulta_model->get_consulta($id);
+            $data['anterior'] = $this->Consultafuncionario_model->get_consulta($id);
             #$data['campos'] = array_keys($data['query']);
             $data['campos'] = array_keys($data['anterior']);
 
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], NULL, $data['campos'], $data['query']['idApp_Consulta'], FALSE, TRUE);
             $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consulta', 'DELETE', $data['auditoriaitem']);
 
-            $this->Consulta_model->delete_consulta($id);
+            $this->Consultafuncionario_model->delete_consulta($id);
 
             $data['msg'] = '?m=1';
 
@@ -410,7 +410,7 @@ class Consultafuncionario extends CI_Controller {
      * Cadastrar/Alterar Eventos
      */
 
-    public function cadastrar_evento($idApp_Cliente = NULL, $idApp_Agenda = NULL) {
+    public function cadastrar_evento($idApp_Consultor = NULL, $idApp_Agenda = NULL) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -459,7 +459,7 @@ class Consultafuncionario extends CI_Controller {
         $data['datepicker'] = 'DatePicker';
         $data['timepicker'] = 'TimePicker';
 
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -480,7 +480,7 @@ class Consultafuncionario extends CI_Controller {
             $data['campos'] = array_keys($data['query']);
             $data['anterior'] = array();
 
-            $data['idApp_Consulta'] = $this->Consulta_model->set_consulta($data['query']);
+            $data['idApp_Consulta'] = $this->Consultafuncionario_model->set_consulta($data['query']);
 
             if ($data['idApp_Consulta'] === FALSE) {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
@@ -493,7 +493,7 @@ class Consultafuncionario extends CI_Controller {
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consulta', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                //redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
+                //redirect(base_url() . 'consultor/prontuario/' . $data['query']['idApp_Consultor'] . $data['msg'] . $data['redirect']);
                 redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
                 exit();
             }
@@ -525,7 +525,7 @@ class Consultafuncionario extends CI_Controller {
 
 
         if ($idApp_Consulta) {
-            $data['query'] = $this->Consulta_model->get_consulta($idApp_Consulta);
+            $data['query'] = $this->Consultafuncionario_model->get_consulta($idApp_Consulta);
 
             $dataini = explode(' ', $data['query']['DataInicio']);
             $datafim = explode(' ', $data['query']['DataFim']);
@@ -562,7 +562,7 @@ class Consultafuncionario extends CI_Controller {
         $data['metodo'] = 2;
         $data['evento'] = 1;
 
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -578,12 +578,12 @@ class Consultafuncionario extends CI_Controller {
 
             unset($data['query']['Data'], $data['query']['HoraInicio'], $data['query']['HoraFim']);
 
-            $data['anterior'] = $this->Consulta_model->get_consulta($data['query']['idApp_Consulta']);
+            $data['anterior'] = $this->Consultafuncionario_model->get_consulta($data['query']['idApp_Consulta']);
             $data['campos'] = array_keys($data['query']);
 
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Consulta'], TRUE);
 
-            if ($data['auditoriaitem'] && $this->Consulta_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
+            if ($data['auditoriaitem'] && $this->Consultafuncionario_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
                 $data['msg'] = '?m=2';
                 redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consulta'] . $data['msg']);
                 exit();
@@ -596,7 +596,7 @@ class Consultafuncionario extends CI_Controller {
                     $data['msg'] = '?m=1';
                 }
 
-                //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
+                //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consultor'] . $data['msg'] . $data['redirect']);
                 redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
                 exit();
             }
@@ -605,7 +605,7 @@ class Consultafuncionario extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-	public function cadastrar_particular($idApp_Cliente = NULL, $idApp_Agenda = NULL) {
+	public function cadastrar_particular($idApp_Consultor = NULL, $idApp_Agenda = NULL) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -655,7 +655,7 @@ class Consultafuncionario extends CI_Controller {
         $data['datepicker'] = 'DatePicker';
         $data['timepicker'] = 'TimePicker';
 
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -676,7 +676,7 @@ class Consultafuncionario extends CI_Controller {
             $data['campos'] = array_keys($data['query']);
             $data['anterior'] = array();
 
-            $data['idApp_Consulta'] = $this->Consulta_model->set_consulta($data['query']);
+            $data['idApp_Consulta'] = $this->Consultafuncionario_model->set_consulta($data['query']);
 
             if ($data['idApp_Consulta'] === FALSE) {
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
@@ -689,7 +689,7 @@ class Consultafuncionario extends CI_Controller {
                 $data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_Consulta', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                //redirect(base_url() . 'cliente/prontuario/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
+                //redirect(base_url() . 'consultor/prontuario/' . $data['query']['idApp_Consultor'] . $data['msg'] . $data['redirect']);
                 redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
                 exit();
             }
@@ -721,7 +721,7 @@ class Consultafuncionario extends CI_Controller {
 
 
         if ($idApp_Consulta) {
-            $data['query'] = $this->Consulta_model->get_consulta($idApp_Consulta);
+            $data['query'] = $this->Consultafuncionario_model->get_consulta($idApp_Consulta);
 
             $dataini = explode(' ', $data['query']['DataInicio']);
             $datafim = explode(' ', $data['query']['DataFim']);
@@ -757,7 +757,7 @@ class Consultafuncionario extends CI_Controller {
         $data['metodo'] = 2;
         $data['evento'] = 1;
 
-        $data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
+        $data['nav_secundario'] = $this->load->view('consultor/nav_secundario', $data, TRUE);
 
         #run form validation
         if ($this->form_validation->run() === FALSE) {
@@ -773,12 +773,12 @@ class Consultafuncionario extends CI_Controller {
 
             unset($data['query']['Data'], $data['query']['HoraInicio'], $data['query']['HoraFim']);
 
-            $data['anterior'] = $this->Consulta_model->get_consulta($data['query']['idApp_Consulta']);
+            $data['anterior'] = $this->Consultafuncionario_model->get_consulta($data['query']['idApp_Consulta']);
             $data['campos'] = array_keys($data['query']);
 
             $data['auditoriaitem'] = $this->basico->set_log($data['anterior'], $data['query'], $data['campos'], $data['query']['idApp_Consulta'], TRUE);
 
-            if ($data['auditoriaitem'] && $this->Consulta_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
+            if ($data['auditoriaitem'] && $this->Consultafuncionario_model->update_consulta($data['query'], $data['query']['idApp_Consulta']) === FALSE) {
                 $data['msg'] = '?m=2';
                 redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consulta'] . $data['msg']);
                 exit();
@@ -791,7 +791,7 @@ class Consultafuncionario extends CI_Controller {
                     $data['msg'] = '?m=1';
                 }
 
-                //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Cliente'] . $data['msg'] . $data['redirect']);
+                //redirect(base_url() . 'consulta/listar/' . $data['query']['idApp_Consultor'] . $data['msg'] . $data['redirect']);
                 redirect(base_url() . 'agenda' . $data['msg'] . $data['redirect']);
                 exit();
             }

@@ -53,8 +53,7 @@ $result = mysql_query(
                 LEFT JOIN Sis_Usuario AS P ON P.idSis_Usuario = C.idSis_Usuario
                 LEFT JOIN Tab_TipoConsulta AS TC ON TC.idTab_TipoConsulta = C.idTab_TipoConsulta
 
-        WHERE
-			C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
+        WHERE			
            	C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 			' . $query . '
             ' . $permissao . '

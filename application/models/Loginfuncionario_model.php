@@ -92,10 +92,12 @@ class Loginfuncionario_model extends CI_Model {
                 return 2;
             }
 			else  
-                if ($query[0]['Empresa'] != 2) {
+            /*
+				if ($query[0]['Empresa'] != 2) {
                 return 4;
 				}
-				else  
+				else 
+			*/  
 					if ($query[0]['Nivel'] != 6) {
 					return 3;
 					}

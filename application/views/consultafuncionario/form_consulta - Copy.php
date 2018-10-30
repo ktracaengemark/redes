@@ -16,25 +16,25 @@
 						<div class="row">
 							<div class="col-md-2 "></div>
 							<div class="col-md-8 col-lg-8">
-								<div class="col-md-3 text-left">
-									<label for="">Cliente & Contatos:</label>
+								<div class="col-md-4 text-left">
+									<label for="">Cliente:</label>
 									<div class="form-group">
-										<div class="row">	
+										<div class="row">
 											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
 												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
 													<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
 												</a>
-											</a>				
+											</a>
 											<a <?php if (preg_match("/cliente\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
 												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
 													<span class="glyphicon glyphicon-edit"></span> Edit.
 												</a>
 											</a>
 										</div>
-									</div>	
+									</div>
 								</div>
 
-								<div class="col-md-3 text-left">
+								<div class="col-md-4 text-center">
 									<label for="">Agendamentos:</label>
 									<div class="form-group">
 										<div class="row">
@@ -48,11 +48,11 @@
 													<span class="glyphicon glyphicon-plus"></span> Cad.
 												</a>
 											</a>
-										</div>	
-									</div>	
+										</div>
+									</div>
 								</div>
 
-								<div class="col-md-3 text-left">
+								<div class="col-md-4 text-right">
 									<label for="">Orçamentos:</label>
 									<div class="form-group ">
 										<div class="row">
@@ -66,25 +66,8 @@
 													<span class="glyphicon glyphicon-plus"></span> Cad.
 												</a>
 											</a>
-										</div>		
-									</div>	
-								</div>
-								<div class="col-md-3 text-left">
-									<label for="">Devoluções:</label>
-									<div class="form-group ">
-										<div class="row">
-											<a <?php if (preg_match("/orcatrata4\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata4/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-usd"></span> List.
-												</a>
-											</a>
-											<a <?php if (preg_match("/orcatrata4\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata4/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-plus"></span> Cad.
-												</a>
-											</a>
-										</div>		
-									</div>	
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-2 "></div>
@@ -117,7 +100,7 @@
 										<div class="row">
 											<div class="col-md-3">
 												<label for="idApp_Agenda">Agenda do Profis.*</label>
-												<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
+												<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
 														id="idApp_Agenda" autofocus name="idApp_Agenda">
 													<?php echo $select['option']; ?>
 													<?php
@@ -134,12 +117,11 @@
 											<div class="col-md-3 form-inline text-left">
 												<label for="Data">Data: *</label>
 												<div class="input-group <?php echo $datepicker; ?>">
+													<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
+														   name="Data" value="<?php echo $query['Data']; ?>">
 													<span class="input-group-addon" disabled>
 														<span class="glyphicon glyphicon-calendar"></span>
 													</span>
-													<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-														   name="Data" value="<?php echo $query['Data']; ?>">
-													
 												</div>
 											</div>
 											<div class="col-md-6 form-inline text-left">
@@ -147,22 +129,20 @@
 													<label for="Hora">Hora: *</label><br>
 													De
 													<div class="col-md-4 input-group <?php echo $timepicker; ?>">
+														<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
+															   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
 														<span class="input-group-addon">
 															<span class="glyphicon glyphicon-time"></span>
 														</span>
-														<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
-															   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
-														
 													</div>
 
 													Até
 													<div class="col-md-4 input-group <?php echo $timepicker; ?>">
+														<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
+															   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
 														<span class="input-group-addon">
 															<span class="glyphicon glyphicon-time"></span>
 														</span>
-														<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
-															   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
-														
 													</div>
 												</div>
 											</div>

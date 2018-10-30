@@ -13,34 +13,17 @@
 					<div class="form-group">
 						<div class="panel panel-info">
 							<div class="panel-heading">
+				
 								<?php echo form_open_multipart($form_open_path); ?>
 
 								<div class="form-group">
 									<div class="row">
-										<div class="col-md-4">
-											<label for="idApp_Cliente">Cliente:*</label>
-											<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>cliente/cadastrar/cliente" role="button">
-												<span class="glyphicon glyphicon-plus"></span> <b>Novo Cliente</b>
-											</a>
-											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
-													id="idApp_Cliente" autofocus name="idApp_Cliente">
-												<option value="">-- Selecione um Cliente --</option>
-												<?php
-												foreach ($select['idApp_Cliente'] as $key => $row) {
-													if ($query['idApp_Cliente'] == $key) {
-														echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-													} else {
-														echo '<option value="' . $key . '">' . $row . '</option>';
-													}
-												}
-												?>
-											</select>
-										</div>
+										<div class="col-md-4"></div>
 										<div class="col-md-4">
 											<label for="idApp_Agenda">Profissional:*</label>
 											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
 													id="idApp_Agenda" name="idApp_Agenda">
-												<!--<option value="">-- Selecione um Profissional --</option>-->												
+												<!--<option value="">-- Selecione um Profissional --</option>-->
 												<?php echo $select['option']; ?>
 												<?php
 												foreach ($select['idApp_Agenda'] as $key => $row) {
@@ -58,7 +41,7 @@
 											<label for="idSis_EmpresaFilial">Unidade: *</label>
 											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
 													id="idSis_EmpresaFilial" name="idSis_EmpresaFilial">
-												<option value="">-- Selecione uma Unidade --</option>
+												<option value="">-- Selecione uma Unidade --</option>												
 												<?php
 												foreach ($select['idSis_EmpresaFilial'] as $key => $row) {
 													if ($query['idSis_EmpresaFilial'] == $key) {
@@ -76,93 +59,59 @@
 								<hr>								
 								<div class="form-group">
 									<div class="row">		
-										<div class="col-md-6">	
-											<label for="Data">Data Início : </label>												
-											<!--<div class="input-group <?php echo $datepicker; ?>">-->
-												<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-													   name="Data" value="<?php echo $query['Data']; ?>">
-												<!--<span class="input-group-addon" disabled>
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>-->
+										<div class="col-md-4 form-group text-left">
+											<div class="form-group">	
+												<label for="Data">Data: </label>												
+												<div class="input-group <?php echo $datepicker; ?>">
+													<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
+														   name="Data" value="<?php echo $query['Data']; ?>">
+													<span class="input-group-addon" disabled>
+														<span class="glyphicon glyphicon-calendar"></span>
+													</span>
+												</div>
+											</div>	
+										</div>
+										<div class="col-md-4 form-group text-left">
+											<div class="form-group">
+												<label for="Hora">Hora:</label>
+												De
+												<div class="input-group <?php echo $timepicker; ?>">
+													<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
+														   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-time"></span>
+													</span>
+												</div>
+											</div>
 										</div>	
-										
-										<div class="col-md-6">
-											<label for="Hora">Dàs :</label>
-											<!--<div class="input-group <?php echo $timepicker; ?>">-->
-												<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
-													   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
-												<!--<span class="input-group-addon">
-													<span class="glyphicon glyphicon-time"></span>
-												</span>
-											</div>-->
-										</div>
-										
-										<div class="col-md-6">	
-											<label for="Data2">Data Fim : </label>												
-											<!--<div class="input-group <?php echo $datepicker; ?>">-->
-												<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-													   name="Data2" value="<?php echo $query['Data2']; ?>">
-												<!--<span class="input-group-addon" disabled>
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>-->
-										</div>
-									
-										<div class="col-md-6">		
-											<label for="Hora">Às :</label>
-											<!--<div class="input-group <?php echo $timepicker; ?>">-->
-												<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
-													   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
-												<!--<span class="input-group-addon">
-													<span class="glyphicon glyphicon-time"></span>
-												</span>
-											</div>-->
+										<div class="col-md-4 form-group text-left">
+											<div class="form-group">		
+												Até
+												<div class="input-group <?php echo $timepicker; ?>">
+													<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
+														   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-time"></span>
+													</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 								<hr>
 								<div class="form-group">
-									<div class="row">										
-										<div class="col-md-12 form-group text-left">
+									<div class="row">
+										<div class="form-group col-md-12 text-left">
 											<label for="Obs">Obs:</label>
 											<textarea class="form-control" id="Obs"
 													  name="Obs"><?php echo $query['Obs']; ?></textarea>
 										</div>
 									</div>
-								</div>																
-								<hr>
+								</div>
+								<hr>								
 								<div class="form-group">
 									<div class="row">
-										<div class="col-md-3 form-inline text-left">
-											<label for="idTab_TipoConsulta">Tipo de Consulta:</label><br>
-											<div class="form-group">
-												<div class="btn-block" data-toggle="buttons">
-													<?php
-													foreach ($select['TipoConsulta'] as $key => $row) {
-														(!$query['idTab_TipoConsulta']) ? $query['idTab_TipoConsulta'] = '1' : FALSE;
-
-														if ($query['idTab_TipoConsulta'] == $key) {
-															echo ''
-															. '<label class="btn btn-warning active" name="radio_idTab_TipoConsulta" id="radiogeral' . $key . '">'
-															. '<input type="radio" name="idTab_TipoConsulta" id="radiogeral" '
-																. 'autocomplete="off" value="' . $key . '" checked>' . $row
-															. '</label>'
-															;
-														} else {
-															echo ''
-															. '<label class="btn btn-default" name="radio_idTab_TipoConsulta" id="radiogeral' . $key . '">'
-															. '<input type="radio" name="idTab_TipoConsulta" id="radiogeral" '
-																. 'autocomplete="off" value="' . $key . '" >' . $row
-															. '</label>'
-															;
-														}
-													}
-													?>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-9 form-inline text-left">
+										<div class="col-md-9 form-inline">
 											<label for="idTab_Status">Status:</label><br>
 											<div class="form-group">
 												<div class="btn-block" data-toggle="buttons">
@@ -190,15 +139,15 @@
 													?>
 												</div>
 											</div>
-										</div>										
+										</div>							
 									</div>
 								</div>
 								<hr>
 								<div class="form-group">
 									<div class="row">
 										<input type="hidden" name="idApp_Consulta" value="<?php echo $query['idApp_Consulta']; ?>">
-										<!--<input type="hidden" name="idApp_Agenda" value="<?php echo $_SESSION['log']['Agenda']; ?>">
-										<input type="hidden" name="Evento" value="1">-->
+										<!--<input type="hidden" name="idApp_Agenda" value="<?php echo $_SESSION['log']['Agenda']; ?>">-->
+										<input type="hidden" name="Evento" value="1">
 										<?php if ($metodo == 2) { ?>
 
 											<div class="col-md-6">
@@ -250,7 +199,7 @@
 								</div>
 
 								</form>
-							</div>	
+							</div>
 						</div>
 					</div>	
 				</div>

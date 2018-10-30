@@ -45,10 +45,10 @@
 						<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 							<div class="btn-group">
 								<button type="button" class="btn btn-md btn-success dropdown-toggle" data-toggle="dropdown">
-									<span class="glyphicon glyphicon-user"></span> Consultores <span class="caret"></span>
+									<span class="glyphicon glyphicon-user"></span> Clientes <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">							
-									<li><a href="<?php echo base_url() ?>relatoriofuncionario/consultores"><span class="glyphicon glyphicon-user"></span> Consultores</a></li>							
+									<li><a href="<?php echo base_url() ?>relatoriofuncionario/clientes"><span class="glyphicon glyphicon-user"></span> Clientes</a></li>							
 									<li role="separator" class="divider"></li>
 									<li><a href="<?php echo base_url() ?>relatoriofuncionario/aniversariantes"><span class="glyphicon glyphicon-gift"></span> Aniversariantes</a></li>
 								</ul>

@@ -36,7 +36,22 @@ class Cliente_model extends CI_Model {
 
         return $query[0];
     }
+	
+	public function get_cliente1($data) {
+        $query = $this->db->query('
+		SELECT *
 
+		FROM 
+			App_Cliente AS C 
+				LEFT JOIN App_Consultor AS CO ON CO.idApp_Consultor = C.idApp_Consultor
+		WHERE 
+			C.idApp_Cliente = ' . $data);
+
+        $query = $query->result_array();
+
+        return $query[0];
+    }
+	
     public function update_cliente($data, $id) {
 
         unset($data['Id']);
@@ -58,7 +73,7 @@ class Cliente_model extends CI_Model {
 
     public function delete_cliente($data) {
 
-        $query = $this->db->query('SELECT idApp_OrcaTrata FROM App_OrcaTrata WHERE idApp_Cliente = ' . $data);
+        $query = $this->db->query('SELECT idApp_OrcaTrataCons FROM App_OrcaTrataCons WHERE idApp_Cliente = ' . $data);
         $query = $query->result_array();
 
         /*
@@ -72,7 +87,7 @@ class Cliente_model extends CI_Model {
 
         foreach ($query as $key) {
             /*
-            echo $key['idApp_OrcaTrata'];
+            echo $key['idApp_OrcaTrataCons'];
             echo '<br />';
             #echo $value;
             echo '<br />';
@@ -82,17 +97,18 @@ class Cliente_model extends CI_Model {
 
         */
 
-        $this->db->delete('App_Consulta', array('idApp_Cliente' => $data));
+        #$this->db->delete('App_Consulta', array('idApp_Cliente' => $data));
         $this->db->delete('App_ContatoCliente', array('idApp_Cliente' => $data));
+		$this->db->delete('App_ProcedimentoCons', array('idApp_Cliente' => $data));
 
         foreach ($query as $key) {
-            $query = $this->db->delete('App_ProdutoVenda', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
-            $query = $this->db->delete('App_ServicoVenda', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
-            $query = $this->db->delete('App_ParcelasRecebiveis', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
-            $query = $this->db->delete('App_Procedimento', array('idApp_OrcaTrata' => $key['idApp_OrcaTrata']));
+            $query = $this->db->delete('App_ProdutoVendaCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ServicoVendaCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ParcelasRecebiveisCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
+            $query = $this->db->delete('App_ProcedimentoCons', array('idApp_OrcaTrataCons' => $key['idApp_OrcaTrataCons']));
         }
 
-        $this->db->delete('App_OrcaTrata', array('idApp_Cliente' => $data));
+        $this->db->delete('App_OrcaTrataCons', array('idApp_Cliente' => $data));
         $this->db->delete('App_Cliente', array('idApp_Cliente' => $data));
 
         if ($this->db->affected_rows() === 0) {
@@ -107,6 +123,7 @@ class Cliente_model extends CI_Model {
         $query = $this->db->query('SELECT * '
                 . 'FROM App_Cliente WHERE '
                 . 'Empresa = ' . $_SESSION['log']['Empresa'] . ' AND '
+				. 'idApp_Consultor = ' . $_SESSION['log']['id'] . ' AND '
                 . 'idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND '
                 . '(NomeCliente like "%' . $data . '%" OR '
                 #. 'DataNascimento = "' . $this->basico->mascara_data($data, 'mysql') . '" OR '
@@ -147,7 +164,8 @@ class Cliente_model extends CI_Model {
                 App_Cliente					
             WHERE
                 idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                Empresa = ' . $_SESSION['log']['Empresa'] . '
+                Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				idApp_Consultor = ' . $_SESSION['log']['id'] . '
 			ORDER BY 
 				NomeCliente ASC'
     );
@@ -161,7 +179,8 @@ class Cliente_model extends CI_Model {
                 App_Cliente					
             WHERE
                 idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
-                Empresa = ' . $_SESSION['log']['Empresa'] . '
+                Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
+				idApp_Consultor = ' . $_SESSION['log']['id'] . '
 			ORDER BY 
 				NomeCliente ASC'
     );
@@ -175,4 +194,42 @@ class Cliente_model extends CI_Model {
         return $array;
     }	
 
+    public function set_procedimento($data) {
+
+        $query = $this->db->insert_batch('App_ProcedimentoCons', $data);
+
+        if ($this->db->affected_rows() === 0) {
+            return FALSE;
+        } else {
+            #return TRUE;
+            return $this->db->insert_id();
+        }
+    }	
+	
+    public function get_procedimento($data) {
+		$query = $this->db->query('SELECT * FROM App_ProcedimentoCons WHERE idApp_Cliente = ' . $data);
+        $query = $query->result_array();
+
+        return $query;
+    }	
+
+    public function update_procedimento($data) {
+
+        $query = $this->db->update_batch('App_ProcedimentoCons', $data, 'idApp_ProcedimentoCons');
+        return ($this->db->affected_rows() === 0) ? FALSE : TRUE;
+
+    }
+
+    public function delete_procedimento($data) {
+
+        $this->db->where_in('idApp_ProcedimentoCons', $data);
+        $this->db->delete('App_ProcedimentoCons');
+
+        if ($this->db->affected_rows() === 0) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+		
 }

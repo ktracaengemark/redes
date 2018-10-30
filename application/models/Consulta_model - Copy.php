@@ -4,7 +4,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Consultafuncionario_model extends CI_Model {
+class Consulta_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();

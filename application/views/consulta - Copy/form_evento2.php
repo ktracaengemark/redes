@@ -12,94 +12,125 @@
 				<div class="panel-heading"><strong><?php echo '<strong>' . $_SESSION['Cliente']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></strong></div>
 				<div class="panel-body">
 
-					<div class="form-group">
-						<div class="row">
-							<div class="col-md-1 "></div>
-							<div class="col-md-8 col-lg-10">
-								<div class="col-md-3 text-left">
-									<label for="">Cliente & Conts:</label>
-									<div class="form-group">
-										<div class="row">	
-											<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
-												</a>
-											</a>				
-											<a <?php if (preg_match("/cliente\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-edit"></span> Edit.
-												</a>
-											</a>
-										</div>
-									</div>	
-								</div>
+					<nav class="navbar navbar-inverse">
+					  <div class="container-fluid">
+						<div class="navbar-header">
+						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span> 
+						  </button>
+						  <a class="navbar-brand" href="#">Menu </a>
+						</div>
+						<div class="collapse navbar-collapse" id="myNavbar">
+							<ul class="nav navbar-nav navbar-center">
+						
+								<li class="btn-toolbar navbar-form" role="toolbar" aria-label="...">
 
-								<div class="col-md-3 text-left">
-									<label for="">Agendamentos:</label>
-									<div class="form-group">
-										<div class="row">
-											<a <?php if (preg_match("/consulta\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-calendar"></span> List.
+									<div class="btn-group">
+										<button type="button" class="btn btn-sm btn-default  dropdown-toggle" data-toggle="dropdown">
+											<span class="glyphicon glyphicon-user"></span> Contato <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li>
+												<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
+													<a href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+														<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
+													</a>
 												</a>
-											</a>
-											<a <?php if (preg_match("/consulta\/(cadastrar1|alterar)\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'consulta/cadastrar1/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-plus"></span> Cad.
+											</li>
+											<li role="separator" class="divider"></li>
+											<li>
+												<a <?php if (preg_match("/cliente\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
+													<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+														<span class="glyphicon glyphicon-edit"></span> Edit.
+													</a>
 												</a>
-											</a>
-										</div>	
-									</div>	
-								</div>
+											</li>
+										</ul>
+									</div>
+									<div class="btn-group">
+										<button type="button" class="btn btn-sm btn-default  dropdown-toggle" data-toggle="dropdown">
+											<span class="glyphicon glyphicon-calendar"></span> Agendamentos <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li>
+												<a <?php if (preg_match("/consulta\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
+													<a href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+														<span class="glyphicon glyphicon-calendar"></span> List.
+													</a>
+												</a>
+											</li>
+											<li role="separator" class="divider"></li>
+											<li>
+												<a <?php if (preg_match("/consulta\/(cadastrar2|alterar)\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
+													<a href="<?php echo base_url() . 'consulta/cadastrar2/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+														<span class="glyphicon glyphicon-plus"></span> Cad.
+													</a>
+												</a>
+											</li>
+										</ul>
+									</div>
 
-								<div class="col-md-3 text-left">
-									<label for="">Orçamentos:</label>
-									<div class="form-group ">
-										<div class="row">
-											<a <?php if (preg_match("/orcatrata\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-usd"></span> List.
-												</a>
-											</a>
-											<a <?php if (preg_match("/orcatrata\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-plus"></span> Cad.
-												</a>
-											</a>
-										</div>		
-									</div>	
-								</div>
-								<div class="col-md-3 text-left">
-									<label for="">Devoluções:</label>
-									<div class="form-group ">
-										<div class="row">
-											<a <?php if (preg_match("/orcatrata4\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-success" href="<?php echo base_url() . 'orcatrata4/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-usd"></span> List.
-												</a>
-											</a>
-											<a <?php if (preg_match("/orcatrata4\/cadastrar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
-												<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'orcatrata4/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-													<span class="glyphicon glyphicon-plus"></span> Cad.
-												</a>
-											</a>
-										</div>		
-									</div>	
-								</div>
-							</div>
-							<div class="col-md-1 "></div>
-						</div>	
-					</div>
+									<div class="btn-group" role="group" aria-label="..."> </div>
+								</li>
+							</ul>
+							<!--
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+							</ul>
+							-->
+						</div>
+					  </div>
+					</nav>					
 					<!--
 					<div class="form-group">
 						<div class="row">
-							<div class="text-center t">
-								<h3><?php echo '<strong>' . $_SESSION['Cliente']['NomeCliente'] . '</strong> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?></h3>
+						<div class="col-md-2 "></div>
+						<div class="col-md-8 col-lg-8">
+							<div class="col-md-4 text-left">
+								<label for="">Contato:</label>
+								<div class="form-group">
+									<div class="row">	
+										<a <?php if (preg_match("/prontuario\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; //(.)+\/prontuario/   ?>>
+											<a class="btn btn-md btn-success" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+												<span class="glyphicon glyphicon-file"> </span> Ver <span class="sr-only">(current)</span>
+											</a>
+										</a>				
+										<a <?php if (preg_match("/cliente\/alterar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ///(.)+\/alterar/    ?>>
+											<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+												<span class="glyphicon glyphicon-edit"></span> Edit.
+											</a>
+										</a>
+									</div>
+								</div>	
+							</div>
+
+							<div class="col-md-4 text-left">
+								<label for="">Agendamentos:</label>
+								<div class="form-group">
+									<div class="row">
+										<a <?php if (preg_match("/consulta\/listar\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
+											<a class="btn btn-md btn-success" href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+												<span class="glyphicon glyphicon-calendar"></span> List.
+											</a>
+										</a>
+										<a <?php if (preg_match("/consulta\/(cadastrar2|alterar)\b/", $_SERVER['REQUEST_URI'])) echo 'class=active'; ?>>
+											<a class="btn btn-md btn-warning" href="<?php echo base_url() . 'consulta/cadastrar2/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+												<span class="glyphicon glyphicon-plus"></span> Cad.
+											</a>
+										</a>
+									</div>	
+								</div>	
 							</div>
 						</div>
+						<div class="col-md-2 "></div>
+					</div>	
 					</div>
 					-->
-						<?php } ?>
+
+					<?php } ?>
 
 					<div class="row">
 
@@ -178,48 +209,42 @@
 												<hr>
 												<div class="form-group">
 													<div class="row">		
-														<div class="col-md-6">	
-															<label for="Data">Data Início : </label>												
-															<!--<div class="input-group <?php echo $datepicker; ?>">-->
-																<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																	   name="Data" value="<?php echo $query['Data']; ?>">
-																<!--<span class="input-group-addon" disabled>
-																	<span class="glyphicon glyphicon-calendar"></span>
-																</span>
-															</div>-->
+														<div class="col-md-4 form-group text-left">
+															<div class="form-group">	
+																<label for="Data">Data: </label>												
+																<div class="input-group <?php echo $datepicker; ?>">
+																	<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
+																		   name="Data" value="<?php echo $query['Data']; ?>">
+																	<span class="input-group-addon" disabled>
+																		<span class="glyphicon glyphicon-calendar"></span>
+																	</span>
+																</div>
+															</div>	
+														</div>
+														<div class="col-md-4 form-group text-left">
+															<div class="form-group">
+																<label for="Hora">Hora:</label>
+																De
+																<div class="input-group <?php echo $timepicker; ?>">
+																	<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
+																		   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
+																	<span class="input-group-addon">
+																		<span class="glyphicon glyphicon-time"></span>
+																	</span>
+																</div>
+															</div>
 														</div>	
-														
-														<div class="col-md-6">
-															<label for="Hora">Dàs :</label>
-															<!--<div class="input-group <?php echo $timepicker; ?>">-->
-																<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
-																	   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
-																<!--<span class="input-group-addon">
-																	<span class="glyphicon glyphicon-time"></span>
-																</span>
-															</div>-->
-														</div>
-														
-														<div class="col-md-6">	
-															<label for="Data2">Data Fim : </label>												
-															<!--<div class="input-group <?php echo $datepicker; ?>">-->
-																<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																	   name="Data2" value="<?php echo $query['Data2']; ?>">
-																<!--<span class="input-group-addon" disabled>
-																	<span class="glyphicon glyphicon-calendar"></span>
-																</span>
-															</div>-->
-														</div>
-													
-														<div class="col-md-6">		
-															<label for="Hora">Às :</label>
-															<!--<div class="input-group <?php echo $timepicker; ?>">-->
-																<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
-																	   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
-																<!--<span class="input-group-addon">
-																	<span class="glyphicon glyphicon-time"></span>
-																</span>
-															</div>-->
+														<div class="col-md-4 form-group text-left">
+															<div class="form-group">		
+																Até
+																<div class="input-group <?php echo $timepicker; ?>">
+																	<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
+																		   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
+																	<span class="input-group-addon">
+																		<span class="glyphicon glyphicon-time"></span>
+																	</span>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>

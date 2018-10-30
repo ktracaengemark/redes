@@ -18,16 +18,16 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-4">
-											<label for="idApp_Cliente">Cliente:*</label>
-											<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>cliente/cadastrar/cliente" role="button">
+											<label for="idApp_Consultor">Cliente:*</label>
+											<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>consultor/cadastrar/consultor" role="button">
 												<span class="glyphicon glyphicon-plus"></span> <b>Novo Cliente</b>
 											</a>
 											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
-													id="idApp_Cliente" autofocus name="idApp_Cliente">
+													id="idApp_Consultor" autofocus name="idApp_Consultor">
 												<option value="">-- Selecione um Cliente --</option>
 												<?php
-												foreach ($select['idApp_Cliente'] as $key => $row) {
-													if ($query['idApp_Cliente'] == $key) {
+												foreach ($select['idApp_Consultor'] as $key => $row) {
+													if ($query['idApp_Consultor'] == $key) {
 														echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 													} else {
 														echo '<option value="' . $key . '">' . $row . '</option>';
@@ -76,48 +76,42 @@
 								<hr>								
 								<div class="form-group">
 									<div class="row">		
-										<div class="col-md-6">	
-											<label for="Data">Data Início : </label>												
-											<!--<div class="input-group <?php echo $datepicker; ?>">-->
-												<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-													   name="Data" value="<?php echo $query['Data']; ?>">
-												<!--<span class="input-group-addon" disabled>
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>-->
+										<div class="col-md-4 form-group text-left">
+											<div class="form-group">	
+												<label for="Data">Data: </label>												
+												<div class="input-group <?php echo $datepicker; ?>">
+													<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
+														   name="Data" value="<?php echo $query['Data']; ?>">
+													<span class="input-group-addon" disabled>
+														<span class="glyphicon glyphicon-calendar"></span>
+													</span>
+												</div>
+											</div>	
+										</div>
+										<div class="col-md-4 form-group text-left">
+											<div class="form-group">
+												<label for="Hora">Hora:</label>
+												De
+												<div class="input-group <?php echo $timepicker; ?>">
+													<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
+														   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-time"></span>
+													</span>
+												</div>
+											</div>
 										</div>	
-										
-										<div class="col-md-6">
-											<label for="Hora">Dàs :</label>
-											<!--<div class="input-group <?php echo $timepicker; ?>">-->
-												<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5"  placeholder="HH:MM"
-													   accept=""name="HoraInicio" value="<?php echo $query['HoraInicio']; ?>">
-												<!--<span class="input-group-addon">
-													<span class="glyphicon glyphicon-time"></span>
-												</span>
-											</div>-->
-										</div>
-										
-										<div class="col-md-6">	
-											<label for="Data2">Data Fim : </label>												
-											<!--<div class="input-group <?php echo $datepicker; ?>">-->
-												<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-													   name="Data2" value="<?php echo $query['Data2']; ?>">
-												<!--<span class="input-group-addon" disabled>
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>-->
-										</div>
-									
-										<div class="col-md-6">		
-											<label for="Hora">Às :</label>
-											<!--<div class="input-group <?php echo $timepicker; ?>">-->
-												<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
-													   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
-												<!--<span class="input-group-addon">
-													<span class="glyphicon glyphicon-time"></span>
-												</span>
-											</div>-->
+										<div class="col-md-4 form-group text-left">
+											<div class="form-group">		
+												Até
+												<div class="input-group <?php echo $timepicker; ?>">
+													<input type="text" class="form-control Time" <?php echo $readonly; ?> maxlength="5" placeholder="HH:MM"
+														   accept=""name="HoraFim" value="<?php echo $query['HoraFim']; ?>">
+													<span class="input-group-addon">
+														<span class="glyphicon glyphicon-time"></span>
+													</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
