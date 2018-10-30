@@ -142,7 +142,7 @@ class Orcatrata_model extends CI_Model {
             . 'FROM '
             . 'App_OrcaTrata AS OT '
             . 'WHERE '
-            . 'OT.idApp_Cliente = ' . $id . ' AND '
+            . 'OT.idApp_Consultor = ' . $id . ' AND '
 			. 'OT.TipoRD = "R" AND '
             . 'OT.AprovadoOrca = "' . $aprovado . '" '
             . 'ORDER BY '
@@ -191,7 +191,7 @@ class Orcatrata_model extends CI_Model {
             . 'FROM '
             . 'App_OrcaTrata AS OT '
             . 'WHERE '
-            . 'OT.idApp_Cliente = ' . $_SESSION['OrcaTrataCons']['idApp_Cliente'] . ' '
+            . 'OT.idApp_Consultor = ' . $_SESSION['OrcaTrataCons']['idApp_Consultor'] . ' '
             . 'ORDER BY OT.DataOrca DESC ');
         /*
           echo $this->db->last_query();

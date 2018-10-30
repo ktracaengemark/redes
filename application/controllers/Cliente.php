@@ -79,7 +79,7 @@ class Cliente extends CI_Controller {
 			'Estado',
 			'Titulo',
 			'Obs',
-
+			'Profissional',
         ), TRUE));
 
         (!$data['query']['DataCriacao']) ? $data['query']['DataCriacao'] = date('d/m/Y', time()) : FALSE;
@@ -96,14 +96,17 @@ class Cliente extends CI_Controller {
         $this->form_validation->set_rules('Celular', 'Celular', 'required|trim');
 		#$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
 		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
-
+		$this->form_validation->set_rules('Profissional', 'Profissional', 'required|trim');
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		#$data['select']['Cliente'] = $this->Basico_model->select_status_sn();
 		$data['select']['Inativo'] = $this->Basico_model->select_inativo();
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
-
-        $data['titulo'] = 'Cadastrar Cliente';
+		$data['select']['Profissional'] = $this->Basico_model->select_profissional2();
+        
+		$data['select']['option'] = ($_SESSION['log']['Permissao'] <= 2) ? '<option value="">-- Sel. um Prof. --</option>' : FALSE;
+		
+		$data['titulo'] = 'Cadastrar Cliente';
         $data['form_open_path'] = 'cliente/cadastrar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -218,7 +221,7 @@ class Cliente extends CI_Controller {
 			'Estado',
 			'Titulo',
 			'Obs',
-
+			'Profissional',
         ), TRUE);
 
         if ($id) {
@@ -237,15 +240,18 @@ class Cliente extends CI_Controller {
         $this->form_validation->set_rules('Email', 'E-mail', 'trim|valid_email');
 		#$this->form_validation->set_rules('Permissao', 'Nível', 'required|trim');
 		#$this->form_validation->set_rules('Funcao', 'Funcao', 'required|trim');
-
+		$this->form_validation->set_rules('Profissional', 'Profissional', 'required|trim');
         $data['select']['Municipio'] = $this->Basico_model->select_municipio();
         $data['select']['Sexo'] = $this->Basico_model->select_sexo();
 		#$data['select']['Cliente'] = $this->Basico_model->select_status_sn();
 		$data['select']['Inativo'] = $this->Basico_model->select_inativo();
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
-
-        $data['titulo'] = 'Editar Cliente';
+		$data['select']['Profissional'] = $this->Basico_model->select_profissional2();
+        
+		$data['select']['option'] = ($_SESSION['log']['Permissao'] <= 2) ? '<option value="">-- Sel. um Prof. --</option>' : FALSE;
+		
+		$data['titulo'] = 'Editar Cliente';
         $data['form_open_path'] = 'cliente/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -410,7 +416,8 @@ class Cliente extends CI_Controller {
 		$data['query']['Permissao'] = $this->Basico_model->get_permissao($data['query']['Permissao']);
 		$data['query']['Empresa'] = $this->Basico_model->get_empresa($data['query']['Empresa']);
 		#$data['query']['Cliente'] = $data['query']['Cliente'];
-
+		$data['query']['Profissional'] = $this->Basico_model->get_profissional($data['query']['Profissional']);
+		
         $data['query']['Telefone'] = $data['query']['Celular'];
 
         $data['contatocliente'] = $this->Cliente_model->lista_contatocliente($id, TRUE);

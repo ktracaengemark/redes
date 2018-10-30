@@ -13,7 +13,7 @@ class Orcatrata extends CI_Controller {
         $this->load->helper(array('form', 'url', 'date', 'string'));
         #$this->load->library(array('basico', 'Basico_model', 'form_validation'));
         $this->load->library(array('basico', 'form_validation'));
-        $this->load->model(array('Basico_model', 'Orcatrata_model', 'Profissional_model', 'Usuario_model', 'Relatorio_model', 'Formapag_model', 'Cliente_model'));
+        $this->load->model(array('Basico_model', 'Orcatrata_model', 'Profissional_model', 'Usuario_model', 'Relatorio_model', 'Formapag_model', 'Consultor_model'));
         $this->load->driver('session');
 
         #load header view
@@ -38,7 +38,7 @@ class Orcatrata extends CI_Controller {
         $this->load->view('basico/footer');
     }
 
-    public function cadastrar($idApp_Cliente = NULL) {
+    public function cadastrar($idApp_Consultor = NULL) {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -60,7 +60,7 @@ class Orcatrata extends CI_Controller {
 		$data['orcatrata'] = quotes_to_entities($this->input->post(array(
             #### App_OrcaTrata ####
             'idApp_OrcaTrata',
-            'idApp_Cliente',
+            'idApp_Consultor',
             'DataOrca',
 			'DataPrazo',
             'ProfissionalOrca',
@@ -195,7 +195,7 @@ class Orcatrata extends CI_Controller {
         $data['select']['Servico'] = $this->Basico_model->select_produtoscons();
         $data['select']['Produto'] = $this->Basico_model->select_produtoscons();
 
-        $data['titulo'] = 'Cadastar Orçamento do Cliente';
+        $data['titulo'] = 'Cadastar Orçamento do Consultor';
         $data['form_open_path'] = 'orcatrata/cadastrar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -371,7 +371,7 @@ class Orcatrata extends CI_Controller {
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
+                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor'] . $data['msg']);
 
 				exit();
             }
@@ -394,7 +394,7 @@ class Orcatrata extends CI_Controller {
             #### App_OrcaTrata ####
             'idApp_OrcaTrata',
             #Não há a necessidade de atualizar o valor do campo a seguir
-            #'idApp_Cliente',
+            #'idApp_Consultor',
             'DataOrca',
 			'DataPrazo',
             'ProfissionalOrca',
@@ -514,9 +514,9 @@ class Orcatrata extends CI_Controller {
             $data['orcatrata']['DataVencimentoOrca'] = $this->basico->mascara_data($data['orcatrata']['DataVencimentoOrca'], 'barras');
 
             #### Carrega os dados do cliente nas variáves de sessão ####
-            $this->load->model('Cliente_model');
-            $_SESSION['Cliente'] = $this->Cliente_model->get_cliente($data['orcatrata']['idApp_Cliente'], TRUE);
-            #$_SESSION['log']['idApp_Cliente'] = $_SESSION['Cliente']['idApp_Cliente'];
+            $this->load->model('Consultor_model');
+            $_SESSION['Consultor'] = $this->Consultor_model->get_consultor($data['orcatrata']['idApp_Consultor'], TRUE);
+            #$_SESSION['log']['idApp_Consultor'] = $_SESSION['Consultor']['idApp_Consultor'];
 
             #### App_ServicoVenda ####
             $data['servico'] = $this->Orcatrata_model->get_servico($id);
@@ -609,7 +609,7 @@ class Orcatrata extends CI_Controller {
         $data['select']['Servico'] = $this->Basico_model->select_produtoscons();
         $data['select']['Produto'] = $this->Basico_model->select_produtoscons();
 
-        $data['titulo'] = 'Editar Orçamento do Cliente';
+        $data['titulo'] = 'Editar Orçamento do Consultor';
         $data['form_open_path'] = 'orcatrata/alterar';
         $data['readonly'] = '';
         $data['disabled'] = '';
@@ -874,7 +874,7 @@ class Orcatrata extends CI_Controller {
 */
 
             //if ($data['idApp_OrcaTrata'] === FALSE) {
-            //if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Cliente']) === FALSE) {
+            //if ($data['auditoriaitem'] && $this->Cliente_model->update_cliente($data['query'], $data['query']['idApp_Consultor']) === FALSE) {
             if ($data['auditoriaitem'] && !$data['update']['orcatrata']['bd']) {
                 $data['msg'] = '?m=2';
                 $msg = "<strong>Erro no Banco de dados. Entre em contato com o administrador deste sistema.</strong>";
@@ -887,7 +887,7 @@ class Orcatrata extends CI_Controller {
                 //$data['auditoria'] = $this->Basico_model->set_auditoria($data['auditoriaitem'], 'App_OrcaTrata', 'CREATE', $data['auditoriaitem']);
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
+                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor'] . $data['msg']);
 
 				exit();
             }
@@ -929,8 +929,8 @@ class Orcatrata extends CI_Controller {
 
                 $data['msg'] = '?m=1';
 
-                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
-				#redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente'] . $data['msg']);
+                redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor'] . $data['msg']);
+				#redirect(base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor'] . $data['msg']);
 				#redirect(base_url() . 'relatorio/orcamento/' . $data['msg']);
                 exit();
             //}
@@ -950,7 +950,7 @@ class Orcatrata extends CI_Controller {
 
 
         //$_SESSION['OrcaTrataCons'] = $this->Orcatrata_model->get_cliente($id, TRUE);
-        //$_SESSION['OrcaTrataCons']['idApp_Cliente'] = $id;
+        //$_SESSION['OrcaTrataCons']['idApp_Consultor'] = $id;
         $data['aprovado'] = $this->Orcatrata_model->list_orcamento($id, 'S', TRUE);
         $data['naoaprovado'] = $this->Orcatrata_model->list_orcamento($id, 'N', TRUE);
 
@@ -982,7 +982,7 @@ class Orcatrata extends CI_Controller {
 
 
         //$_SESSION['OrcaTrataCons'] = $this->Orcatrata_model->get_cliente($id, TRUE);
-        $_SESSION['OrcaTrataCons']['idApp_Cliente'] = $id;
+        $_SESSION['OrcaTrataCons']['idApp_Consultor'] = $id;
         $data['query'] = $this->Orcatrata_model->list_orcatrata(TRUE, TRUE);
         /*
           echo "<pre>";

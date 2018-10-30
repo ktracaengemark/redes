@@ -25,6 +25,7 @@
 											<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
 													id="idApp_Cliente" autofocus name="idApp_Cliente">
 												<option value="">-- Selecione um Cliente --</option>
+												<!--<?php echo $select['option']; ?>-->
 												<?php
 												foreach ($select['idApp_Cliente'] as $key => $row) {
 													if ($query['idApp_Cliente'] == $key) {

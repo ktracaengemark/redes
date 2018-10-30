@@ -2513,6 +2513,8 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		#$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
+		
+		$data['select']['option'] = ($_SESSION['log']['Permissao'] <= 2) ? '<option value="">-- Sel. um Prof. --</option>' : FALSE;
 
         $data['titulo'] = 'Relatório de Clientees';
 

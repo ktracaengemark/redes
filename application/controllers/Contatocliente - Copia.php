@@ -17,8 +17,8 @@ class Contatocliente extends CI_Controller {
         $this->load->driver('session');
 
         #load header view
-        $this->load->view('basico/headerfuncionario');
-        $this->load->view('basico/nav_principalfuncionario');
+        $this->load->view('basico/headerconsultor');
+        $this->load->view('basico/nav_principalconsultor');
 
         #$this->load->view('contatocliente/nav_secundario');
     }
@@ -48,9 +48,9 @@ class Contatocliente extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'idApp_ContatoCliente',
+            'idApp_Consultor',
+			'idApp_ContatoCliente',
             'idApp_Cliente',
-			'idSis_Usuario',
 			'idSis_EmpresaMatriz',			
             'NomeContatoCliente',
             'StatusVida',
@@ -97,7 +97,7 @@ class Contatocliente extends CI_Controller {
 			$data['query']['idSis_EmpresaMatriz'] = $_SESSION['log']['Empresa'];
             $data['query']['idTab_Modulo'] = $_SESSION['log']['idTab_Modulo'];
             $data['query']['QuemCad'] = $_SESSION['log']['id'];
-			$data['query']['idSis_Usuario'] = $_SESSION['log']['id'];
+			$data['query']['idApp_Consultor'] = $_SESSION['log']['id'];
 			$data['campos'] = array_keys($data['query']);
             $data['anterior'] = array();
 

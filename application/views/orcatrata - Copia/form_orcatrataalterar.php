@@ -1,5 +1,5 @@
 <?php if (isset($msg)) echo $msg; ?>
-<?php if ( !isset($evento) && isset($_SESSION['Cliente'])) { ?>
+<?php if ( !isset($evento) && isset($_SESSION['Consultor'])) { ?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -15,41 +15,30 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span> 
 							</button>
-							<a class="navbar-brand" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-								<?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?> 
+							<a class="navbar-brand" href="<?php echo base_url() . 'consultor/prontuario/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+								<?php echo '<small>' . $_SESSION['Consultor']['NomeConsultor'] . '</small> - <small>' . $_SESSION['Consultor']['idApp_Consultor'] . '</small>' ?> 
 							</a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 
 							<ul class="nav navbar-nav navbar-center">
 								<li>
-									<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-edit"></span> Edit. Cliente
+									<a href="<?php echo base_url() . 'consultor/alterar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
+										<span class="glyphicon glyphicon-edit"></span> Edit. Consultor
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-calendar"></span> List. Agends.
-									</a>
-								</li>
-								<li>
-									<a href="<?php echo base_url() . 'consulta/cadastrar1/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-plus"></span> Cad. Agend.
-									</a>
-								
-								</li>
-								<li>
-									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
 										<span class="glyphicon glyphicon-usd"></span> Listar Orçams.
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+									<a href="<?php echo base_url() . 'orcatrata/cadastrar/' . $_SESSION['Consultor']['idApp_Consultor']; ?>">
 										<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
 									</a>
 								</li>
 							</ul>
-
+							
 						</div>
 					  </div>
 					</nav>
@@ -62,7 +51,7 @@
 
 							<div class="panel panel-<?php echo $panel; ?>">
 
-								<div class="panel-heading"><strong>Orçamento - </strong><?php echo $orcatrata['idApp_OrcaTrata'] ?></div>
+								<div class="panel-heading"><strong>Orçamento - <?php echo $orcatrata['idApp_OrcaTrata'] ?></strong></div>
 								<div class="panel-body">
 
 									<?php echo form_open_multipart($form_open_path); ?>
@@ -88,7 +77,7 @@
 											
 											<div <?php echo $collapse; ?> id="Produtos">
 												<div class="panel-body">
-
+																											
 													<!--<div class="panel-group" id="accordion5" role="tablist" aria-multiselectable="true">-->
 													<div class="panel-group">
 														<div class="panel panel-success">
@@ -110,7 +99,7 @@
 																</a>
 															</div>
 															
-															<div <?php echo $collapse; ?> id="Entregues">
+															<div <?php echo $collapse1; ?> id="Entregues">	
 																<div class="panel-body">
 																	<input type="hidden" name="PCount" id="PCount" value="<?php echo $count['PCount']; ?>"/>
 
@@ -128,7 +117,7 @@
 																	<input type="hidden" name="ProdutoHidden" id="ProdutoHidden<?php echo $i ?>" value="<?php echo $i ?>">
 
 																	<div class="form-group" id="9div<?php echo $i ?>">
-																		<div class="panel panel-info">
+																		<div class="panel panel-success">
 																			<div class="panel-heading">
 																				<div class="row">
 																					<div class="col-md-1">
@@ -241,7 +230,7 @@
 																						-->
 																						<a class="btn btn-success" type="button" data-toggle="collapse" data-target="#Entregues" aria-expanded="false" aria-controls="Entregues">
 																							<span class="glyphicon glyphicon-menu-up"></span> Entregues
-																						</a>																							
+																						</a>
 																					</div>
 																				</div>
 																			</div>																
@@ -251,7 +240,7 @@
 																</div>
 															</div>
 														</div>
-													</div>
+													</div>	
 													
 													<!--<div class="panel-group" id="accordion6" role="tablist" aria-multiselectable="true">-->
 													<div class="panel-group">	
@@ -274,7 +263,7 @@
 																</a>
 															</div>
 															
-															<div <?php echo $collapse; ?> id="Devolvidos">
+															<div <?php echo $collapse1; ?> id="Devolvidos">	
 																<div class="panel-body">
 																															
 																	<input type="hidden" name="SCount" id="SCount" value="<?php echo $count['SCount']; ?>"/>
@@ -416,14 +405,14 @@
 																					<div class="col-md-3 text-left">
 																						<a class="add_field_button10  btn btn-danger" 
 																								onclick="calculaQtdSomaDev('QtdVendaServico','QtdSomaDev','ServicoSoma',0,0,'CountMax2',1,0)">
-																							<span class="glyphicon glyphicon-minus"></span> Retr. Prod. Devolvidos
+																							<span class="glyphicon glyphicon-minus"></span> Adc. Prod. Devolvidos
 																						</a>
 																					</div>
 																					<div class="col-md-2">	
-																						<b>Linhas: <span id="ServicoSoma"><?php echo $ServicoSoma ?></span></b><br />
+																						<b>Linhas = <span id="ServicoSoma"><?php echo $ServicoSoma ?></span></b><br />
 																					</div>
 																					<div class="col-md-3">	
-																						<b>Prod. Devolvidos: <span id="QtdSomaDev"><?php echo $QtdSomaDev ?></span></b>
+																						<b>Prod. Devolvidos = <span id="QtdSomaDev"><?php echo $QtdSomaDev ?></span></b>
 																					</div>
 																					<div class="col-md-3 text-left">																							
 																						<!--
@@ -434,7 +423,7 @@
 																						-->
 																						<a class="btn btn-danger" type="button" data-toggle="collapse" data-target="#Devolvidos" aria-expanded="false" aria-controls="Devolvidos">
 																							<span class="glyphicon glyphicon-menu-up"></span> Devolvidos
-																						</a>																							
+																						</a>
 																					</div>
 																				</div>
 																			</div>
@@ -450,7 +439,7 @@
 											</div>
 										</div>
 									</div>
-							
+									
 									<!--<div class="panel-group" id="accordion4" role="tablist" aria-multiselectable="true">-->
 									<div class="panel-group">	
 										<div class="panel panel-primary">
@@ -471,12 +460,12 @@
 												</a>
 											</div>
 											
-											<div <?php echo $collapse; ?> id="Orcamento">
-												<div class="panel-body">													
+											<div <?php echo $collapse; ?> id="Orcamento">	
+												<div class="panel-body">
 													<div class="panel panel-info">
-														<div class="panel-heading">
+														<div class="panel-heading">														
 															<div class="col-md-1"></div>
-															<div class="form-group">
+															<div class="form-group">	
 																<div class="row">
 																	<div class="col-md-2">
 																		<label for="ValorOrca">Orçamento:</label><br>
@@ -511,8 +500,6 @@
 																		<div class="input-group" id="txtHint">
 																			<span class="input-group-addon" id="basic-addon1">R$</span>
 																			<input type="text" class="form-control Valor" id="ValorRestanteOrca" maxlength="10" placeholder="0,00" readonly=""
-																				   data-toggle="collapse" onkeyup="calculaParcelas()"
-																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																				   name="ValorRestanteOrca" value="<?php echo $orcatrata['ValorRestanteOrca'] ?>">
 																		</div>
 																	</div>																		
@@ -520,7 +507,7 @@
 															</div>
 															<div class="col-md-1"></div>
 															<div class="form-group">
-																<div class="row">
+																<div class="row">																	
 																	<div class="col-md-2">
 																		<label for="FormaPagamento">Forma de Pagam.:</label>
 																		<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
@@ -536,7 +523,7 @@
 																			}
 																			?>
 																		</select>
-																	</div>	
+																	</div>
 																	<div class="col-md-2">
 																		<label for="DataVencimentoOrca">1º Venc.</label>
 																		<div class="input-group <?php echo $datepicker; ?>">
@@ -544,16 +531,17 @@
 																				<span class="glyphicon glyphicon-calendar"></span>
 																			</span>
 																			<input type="text" class="form-control Date" id="DataVencimentoOrca" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																				   name="DataVencimentoOrca" value="<?php echo $orcatrata['DataVencimentoOrca']; ?>">																			
+																				   name="DataVencimentoOrca" value="<?php echo $orcatrata['DataVencimentoOrca']; ?>">
+																			
 																		</div>
 																	</div>
 																	<div class="col-md-2">
-																		<label for="QtdParcelasOrca">Qtd. Parc.:</label><br>
+																		<label for="QtdParcelasOrca">Qtd.Parc.</label><br>
 																		<input type="text" class="form-control Numero" id="QtdParcelasOrca" maxlength="3" placeholder="0"
 																			   data-toggle="collapse" onkeyup="calculaParcelas()"
 																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas"
 																			   name="QtdParcelasOrca" value="<?php echo $orcatrata['QtdParcelasOrca'] ?>">
-																	</div>																																			
+																	</div>																	
 																	<div class="col-md-3">
 																		<label for="Modalidade">Modalidade</label><br>
 																		<div class="form-group">
@@ -566,7 +554,7 @@
 																						echo ''
 																						. '<label class="btn btn-warning active" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
 																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
-																						. 'onchange="calculaParcelas()" '
+																						
 																						. 'autocomplete="off" value="' . $key . '" checked>' . $row
 																						. '</label>'
 																						;
@@ -574,7 +562,7 @@
 																						echo ''
 																						. '<label class="btn btn-default" name="radiobutton_Modalidade" id="radiobutton_Modalidade' .  $key . '">'
 																						. '<input type="radio" name="Modalidade" id="radiobuttondinamico" '
-																						. 'onchange="calculaParcelasMensais()" '
+																						
 																						. 'autocomplete="off" value="' . $key . '" >' . $row
 																						. '</label>'
 																						;
@@ -584,17 +572,6 @@
 																			</div>
 																		</div>
 																	</div>
-																	<!--
-																	<br>
-																	<div class="form-group">
-																		<div class="col-md-2 text-left">
-																			<button class="btn btn-danger" type="button" data-toggle="collapse" onclick="calculaParcelas()"
-																					data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
-																				<span class="glyphicon glyphicon-menu-down"></span> Gerar Parcelas
-																			</button>
-																		</div>
-																	</div>
-																	-->
 																</div>
 															</div>
 														</div>
@@ -624,27 +601,28 @@
 												</a>
 											</div>
 											
-											<div <?php echo $collapse; ?> id="Parcelas1">
+											<div <?php echo $collapse; ?> id="Parcelas1">	
 												<div class="panel-body">
-													<!--App_parcelasRec-->
-													<div class="input_fields_parcelas">
+													
+													<input type="hidden" name="PRCount" id="PRCount" value="<?php echo $count['PRCount']; ?>"/>
+
+													<div class="input_fields_wrap21">
 
 													<?php
-													for ($i=1; $i <= $orcatrata['QtdParcelasOrca']; $i++) {
+													for ($i=1; $i <= $count['PRCount']; $i++) {
 													?>
 
 														<?php if ($metodo > 1) { ?>
 														<input type="hidden" name="idApp_ParcelasRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['idApp_ParcelasRecebiveis']; ?>"/>
 														<?php } ?>
 
-
-														<div class="form-group">
-															<div class="panel panel-info">
+														<div class="form-group" id="21div<?php echo $i ?>">
+															<div class="panel panel-warning">
 																<div class="panel-heading">
 																	<div class="row">
-																		<div class="col-md-2">
+																		<div class="col-md-1">
 																			<label for="ParcelaRecebiveis">Parcela:</label><br>
-																			<input type="text" class="form-control" maxlength="6" readonly=""
+																			<input type="text" class="form-control" maxlength="6" 
 																				   name="ParcelaRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['ParcelaRecebiveis'] ?>">
 																		</div>
 																		<div class="col-md-2">
@@ -658,11 +636,12 @@
 																		<div class="col-md-2">
 																			<label for="DataVencimentoRecebiveis">Data Venc. Parc.</label>
 																			<div class="input-group DatePicker">
-																				<input type="text" class="form-control Date" id="DataVencimentoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataVencimentoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
+																				<input type="text" class="form-control Date" id="DataVencimentoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataVencimentoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataVencimentoRecebiveis'] ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-2">
@@ -676,11 +655,12 @@
 																		<div class="col-md-2">
 																			<label for="DataPagoRecebiveis">Data Pag.</label>
 																			<div class="input-group DatePicker">
-																				<input type="text" class="form-control Date" id="DataPagoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataPagoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?>">
 																				<span class="input-group-addon" disabled>
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
+																				<input type="text" class="form-control Date" id="DataPagoRecebiveis<?php echo $i ?>" maxlength="10" placeholder="DD/MM/AAAA"
+																					   name="DataPagoRecebiveis<?php echo $i ?>" value="<?php echo $parcelasrec[$i]['DataPagoRecebiveis'] ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-2">
@@ -713,9 +693,13 @@
 																				</div>
 																			</div>
 																		</div>
+																		<div class="col-md-1">
+																			<label><br></label><br>
+																			<button type="button" id="<?php echo $i ?>" class="remove_field21 btn btn-danger">
+																				<span class="glyphicon glyphicon-trash"></span>
+																			</button>
+																		</div>																	
 																	</div>
-
-
 																</div>
 															</div>
 														</div>
@@ -724,7 +708,26 @@
 													}
 													?>
 													</div>
-
+													<!--
+													<div class="form-group">
+														<div class="row">
+															<div class="col-md-4">
+																<a class="add_field_button21 btn btn-danger">
+																	<span class="glyphicon glyphicon-plus"></span> Ad. Parcelas Extras
+																</a>
+															</div>
+														</div>
+													</div>
+													-->
+													<br>
+													<div class="form-group">
+														<div class="col-md-2 text-left">
+															<button class="btn btn-warning" type="button" data-toggle="collapse" onclick="adicionaParcelasRecebiveis()"
+																	data-target="#Parcelas" aria-expanded="false" aria-controls="Parcelas">
+																<span class="glyphicon glyphicon-menu-down"></span> Adicionar Parcelas
+															</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -750,7 +753,7 @@
 												</a>
 											</div>
 											
-											<div <?php echo $collapse; ?> id="Statusorca">
+											<div <?php echo $collapse; ?> id="Statusorca">	
 												<div class="panel-body">
 													<div class="form-group">
 														<div class="panel panel-info">
@@ -859,6 +862,7 @@
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																						name="DataOrca" value="<?php echo $orcatrata['DataOrca']; ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-3">
@@ -869,6 +873,7 @@
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																					   name="DataConclusao" value="<?php echo $orcatrata['DataConclusao']; ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-3">
@@ -878,7 +883,8 @@
 																					<span class="glyphicon glyphicon-calendar"></span>
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
-																					   name="DataQuitado" value="<?php echo $orcatrata['DataQuitado']; ?>">																				
+																					   name="DataQuitado" value="<?php echo $orcatrata['DataQuitado']; ?>">
+																				
 																			</div>
 																		</div>
 
@@ -929,6 +935,7 @@
 																				</span>
 																				<input type="text" class="form-control Date" <?php echo $readonly; ?> maxlength="10" placeholder="DD/MM/AAAA"
 																					   name="DataRetorno" value="<?php echo $orcatrata['DataRetorno']; ?>">
+																				
 																			</div>
 																		</div>
 																		<div class="col-md-6">
@@ -936,6 +943,7 @@
 																			<textarea class="form-control" id="ObsOrca" <?php echo $readonly; ?>
 																					  name="ObsOrca"><?php echo $orcatrata['ObsOrca']; ?></textarea>
 																		</div>
+																		
 																	</div>
 																</div>
 															</div>
@@ -1112,7 +1120,7 @@
 
 									<div class="form-group">
 										<div class="row">
-											<input type="hidden" name="idApp_Cliente" value="<?php echo $_SESSION['Cliente']['idApp_Cliente']; ?>">
+											<input type="hidden" name="idApp_Consultor" value="<?php echo $_SESSION['Consultor']['idApp_Consultor']; ?>">
 											<input type="hidden" name="idApp_OrcaTrata" value="<?php echo $orcatrata['idApp_OrcaTrata']; ?>">
 											<?php if ($metodo > 1) { ?>
 											<!--<input type="hidden" name="idApp_Procedimento" value="<?php echo $procedimento['idApp_Procedimento']; ?>">

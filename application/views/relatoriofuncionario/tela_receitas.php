@@ -22,7 +22,7 @@
 						<button  class="btn btn-sm btn-success" type="button" data-toggle="modal" data-loading-text="Aguarde..." data-target=".bs-excluir-modal2-sm">
 							<span class="glyphicon glyphicon-filter"></span> Filtros
 						</button>											
-						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatoriofuncionario/consultores" role="button"> 
+						<a class="btn btn-sm btn-danger" href="<?php echo base_url() ?>relatoriofuncionario/clientes" role="button"> 
 							<span class="glyphicon glyphicon-plus"></span> Novo Orçam.
 						</a>
 					
@@ -42,12 +42,12 @@
 											<div class="form-group text-left">
 												<div class="row">
 													<div class="col-md-12">
-														<label for="Ordenamento">Nome do Consultor:</label>
+														<label for="Ordenamento">Nome do Cliente:</label>
 														<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
-																id="NomeConsultor" name="NomeConsultor">
+																id="NomeCliente" name="NomeCliente">
 															<?php
-															foreach ($select['NomeConsultor'] as $key => $row) {
-																if ($query['NomeConsultor'] == $key) {
+															foreach ($select['NomeCliente'] as $key => $row) {
+																if ($query['NomeCliente'] == $key) {
 																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																} else {
 																	echo '<option value="' . $key . '">' . $row . '</option>';

@@ -63,6 +63,27 @@
 												</div>
 												<div class="form-group">
 													<div class="row">
+														<div class="col-md-4">
+															<label for="Profissional">Profissional:*</label>
+															<select data-placeholder="Selecione uma opção..." class="form-control Chosen" <?php echo $readonly; ?>
+																	id="Profissional" name="Profissional">
+																<!--<option value="">-- Selecione um Profissional --</option>-->
+																<?php echo $select['option']; ?>
+																<?php
+																foreach ($select['Profissional'] as $key => $row) {
+																	if ($query['Profissional'] == $key) {
+																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																	} else {
+																		echo '<option value="' . $key . '">' . $row . '</option>';
+																	}
+																}
+																?>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="row">
 														<div class="col-md-3">
 															<label for="Email">E-mail:</label>
 															<input type="text" class="form-control" id="Bairro" maxlength="100" <?php echo $readonly; ?>

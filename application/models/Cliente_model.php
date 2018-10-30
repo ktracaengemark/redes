@@ -219,15 +219,20 @@ class Cliente_model extends CI_Model {
 
 	public function select_cliente($data = FALSE) {
 
-        if ($data === TRUE) {
+        $q = ($_SESSION['log']['Permissao'] > 2) ? ' P.Profissional = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
+		
+		if ($data === TRUE) {
             $array = $this->db->query(					
 				'SELECT
 				P.idApp_Cliente,
 				CONCAT(IFNULL(P.NomeCliente,"")) AS NomeCliente
             FROM
-                App_Cliente AS P
+
+				App_Cliente AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+					Left JOIN Sis_Usuario AS U ON U.idSis_Usuario = P.Profissional
             WHERE
+				' . $q . '
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "3"  
@@ -240,9 +245,12 @@ class Cliente_model extends CI_Model {
 				P.idApp_Cliente,
 				CONCAT(IFNULL(P.NomeCliente,"")) AS NomeCliente
             FROM
-                App_Cliente AS P
+
+				App_Cliente AS P
 					LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = P.Funcao
+					Left JOIN Sis_Usuario AS U ON U.idSis_Usuario = P.Profissional
             WHERE
+				' . $q . '
                 P.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND
                 P.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				P.Nivel = "3"  

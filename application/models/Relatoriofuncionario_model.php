@@ -3343,6 +3343,8 @@ exit();*/
         $data['Campo'] = (!$data['Campo']) ? 'C.NomeCliente' : $data['Campo'];
         $data['Ordenamento'] = (!$data['Ordenamento']) ? 'ASC' : $data['Ordenamento'];
 		$filtro1 = ($data['Inativo'] != '#') ? 'C.Inativo = "' . $data['Inativo'] . '" AND ' : FALSE;
+		$q = ($_SESSION['log']['Permissao'] > 2) ? ' C.Profissional = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
+		
         $query = $this->db->query('
             SELECT
 				C.idApp_Cliente,
@@ -3366,7 +3368,8 @@ exit();*/
 				App_Cliente AS C
 					LEFT JOIN Tab_StatusSN AS SN ON SN.Inativo = C.Inativo
             WHERE
-                C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
+                ' . $q . '
+				C.idTab_Modulo = ' . $_SESSION['log']['idTab_Modulo'] . ' AND				
                 C.Empresa = ' . $_SESSION['log']['Empresa'] . ' AND
 				6 = ' . $_SESSION['log']['Nivel'] . ' AND
 				' . $filtro1 . '

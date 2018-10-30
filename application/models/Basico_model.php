@@ -508,6 +508,29 @@ class Basico_model extends CI_Model {
             return '';
         }
     }
+
+	public function get_profissional($data) {
+
+        if (isset($data) && $data) {
+
+			$query = $this->db->query('
+				SELECT *
+					FROM
+						Sis_Usuario
+					WHERE
+						idSis_Usuario = "' . $data . '"
+				');
+
+            if ($query->num_rows() === 0) {
+                return '';
+            } else {
+                $query = $query->result_array();
+                return $query[0]['Nome'];
+            }
+        } else {
+            return '';
+        }
+    }	
 	
 	public function select_cliente($data = FALSE) {
 
@@ -1451,6 +1474,53 @@ class Basico_model extends CI_Model {
         return $array;
     }
 
+	public function select_profissional2($data = FALSE) {
+
+        $q = ($_SESSION['log']['Permissao'] > 2) ? ' U.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
+
+        if ($data === TRUE) {
+            $array = $this->db->query('
+                SELECT
+
+                    U.idSis_Usuario,
+					U.Nome
+				FROM
+
+					Sis_Usuario AS U 
+				WHERE
+                    ' . $q . '
+					U.Empresa = ' . $_SESSION['log']['Empresa'] . '
+				ORDER BY
+					U.Nome ASC
+			');
+
+        } else {
+            $query = $this->db->query('
+				SELECT
+
+                    U.idSis_Usuario,
+					CONCAT(IFNULL(F.Abrev,""), " --- ", IFNULL(U.Nome,"")) AS Nome
+
+				FROM
+
+					Sis_Usuario AS U 
+						LEFT JOIN Tab_Funcao AS F ON F.idTab_Funcao = U.Funcao
+				WHERE
+                    ' . $q . '
+					U.Empresa = ' . $_SESSION['log']['Empresa'] . '
+				ORDER BY
+					F.Abrev ASC
+			');
+
+            $array = array();
+            foreach ($query->result() as $row) {
+                $array[$row->idSis_Usuario] = $row->Nome;
+            }
+        }
+
+        return $array;
+    }	
+		
 	public function select_agendaconsultor($data = FALSE) {
 
         $q = ($_SESSION['log']['Permissao'] > 2) ?

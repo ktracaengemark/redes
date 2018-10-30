@@ -7,11 +7,6 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
 
-			
-
-				
-
-				
 					<nav class="navbar navbar-inverse">
 					  <div class="container-fluid">
 						<div class="navbar-header">
@@ -33,8 +28,19 @@
 									</a>
 								</li>
 								<li>
+									<a href="<?php echo base_url() . 'consulta/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-calendar"></span> List. Agends.
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url() . 'consulta/cadastrar1/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-plus"></span> Cad. Agend.
+									</a>
+								
+								</li>
+								<li>
 									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-usd"></span> Listar Orçams.
+										<span class="glyphicon glyphicon-usd"></span> List. Orçams.
 									</a>
 								</li>
 								<li>
@@ -200,6 +206,18 @@
 
 											}
 											*/
+											
+											if ($query['Profissional']) {
+												
+											echo '                                                 
+											<tr>
+												<td><span class="glyphicon glyphicon-user"></span> Profissional:</td>
+												<td>' . $query['Profissional'] . '</td>
+											</tr>
+											';
+											
+											}
+											
 											if ($query['Inativo']) {
 
 											echo '
