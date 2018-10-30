@@ -41,9 +41,9 @@
 
                         #echo '<tr>';
                         #echo '<tr class="clickable-row" data-href="' . base_url() . 'cliente/prontuario/' . $row['idApp_Cliente'] . '">';
-						echo '<tr class="clickable-row" data-href="' . base_url() . 'consultor/prontuario/' . $row['idApp_Consultor'] . '">';
-                            echo '<td>' . $row['idApp_Consultor'] . ' - ' . $row['StatusSN'] . '</td>';
-                            echo '<td>' . $row['NomeConsultor'] . ' - ' . $row['Sexo'] . '</td>';
+						echo '<tr class="clickable-row" data-href="' . base_url() . 'consultor/prontuario/' . $row['idApp_Cliente'] . '">';
+                            echo '<td>' . $row['idApp_Cliente'] . ' - ' . $row['StatusSN'] . '</td>';
+                            echo '<td>' . $row['NomeCliente'] . ' - ' . $row['Sexo'] . '</td>';
 							#echo '<td>' . $row['Usuario'] . '</td>';
                             #echo '<td>' . $row['Sexo'] . '</td>';
 							#echo '<td>' . $row['Nivel'] . '</td>';

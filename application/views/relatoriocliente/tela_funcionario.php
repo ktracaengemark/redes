@@ -8,7 +8,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 					<div class="panel-body">
-						<?php echo form_open('relatorio/funcionario', 'role="form"'); ?>
+						<?php echo form_open('relatoriocliente/funcionario', 'role="form"'); ?>
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-1"></div>

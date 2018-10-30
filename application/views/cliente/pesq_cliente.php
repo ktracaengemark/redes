@@ -1,4 +1,5 @@
 <?php if (isset($msg)) echo $msg; ?>
+
 <div class="container-fluid">
 	<div class="row">
 
@@ -12,7 +13,7 @@
 				<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 				<div class="panel-body">
 
-					<p>Informe <b>Nome ou Telefone</b> do Cliente:</p>
+					<p>Informe <b>NomeCliente ou Telefone</b> do Cliente:</p>
 
 					<div class="row">
 						<?php echo form_open('cliente/pesquisar', 'role="form"'); ?>
@@ -52,6 +53,5 @@
 
 		</div>
 		<div class="col-md-2"></div>
-
 	</div>
-</div>	
+</div>

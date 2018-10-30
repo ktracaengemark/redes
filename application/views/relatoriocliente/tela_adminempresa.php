@@ -7,7 +7,7 @@
 			<div class="col-md-12">
 
 				<?php echo validation_errors(); ?>
-				<?php echo form_open('relatorio/admin', 'role="form"'); ?>
+				<?php echo form_open('relatoriocliente/admin', 'role="form"'); ?>
 
 				<div class="col-md-1"></div>
 				<div class="col-md-5">
@@ -24,21 +24,21 @@
 											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">																				
-													<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatorio/clientes" role="button"> 
+													<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatoriocliente/clientes" role="button"> 
 														<span class="glyphicon glyphicon-user"></span> Clientes
 													</a>
 												</div>
 											</div>	
 											<div class="form-group col-md-10 text-left">	
 												<div class="row">		
-													<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatorio/funcionario" role="button"> 
+													<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatoriocliente/funcionario" role="button"> 
 														<span class="glyphicon glyphicon-user"></span> Funcionários
 													</a>
 												</div>
 											</div>	
 											<div class="form-group col-md-10 text-left">	
 												<div class="row">		
-													<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatorio/fornecedor" role="button"> 
+													<a class="btn btn-md btn-success" href="<?php echo base_url() ?>relatoriocliente/fornecedor" role="button"> 
 														<span class="glyphicon glyphicon-user"></span> Fornecedores
 													</a>
 												</div>	
@@ -76,7 +76,7 @@
 											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">													
-													<a class="btn btn-md btn-info" href="<?php echo base_url() ?>relatorio/clientes" role="button"> 
+													<a class="btn btn-md btn-info" href="<?php echo base_url() ?>relatoriocliente/clientes" role="button"> 
 														<span class="glyphicon glyphicon-usd"></span> Orçamentos
 													</a>
 												</div>	
@@ -116,21 +116,21 @@
 											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">		
-													<a  type="button" class="btn btn-md btn-info" href="<?php echo base_url() ?>relatorio/orcamento" role="button"> 
+													<a  type="button" class="btn btn-md btn-info" href="<?php echo base_url() ?>relatoriocliente/orcamento" role="button"> 
 														<span class="glyphicon glyphicon-usd"></span> Orçamentos
 													</a>											
 												</div>	
 											</div>											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">		
-													<a  type="button" class="btn btn-md btn-info" href="<?php echo base_url() ?>relatorio/despesas" role="button"> 
+													<a  type="button" class="btn btn-md btn-info" href="<?php echo base_url() ?>relatoriocliente/despesas" role="button"> 
 														<span class="glyphicon glyphicon-usd"></span> Despesas
 													</a>
 												</div>	
 											</div>											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">										
-													<a  type="button" class="btn btn-md btn-info" href="<?php echo base_url() ?>relatorio/receitas" role="button"> 
+													<a  type="button" class="btn btn-md btn-info" href="<?php echo base_url() ?>relatoriocliente/receitas" role="button"> 
 														<span class="glyphicon glyphicon-usd"></span> Recebimentos
 													</a>
 												</div>	
@@ -140,28 +140,28 @@
 											<label for="">Produtos:</label>
 											<div class="form-group col-md-10 text-left">
 												<div class="row">		
-													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatorio/produtos" role="button"> 
+													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatoriocliente/produtos" role="button"> 
 														<span class="glyphicon glyphicon-barcode"></span> Tabela de Preços
 													</a>
 												</div>	
 											</div>											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">
-													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatorio/produtoscomp" role="button"> 
+													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatoriocliente/produtoscomp" role="button"> 
 														<span class="glyphicon glyphicon-barcode"></span> Produtos Comprados
 													</a>
 												</div>	
 											</div>	
 											<div class="form-group col-md-10 text-left">
 												<div class="row">		
-													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatorio/produtosvend" role="button"> 
+													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatoriocliente/produtosvend" role="button"> 
 														<span class="glyphicon glyphicon-barcode"></span> Produtos Vendidos
 													</a>
 												</div>	
 											</div>	
 											<div class="form-group col-md-10 text-left">
 												<div class="row">		
-													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatorio/consumo" role="button"> 
+													<a type="button" class="btn btn-md btn-primary" href="<?php echo base_url() ?>relatoriocliente/consumo" role="button"> 
 														<span class="glyphicon glyphicon-barcode"></span> Produtos Consumidos
 													</a>
 												</div>	
@@ -172,14 +172,14 @@
 											
 											<div class="form-group col-md-10 text-left">
 												<div class="row">
-													<a type="button" class="btn btn-md btn-warning" href="<?php echo base_url() ?>relatorio/servicosprest" role="button"> 
+													<a type="button" class="btn btn-md btn-warning" href="<?php echo base_url() ?>relatoriocliente/servicosprest" role="button"> 
 														<span class="glyphicon glyphicon-plus"></span> Serviços Prestados
 													</a>
 												</div>	
 											</div>	
 											<div class="form-group col-md-10 text-left">
 												<div class="row">		
-													<a type="button" class="btn btn-md btn-warning" href="<?php echo base_url() ?>relatorio/orcamentopc" role="button"> 
+													<a type="button" class="btn btn-md btn-warning" href="<?php echo base_url() ?>relatoriocliente/orcamentopc" role="button"> 
 														<span class="glyphicon glyphicon-list-alt"></span> Procedimentos
 													</a>
 												</div>	

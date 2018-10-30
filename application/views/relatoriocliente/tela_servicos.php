@@ -13,7 +13,7 @@
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 					<div class="panel-body">
 
-						<?php echo form_open('relatorio/servicos', 'role="form"'); ?>
+						<?php echo form_open('relatoriocliente/servicos', 'role="form"'); ?>
 
 						<div class="form-group">
 							<div class="row">

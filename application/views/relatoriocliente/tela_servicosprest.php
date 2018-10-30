@@ -13,7 +13,7 @@
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 					<div class="panel-body">
 
-						<?php echo form_open('relatorio/servicosprest', 'role="form"'); ?>
+						<?php echo form_open('relatoriocliente/servicosprest', 'role="form"'); ?>
 
 						<div class="form-group">
 							<div class="row">                           							
@@ -179,7 +179,7 @@
 									</button>
 								</div>
 								<div class="col-md-2 text-right">											
-										<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>relatorio/clientes" role="button"> 
+										<a class="btn btn-lg btn-danger" href="<?php echo base_url() ?>relatoriocliente/clientes" role="button"> 
 											<span class="glyphicon glyphicon-plus"></span> Novo Orçamento
 										</a>
 								</div>								

@@ -163,7 +163,7 @@ class Relatoriofuncionario extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
+            'NomeCliente',
             'DataInicio',
             'DataFim',
 			'DataInicio2',
@@ -223,7 +223,7 @@ class Relatoriofuncionario extends CI_Controller {
             'PR.DataVencimentoRecebiveis' => 'Data do Venc.',
 			'PR.DataPagoRecebiveis' => 'Data do Pagam.',
 			'PR.QuitadoRecebiveis' => 'Quit.Parc.',
-			'C.NomeConsultor' => 'Nome do Consultor',
+			'C.NomeCliente' => 'Nome do Cliente',
             'OT.idApp_OrcaTrata' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
@@ -243,7 +243,7 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-		$data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+		$data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 
 		/*
         $data['select']['Pesquisa'] = array(
@@ -259,7 +259,7 @@ class Relatoriofuncionario extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
             $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
 			$data['bd']['DataInicio2'] = $this->basico->mascara_data($data['query']['DataInicio2'], 'mysql');
@@ -1169,7 +1169,7 @@ class Relatoriofuncionario extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
+            'NomeCliente',
 			'CodProd',
 			'Produtos',
 			'Prodaux1',
@@ -1208,7 +1208,7 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['Campo'] = array(
-            'C.NomeConsultor' => 'Nome do Consultor',
+            'C.NomeCliente' => 'Nome do Cliente',
 			'OT.idApp_OrcaTrata' => 'Id Orçam.',
             'APV.DataValidadeProduto' => 'Data da Entrega.',			
 			'TPV.CodProd' => 'Código',
@@ -1224,7 +1224,7 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-		$data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+		$data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		$data['select']['Produtos'] = $this->Relatoriofuncionario_model->select_produtos();
 		$data['select']['Prodaux1'] = $this->Relatoriofuncionario_model->select_prodaux1();
 		$data['select']['Prodaux2'] = $this->Relatoriofuncionario_model->select_prodaux2();
@@ -1236,7 +1236,7 @@ class Relatoriofuncionario extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-			$data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+			$data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 			$data['bd']['Produtos'] = $data['query']['Produtos'];
 			$data['bd']['Prodaux1'] = $data['query']['Prodaux1'];
 			$data['bd']['Prodaux2'] = $data['query']['Prodaux2'];
@@ -1277,7 +1277,7 @@ class Relatoriofuncionario extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
+            'NomeCliente',
 			'CodProd',
 			'TipoDevolucao',
 			'TipoRD',
@@ -1313,7 +1313,7 @@ class Relatoriofuncionario extends CI_Controller {
 
 
         $data['select']['Campo'] = array(
-            'C.NomeConsultor' => 'Nome do Consultor',
+            'C.NomeCliente' => 'Nome do Cliente',
 			'OT.idApp_OrcaTrata' => 'NºOrç.',
             'OT.DataOrca' => 'Dt.Orç.',
 			'APV.DataValidadeServico' => 'Dt.Dev.',
@@ -1325,7 +1325,7 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-		$data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+		$data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		$data['select']['TipoDevolucao'] = $this->Relatoriofuncionario_model->select_tipodevolucao();
 		$data['select']['Produtos'] = $this->Relatoriofuncionario_model->select_produtos();
 		$data['select']['Prodaux1'] = $this->Relatoriofuncionario_model->select_prodaux1();
@@ -1338,7 +1338,7 @@ class Relatoriofuncionario extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-			$data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+			$data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 			$data['bd']['Produtos'] = $data['query']['Produtos'];
 			$data['bd']['Prodaux1'] = $data['query']['Prodaux1'];
 			$data['bd']['Prodaux2'] = $data['query']['Prodaux2'];
@@ -1803,7 +1803,7 @@ class Relatoriofuncionario extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
+            'NomeCliente',
             'DataInicio',
             'DataFim',
 			'DataInicio',
@@ -1856,7 +1856,7 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['Campo'] = array(
-            'C.NomeConsultor' => 'Nome do Consultor',
+            'C.NomeCliente' => 'Nome do Cliente',
             'OT.idApp_OrcaTrata' => 'Número do Orçamento',
             'OT.AprovadoOrca' => 'Orçamento Aprovado?',
             'OT.DataOrca' => 'Data do Orçamento',
@@ -1880,7 +1880,7 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+        $data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		$data['select']['FormaPag'] = $this->Relatoriofuncionario_model->select_formapag();
 
         $data['titulo'] = 'Clientes & Orçamentos';
@@ -1889,7 +1889,7 @@ class Relatoriofuncionario extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 			$data['bd']['FormaPag'] = $data['query']['FormaPag'];
             $data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
@@ -1991,7 +1991,7 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['Campo'] = array(
-            'C.Nome' => 'Nome do Consultor',
+            'C.Nome' => 'Nome do Cliente',
             'OT.idApp_OrcaTrataCons' => 'Nº Devol.',
             'OT.AprovadoOrca' => 'Aprovado.',
             'OT.DataOrca' => 'Dt. Devol.',
@@ -2015,7 +2015,7 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['Nome'] = $this->Relatoriofuncionario_model->select_consultores();
+        $data['select']['Nome'] = $this->Relatoriofuncionario_model->select_clientes();
 
         $data['titulo'] = 'Clientes & Devoluções';
 
@@ -2319,7 +2319,7 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
-    public function clientes() {
+    public function clientes1() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -2330,7 +2330,7 @@ class Relatoriofuncionario extends CI_Controller {
 
         $data['query'] = quotes_to_entities($this->input->post(array(
             'NomeCliente',
-			'Ativo',
+			'Inativo',
             'Ordenamento',
             'Campo',
         ), TRUE));
@@ -2338,7 +2338,7 @@ class Relatoriofuncionario extends CI_Controller {
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
         #$this->form_validation->set_rules('Pesquisa', 'Pesquisa', 'required|trim');
 
-        $data['select']['Ativo'] = array(
+        $data['select']['Inativo'] = array(
             '#' => 'TODOS',
             'N' => 'Não',
             'S' => 'Sim',
@@ -2347,7 +2347,7 @@ class Relatoriofuncionario extends CI_Controller {
 		$data['select']['Campo'] = array(
             'C.idApp_Cliente' => 'nº Cliente',
 			'C.NomeCliente' => 'Nome do Cliente',
-			'C.Ativo' => 'Ativo',
+			'C.Inativo' => 'Inativo',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
             'C.Bairro' => 'Bairro',
@@ -2373,7 +2373,7 @@ class Relatoriofuncionario extends CI_Controller {
         if ($this->form_validation->run() !== TRUE) {
 
             $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
-			$data['bd']['Ativo'] = $data['query']['Ativo'];
+			$data['bd']['Inativo'] = $data['query']['Inativo'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
 
@@ -2426,7 +2426,7 @@ class Relatoriofuncionario extends CI_Controller {
 		$data['select']['Campo'] = array(
             'C.idSis_Usuario' => 'nº Cliente',
 			'C.Nome' => 'Nome do Cliente',
-			'C.Inativo' => 'Ativo',
+			'C.Inativo' => 'Inativo',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
             'C.Email' => 'E-mail',
@@ -2473,7 +2473,7 @@ class Relatoriofuncionario extends CI_Controller {
 
     }
 
-	public function consultores() {
+	public function clientes() {
 
         if ($this->input->get('m') == 1)
             $data['msg'] = $this->basico->msg('<strong>Informações salvas com sucesso</strong>', 'sucesso', TRUE, TRUE, TRUE);
@@ -2483,7 +2483,7 @@ class Relatoriofuncionario extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
+            'NomeCliente',
 			'Inativo',
             'Ordenamento',
             'Campo',
@@ -2499,9 +2499,9 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
 		$data['select']['Campo'] = array(
-            'C.NomeConsultor' => 'Nome do Consultor',
-			'C.idApp_Consultor' => 'nº Consultor',
-			'C.Inativo' => 'Ativo',
+            'C.NomeCliente' => 'Nome do Cliente',
+			'C.idApp_Cliente' => 'nº Cliente',
+			'C.Inativo' => 'Inativo',
             'C.DataNascimento' => 'Data de Nascimento',
             'C.Sexo' => 'Sexo',
         );
@@ -2511,20 +2511,20 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+        $data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		#$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
 
-        $data['titulo'] = 'Relatório de Consultores';
+        $data['titulo'] = 'Relatório de Clientees';
 
         #run form validation
         if ($this->form_validation->run() !== TRUE) {
 
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 			$data['bd']['Inativo'] = $data['query']['Inativo'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
 
-            $data['report'] = $this->Relatoriofuncionario_model->list_consultores($data['bd'],TRUE);
+            $data['report'] = $this->Relatoriofuncionario_model->list_clientes($data['bd'],TRUE);
 
             /*
               echo "<pre>";
@@ -2533,11 +2533,11 @@ class Relatoriofuncionario extends CI_Controller {
               exit();
               */
 
-            $data['list'] = $this->load->view('relatoriofuncionario/list_consultores', $data, TRUE);
+            $data['list'] = $this->load->view('relatoriofuncionario/list_clientes', $data, TRUE);
             //$data['nav_secundario'] = $this->load->view('cliente/nav_secundario', $data, TRUE);
         }
 
-        $this->load->view('relatoriofuncionario/tela_consultores', $data);
+        $this->load->view('relatoriofuncionario/tela_clientes', $data);
 
         $this->load->view('basico/footer');
 
@@ -2556,7 +2556,7 @@ class Relatoriofuncionario extends CI_Controller {
 			'Dia',
 			'Mes',
 			'Ano',
-			'NomeConsultor',
+			'NomeCliente',
 			'Inativo',
             'Ordenamento',
             'Campo',
@@ -2580,9 +2580,9 @@ class Relatoriofuncionario extends CI_Controller {
 
 		$data['select']['Campo'] = array(
             'DAY(C.DataNascimento)' => 'Data de Nascimento',
-			'C.NomeConsultor' => 'Nome do Consultor',
-			'C.idApp_Consultor' => 'nº Consultor',
-			'C.Inativo' => 'Ativo',
+			'C.NomeCliente' => 'Nome do Cliente',
+			'C.idApp_Cliente' => 'nº Cliente',
+			'C.Inativo' => 'Inativo',
             'C.Sexo' => 'Sexo',
             'C.Email' => 'E-mail',
         );
@@ -2592,17 +2592,17 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+        $data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		#$data['select']['Inativo'] = $this->Relatoriofuncionario_model->select_inativo();
 		$data['select']['Dia'] = $this->Relatoriofuncionario_model->select_dia();
 		$data['select']['Mes'] = $this->Relatoriofuncionario_model->select_mes();
         
-		$data['titulo'] = 'Aniversário dos Consultores';
+		$data['titulo'] = 'Aniversário dos Clientees';
 
         #run form validation
         if ($this->form_validation->run() !== TRUE) {
 
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 			$data['bd']['Dia'] = $data['query']['Dia'];
 			$data['bd']['Mes'] = $data['query']['Mes'];
 			$data['bd']['Ano'] = $data['query']['Ano'];			
@@ -3241,7 +3241,7 @@ class Relatoriofuncionario extends CI_Controller {
             $data['msg'] = '';
 
         $data['query'] = quotes_to_entities($this->input->post(array(
-            'NomeConsultor',
+            'NomeCliente',
 			'Nome',
             'DataInicio',
             'DataFim',
@@ -3287,7 +3287,7 @@ class Relatoriofuncionario extends CI_Controller {
         );
 
         $data['select']['Campo'] = array(
-            'C.NomeConsultor' => 'Nome do Consultor',
+            'C.NomeCliente' => 'Nome do Cliente',
 			'OT.idApp_OrcaTrata' => 'Número do Orçamento',
 			'OT.DataOrca' => 'Data do Orçamento',
 			'OT.DataRetorno' => 'Retorno',
@@ -3307,7 +3307,7 @@ class Relatoriofuncionario extends CI_Controller {
             'DESC' => 'Decrescente',
         );
 
-        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+        $data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		$data['select']['Nome'] = $this->Relatoriofuncionario_model->select_usuario();
 
 		$data['titulo'] = 'Clientes X Procedimentos';
@@ -3316,7 +3316,7 @@ class Relatoriofuncionario extends CI_Controller {
         if ($this->form_validation->run() !== FALSE) {
 
             #$data['bd']['Pesquisa'] = $data['query']['Pesquisa'];
-            $data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+            $data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
             $data['bd']['Nome'] = $data['query']['Nome'];
 			$data['bd']['DataInicio'] = $this->basico->mascara_data($data['query']['DataInicio'], 'mysql');
             $data['bd']['DataFim'] = $this->basico->mascara_data($data['query']['DataFim'], 'mysql');
@@ -3486,7 +3486,7 @@ class Relatoriofuncionario extends CI_Controller {
 			'ConcluidoProcedimento',
             'Ordenamento',
             'Campo',
-			'NomeConsultor',
+			'NomeCliente',
         ), TRUE));
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
@@ -3509,7 +3509,7 @@ class Relatoriofuncionario extends CI_Controller {
 			'ASC' => 'Crescente',
         );
 
-        $data['select']['NomeConsultor'] = $this->Relatoriofuncionario_model->select_consultores();
+        $data['select']['NomeCliente'] = $this->Relatoriofuncionario_model->select_clientes();
 		$data['select']['Dia'] = $this->Relatoriofuncionario_model->select_dia();
 		$data['select']['Mesvenc'] = $this->Relatoriofuncionario_model->select_mes();
 		
@@ -3524,7 +3524,7 @@ class Relatoriofuncionario extends CI_Controller {
 			$data['bd']['ConcluidoProcedimento'] = $data['query']['ConcluidoProcedimento'];
 			$data['bd']['Ordenamento'] = $data['query']['Ordenamento'];
             $data['bd']['Campo'] = $data['query']['Campo'];
-			$data['bd']['NomeConsultor'] = $data['query']['NomeConsultor'];
+			$data['bd']['NomeCliente'] = $data['query']['NomeCliente'];
 
             $data['report'] = $this->Relatoriofuncionario_model->list_procedimento($data['bd'],TRUE);
 

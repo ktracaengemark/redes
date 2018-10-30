@@ -77,12 +77,12 @@
 														</div>
 														<!--
 														<div class="col-md-12 text-left">
-															<label for="Ordenamento">Nome do Consultor:</label>
+															<label for="Ordenamento">Nome do Cliente:</label>
 															<select data-placeholder="Selecione uma opção..." class="form-control Chosen btn-block" onchange="this.form.submit()"
-																	id="NomeConsultor" autofocus name="NomeConsultor">
+																	id="NomeCliente" autofocus name="NomeCliente">
 																<?php
-																foreach ($select['NomeConsultor'] as $key => $row) {
-																	if ($query['NomeConsultor'] == $key) {
+																foreach ($select['NomeCliente'] as $key => $row) {
+																	if ($query['NomeCliente'] == $key) {
 																		echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																	} else {
 																		echo '<option value="' . $key . '">' . $row . '</option>';

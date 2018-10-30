@@ -24,7 +24,7 @@
                         <th class="active">Bairro</th>
                         <th class="active">Município</th>-->
                         <th class="active">E-mail</th>
-						<th class="active">Ativo?</th>
+						<th class="active">Inativo?</th>
 						<!--<th class="active">Contato</th>
 						<th class="active">Sexo</th>
 						<th class="active">Rel. Com.</th>
@@ -39,7 +39,7 @@
                     foreach ($report->result_array() as $row) {
 
                         #echo '<tr>';
-                        #echo '<tr class="clickable-row" data-href="' . base_url() . 'cliente/prontuario/' . $row['idApp_Cliente'] . '">';
+                        echo '<tr class="clickable-row" data-href="' . base_url() . 'clienteusuario/prontuario/' . $row['idSis_Usuario'] . '">';
                             echo '<td>' . $row['idSis_Usuario'] . '</td>';
 
                             echo '<td>' . $row['Nome'] . '</td>';
@@ -53,7 +53,7 @@
                             #echo '<td>' . $row['Bairro'] . '</td>';
                             #echo '<td>' . $row['Municipio'] . '</td>';
                             echo '<td>' . $row['Email'] . '</td>';
-							echo '<td>' . $row['Inativo'] . '</td>';
+							echo '<td>' . $row['StatusSN'] . '</td>';
 							#echo '<td>' . $row['NomeContatoCliente'] . '</td>';
 							#echo '<td>' . $row['Sexo'] . '</td>';
 							#echo '<td>' . $row['RelaCom'] . '</td>';

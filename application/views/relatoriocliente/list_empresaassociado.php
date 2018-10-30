@@ -19,7 +19,7 @@
 						<th class="active">Telefone</th>
                         <th class="active">E-mail</th>
 						<th class="active">Usuário</th>
-						<th class="active">Ativo?</th>
+						<th class="active">Inativo?</th>
 						
                     </tr>
                 </thead>

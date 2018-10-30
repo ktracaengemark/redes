@@ -14,7 +14,7 @@
 					<div class="panel-heading"><strong><?php echo $titulo; ?></strong></div>
 					<div class="panel-body">
 
-						<?php echo form_open('relatorio/produtoscomp', 'role="form"'); ?>
+						<?php echo form_open('relatoriocliente/produtoscomp', 'role="form"'); ?>
 
 						<div class="form-group">
 							<div class="row">                           
