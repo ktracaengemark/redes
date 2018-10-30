@@ -191,7 +191,7 @@ class Orcatrata_model extends CI_Model {
             . 'FROM '
             . 'App_OrcaTrata AS OT '
             . 'WHERE '
-            . 'OT.idApp_Cliente = ' . $_SESSION['OrcaTrataCons']['idApp_Cliente'] . ' '
+            . 'OT.idApp_Cliente = ' . $_SESSION['OrcaTrata']['idApp_Cliente'] . ' '
             . 'ORDER BY OT.DataOrca DESC ');
         /*
           echo $this->db->last_query();
