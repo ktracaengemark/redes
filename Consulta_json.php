@@ -21,8 +21,7 @@ $query = ($_SESSION['log']['NomeUsuario'] && isset($_SESSION['log']['NomeUsuario
     #'P.idSis_Usuario = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
 	'A.idSis_Usuario = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
 
-$permissao = ($_SESSION['log']['Permissao'] > 2) ?
-	'A.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
+$permissao = ($_SESSION['log']['Permissao'] > 2) ? 'A.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
 
 $result = mysql_query(
         'SELECT

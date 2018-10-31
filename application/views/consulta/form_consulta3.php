@@ -38,6 +38,7 @@
 									</a>
 								
 								</li>
+								<?php if ($_SESSION['Cliente']['Profissional'] == $_SESSION['log']['id'] ) { ?>
 								<li>
 									<a href="<?php echo base_url() . 'orcatrata/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
 										<span class="glyphicon glyphicon-usd"></span> List. Orçams.
@@ -48,6 +49,7 @@
 										<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
 									</a>
 								</li>
+								<?php } ?>
 							</ul>
 
 						</div>

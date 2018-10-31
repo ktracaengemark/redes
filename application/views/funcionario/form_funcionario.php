@@ -182,25 +182,7 @@
 											</div>
 											<div class="form-group">
 												<div class="row">
-													
-													<div class="col-md-6">
-														<label for="Permissao">Acesso às Agendas:*</label>
-														<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
-																id="Permissao" name="Permissao">
-															<option value="">-- Selecione uma Permissao --</option>
-															<?php
-															foreach ($select['Permissao'] as $key => $row) {
-																if ($query['Permissao'] == $key) {
-																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
-																} else {
-																	echo '<option value="' . $key . '">' . $row . '</option>';
-																}
-															}
-															?>   
-														</select>          
-													</div>
-													
-													<div class="col-md-6">
+													<div class="col-md-3">
 														<label for="Funcao">Funcao:*</label>
 														<a class="btn btn-xs btn-info" href="<?php echo base_url() ?>funcao/cadastrar/funcao" role="button"> 
 															<span class="glyphicon glyphicon-plus"></span> <b>Nova Funcao</b>
@@ -211,6 +193,22 @@
 															<?php
 															foreach ($select['Funcao'] as $key => $row) {
 																if ($query['Funcao'] == $key) {
+																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
+																} else {
+																	echo '<option value="' . $key . '">' . $row . '</option>';
+																}
+															}
+															?>   
+														</select>          
+													</div>
+													<div class="col-md-3">
+														<label for="Permissao">Acesso às Agendas:*</label>
+														<select data-placeholder="Selecione uma opção..." class="form-control" <?php echo $readonly; ?>
+																id="Permissao" name="Permissao">
+															<option value="">-- Selecione uma Permissao --</option>
+															<?php
+															foreach ($select['Permissao'] as $key => $row) {
+																if ($query['Permissao'] == $key) {
 																	echo '<option value="' . $key . '" selected="selected">' . $row . '</option>';
 																} else {
 																	echo '<option value="' . $key . '">' . $row . '</option>';
