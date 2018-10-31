@@ -71,7 +71,7 @@ class Funcionario extends CI_Controller {
 			'MunicipioUsuario',
 			'EstadoUsuario',
 			'CepUsuario',
-
+			'CompAgenda',
         ), TRUE));
 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
@@ -92,7 +92,8 @@ class Funcionario extends CI_Controller {
 		$data['select']['Inativo'] = $this->Basico_model->select_inativo();
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
-
+		$data['select']['CompAgenda'] = $this->Basico_model->select_status_sn();
+		
         $data['titulo'] = 'Cadastrar Usuário';
         $data['form_open_path'] = 'funcionario/cadastrar';
         $data['readonly'] = '';
@@ -194,7 +195,7 @@ class Funcionario extends CI_Controller {
 			'MunicipioUsuario',
 			'EstadoUsuario',
 			'CepUsuario',
-
+			'CompAgenda',
         ), TRUE);
 
         if ($id) {
@@ -220,7 +221,8 @@ class Funcionario extends CI_Controller {
 		$data['select']['Inativo'] = $this->Basico_model->select_inativo();
 		$data['select']['Permissao'] = $this->Basico_model->select_permissao();
 		$data['select']['Funcao'] = $this->Funcao_model->select_funcao();
-
+		$data['select']['CompAgenda'] = $this->Basico_model->select_status_sn();
+		
         $data['titulo'] = 'Editar Usuário';
         $data['form_open_path'] = 'funcionario/alterar';
         $data['readonly'] = '';
@@ -380,7 +382,7 @@ class Funcionario extends CI_Controller {
 		$data['query']['Permissao'] = $this->Basico_model->get_permissao($data['query']['Permissao']);
 		$data['query']['Empresa'] = $this->Basico_model->get_empresa($data['query']['Empresa']);
 		#$data['query']['Funcionario'] = $data['query']['Funcionario'];
-
+		$data['query']['CompAgenda'] = $this->Basico_model->get_compagenda($data['query']['CompAgenda']);
         $data['query']['Telefone'] = $data['query']['Celular'];
 		$data['query']['CpfUsuario'] = $data['query']['CpfUsuario'];
 

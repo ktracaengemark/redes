@@ -7,13 +7,13 @@
 		<div class="col-md-12">
 
 			<div class="panel-heading text-center">
-				<h3><?php echo '<strong>' . $_SESSION['Cliente']['NomeConsultor'] . '</strong>' ?></h3>
+				<h3><?php echo '<strong>' . $_SESSION['Usuario']['NomeConsultor'] . '</strong>' ?></h3>
 			</div>
 
 			<div class="panel-body">
 
 				<hr />
-				<?php echo '<h4>Cliente: ' . $_SESSION['Cliente']['NomeCliente'] . ' - Id: ' . $_SESSION['Cliente']['idApp_Cliente'] . ' - <strong>ORÇAMENTO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrataCons'] . '</strong></h4>' ?>
+				<?php echo '<h4>Usuario: ' . $_SESSION['Usuario']['Nome'] . ' - Id: ' . $_SESSION['Usuario']['idSis_Usuario'] . ' - <strong>ORÇAMENTO</strong> - <strong>Nº: ' . $_SESSION['Orcatrata']['idApp_OrcaTrataEmp'] . '</strong></h4>' ?>
 				<hr />
 
 				<h3 class="text-center">Produtos Entregues </h3>
@@ -49,7 +49,7 @@
 						?>
 
 						<tr>
-							<!--<td><?php echo $produto[$i]['idApp_OrcaTrataCons'] ?></td>-->
+							<!--<td><?php echo $produto[$i]['idApp_OrcaTrataEmp'] ?></td>-->
 							<td><?php echo $produto[$i]['QtdVendaProduto'] ?></td>														
 							<!--<td><?php echo $produto[$i]['CodProd'] ?></td>
 							<td><?php echo $produto[$i]['Prodaux3'] ?></td>-->					
@@ -59,7 +59,7 @@
 						</tr>						
 						<tr>
 							<td></td>
-							<td><?php echo $produto[$i]['idApp_ProdutoVendaCons'] ?></td>
+							<td><?php echo $produto[$i]['idApp_ProdutoVendaEmp'] ?></td>
 							<!--<td><?php echo $produto[$i]['UnidadeProduto'] ?></td>														
 							<td><?php echo $produto[$i]['Prodaux1'] ?></td>
 							<td><?php echo $produto[$i]['Prodaux2'] ?></td>-->
@@ -109,7 +109,7 @@
 						</tr>						
 						<tr>
 							<td></td>
-							<td><?php echo $servico[$i]['idApp_ServicoVendaCons'] ?></td>
+							<td><?php echo $servico[$i]['idApp_ServicoVendaEmp'] ?></td>
 							<td><?php echo $servico[$i]['DataValidadeServico'] ?></td>							
 						</tr>
 

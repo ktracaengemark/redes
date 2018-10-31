@@ -21,13 +21,14 @@ $query = ($_SESSION['log']['NomeUsuario'] && isset($_SESSION['log']['NomeUsuario
     #'P.idSis_Usuario = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
 	'A.idSis_Usuario = ' . $_SESSION['log']['NomeUsuario'] . ' AND ' : FALSE;
 
-$permissao = ($_SESSION['log']['Permissao'] > 2) ? 'A.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
+$permissao = ($_SESSION['log']['Permissao'] > 2 ) ? 'A.idSis_Usuario = ' . $_SESSION['log']['id'] . ' AND ' : FALSE;
 
 $result = mysql_query(
         'SELECT
             A.idApp_Agenda,
 			A.idSis_Usuario,
             U.Nome AS NomeProfissional,
+			U.CompAgenda,
 			C.idApp_Consulta,
             C.idApp_Cliente,
             R.NomeCliente,
@@ -58,7 +59,9 @@ $result = mysql_query(
 			' . $query . '
             ' . $permissao . '
             A.idApp_Agenda = C.idApp_Agenda
-        ORDER BY C.DataInicio ASC'
+			
+		ORDER BY 
+			C.DataInicio ASC'
 );
 
 while ($row = mysql_fetch_assoc($result)) {

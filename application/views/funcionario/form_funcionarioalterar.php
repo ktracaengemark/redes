@@ -291,6 +291,34 @@
 															?>   
 														</select>          
 													</div>
+													<div class="col-md-2">
+														<label for="CompAgenda">Comp. Agenda?</label><br>
+														<div class="form-group">
+															<div class="btn-group" data-toggle="buttons">
+																<?php
+																foreach ($select['CompAgenda'] as $key => $row) {
+																	(!$query['CompAgenda']) ? $query['CompAgenda'] = 'N' : FALSE;
+
+																	if ($query['CompAgenda'] == $key) {
+																		echo ''
+																		. '<label class="btn btn-warning active" name="radiobutton_Ativo" id="radiobutton_Ativo' . $key . '">'
+																		. '<input type="radio" name="CompAgenda" id="radiobutton" '
+																		. 'autocomplete="off" value="' . $key . '" checked>' . $row
+																		. '</label>'
+																		;
+																	} else {
+																		echo ''
+																		. '<label class="btn btn-default" name="radiobutton_Ativo" id="radiobutton_Ativo' . $key . '">'
+																		. '<input type="radio" name="CompAgenda" id="radiobutton" '
+																		. 'autocomplete="off" value="' . $key . '" >' . $row
+																		. '</label>'
+																		;
+																	}
+																}
+																?>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 											<br>

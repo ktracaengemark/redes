@@ -1,5 +1,5 @@
 <?php if ($msg) echo $msg; ?>
-<?php if ( !isset($evento) && isset($_SESSION['Cliente'])) { ?>
+<?php if ( !isset($evento) && isset($_SESSION['Usuario'])) { ?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -20,33 +20,33 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span> 
 						  </button>
-						  <a class="navbar-brand" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-							<?php echo '<small>' . $_SESSION['Cliente']['NomeCliente'] . '</small> - <small>Id.: ' . $_SESSION['Cliente']['idApp_Cliente'] . '</small>' ?>
+						  <a class="navbar-brand" href="<?php echo base_url() . 'cliente/prontuario/' . $_SESSION['Usuario']['idSis_Usuario']; ?>">
+							<?php echo '<small>' . $_SESSION['Usuario']['Nome'] . '</small> - <small>Id.: ' . $_SESSION['Usuario']['idSis_Usuario'] . '</small>' ?>
 						  </a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 
 							<ul class="nav navbar-nav navbar-center">
 								<li>
-									<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
-										<span class="glyphicon glyphicon-edit"></span> Editar Cliente
+									<a href="<?php echo base_url() . 'cliente/alterar/' . $_SESSION['Usuario']['idSis_Usuario']; ?>">
+										<span class="glyphicon glyphicon-edit"></span> Editar Usuario
 									</a>
 								</li>
 								
 								<li>
-									<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+									<a href="<?php echo base_url() . 'cliente/acomp/' . $_SESSION['Usuario']['idSis_Usuario']; ?>">
 										<span class="glyphicon glyphicon-pencil"></span> Anotações
 									</a>
 								</li>								
 
 								<li>
-									<a href="<?php echo base_url() . 'orcatratacons/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+									<a href="<?php echo base_url() . 'orcatrataemp/listar/' . $_SESSION['Usuario']['idSis_Usuario']; ?>">
 										<span class="glyphicon glyphicon-usd"></span> Ver Orçams.
 									</a>
 								</li>
 
 								<li>
-									<a href="<?php echo base_url() . 'orcatratacons/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+									<a href="<?php echo base_url() . 'orcatrataemp/cadastrar/' . $_SESSION['Usuario']['idSis_Usuario']; ?>">
 										<span class="glyphicon glyphicon-plus"></span> Cad. Orçam.
 									</a>
 								</li>
@@ -69,7 +69,7 @@
 									<?php
 									if (!$list) {
 									?>
-										<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>orcatratacons/cadastrar" role="button">
+										<a class="btn btn-lg btn-warning" href="<?php echo base_url() ?>orcatrataemp/cadastrar" role="button">
 											<span class="glyphicon glyphicon-plus"></span> Cadastrar Novo Orçamento
 										</a>
 										<br><br>

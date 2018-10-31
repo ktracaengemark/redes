@@ -217,6 +217,17 @@
 											';
 
 											}
+											
+											if ($query['CompAgenda']) {
+
+											echo '
+											<tr>
+												<td><span class="glyphicon glyphicon-alert"></span> Comp. Agd.?</td>
+												<td>' . $query['CompAgenda'] . '</td>
+											</tr>
+											';
+
+											}
 
 											?>
 
