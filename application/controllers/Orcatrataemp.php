@@ -18,7 +18,7 @@ class Orcatrataemp extends CI_Controller {
 
         #load header view
         $this->load->view('basico/headerconsultor');
-        $this->load->view('basico/nav_principalempresamatriz');
+        $this->load->view('basico/nav_principalempresa');
 
         #$this->load->view('orcatrataemp/nav_secundario');
     }
