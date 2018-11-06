@@ -50,6 +50,16 @@
 									</a>
 								</li>
 								<?php } ?>
+								<li>
+									<a href="<?php echo base_url() . 'procedcli/listar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-pencil"></span> List. Proced.
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url() . 'procedcli/cadastrar/' . $_SESSION['Cliente']['idApp_Cliente']; ?>">
+										<span class="glyphicon glyphicon-plus"></span> Cad. Proced.
+									</a>
+								</li>
 							</ul>
 
 						</div>
